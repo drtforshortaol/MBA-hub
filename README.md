@@ -1,0 +1,2 @@
+# MBA-hub
+The MBA Hub is a mobile-friendly web application hosted on GitHub Pages that serves as a central navigation point for a growing library of interactive species and concept apps. Each individual app is a standalone page that links back to the hub. The system is designed to support additional editors in the future — the JSON config and repeatable checklist are written to be followable by a trained collaborator.
