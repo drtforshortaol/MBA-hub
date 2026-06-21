@@ -15,7 +15,7 @@
     <div class="badge">MBA Volunteer Companion</div>
     <h1>MBA Hub</h1>
     <p>Volunteer guide hub for exhibits, animals, visitor questions, guide talks, aquarium updates, and Monterey Bay interpretation.</p>
-    <p class="version">Version 1.0 · Last updated 2026-06-21</p>
+    <p class="version">Version 1.1 · Last updated 2026-06-21</p>
   </header>
 
   <main class="shell">
@@ -25,6 +25,18 @@
       <label for="searchInput">Search</label>
       <input id="searchInput" type="search" placeholder="Search otter, kelp forest, upwelling..." autocomplete="off" />
       <div id="searchResults" class="search-results"></div>
+    </section>
+
+    <section class="jump-panel">
+      <label for="categoryJump">Jump To Category</label>
+      <select id="categoryJump">
+        <option value="">Choose a category...</option>
+      </select>
+    </section>
+
+    <section id="recentPanel" class="recent-panel" style="display:none;">
+      <h2>Recent Searches</h2>
+      <div id="recentSearches" class="recent-searches"></div>
     </section>
 
     <section class="section-heading">
