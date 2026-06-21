@@ -1,0 +1,12 @@
+{
+  "name": "MBA Volunteer Companion",
+  "short_name": "MBA Hub",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef8fb",
+  "theme_color": "#005f73",
+  "icons": [
+    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml"}
+  ]
+}
