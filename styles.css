@@ -56,23 +56,35 @@ body {
 .banner__label { font-weight: 900; color: #8a5a00; font-size: 0.78rem; text-transform: uppercase; }
 .banner h2 { margin: 5px 0; font-size: 1.12rem; }
 .banner p { margin: 0 0 8px; color: #4b5563; }
-.search-panel, .section-heading, .tile {
+.search-panel, .jump-panel, .recent-panel, .section-heading, .tile {
   background: rgba(255,255,255,0.94);
   border: 1px solid var(--line);
   border-radius: 22px;
   box-shadow: 0 10px 28px rgba(7,59,76,0.09);
 }
-.search-panel { padding: 16px; margin-bottom: 16px; }
+.search-panel, .jump-panel, .recent-panel { padding: 16px; margin-bottom: 16px; }
 label { display: block; font-weight: 900; color: var(--brand-dark); margin-bottom: 8px; }
-input {
+input, select {
   width: 100%;
   min-height: 50px;
   border: 1px solid var(--line);
   border-radius: 15px;
   padding: 10px 12px;
   font-size: 1rem;
+  background: white;
+  color: var(--ink);
 }
 .search-results { margin-top: 10px; color: var(--muted); }
+.recent-panel h2 { margin: 0 0 10px; font-size: 1.05rem; }
+.recent-searches { display: flex; flex-wrap: wrap; gap: 8px; }
+.recent-chip {
+  border: 0;
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: var(--brand);
+  color: white;
+  font-weight: 850;
+}
 .section-heading { padding: 16px; margin-bottom: 14px; }
 .section-heading h2 { margin: 0 0 6px; }
 .section-heading p { margin: 0; color: var(--muted); }
@@ -87,6 +99,7 @@ input {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  scroll-margin-top: 18px;
 }
 .tile__icon { font-size: 2.4rem; line-height: 1; }
 .tile h3 { margin: 0; font-size: 1.18rem; }
