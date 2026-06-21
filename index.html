@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#005f73" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="MBA Hub" />
+  <title>MBA Volunteer Companion</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="badge">MBA Volunteer Companion</div>
+    <h1>MBA Hub</h1>
+    <p>Volunteer guide hub for exhibits, animals, visitor questions, guide talks, aquarium updates, and Monterey Bay interpretation.</p>
+    <p class="version">Version 1.0 · Last updated 2026-06-21</p>
+  </header>
+
+  <main class="shell">
+    <section id="bannerArea" class="banner-area"></section>
+
+    <section class="search-panel">
+      <label for="searchInput">Search</label>
+      <input id="searchInput" type="search" placeholder="Search otter, kelp forest, upwelling..." autocomplete="off" />
+      <div id="searchResults" class="search-results"></div>
+    </section>
+
+    <section class="section-heading">
+      <h2>Guide Categories</h2>
+      <p>Large touch-friendly tiles for quick use during a volunteer shift.</p>
+    </section>
+
+    <section id="tileGrid" class="tile-grid"></section>
+  </main>
+
+  <footer class="footer">
+    <p>Offline-capable PWA starter hub.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
