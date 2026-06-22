@@ -115,4 +115,4 @@ window.MBA_HUB = {
       tags: ["elephant seal", "marine mammal", "migration", "deep sea", "conservation", "marine mammal cart"]
     }
   ]
-};
+},
