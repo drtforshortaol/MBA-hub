@@ -13,7 +13,7 @@ window.MBA_HUB = {
   ],
   categories: [
     { title: "Aquarium Updates", icon: "📰", description: "Recent animal news, program changes, facility notes, and volunteer announcements.", url: "#", tags: ["updates", "news", "announcements"] },
-    { title: "Exhibits", icon: "🐟", description: "Kelp Forest, Open Sea, Rocky Shore, Sandy Shore, Penguins, Touch Pools, and Drifter Gallery.", url: "#", tags: ["exhibits", "kelp forest", "open sea"] },
+    { title: "Exhibits", icon: "🐟", description: "Kelp Forest, Open Sea, Rocky Shore, Sandy Shore, Penguins, Touch Pools, and Drifter Gallery.", url: "#", tags: ["exhibits", "kelp forest", "open sea"] },{ title: "Kelp Forest", icon: "🌿", description: "Guide-friendly exhibit page for kelp forest facts, visitor Q&A, kids facts, habitat connections, exhibit details, and conservation talking points.", url: "apps/kelp-forest/index.html", tags: ["kelp forest", "giant kelp", "food web", "upwelling", "habitat", "conservation", "sea otter", "seafood watch"] },
     { title: "Animals", icon: "🦦", description: "Species and animal groups for quick guide reference.", url: "#", tags: ["animals", "species", "sea otter"] },
     { title: "Visitor Questions", icon: "❓", description: "Fast answers to common visitor questions.", url: "#", tags: ["questions", "faq", "visitor"] },
     { title: "Guide Talks", icon: "🎤", description: "Two-minute, five-minute, and longer interpretive talks.", url: "#", tags: ["talks", "guide talks", "interpretation"] },
