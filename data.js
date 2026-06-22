@@ -1,12 +1,12 @@
 window.MBA_HUB = {
-  version: "1.1",
+  version: "1.2",
   lastUpdated: "2026-06-22",
 
   banners: [
     {
       title: "MBA Hub foundation started",
       category: "Volunteer Announcement",
-      message: "The volunteer companion hub is being organized into categories and app cards.",
+      message: "The volunteer companion hub is being built and tested.",
       startDate: "2026-06-21",
       expirationDate: "2026-07-21",
       link: "#"
@@ -24,16 +24,36 @@ window.MBA_HUB = {
     {
       title: "Exhibits",
       icon: "🐟",
-      description: "Exhibit reference pages for guide-friendly facts, visitor questions, and talking points.",
+      description: "Kelp Forest, Open Sea, Rocky Shore, Sandy Shore, Penguins, Touch Pools, and Drifter Gallery.",
       url: "#",
       tags: ["exhibits", "kelp forest", "open sea"]
     },
     {
+      title: "Kelp Forest",
+      icon: "🌿",
+      description: "Guide-friendly exhibit page for Kelp Forest facts, visitor Q&A, kids facts, conservation messages, and volunteer talking points.",
+      url: "apps/kelp-forest/index.html",
+      category: "Exhibits",
+      contentType: "EXHIBIT",
+      locationType: "EXHIBIT_SPACE",
+      tags: ["kelp forest", "giant kelp", "exhibit", "food web", "rockfish", "mpa", "seafood watch"]
+    },
+    {
       title: "Animals",
       icon: "🦦",
-      description: "Species and animal group reference pages for quick guide use.",
+      description: "Species and animal groups for quick guide reference.",
       url: "#",
       tags: ["animals", "species", "marine mammals"]
+    },
+    {
+      title: "Northern Elephant Seal",
+      icon: "🦭",
+      description: "Guide-friendly animal page covering migration, deep diving, breeding, pups, sleep, and conservation recovery.",
+      url: "apps/northern-elephant-seal/index.html",
+      category: "Animals",
+      contentType: "ANIMAL",
+      locationType: "EXHIBIT_SPACE",
+      tags: ["elephant seal", "marine mammal", "migration", "deep sea", "conservation", "marine mammal cart"]
     },
     {
       title: "Visitor Questions",
@@ -91,28 +111,5 @@ window.MBA_HUB = {
       url: "#",
       tags: ["cannery row", "history", "walking tour"]
     }
-  ],
-
-  items: [
-    {
-      title: "Kelp Forest",
-      icon: "🌿",
-      description: "Guide-friendly exhibit page for Kelp Forest facts, visitor Q&A, kids facts, conservation messages, and volunteer talking points.",
-      url: "apps/kelp-forest/index.html",
-      category: "Exhibits",
-      contentType: "EXHIBIT",
-      locationType: "EXHIBIT_SPACE",
-      tags: ["kelp forest", "giant kelp", "exhibit", "food web", "rockfish", "mpa", "seafood watch"]
-    },
-    {
-      title: "Northern Elephant Seal",
-      icon: "🦭",
-      description: "Guide-friendly animal page covering migration, deep diving, breeding, pups, sleep, and conservation recovery.",
-      url: "apps/northern-elephant-seal/index.html",
-      category: "Animals",
-      contentType: "ANIMAL",
-      locationType: "EXHIBIT_SPACE",
-      tags: ["elephant seal", "marine mammal", "migration", "deep sea", "conservation", "marine mammal cart"]
-    }
   ]
-},
+};
