@@ -20,10 +20,6 @@
     return getAppItems().filter(app => app.parentCategory === categoryTitle);
   }
 
-  function getAllSearchableItems() {
-    return allItems;
-  }
-
   function findRoot() {
     return (
       document.getElementById("app") ||
@@ -48,17 +44,47 @@
     return item.url && item.url !== "#";
   }
 
-  function createCard(item) {
-    const openable = isOpenable(item);
-    const buttonText = openable ? "Open" : "Coming soon";
-    const buttonClass = openable ? "card-button open" : "card-button disabled";
+  function hasChildApps(item) {
+    return getAppsForCategory(item.title).length > 0;
+  }
+
+  function createChildAppPreview(item) {
+    const apps = getAppsForCategory(item.title);
+
+    if (!apps.length) return "";
 
     return `
-      <article class="hub-card" data-title="${escapeHtml(item.title)}">
+      <div class="child-app-preview">
+        <strong>Available inside:</strong>
+        <ul>
+          ${apps.map(app => `<li>${escapeHtml(app.icon || "•")} ${escapeHtml(app.title)}</li>`).join("")}
+        </ul>
+      </div>
+    `;
+  }
+
+  function createCard(item) {
+    const openable = isOpenable(item);
+    const categoryHasApps = item.type !== "APP" && hasChildApps(item);
+
+    let buttonText = "Coming soon";
+    let buttonClass = "card-button disabled";
+
+    if (openable) {
+      buttonText = "Open";
+      buttonClass = "card-button open";
+    } else if (categoryHasApps) {
+      buttonText = "Open category";
+      buttonClass = "card-button open";
+    }
+
+    return `
+      <article class="hub-card ${categoryHasApps ? "has-apps" : ""}" data-title="${escapeHtml(item.title)}">
         <div class="card-icon">${item.icon || "🌊"}</div>
         <h2>${escapeHtml(item.title)}</h2>
         <p>${escapeHtml(item.description || "")}</p>
         ${createTagList(item.tags)}
+        ${createChildAppPreview(item)}
         <button class="${buttonClass}" data-url="${escapeHtml(item.url || "#")}" data-title="${escapeHtml(item.title)}">
           ${buttonText}
         </button>
@@ -167,7 +193,7 @@
 
   function renderSearchResults() {
     const root = findRoot();
-    const results = filterItems(getAllSearchableItems(), appState.searchTerm);
+    const results = filterItems(allItems, appState.searchTerm);
 
     root.innerHTML = `
       ${renderHeader("Search Results", `Results for “${appState.searchTerm}”`, true)}
