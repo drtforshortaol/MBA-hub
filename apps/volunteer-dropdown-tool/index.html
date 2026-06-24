@@ -1,42 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Volunteer Dropdown Tool</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Information Center | Volunteer Quick Reference</title>
+
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#005f73" />
 </head>
+
 <body>
-  <header class="app-header">
-    <div class="top-buttons">
-      <a class="hub-button" href="../../index.html">← MBA Hub</a>
-      <button id="clear-cache-button" class="refresh-button" type="button">↻ Clear Cache</button>
-    </div>
+  <main class="app-shell">
+    <header class="hero">
+      <p class="eyebrow">Volunteer Tools</p>
+      <h1>Information Center</h1>
+      <p>Volunteer Quick Reference</p>
+    </header>
 
-    <div id="update-message" class="update-message">
-      App loaded. Cache has not been cleared yet.
-    </div>
-
-    <h1>Volunteer Dropdown Tool</h1>
-    <p class="subtitle">A quick dropdown-based reference tool for volunteers.</p>
-  </header>
-
-  <main>
-    <section class="card">
-      <button class="dropdown-button" type="button">Quick Reference</button>
-      <div class="dropdown-content">
-        <p>Use this app as a simple volunteer reference page. Replace this sample content with your real dropdown information.</p>
-      </div>
+    <section class="search-section" aria-label="Search volunteer reference topics">
+      <label for="search-input">Search topics</label>
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Search restrooms, lost and found, accessibility, emergencies..."
+        autocomplete="off"
+      />
     </section>
 
-    <section class="card">
-      <button class="dropdown-button" type="button">How to Use</button>
-      <div class="dropdown-content">
-        <p>Tap a dropdown heading to open or close a section. Use the Clear Cache button if your iPhone is showing an older version.</p>
-      </div>
+    <section class="selector-section" aria-label="Choose a volunteer topic">
+      <label for="section-select">Choose a topic</label>
+      <select id="section-select"></select>
     </section>
+
+    <section id="emergency-section" class="emergency-section"></section>
+
+    <section id="content" class="content-section" aria-live="polite"></section>
+
+    <section class="image-note">
+      <h2>Suggested Images</h2>
+      <div id="image-list"></div>
+    </section>
+
+    <footer class="footer">
+      Monterey Bay Aquarium · Volunteer Tools
+    </footer>
   </main>
 
   <script src="data.js"></script>
