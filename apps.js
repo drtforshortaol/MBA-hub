@@ -31,13 +31,16 @@ window.MBA_APP_REGISTRY = [
     contentType: "VOLUNTEER_TOOL",
     locationType: "HUB_TOOL",
     tags: ["volunteer", "tools", "dropdown", "training"]
+  },
+  {
+    id: "information-center",
+    title: "Information Center",
+    icon: "ℹ️",
+    category: "Visitor Services",
+    path: "apps/information-center/",
+    description: "Quick visitor answers, Cannery Row guidance, parking help, dining suggestions, and guest-support scripts.",
+    contentType: "VOLUNTEER_TOOL",
+    locationType: "HUB_TOOL",
+    tags: ["visitor questions", "information center", "parking", "dining", "Cannery Row"]
   }
 ];
-{
-  id: "information-center",
-  title: "Information Center",
-  category: "Visitor Services",
-  path: "apps/information-center/",
-  description: "Quick visitor answers, Cannery Row guidance, parking help, dining suggestions, and guest-support scripts.",
-  tags: ["visitor questions", "information center", "parking", "dining", "Cannery Row"]
-},

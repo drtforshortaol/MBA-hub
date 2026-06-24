@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MBA Information Center</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+
+  <meta name="theme-color" content="#005f73" />
+  <meta name="description" content="Monterey Bay Aquarium volunteer Information Center companion app." />
+
+  <link rel="icon" href="images/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="images/icon.svg" />
+</head>
+
+<body>
+  <header class="app-header">
+    <div class="top-buttons">
+      <a class="hub-button" href="../../index.html">← MBA Hub</a>
+      <button id="clear-cache-button" class="cache-button" type="button">↻ Clear Cache</button>
+    </div>
+
+    <p id="update-message" class="update-message">
+      App loaded. Cache has not been cleared yet.
+    </p>
+
+    <section class="hero">
+      <p class="eyebrow">Monterey Bay Aquarium Volunteer Companion</p>
+      <h1>Information Center</h1>
+      <p class="subtitle">
+        Quick visitor answers, parking guidance, Cannery Row help, dining suggestions,
+        comfort tips, and emergency reminders.
+      </p>
+    </section>
+
+    <section class="tool-panel" aria-label="Information filters">
+      <label for="section-select">Choose a topic</label>
+      <select id="section-select"></select>
+
+      <label for="search-input">Search this app</label>
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Try: parking, food, restroom, otters, rain..."
+        autocomplete="off"
+      />
+    </section>
+  </header>
+
+  <main>
+    <section id="emergency-section" class="emergency-section" aria-label="Emergency reminders"></section>
+    <section id="content" class="content-card" aria-label="Information content"></section>
+  </main>
+
+  <footer class="app-footer">
+    <p>
+      Volunteer quick-reference tool. Always defer to current Aquarium policy,
+      posted signs, staff direction, and official operating updates.
+    </p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
