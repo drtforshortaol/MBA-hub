@@ -1,0 +1,66 @@
+How to use this app-template
+
+1. Duplicate _app-template/
+2. Rename the copy to the app name
+3. Edit data.js
+4. Replace/add images inside images/
+5. Update the title and app ID
+6. Upload the renamed folder to GitHub
+
+__________________________________
+
+app-name/
+  index.html              ← required: the actual app page
+  data.js                 ← recommended: app text, species, cards, image paths
+  manifest.webmanifest    ← recommended: lets it behave like an installable PWA
+  service-worker.js       ← recommended: offline caching
+  README.md               ← recommended: notes for GitHub / image sources
+  images/                 ← needed if the app uses local images
+
+__________________________________
+
+For each app, keep this pattern:
+
+app-name/
+  index.html              file
+  data.js                 file
+  manifest.webmanifest    file
+  service-worker.js       file
+  README.md               file
+  images/                 folder
+
+So your reusable template should look like:
+
+_app-template/
+  index.html
+  data.js
+  manifest.webmanifest
+  service-worker.js
+  README.md
+  images/
+
+Then duplicate _app-template and rename the copy:
+
+beaches-dunes/
+sea-otter/
+kelp-forest/
+moon-jellies/
+
+For each copied app, update these three places:
+
+data.js
+manifest.webmanifest
+service-worker.js
+
+Usually you change:
+
+// data.js
+id: "beaches-dunes",
+title: "Beaches & Dunes"
+// manifest.webmanifest
+"name": "Beaches & Dunes — MBA Volunteer Reference",
+"short_name": "Beaches & Dunes"
+// service-worker.js
+const CACHE_NAME = "beaches-dunes-v1";
+
+Then put that app’s photos inside only that app’s images/ folder.

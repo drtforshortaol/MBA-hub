@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Volunteer Dropdown Tool</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#005f73" />
+</head>
+
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <p class="eyebrow">Volunteer Tools</p>
+      <h1 id="app-title">Volunteer Dropdown Tool</h1>
+      <p id="app-description">A quick dropdown-based reference tool for volunteers.</p>
+    </header>
+
+    <section class="controls" aria-label="Tool controls">
+      <label for="section-select">Choose a topic</label>
+      <select id="section-select"></select>
+    </section>
+
+    <section id="dropdown-content" class="content" aria-live="polite"></section>
+
+    <section class="image-note">
+      <h2>Suggested Images</h2>
+      <div id="image-list"></div>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

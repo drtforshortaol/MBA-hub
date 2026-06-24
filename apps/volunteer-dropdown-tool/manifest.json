@@ -1,0 +1,23 @@
+{
+  "name": "Volunteer Dropdown Tool",
+  "short_name": "Volunteer Tool",
+  "description": "A quick dropdown-based reference tool for volunteers.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f6f8f9",
+  "theme_color": "#005f73",
+  "icons": [
+    {
+      "src": "images/volunteer-info-desk-01.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "images/volunteer-info-desk-01.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
