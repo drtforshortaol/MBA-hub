@@ -1,0 +1,34 @@
+MBA HUB APP REGISTRY INSTRUCTIONS
+
+The Hub now uses this file for app cards:
+
+apps.js
+
+When you add a new app, you usually update only two things:
+
+1. Add the new app folder inside apps/
+2. Add one new entry to apps.js
+
+Example app registry entry:
+
+{
+  id: "new-app-folder-name",
+  title: "New App Title",
+  icon: "📘",
+  category: "Animals",
+  path: "apps/new-app-folder-name/",
+  description: "Short description shown on the Hub card.",
+  contentType: "ANIMAL",
+  locationType: "EXHIBIT_SPACE",
+  tags: ["tag one", "tag two"]
+}
+
+Important:
+- category must exactly match one of the Hub category names in data.js
+- path must exactly match the folder location
+- Do not edit index.html, styles.css, app.js, manifest.json, or sw.js just to add a normal new app
+- Edit apps.js when adding a new app card
+- Edit data.js only when adding, removing, or renaming a Hub category
+
+Normal workflow:
+BACKUP -> TEST -> VERIFY ON PC -> VERIFY ON IPHONE -> LIVE

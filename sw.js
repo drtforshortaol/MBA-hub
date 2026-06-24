@@ -1,9 +1,10 @@
-const CACHE = "mba-hub-v2";
+const CACHE = "mba-hub-v3-registry";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./data.js",
+  "./apps.js",
   "./app.js",
   "./manifest.json",
   "./icon.svg"

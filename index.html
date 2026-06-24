@@ -3,37 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Volunteer Dropdown Tool</title>
-
+  <title>MBA Volunteer Hub</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#005f73" />
 </head>
-
 <body>
-  <header class="app-header">
-    <div class="top-buttons">
-      <a class="hub-button" href="../../index.html">← MBA Hub</a>
-      <button class="refresh-button" onclick="clearAppCache()">↻ Clear Cache</button>
+  <header class="hub-header">
+    <div class="header-top">
+      <div>
+        <h1>MBA Volunteer Hub</h1>
+        <p class="subtitle">Volunteer companion apps and quick reference tools</p>
+      </div>
+      <button id="clear-cache-button" class="refresh-button" type="button">↻ Clear Cache</button>
     </div>
 
-    <div id="update-message" class="update-message">
-      App loaded. Cache has not been cleared yet.
+    <div id="hub-update-message" class="update-message">
+      Hub loaded. Cache has not been cleared yet.
     </div>
 
-    <h1>Volunteer Dropdown Tool</h1>
-    <p class="subtitle">A quick dropdown-based reference tool for volunteers.</p>
+    <div id="hub-version" class="version-line"></div>
   </header>
 
   <main>
-    <section class="card">
-      <button class="dropdown-button">Sample Section</button>
-      <div class="dropdown-content">
-        <p>This is where your app content goes.</p>
-      </div>
-    </section>
+    <section id="banner-area" class="banner-area"></section>
+    <section id="category-area" class="category-area"></section>
   </main>
 
   <script src="data.js"></script>
+  <script src="apps.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

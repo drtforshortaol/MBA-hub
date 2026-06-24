@@ -1,34 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Volunteer Dropdown Tool</title>
-
-  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#005f73" />
 </head>
-
 <body>
-  <main class="app-shell">
-    <header class="hero">
-      <p class="eyebrow">Volunteer Tools</p>
-      <h1 id="app-title">Volunteer Dropdown Tool</h1>
-      <p id="app-description">A quick dropdown-based reference tool for volunteers.</p>
-    </header>
+  <header class="app-header">
+    <div class="top-buttons">
+      <a class="hub-button" href="../../index.html">← MBA Hub</a>
+      <button id="clear-cache-button" class="refresh-button" type="button">↻ Clear Cache</button>
+    </div>
 
-    <section class="controls" aria-label="Tool controls">
-      <label for="section-select">Choose a topic</label>
-      <select id="section-select"></select>
+    <div id="update-message" class="update-message">
+      App loaded. Cache has not been cleared yet.
+    </div>
+
+    <h1>Volunteer Dropdown Tool</h1>
+    <p class="subtitle">A quick dropdown-based reference tool for volunteers.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <button class="dropdown-button" type="button">Quick Reference</button>
+      <div class="dropdown-content">
+        <p>Use this app as a simple volunteer reference page. Replace this sample content with your real dropdown information.</p>
+      </div>
     </section>
 
-    <section id="dropdown-content" class="content" aria-live="polite"></section>
-
-    <section class="image-note">
-      <h2>Suggested Images</h2>
-      <div id="image-list"></div>
+    <section class="card">
+      <button class="dropdown-button" type="button">How to Use</button>
+      <div class="dropdown-content">
+        <p>Tap a dropdown heading to open or close a section. Use the Clear Cache button if your iPhone is showing an older version.</p>
+      </div>
     </section>
   </main>
 
