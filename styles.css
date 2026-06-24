@@ -128,3 +128,46 @@ input, select {
 }
 .open-link.disabled { background: #8ca5ad; pointer-events: none; }
 .footer { padding: 8px 18px 28px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+.hub-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-icon {
+  display: block;
+  font-size: 2.2rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.hub-card h2 {
+  margin-top: 0;
+}
+
+.child-app-preview {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.85rem;
+  border-radius: 1rem;
+  background: #e6f7f8;
+  color: #003f52;
+  font-size: 0.95rem;
+}
+
+.child-app-preview strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.child-app-preview ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.child-app-preview li {
+  margin: 0.2rem 0;
+}
+
+.card-button {
+  margin-top: auto;
+}
