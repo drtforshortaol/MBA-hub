@@ -28,6 +28,7 @@ app-name/
   service-worker.js       file
   README.md               file
   images/                 folder
+styles.css		file
 
 So your reusable template should look like:
 

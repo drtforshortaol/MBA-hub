@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MBA Information Center</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+
+  <meta name="theme-color" content="#005f73" />
+  <meta name="description" content="Monterey Bay Aquarium volunteer quick-reference Information Center app." />
+
+  <link rel="icon" href="images/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="images/icon.svg" />
+</head>
+
+<body>
+  <header class="app-header">
+    <div class="top-buttons">
+      <a class="hub-button" href="../../index.html">← MBA Hub</a>
+      <button id="clearCacheButton" class="cache-button" type="button">↻ Clear Cache</button>
+    </div>
+
+    <p id="updateMessage" class="update-message">
+      App loaded. Cache has not been cleared yet.
+    </p>
+
+    <div class="hero">
+      <p class="eyebrow">Monterey Bay Aquarium Volunteer Companion</p>
+      <h1>Information Center</h1>
+      <p class="subtitle">
+        Quick visitor answers, Cannery Row guidance, parking help, dining suggestions,
+        and guest-support scripts.
+      </p>
+    </div>
+
+    <div class="search-wrap">
+      <label for="searchInput">Search this app</label>
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Try: parking, lunch, otters, restroom, rainy day..."
+        autocomplete="off"
+      />
+    </div>
+  </header>
+
+  <main>
+    <section id="quickCards" class="quick-cards" aria-label="Quick reference cards"></section>
+
+    <section class="controls">
+      <button id="expandAllButton" type="button">Expand All</button>
+      <button id="collapseAllButton" type="button">Collapse All</button>
+    </section>
+
+    <section id="sectionsContainer" class="sections-container" aria-label="Information Center sections"></section>
+
+    <section id="noResults" class="no-results hidden">
+      <h2>No matching results</h2>
+      <p>
+        Try a broader word such as food, walk, parking, restroom, family, otters, or rain.
+      </p>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>
+      Volunteer quick-reference tool. Always defer to current Aquarium policy,
+      posted signs, staff direction, and official operating updates.
+    </p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

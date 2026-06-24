@@ -33,3 +33,11 @@ window.MBA_APP_REGISTRY = [
     tags: ["volunteer", "tools", "dropdown", "training"]
   }
 ];
+{
+  id: "information-center",
+  title: "Information Center",
+  category: "Visitor Services",
+  path: "apps/information-center/",
+  description: "Quick visitor answers, Cannery Row guidance, parking help, dining suggestions, and guest-support scripts.",
+  tags: ["visitor questions", "information center", "parking", "dining", "Cannery Row"]
+},
