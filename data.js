@@ -109,6 +109,15 @@ window.MBA_HUB = {
       tags: ["volunteer", "tools", "training"]
     },
     {
+  title: "Volunteer Dropdown Tool",
+  icon: "🧰",
+  description: "A quick dropdown-based reference tool for volunteers.",
+  url: "apps/volunteer-dropdown-tool/",
+  type: "APP",
+  category: "Volunteer Tools",
+  tags: ["volunteer", "tools", "dropdown", "training"]
+},
+    {
       title: "Visitor Services",
       icon: "🗺️",
       description: "Restrooms, elevators, accessibility, café, gift shop, and wayfinding.",
