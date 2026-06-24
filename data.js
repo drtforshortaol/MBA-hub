@@ -1,6 +1,6 @@
 window.MBA_HUB = {
-  version: "1.2",
-  lastUpdated: "2026-06-22",
+  version: "1.3",
+  lastUpdated: "2026-06-23",
 
   banners: [
     {
@@ -26,38 +26,36 @@ window.MBA_HUB = {
       icon: "🐟",
       description: "Kelp Forest, Open Sea, Rocky Shore, Sandy Shore, Penguins, Touch Pools, and Drifter Gallery.",
       url: "#",
-      tags: ["exhibits", "kelp forest", "open sea"],
-      items: [
-        {
-          title: "Kelp Forest",
-          icon: "🌿",
-          description: "Guide-friendly exhibit page for Kelp Forest facts, visitor Q&A, kids facts, conservation messages, and volunteer talking points.",
-          url: "apps/kelp-forest/index.html",
-          category: "Exhibits",
-          contentType: "EXHIBIT",
-          locationType: "EXHIBIT_SPACE",
-          tags: ["kelp forest", "giant kelp", "exhibit", "food web", "rockfish", "mpa", "seafood watch"]
-        }
-      ]
+      tags: ["exhibits", "kelp forest", "open sea"]
+    },
+    {
+      title: "Kelp Forest",
+      icon: "🌿",
+      description: "Guide-friendly exhibit page for Kelp Forest facts, visitor Q&A, kids facts, conservation messages, and volunteer talking points.",
+      url: "apps/kelp-forest/index.html",
+      category: "Exhibits",
+      parentCategory: "Exhibits",
+      contentType: "EXHIBIT",
+      locationType: "EXHIBIT_SPACE",
+      tags: ["kelp forest", "giant kelp", "exhibit", "food web", "rockfish", "mpa", "seafood watch"]
     },
     {
       title: "Animals",
       icon: "🦦",
       description: "Species and animal groups for quick guide reference.",
       url: "#",
-      tags: ["animals", "species", "marine mammals"],
-      items: [
-        {
-          title: "Northern Elephant Seal",
-          icon: "🦭",
-          description: "Guide-friendly animal page covering migration, deep diving, breeding, pups, sleep, and conservation recovery.",
-          url: "apps/northern-elephant-seal/index.html",
-          category: "Animals",
-          contentType: "ANIMAL",
-          locationType: "EXHIBIT_SPACE",
-          tags: ["elephant seal", "marine mammal", "migration", "deep sea", "conservation", "marine mammal cart"]
-        }
-      ]
+      tags: ["animals", "species", "marine mammals"]
+    },
+    {
+      title: "Northern Elephant Seal",
+      icon: "🦭",
+      description: "Guide-friendly animal page covering migration, deep diving, breeding, pups, sleep, and conservation recovery.",
+      url: "apps/northern-elephant-seal/index.html",
+      category: "Animals",
+      parentCategory: "Animals",
+      contentType: "ANIMAL",
+      locationType: "EXHIBIT_SPACE",
+      tags: ["elephant seal", "marine mammal", "migration", "deep sea", "conservation", "marine mammal cart"]
     },
     {
       title: "Visitor Questions",
