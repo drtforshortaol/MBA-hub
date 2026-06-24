@@ -1,5 +1,5 @@
 window.MBA_HUB = {
-  version: "1.3",
+  version: "1.4",
   lastUpdated: "2026-06-23",
 
   banners: [
@@ -19,6 +19,7 @@ window.MBA_HUB = {
       icon: "📰",
       description: "Recent animal news, program changes, facility notes, and volunteer announcements.",
       url: "#",
+      type: "CATEGORY",
       tags: ["updates", "news", "announcements"]
     },
     {
@@ -26,6 +27,7 @@ window.MBA_HUB = {
       icon: "🐟",
       description: "Kelp Forest, Open Sea, Rocky Shore, Sandy Shore, Penguins, Touch Pools, and Drifter Gallery.",
       url: "#",
+      type: "CATEGORY",
       tags: ["exhibits", "kelp forest", "open sea"]
     },
     {
@@ -33,7 +35,7 @@ window.MBA_HUB = {
       icon: "🌿",
       description: "Guide-friendly exhibit page for Kelp Forest facts, visitor Q&A, kids facts, conservation messages, and volunteer talking points.",
       url: "apps/kelp-forest/index.html",
-      category: "Exhibits",
+      type: "APP",
       parentCategory: "Exhibits",
       contentType: "EXHIBIT",
       locationType: "EXHIBIT_SPACE",
@@ -44,6 +46,7 @@ window.MBA_HUB = {
       icon: "🦦",
       description: "Species and animal groups for quick guide reference.",
       url: "#",
+      type: "CATEGORY",
       tags: ["animals", "species", "marine mammals"]
     },
     {
@@ -51,7 +54,7 @@ window.MBA_HUB = {
       icon: "🦭",
       description: "Guide-friendly animal page covering migration, deep diving, breeding, pups, sleep, and conservation recovery.",
       url: "apps/northern-elephant-seal/index.html",
-      category: "Animals",
+      type: "APP",
       parentCategory: "Animals",
       contentType: "ANIMAL",
       locationType: "EXHIBIT_SPACE",
@@ -62,6 +65,7 @@ window.MBA_HUB = {
       icon: "❓",
       description: "Fast answers to common visitor questions.",
       url: "#",
+      type: "CATEGORY",
       tags: ["questions", "faq", "visitor"]
     },
     {
@@ -69,6 +73,7 @@ window.MBA_HUB = {
       icon: "🎤",
       description: "Two-minute, five-minute, and longer interpretive talks.",
       url: "#",
+      type: "CATEGORY",
       tags: ["talks", "guide talks", "interpretation"]
     },
     {
@@ -76,6 +81,7 @@ window.MBA_HUB = {
       icon: "🌊",
       description: "Upwelling, food webs, conservation, climate, ecology, and ocean processes.",
       url: "#",
+      type: "CATEGORY",
       tags: ["concepts", "upwelling", "food web"]
     },
     {
@@ -83,6 +89,7 @@ window.MBA_HUB = {
       icon: "🎟️",
       description: "Connect exhibits to the real Monterey Bay outside the windows and deck.",
       url: "#",
+      type: "CATEGORY",
       tags: ["deck", "wildlife", "monterey bay"]
     },
     {
@@ -90,6 +97,7 @@ window.MBA_HUB = {
       icon: "🦐",
       description: "Seafood Watch basics, recommendations, fishing methods, and visitor questions.",
       url: "#",
+      type: "CATEGORY",
       tags: ["seafood watch", "conservation", "sustainable seafood"]
     },
     {
@@ -97,6 +105,7 @@ window.MBA_HUB = {
       icon: "🧰",
       description: "Information desk, carts, training resources, and hub instructions.",
       url: "#",
+      type: "CATEGORY",
       tags: ["volunteer", "tools", "training"]
     },
     {
@@ -104,6 +113,7 @@ window.MBA_HUB = {
       icon: "🗺️",
       description: "Restrooms, elevators, accessibility, café, gift shop, and wayfinding.",
       url: "#",
+      type: "CATEGORY",
       tags: ["services", "restrooms", "accessibility"]
     },
     {
@@ -111,6 +121,7 @@ window.MBA_HUB = {
       icon: "🏭",
       description: "Cannery Row history, Steinbeck, Ed Ricketts, walking tours, and visitor recommendations.",
       url: "#",
+      type: "CATEGORY",
       tags: ["cannery row", "history", "walking tour"]
     }
   ]
