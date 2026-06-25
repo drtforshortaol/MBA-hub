@@ -1,8 +1,403 @@
-/* Quick Reference card restoration.
-   This affects only the Quick Reference & Emergency Info topic. */
+:root {
+  --mba-blue: #005f73;
+  --mba-blue-dark: #003f4f;
+  --mba-teal: #0a9396;
+  --mba-aqua: #94d2bd;
+  --mba-cream: #fffaf0;
+  --mba-sand: #f4ead7;
+  --mba-gold: #ee9b00;
+  --mba-orange: #ca6702;
+  --white: #ffffff;
+  --text: #17323a;
+  --muted: #58727a;
+  --border: #c8dadd;
+  --danger: #c0392b;
+  --soft-blue: #e8f6f7;
+  --soft-teal: #edfafa;
+  --soft-sand: #fff6df;
+  --shadow: 0 14px 34px rgba(0, 63, 79, 0.16);
+  --shadow-soft: 0 8px 20px rgba(0, 63, 79, 0.1);
+  --radius: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #dff3f4;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(148, 210, 189, 0.55), transparent 30rem),
+    radial-gradient(circle at top right, rgba(238, 155, 0, 0.2), transparent 28rem),
+    linear-gradient(180deg, #dff3f4 0%, #f4fbfa 36%, #f7efe0 100%);
+  line-height: 1.55;
+}
+
+button,
+input,
+a {
+  font: inherit;
+}
+
+.app-header,
+main,
+.app-footer {
+  width: min(1060px, calc(100% - 1.5rem));
+  margin: 0 auto;
+}
+
+.app-header {
+  padding: 1rem 0 0.75rem;
+}
+
+.top-buttons {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+.hub-button,
+.cache-button {
+  min-height: 46px;
+  border-radius: 999px;
+  padding: 0.78rem 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hub-button {
+  color: white;
+  background: linear-gradient(135deg, var(--mba-blue), var(--mba-teal));
+  box-shadow: 0 8px 18px rgba(0, 95, 115, 0.24);
+}
+
+.cache-button {
+  border: 1px solid rgba(0, 95, 115, 0.18);
+  color: var(--mba-blue-dark);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow-soft);
+}
+
+.update-message {
+  margin: 0 0 0.95rem;
+  padding: 0.72rem 0.9rem;
+  color: var(--mba-blue-dark);
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(0, 95, 115, 0.16);
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.hero {
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(0, 63, 79, 0.98), rgba(0, 95, 115, 0.94), rgba(10, 147, 150, 0.88)),
+    url("images/icon.svg");
+  background-repeat: no-repeat;
+  background-position: center, right -42px bottom -50px;
+  background-size: cover, 205px;
+  border-radius: 32px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  color: #d8ffff;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 9vw, 4.35rem);
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+
+.subtitle {
+  max-width: 55rem;
+  margin: 0.85rem 0 0;
+  color: #efffff;
+  font-size: 1.05rem;
+  font-weight: 520;
+}
+
+.tool-panel,
+.intro-card,
+.topic-section,
+.empty-state {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(0, 95, 115, 0.14);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.tool-panel {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.tool-panel label {
+  color: var(--mba-blue-dark);
+  font-weight: 950;
+  font-size: 1rem;
+}
+
+input {
+  width: 100%;
+  min-height: 50px;
+  border: 2px solid #bdd7dc;
+  border-radius: 17px;
+  padding: 0.82rem 0.95rem;
+  color: var(--text);
+  background: #fbffff;
+  outline: none;
+  font-size: 1rem;
+}
+
+input:focus {
+  border-color: var(--mba-teal);
+  box-shadow: 0 0 0 4px rgba(10, 147, 150, 0.15);
+}
+
+.topic-controls {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  margin-top: 0.35rem;
+}
+
+.topic-controls button {
+  min-height: 46px;
+  border: 1px solid #bdd7dc;
+  border-radius: 999px;
+  padding: 0.7rem 0.9rem;
+  color: var(--mba-blue-dark);
+  background: linear-gradient(180deg, #ffffff, #effafa);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+main {
+  display: grid;
+  gap: 1.15rem;
+  padding: 0.75rem 0 1.75rem;
+}
+
+.intro-card {
+  padding: 1.05rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(232, 246, 247, 0.94));
+}
+
+.intro-card h2,
+.empty-state h2 {
+  margin: 0 0 0.4rem;
+  color: var(--mba-blue-dark);
+  font-size: 1.35rem;
+  font-weight: 950;
+}
+
+.intro-card p,
+.empty-state p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.topics-container {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.topic-section {
+  overflow: hidden;
+  border-left: 10px solid var(--topic-color, var(--mba-blue));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(237, 250, 250, 0.92));
+}
+
+.topic-section > summary {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 0.85rem;
+  align-items: center;
+  min-height: 78px;
+  padding: 1.15rem 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.topic-section > summary::-webkit-details-marker {
+  display: none;
+}
+
+.topic-section[open] > summary {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(232, 246, 247, 0.98));
+  border-bottom: 1px solid rgba(0, 95, 115, 0.14);
+}
+
+.topic-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  color: white;
+  background: var(--topic-color, var(--mba-blue));
+  font-size: 1.45rem;
+  box-shadow: 0 8px 18px rgba(0, 63, 79, 0.18);
+}
+
+.topic-title-wrap {
+  min-width: 0;
+}
+
+.topic-title {
+  display: block;
+  color: var(--mba-blue-dark);
+  font-size: clamp(1.25rem, 4.8vw, 1.7rem);
+  font-weight: 1000;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.topic-summary {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+  font-weight: 650;
+}
+
+.topic-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.1rem;
+  height: 1.8rem;
+  padding: 0 0.55rem;
+  border-radius: 999px;
+  color: var(--topic-color, var(--mba-blue));
+  background: #eefafa;
+  border: 1px solid #bdd7dc;
+  font-size: 0.85rem;
+  font-weight: 1000;
+}
+
+.topic-arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  color: white;
+  background: var(--mba-teal);
+  font-weight: 1000;
+  transition: transform 0.18s ease;
+}
+
+.topic-section[open] .topic-arrow {
+  transform: rotate(180deg);
+}
+
+.topic-content {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(248, 253, 253, 0.96), rgba(255, 250, 240, 0.78));
+}
+
+.info-item {
+  border: 1px solid #d6e5e8;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.96);
+  overflow: hidden;
+  box-shadow: 0 5px 14px rgba(0, 63, 79, 0.06);
+}
+
+.info-item summary {
+  padding: 1rem;
+  color: var(--mba-blue-dark);
+  font-size: 1.02rem;
+  font-weight: 900;
+  cursor: pointer;
+  list-style-position: inside;
+}
+
+.info-item[open] summary {
+  border-bottom: 1px solid var(--border);
+  background: #effafa;
+}
+
+.item-body {
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.item-body p {
+  margin: 0 0 0.7rem;
+}
+
+.item-body p:last-child {
+  margin-bottom: 0;
+}
+
+.item-body ul {
+  margin: 0.45rem 0 0.8rem;
+  padding-left: 1.25rem;
+}
+
+.item-body li {
+  margin: 0.3rem 0;
+}
+
+.script-box {
+  margin-top: 0.75rem;
+  padding: 0.85rem;
+  border: 1px solid #efcf83;
+  border-radius: 16px;
+  background: #fff5d7;
+}
+
+.script-box strong {
+  color: var(--mba-orange);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.32rem 0.6rem;
+  color: var(--mba-blue-dark);
+  background: #e4f5f5;
+  font-size: 0.8rem;
+  font-weight: 850;
+}
 
 .quick-ref-topic {
-  border-left-color: #c0392b !important;
+  border-left-color: var(--danger) !important;
 }
 
 .quick-ref-topic > summary {
@@ -10,7 +405,7 @@
 }
 
 .quick-ref-topic[open] > summary {
-  background: #c0392b !important;
+  background: var(--danger) !important;
   color: #ffffff !important;
 }
 
@@ -19,8 +414,12 @@
   color: #ffffff !important;
 }
 
+.quick-ref-topic .topic-icon {
+  background: var(--danger) !important;
+}
+
 .quick-ref-topic .topic-count {
-  color: #c0392b !important;
+  color: var(--danger) !important;
   background: #fde8e8 !important;
   border-color: #f5c0b8 !important;
 }
@@ -53,7 +452,7 @@
 
 .quick-ref-label {
   margin-bottom: 4px;
-  color: #c0392b;
+  color: var(--danger);
   font-size: 0.76rem;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -75,8 +474,122 @@
   line-height: 1.35;
 }
 
+.empty-state {
+  padding: 1.1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.app-footer {
+  padding: 0 0 2rem;
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+mark {
+  color: inherit;
+  background: #ffec99;
+  border-radius: 0.25rem;
+  padding: 0 0.12rem;
+}
+
+@media (min-width: 680px) {
+  .topic-controls {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (min-width: 760px) {
+  .app-header {
+    padding-top: 1.25rem;
+  }
+
+  .hero {
+    padding: 2.1rem;
+  }
+
+  .topic-content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .quick-ref-card-panel {
     grid-template-columns: 1fr;
+  }
+}/* =========================================================
+   QUICK REFERENCE CARD FIX
+   This styles the emergency quick reference items as cards.
+   It supports both class names we have used during repair:
+   quick-ref-* and old-quick-reference-*.
+   ========================================================= */
+
+.quick-ref-content,
+.old-quick-reference-content {
+  display: block !important;
+  padding: 1rem !important;
+  background: #fff8f6 !important;
+}
+
+.quick-ref-card-panel,
+.old-quick-reference-panel {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0.85rem !important;
+}
+
+.quick-ref-card,
+.old-quick-reference-card {
+  display: block !important;
+  padding: 1rem !important;
+  background: #ffffff !important;
+  border: 1px solid #f5c0b8 !important;
+  border-left: 6px solid #c0392b !important;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 16px rgba(192, 57, 43, 0.08) !important;
+}
+
+.quick-ref-label,
+.old-quick-reference-label {
+  display: block !important;
+  margin: 0 0 0.25rem !important;
+  color: #c0392b !important;
+  font-size: 0.78rem !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.quick-ref-value,
+.old-quick-reference-value {
+  display: block !important;
+  margin: 0 0 0.25rem !important;
+  color: #17323a !important;
+  font-size: 1.3rem !important;
+  font-weight: 950 !important;
+  line-height: 1.2 !important;
+  word-break: break-word !important;
+}
+
+.quick-ref-sub,
+.old-quick-reference-sub {
+  display: block !important;
+  margin: 0 !important;
+  color: #58727a !important;
+  font-size: 0.98rem !important;
+  font-weight: 650 !important;
+  line-height: 1.35 !important;
+}
+
+@media (min-width: 760px) {
+  .quick-ref-card-panel,
+  .old-quick-reference-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1060px) {
+  .quick-ref-card-panel,
+  .old-quick-reference-panel {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 }
