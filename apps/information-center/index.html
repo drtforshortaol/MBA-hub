@@ -32,27 +32,40 @@
       <h1>Information Center</h1>
       <p class="subtitle">
         Quick visitor answers, parking guidance, Cannery Row help, dining suggestions,
-        comfort tips, and emergency reminders.
+        comfort tips, scripts, accessibility reminders, and emergency guidance.
       </p>
     </section>
 
-    <section class="tool-panel" aria-label="Information filters">
-      <label for="section-select">Choose a topic</label>
-      <select id="section-select"></select>
-
+    <section class="tool-panel" aria-label="Information Center tools">
       <label for="search-input">Search this app</label>
       <input
         id="search-input"
         type="search"
-        placeholder="Try: parking, food, restroom, otters, rain..."
+        placeholder="Try: parking, food, restroom, otters, rain, stroller, emergency..."
         autocomplete="off"
       />
+
+      <div class="topic-controls">
+        <button id="expand-all-button" type="button">Expand All Topics</button>
+        <button id="collapse-all-button" type="button">Collapse All Topics</button>
+      </div>
     </section>
   </header>
 
   <main>
-    <section id="emergency-section" class="emergency-section" aria-label="Emergency reminders"></section>
-    <section id="content" class="content-card" aria-label="Information content"></section>
+    <section class="intro-card">
+      <h2>All Topics</h2>
+      <p>
+        Tap a topic to open it. Then tap a question inside that topic to see the next level of information.
+      </p>
+    </section>
+
+    <section id="topics-container" class="topics-container" aria-label="All Information Center topics"></section>
+
+    <section id="no-results" class="empty-state" hidden>
+      <h2>No matching results</h2>
+      <p>Try a broader search word such as parking, food, family, restroom, rain, otters, or emergency.</p>
+    </section>
   </main>
 
   <footer class="app-footer">

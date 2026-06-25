@@ -1,9 +1,10 @@
-const sectionSelect = document.getElementById("section-select");
 const searchInput = document.getElementById("search-input");
-const content = document.getElementById("content");
-const emergencySection = document.getElementById("emergency-section");
+const topicsContainer = document.getElementById("topics-container");
+const noResults = document.getElementById("no-results");
 const updateMessage = document.getElementById("update-message");
 const clearCacheButton = document.getElementById("clear-cache-button");
+const expandAllButton = document.getElementById("expand-all-button");
+const collapseAllButton = document.getElementById("collapse-all-button");
 
 const CACHE_MESSAGE_KEY = "mba-information-center-cache-message";
 const APP_CACHE_PREFIX = "mba-information-center";
@@ -15,6 +16,10 @@ function escapeHTML(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function normalize(value) {
+  return String(value || "").toLowerCase().trim();
 }
 
 function highlight(text, query) {
@@ -31,92 +36,105 @@ function highlight(text, query) {
   return safeText.replace(regex, "<mark>$1</mark>");
 }
 
-function loadSectionOptions() {
-  sectionSelect.innerHTML = "";
-
-  appData.sections.forEach((section, index) => {
-    const option = document.createElement("option");
-    option.value = index;
-    option.textContent = section.label;
-    sectionSelect.appendChild(option);
-  });
+function getItemSearchText(section, item) {
+  return normalize([
+    section.label,
+    section.summary,
+    item.question,
+    item.answer,
+    item.script || "",
+    ...(item.bullets || []),
+    ...(item.tags || [])
+  ].join(" "));
 }
 
-function renderEmergency() {
-  emergencySection.innerHTML = `
-    <h2>${escapeHTML(appData.emergency.title)}</h2>
-    <div class="emergency-grid">
-      ${appData.emergency.items.map((item) => `
-        <article class="emergency-card">
-          <h3>${escapeHTML(item.label)}</h3>
-          <p>${escapeHTML(item.text)}</p>
-        </article>
-      `).join("")}
-    </div>
-  `;
-}
+function renderTopics(query = "") {
+  const cleanQuery = normalize(query);
+  let visibleTopicCount = 0;
 
-function renderSection(index) {
-  const section = appData.sections[index] || appData.sections[0];
-
-  content.innerHTML = `
-    <h2>${escapeHTML(section.label)}</h2>
-    <div class="accordion">
-      ${section.items.map((item) => `
-        <details>
-          <summary>${escapeHTML(item.question)}</summary>
-          <p>${escapeHTML(item.answer)}</p>
-        </details>
-      `).join("")}
-    </div>
-  `;
-}
-
-function renderSearchResults(query) {
-  const cleanQuery = query.trim().toLowerCase();
-
-  if (!cleanQuery) {
-    renderSection(Number(sectionSelect.value || 0));
-    return;
-  }
-
-  const results = [];
-
-  appData.sections.forEach((section) => {
-    section.items.forEach((item) => {
-      const searchableText = `${section.label} ${item.question} ${item.answer}`.toLowerCase();
-
-      if (searchableText.includes(cleanQuery)) {
-        results.push({
-          section: section.label,
-          question: item.question,
-          answer: item.answer
-        });
-      }
+  const html = appData.sections.map((section, sectionIndex) => {
+    const visibleItems = section.items.filter((item) => {
+      if (!cleanQuery) return true;
+      return getItemSearchText(section, item).includes(cleanQuery);
     });
-  });
 
-  if (results.length === 0) {
-    content.innerHTML = `
-      <h2>Search Results</h2>
-      <p class="empty-state">No matching topics found. Try another keyword or choose a topic from the dropdown.</p>
-    `;
-    return;
-  }
+    if (visibleItems.length === 0) {
+      return "";
+    }
 
-  content.innerHTML = `
-    <h2>Search Results</h2>
-    <p class="result-count">${results.length} result${results.length === 1 ? "" : "s"} found.</p>
-    <div class="accordion">
-      ${results.map((item) => `
-        <details open>
+    visibleTopicCount += 1;
+
+    const shouldOpenTopic = cleanQuery || sectionIndex === 0;
+
+    const itemsHtml = visibleItems.map((item) => {
+      const shouldOpenItem = Boolean(cleanQuery);
+
+      const bulletsHtml = item.bullets && item.bullets.length
+        ? `<ul>${item.bullets.map((bullet) => `<li>${highlight(bullet, query)}</li>`).join("")}</ul>`
+        : "";
+
+      const scriptHtml = item.script
+        ? `
+          <div class="script-box">
+            <strong>Suggested wording:</strong>
+            <p>${highlight(item.script, query)}</p>
+          </div>
+        `
+        : "";
+
+      const tagsHtml = item.tags && item.tags.length
+        ? `
+          <div class="tags">
+            ${item.tags.map((tag) => `<span class="tag">${highlight(tag, query)}</span>`).join("")}
+          </div>
+        `
+        : "";
+
+      return `
+        <details class="info-item" ${shouldOpenItem ? "open" : ""}>
           <summary>${highlight(item.question, query)}</summary>
-          <p class="section-label">${highlight(item.section, query)}</p>
-          <p>${highlight(item.answer, query)}</p>
+          <div class="item-body">
+            <p>${highlight(item.answer, query)}</p>
+            ${bulletsHtml}
+            ${scriptHtml}
+            ${tagsHtml}
+          </div>
         </details>
-      `).join("")}
-    </div>
-  `;
+      `;
+    }).join("");
+
+    return `
+      <details class="topic-section ${section.emergency ? "emergency-topic" : ""}" ${shouldOpenTopic ? "open" : ""}>
+        <summary>
+          <span class="topic-icon" aria-hidden="true">${escapeHTML(section.icon || "🌊")}</span>
+          <span class="topic-title-wrap">
+            <span class="topic-title">${highlight(section.label, query)}</span>
+            <span class="topic-summary">${highlight(section.summary || "", query)}</span>
+          </span>
+          <span class="topic-arrow" aria-hidden="true">⌄</span>
+        </summary>
+
+        <div class="topic-content">
+          ${itemsHtml}
+        </div>
+      </details>
+    `;
+  }).join("");
+
+  topicsContainer.innerHTML = html;
+  noResults.hidden = visibleTopicCount !== 0;
+}
+
+function expandAllTopics() {
+  document.querySelectorAll(".topic-section").forEach((topic) => {
+    topic.open = true;
+  });
+}
+
+function collapseAllTopics() {
+  document.querySelectorAll(".topic-section").forEach((topic) => {
+    topic.open = false;
+  });
 }
 
 function restoreUpdateMessage() {
@@ -175,19 +193,14 @@ function registerServiceWorker() {
   }
 }
 
-sectionSelect.addEventListener("change", () => {
-  searchInput.value = "";
-  renderSection(Number(sectionSelect.value));
-});
-
 searchInput.addEventListener("input", (event) => {
-  renderSearchResults(event.target.value);
+  renderTopics(event.target.value);
 });
 
 clearCacheButton.addEventListener("click", clearAppCache);
+expandAllButton.addEventListener("click", expandAllTopics);
+collapseAllButton.addEventListener("click", collapseAllTopics);
 
 restoreUpdateMessage();
-loadSectionOptions();
-renderEmergency();
-renderSection(0);
+renderTopics();
 registerServiceWorker();
