@@ -1,11 +1,11 @@
-const CACHE_NAME = "mba-information-center-visual-refresh-v1";
+const CACHE_NAME = "mba-information-center-ten-topic-repair-v1";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
-  "./styles.css?v=10-topic-v1",
-  "./app.js?v=10-topic-v1",
-  "./data.js?v=10-topic-v1",
+  "./styles.css?v=ten-topic-repair-v1",
+  "./app.js?v=ten-topic-repair-v1",
+  "./data.js?v=ten-topic-repair-v1",
   "./manifest.json",
   "./images/icon.svg"
 ];
