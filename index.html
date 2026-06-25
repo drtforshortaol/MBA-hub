@@ -4,79 +4,526 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>MBA Information Center</title>
+  <title>MBA Hub Restored</title>
 
-  <link rel="stylesheet" href="styles.css?v=10-topic-v1" />
   <link rel="manifest" href="manifest.json" />
-
   <meta name="theme-color" content="#005f73" />
-  <meta name="description" content="Monterey Bay Aquarium volunteer Information Center companion app." />
 
-  <link rel="icon" href="images/icon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="images/icon.svg" />
+  <style>
+    :root {
+      --blue: #005f73;
+      --dark: #003f4f;
+      --teal: #0a9396;
+      --cream: #fffaf0;
+      --gold: #ee9b00;
+      --text: #17323a;
+      --muted: #58727a;
+      --border: #c8dadd;
+      --shadow: 0 14px 34px rgba(0, 63, 79, 0.16);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(148, 210, 189, 0.55), transparent 30rem),
+        radial-gradient(circle at top right, rgba(238, 155, 0, 0.18), transparent 28rem),
+        linear-gradient(180deg, #dff3f4 0%, #f4fbfa 40%, var(--cream) 100%);
+      line-height: 1.5;
+    }
+
+    button,
+    input,
+    a {
+      font: inherit;
+    }
+
+    .wrap {
+      width: min(1100px, calc(100% - 1.5rem));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 1rem 0 0.75rem;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0.85rem;
+    }
+
+    .cache-button {
+      min-height: 46px;
+      border: 1px solid rgba(0, 95, 115, 0.18);
+      border-radius: 999px;
+      padding: 0.78rem 1rem;
+      color: var(--dark);
+      background: rgba(255, 255, 255, 0.9);
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 63, 79, 0.1);
+    }
+
+    .update-message {
+      margin: 0 0 0.95rem;
+      padding: 0.72rem 0.9rem;
+      color: var(--dark);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 95, 115, 0.16);
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .hero {
+      color: white;
+      background: linear-gradient(135deg, rgba(0, 63, 79, 0.98), rgba(0, 95, 115, 0.94), rgba(10, 147, 150, 0.88));
+      border-radius: 32px;
+      padding: 1.6rem;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      margin: 0 0 0.35rem;
+      color: #d8ffff;
+      font-size: 0.78rem;
+      font-weight: 950;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 9vw, 4.5rem);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+    }
+
+    .subtitle {
+      max-width: 58rem;
+      margin: 0.85rem 0 0;
+      color: #efffff;
+      font-size: 1.05rem;
+      font-weight: 550;
+    }
+
+    .tools {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(0, 95, 115, 0.14);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0, 63, 79, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: var(--dark);
+      font-weight: 950;
+    }
+
+    input {
+      width: 100%;
+      min-height: 50px;
+      border: 2px solid #bdd7dc;
+      border-radius: 17px;
+      padding: 0.82rem 0.95rem;
+      color: var(--text);
+      background: #fbffff;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .category-button {
+      border: 1px solid #bdd7dc;
+      border-radius: 999px;
+      padding: 0.58rem 0.8rem;
+      color: var(--dark);
+      background: linear-gradient(180deg, #ffffff, #effafa);
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .category-button.active {
+      color: white;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      border-color: var(--blue);
+    }
+
+    main {
+      padding: 0.75rem 0 1.75rem;
+    }
+
+    .section-heading {
+      margin: 1.1rem 0 0.7rem;
+      color: var(--dark);
+      font-size: 1.35rem;
+      font-weight: 950;
+    }
+
+    .app-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .app-card {
+      display: block;
+      padding: 1rem;
+      color: inherit;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(0, 95, 115, 0.14);
+      border-left: 9px solid var(--gold);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0, 63, 79, 0.1);
+    }
+
+    .app-card:hover,
+    .app-card:focus {
+      border-left-color: var(--teal);
+      box-shadow: var(--shadow);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .app-title-row {
+      display: flex;
+      gap: 0.65rem;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .app-icon {
+      font-size: 1.65rem;
+    }
+
+    .app-card h3 {
+      margin: 0;
+      color: var(--dark);
+      font-size: 1.2rem;
+      font-weight: 950;
+    }
+
+    .app-card p {
+      margin: 0.4rem 0 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 0.32rem 0.6rem;
+      color: var(--dark);
+      background: #e4f5f5;
+      font-size: 0.8rem;
+      font-weight: 850;
+    }
+
+    .empty-state {
+      margin: 1rem 0;
+      padding: 1.1rem;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 95, 115, 0.14);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    footer {
+      padding: 0 0 2rem;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (min-width: 760px) {
+      .hero {
+        padding: 2.1rem;
+      }
+
+      .app-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 980px) {
+      .app-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header class="app-header">
-    <div class="top-buttons">
-      <a class="hub-button" href="../../index.html">← MBA Hub</a>
+  <header class="wrap">
+    <div class="top-bar">
       <button id="clear-cache-button" class="cache-button" type="button">↻ Clear Cache</button>
     </div>
 
     <p id="update-message" class="update-message">
-      App loaded. 10-topic update active.
+      MBA Hub restored. Cache has not been cleared yet.
     </p>
 
     <section class="hero">
       <p class="eyebrow">Monterey Bay Aquarium Volunteer Companion</p>
-      <h1>Information Center</h1>
+      <h1>MBA Hub</h1>
       <p class="subtitle">
-        10-topic volunteer quick reference with emergency contacts, communication,
-        lost and found, guest support, medical guidance, directions, supplies,
-        language guides, wheelchairs, lockers, and interpretive programs.
+        A mobile-friendly launch point for exhibit guides, animal references,
+        visitor-service tools, guide talks, concepts, and volunteer resources.
       </p>
     </section>
 
-    <section class="tool-panel" aria-label="Information Center tools">
-      <label for="search-input">Search this app</label>
-      <input
-        id="search-input"
-        type="search"
-        placeholder="Try: Center, 4986, lost child, wheelchairs, language guides, restroom..."
-        autocomplete="off"
-      />
+    <section class="tools">
+      <div>
+        <label for="search-input">Search apps</label>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Try: kelp, elephant seal, information center, volunteer..."
+          autocomplete="off"
+        />
+      </div>
 
-      <div class="topic-controls">
-        <button id="expand-all-button" type="button">Expand All Topics</button>
-        <button id="collapse-all-button" type="button">Collapse All Topics</button>
+      <div>
+        <label>Categories</label>
+        <div id="category-buttons" class="category-buttons"></div>
       </div>
     </section>
   </header>
 
-  <main>
-    <section class="intro-card">
-      <h2>All 10 Topics</h2>
-      <p>
-        Tap a topic to open it. Then tap a question or card inside that topic for the next level of information.
-      </p>
-    </section>
+  <main class="wrap">
+    <div id="app-list"></div>
 
-    <section id="topics-container" class="topics-container" aria-label="All Information Center topics"></section>
-
-    <section id="no-results" class="empty-state" hidden>
-      <h2>No matching results</h2>
-      <p>Try a broader search word such as Center, lost child, Membership, supplies, language, restroom, or wheelchair.</p>
-    </section>
+    <div id="empty-state" class="empty-state" hidden>
+      No apps are currently listed in this category.
+    </div>
   </main>
 
-  <footer class="app-footer">
+  <footer class="wrap">
     <p>
-      Volunteer quick-reference tool. Always defer to current Aquarium policy,
+      Volunteer companion hub. Always defer to current Aquarium policy,
       posted signs, staff direction, and official operating updates.
     </p>
   </footer>
 
-  <script src="data.js?v=10-topic-v1"></script>
-  <script src="app.js?v=10-topic-v1"></script>
+  <script src="apps.js?v=hub-restore-final"></script>
+
+  <script>
+    const DEFAULT_CATEGORIES = [
+      "All",
+      "Aquarium Updates",
+      "Exhibits",
+      "Animals",
+      "Visitor Questions",
+      "Guide Talks",
+      "Concepts",
+      "Making the Aquarium Come Alive",
+      "Seafood Watch",
+      "Volunteer Tools",
+      "Visitor Services",
+      "Cannery Row"
+    ];
+
+    const FALLBACK_APPS = [
+      {
+        id: "information-center",
+        title: "Information Center",
+        icon: "ℹ️",
+        category: "Visitor Services",
+        path: "apps/information-center/",
+        description: "Quick visitor answers, emergency contacts, Information Center procedures, and guest-support references.",
+        tags: ["information center", "visitor services", "emergency", "membership"]
+      }
+    ];
+
+    const searchInput = document.getElementById("search-input");
+    const categoryButtons = document.getElementById("category-buttons");
+    const appList = document.getElementById("app-list");
+    const emptyState = document.getElementById("empty-state");
+    const clearCacheButton = document.getElementById("clear-cache-button");
+    const updateMessage = document.getElementById("update-message");
+
+    let activeCategory = "All";
+
+    function getApps() {
+      if (Array.isArray(window.MBA_APP_REGISTRY) && window.MBA_APP_REGISTRY.length > 0) {
+        return window.MBA_APP_REGISTRY;
+      }
+
+      return FALLBACK_APPS;
+    }
+
+    function escapeHTML(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function appMatchesSearch(app, query) {
+      const cleanQuery = String(query || "").trim().toLowerCase();
+
+      if (!cleanQuery) {
+        return true;
+      }
+
+      const searchableText = [
+        app.id,
+        app.title,
+        app.category,
+        app.description,
+        app.contentType,
+        app.locationType,
+        ...(app.tags || [])
+      ].join(" ").toLowerCase();
+
+      return searchableText.includes(cleanQuery);
+    }
+
+    function renderCategoryButtons() {
+      categoryButtons.innerHTML = DEFAULT_CATEGORIES.map(category => `
+        <button
+          class="category-button ${category === activeCategory ? "active" : ""}"
+          type="button"
+          data-category="${escapeHTML(category)}"
+        >
+          ${escapeHTML(category)}
+        </button>
+      `).join("");
+
+      document.querySelectorAll(".category-button").forEach(button => {
+        button.addEventListener("click", () => {
+          activeCategory = button.dataset.category;
+          renderCategoryButtons();
+          renderApps();
+        });
+      });
+    }
+
+    function groupAppsByCategory(apps) {
+      return apps.reduce((groups, app) => {
+        const category = app.category || "Other";
+
+        if (!groups[category]) {
+          groups[category] = [];
+        }
+
+        groups[category].push(app);
+        return groups;
+      }, {});
+    }
+
+    function renderApps() {
+      const query = searchInput.value || "";
+
+      const filteredApps = getApps().filter(app => {
+        const categoryMatch = activeCategory === "All" || app.category === activeCategory;
+        return categoryMatch && appMatchesSearch(app, query);
+      });
+
+      emptyState.hidden = filteredApps.length !== 0;
+
+      if (filteredApps.length === 0) {
+        appList.innerHTML = "";
+        return;
+      }
+
+      const grouped = groupAppsByCategory(filteredApps);
+
+      appList.innerHTML = Object.keys(grouped).map(category => `
+        <section>
+          <h2 class="section-heading">${escapeHTML(category)}</h2>
+          <div class="app-grid">
+            ${grouped[category].map(app => `
+              <a class="app-card" href="${escapeHTML(app.path)}">
+                <div class="app-title-row">
+                  <span class="app-icon" aria-hidden="true">${escapeHTML(app.icon || "🌊")}</span>
+                  <h3>${escapeHTML(app.title)}</h3>
+                </div>
+                <p>${escapeHTML(app.description || "")}</p>
+                <div class="tags">
+                  ${(app.tags || []).slice(0, 5).map(tag => `
+                    <span class="tag">${escapeHTML(tag)}</span>
+                  `).join("")}
+                </div>
+              </a>
+            `).join("")}
+          </div>
+        </section>
+      `).join("");
+    }
+
+    async function clearAllMBACaches() {
+      const now = new Date();
+      const message = `Hub cache cleared. Last checked: ${now.toLocaleString()}`;
+
+      updateMessage.textContent = message;
+      localStorage.setItem("mba-hub-cache-message", message);
+
+      try {
+        if ("caches" in window) {
+          const cacheNames = await caches.keys();
+          await Promise.all(cacheNames.map(cacheName => caches.delete(cacheName)));
+        }
+
+        if ("serviceWorker" in navigator) {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(registrations.map(registration => registration.unregister()));
+        }
+      } catch (error) {
+        console.warn("Cache repair warning:", error);
+      }
+
+      window.location.reload();
+    }
+
+    function registerServiceWorker() {
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(error => {
+            console.warn("Hub service worker registration failed:", error);
+          });
+        });
+      }
+    }
+
+    searchInput.addEventListener("input", renderApps);
+    clearCacheButton.addEventListener("click", clearAllMBACaches);
+
+    const savedMessage = localStorage.getItem("mba-hub-cache-message");
+    if (savedMessage) {
+      updateMessage.textContent = savedMessage;
+    }
+
+    renderCategoryButtons();
+    renderApps();
+    registerServiceWorker();
+  </script>
 </body>
 </html>
