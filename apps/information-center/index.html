@@ -6,7 +6,7 @@
 
   <title>MBA Information Center</title>
 
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=10-topic-v1" />
   <link rel="manifest" href="manifest.json" />
 
   <meta name="theme-color" content="#005f73" />
@@ -24,15 +24,16 @@
     </div>
 
     <p id="update-message" class="update-message">
-      App loaded. Cache has not been cleared yet.
+      App loaded. 10-topic update active.
     </p>
 
     <section class="hero">
       <p class="eyebrow">Monterey Bay Aquarium Volunteer Companion</p>
       <h1>Information Center</h1>
       <p class="subtitle">
-        Quick visitor answers, parking guidance, Cannery Row help, dining suggestions,
-        comfort tips, scripts, accessibility reminders, and emergency guidance.
+        10-topic volunteer quick reference with emergency contacts, communication,
+        lost and found, guest support, medical guidance, directions, supplies,
+        language guides, wheelchairs, lockers, and interpretive programs.
       </p>
     </section>
 
@@ -41,7 +42,7 @@
       <input
         id="search-input"
         type="search"
-        placeholder="Try: parking, food, restroom, otters, rain, stroller, emergency..."
+        placeholder="Try: Center, 4986, lost child, wheelchairs, language guides, restroom..."
         autocomplete="off"
       />
 
@@ -54,9 +55,9 @@
 
   <main>
     <section class="intro-card">
-      <h2>All Topics</h2>
+      <h2>All 10 Topics</h2>
       <p>
-        Tap a topic to open it. Then tap a question inside that topic to see the next level of information.
+        Tap a topic to open it. Then tap a question or card inside that topic for the next level of information.
       </p>
     </section>
 
@@ -64,7 +65,7 @@
 
     <section id="no-results" class="empty-state" hidden>
       <h2>No matching results</h2>
-      <p>Try a broader search word such as parking, food, family, restroom, rain, otters, or emergency.</p>
+      <p>Try a broader search word such as Center, lost child, Membership, supplies, language, restroom, or wheelchair.</p>
     </section>
   </main>
 
@@ -75,7 +76,7 @@
     </p>
   </footer>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="data.js?v=10-topic-v1"></script>
+  <script src="app.js?v=10-topic-v1"></script>
 </body>
 </html>
