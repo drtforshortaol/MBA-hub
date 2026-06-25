@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whale Parasites & Associates · MBA Reference</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0B2A4A" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="header">
+  <div class="top-buttons">
+    <a class="top-button" href="../../index.html">← MBA Hub</a>
+    <button class="top-button" id="clearCacheBtn">↻ Clear Cache</button>
+  </div>
+
+  <div id="updateMessage" class="update-message">
+    App loaded. Cache has not been cleared yet.
+  </div>
+
+  <div class="header-eyebrow">MBA Volunteer Reference</div>
+  <h1 class="header-title">Whale <span>Parasites</span> &amp; Associates</h1>
+
+  <div class="select-wrapper">
+    <select id="jumpSelect">
+      <option value="">— Jump to a parasite —</option>
+    </select>
+  </div>
+</header>
+
+<main>
+  <section class="naturalist-note">
+    <div class="note-eye">Field note · June 2025</div>
+    <p>Super friendly humpbacks this week gave us great looks at barnacles, lice, and remora scars. The blue and fin whales running offshore brought cookiecutter shark bites and thick clusters of whalesuckers. Coastal species consistently show higher parasite loads — proximity to drifting larvae matters.</p>
+  </section>
+
+  <div class="filter-tabs" id="filterTabs"></div>
+  <div id="cardList"></div>
+</main>
+
+<footer>
+  MBA Volunteer Reference · Whale Parasites &amp; Associates<br />
+  Content based on naturalist field notes · June 2025
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

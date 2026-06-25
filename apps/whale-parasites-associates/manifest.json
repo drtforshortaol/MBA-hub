@@ -1,0 +1,21 @@
+{
+  "name": "Whale Parasites & Associates",
+  "short_name": "Whale Parasites",
+  "description": "MBA volunteer reference for whale parasites, barnacles, lice, remoras, and associates.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#EFF6F7",
+  "theme_color": "#0B2A4A",
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
