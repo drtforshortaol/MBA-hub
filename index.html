@@ -3,35 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MBA Volunteer Hub</title>
+
+  <title>MBA Information Center</title>
+
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
+
   <meta name="theme-color" content="#005f73" />
+  <meta name="description" content="Monterey Bay Aquarium volunteer Information Center companion app." />
+
+  <link rel="icon" href="images/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="images/icon.svg" />
 </head>
+
 <body>
-  <header class="hub-header">
-    <div class="header-top">
-      <div>
-        <h1>MBA Volunteer Hub</h1>
-        <p class="subtitle">Volunteer companion apps and quick reference tools</p>
+  <header class="app-header">
+    <div class="top-buttons">
+      <a class="hub-button" href="../../index.html">← MBA Hub</a>
+      <button id="clear-cache-button" class="cache-button" type="button">↻ Clear Cache</button>
+    </div>
+
+    <p id="update-message" class="update-message">
+      App loaded. Cache has not been cleared yet.
+    </p>
+
+    <section class="hero">
+      <p class="eyebrow">Monterey Bay Aquarium Volunteer Companion</p>
+      <h1>Information Center</h1>
+      <p class="subtitle">
+        Quick visitor answers, parking guidance, Cannery Row help, dining suggestions,
+        comfort tips, and emergency reminders.
+      </p>
+    </section>
+
+    <section class="tool-panel" aria-label="Information filters">
+      <details id="topic-dropdown" class="topic-dropdown" open>
+        <summary>
+          <span>
+            <strong>Available Topics</strong>
+            <small id="selected-topic-label">Choose a topic below</small>
+          </span>
+          <span class="dropdown-arrow">⌄</span>
+        </summary>
+
+        <div id="topic-button-list" class="topic-button-list"></div>
+      </details>
+
+      <div class="search-panel">
+        <label for="search-input">Search this app</label>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Try: parking, food, restroom, otters, rain..."
+          autocomplete="off"
+        />
       </div>
-      <button id="clear-cache-button" class="refresh-button" type="button">↻ Clear Cache</button>
-    </div>
-
-    <div id="hub-update-message" class="update-message">
-      Hub loaded. Cache has not been cleared yet.
-    </div>
-
-    <div id="hub-version" class="version-line"></div>
+    </section>
   </header>
 
   <main>
-    <section id="banner-area" class="banner-area"></section>
-    <section id="category-area" class="category-area"></section>
+    <section id="emergency-section" class="emergency-section" aria-label="Emergency reminders"></section>
+    <section id="content" class="content-card" aria-label="Information content"></section>
   </main>
 
+  <footer class="app-footer">
+    <p>
+      Volunteer quick-reference tool. Always defer to current Aquarium policy,
+      posted signs, staff direction, and official operating updates.
+    </p>
+  </footer>
+
   <script src="data.js"></script>
-  <script src="apps.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
