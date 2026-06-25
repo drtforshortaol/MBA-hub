@@ -4,76 +4,554 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>MBA Information Center</title>
+  <title>MBA Volunteer Companion</title>
 
-  <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
-
   <meta name="theme-color" content="#005f73" />
-  <meta name="description" content="Monterey Bay Aquarium volunteer Information Center companion app." />
+  <meta name="description" content="Monterey Bay Aquarium volunteer companion hub." />
 
-  <link rel="icon" href="images/icon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="images/icon.svg" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+
+  <style>
+    :root {
+      --mba-blue: #005f73;
+      --mba-blue-dark: #003f4f;
+      --mba-teal: #0a9396;
+      --mba-cream: #fffaf0;
+      --mba-gold: #ee9b00;
+      --white: #ffffff;
+      --text: #18323a;
+      --muted: #5d737a;
+      --border: #d7e3e6;
+      --shadow: 0 12px 28px rgba(0, 63, 79, 0.14);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--mba-cream);
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(10, 147, 150, 0.18), transparent 34rem),
+        linear-gradient(180deg, #effafa 0%, var(--mba-cream) 48%, #ffffff 100%);
+      line-height: 1.5;
+    }
+
+    button,
+    input,
+    a {
+      font: inherit;
+    }
+
+    .hub-header,
+    main,
+    .hub-footer {
+      width: min(1100px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .hub-header {
+      padding: 1rem 0 0.75rem;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0.75rem;
+    }
+
+    .cache-button {
+      min-height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.72rem 0.95rem;
+      color: var(--mba-blue-dark);
+      background: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .update-message {
+      margin: 0 0 0.85rem;
+      padding: 0.65rem 0.85rem;
+      color: var(--mba-blue-dark);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+
+    .hero {
+      color: white;
+      background: linear-gradient(135deg, rgba(0, 95, 115, 0.98), rgba(10, 147, 150, 0.9));
+      border-radius: 28px;
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      margin: 0 0 0.35rem;
+      color: #d8ffff;
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 8vw, 4.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+    }
+
+    .subtitle {
+      max-width: 54rem;
+      margin: 0.8rem 0 0;
+      color: #efffff;
+      font-size: 1.03rem;
+    }
+
+    .tools {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      padding: 0.9rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 18px rgba(0, 63, 79, 0.08);
+    }
+
+    .tools label {
+      color: var(--mba-blue-dark);
+      font-weight: 850;
+    }
+
+    .search-row {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    input {
+      width: 100%;
+      min-height: 46px;
+      border: 2px solid #c9dcdf;
+      border-radius: 14px;
+      padding: 0.75rem 0.85rem;
+      color: var(--text);
+      background: #fbffff;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--mba-teal);
+      box-shadow: 0 0 0 4px rgba(10, 147, 150, 0.14);
+    }
+
+    .category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .category-button {
+      border: 1px solid #c9dcdf;
+      border-radius: 999px;
+      padding: 0.55rem 0.75rem;
+      color: var(--mba-blue-dark);
+      background: #fbffff;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .category-button.active {
+      color: white;
+      background: var(--mba-blue);
+      border-color: var(--mba-blue);
+    }
+
+    main {
+      padding: 0.75rem 0 1.5rem;
+    }
+
+    .section-heading {
+      margin: 1rem 0 0.6rem;
+      color: var(--mba-blue-dark);
+      font-size: 1.25rem;
+    }
+
+    .app-grid {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .app-card {
+      display: block;
+      padding: 1rem;
+      color: inherit;
+      text-decoration: none;
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 8px solid var(--mba-gold);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 18px rgba(0, 63, 79, 0.08);
+    }
+
+    .app-card:hover,
+    .app-card:focus {
+      border-left-color: var(--mba-teal);
+      box-shadow: var(--shadow);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .app-title-row {
+      display: flex;
+      gap: 0.55rem;
+      align-items: center;
+      margin-bottom: 0.35rem;
+    }
+
+    .app-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .app-card h3 {
+      margin: 0;
+      color: var(--mba-blue-dark);
+      font-size: 1.1rem;
+    }
+
+    .app-card p {
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 0.28rem 0.55rem;
+      color: var(--mba-blue-dark);
+      background: #e5f6f5;
+      font-size: 0.78rem;
+      font-weight: 750;
+    }
+
+    .empty-state {
+      margin: 1rem 0;
+      padding: 1rem;
+      color: var(--muted);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    .hub-footer {
+      padding: 0 0 2rem;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (min-width: 760px) {
+      .hero {
+        padding: 2rem;
+      }
+
+      .tools {
+        grid-template-columns: 1fr;
+      }
+
+      .app-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 980px) {
+      .app-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header class="app-header">
-    <div class="top-buttons">
-      <a class="hub-button" href="https://drtforshortaol.github.io/MBA-hub/">← MBA Hub</a> Hub</a>
+  <header class="hub-header">
+    <div class="top-bar">
       <button id="clear-cache-button" class="cache-button" type="button">↻ Clear Cache</button>
     </div>
 
     <p id="update-message" class="update-message">
-      App loaded. Cache has not been cleared yet.
+      Hub loaded. Cache has not been cleared yet.
     </p>
 
     <section class="hero">
       <p class="eyebrow">Monterey Bay Aquarium Volunteer Companion</p>
-      <h1>Information Center</h1>
+      <h1>MBA Hub</h1>
       <p class="subtitle">
-        Quick visitor answers, parking guidance, Cannery Row help, dining suggestions,
-        comfort tips, and emergency reminders.
+        A mobile-friendly launch point for exhibit guides, animal references,
+        visitor-service tools, guide talks, concepts, and volunteer resources.
       </p>
     </section>
 
-    <section class="tool-panel" aria-label="Information filters">
-      <details id="topic-dropdown" class="topic-dropdown" open>
-        <summary>
-          <span>
-            <strong>Available Topics</strong>
-            <small id="selected-topic-label">Choose a topic below</small>
-          </span>
-          <span class="dropdown-arrow">⌄</span>
-        </summary>
-
-        <div id="topic-button-list" class="topic-button-list"></div>
-      </details>
-
-      <div class="search-panel">
-        <label for="search-input">Search this app</label>
+    <section class="tools" aria-label="Hub search and category filters">
+      <div class="search-row">
+        <label for="search-input">Search apps</label>
         <input
           id="search-input"
           type="search"
-          placeholder="Try: parking, food, restroom, otters, rain..."
+          placeholder="Try: kelp, elephant seal, visitor, dropdown, parking..."
           autocomplete="off"
         />
+      </div>
+
+      <div>
+        <label>Categories</label>
+        <div id="category-buttons" class="category-buttons"></div>
       </div>
     </section>
   </header>
 
   <main>
-    <section id="emergency-section" class="emergency-section" aria-label="Emergency reminders"></section>
-    <section id="content" class="content-card" aria-label="Information content"></section>
+    <div id="app-list"></div>
+    <div id="empty-state" class="empty-state" hidden>
+      No matching apps found. Try another search word or choose All categories.
+    </div>
   </main>
 
-  <footer class="app-footer">
+  <footer class="hub-footer">
     <p>
-      Volunteer quick-reference tool. Always defer to current Aquarium policy,
+      Volunteer companion hub. Always defer to current Aquarium policy,
       posted signs, staff direction, and official operating updates.
     </p>
   </footer>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="apps.js"></script>
+
+  <script>
+    const DEFAULT_CATEGORIES = [
+      "All",
+      "Aquarium Updates",
+      "Exhibits",
+      "Animals",
+      "Visitor Questions",
+      "Guide Talks",
+      "Concepts",
+      "Making the Aquarium Come Alive",
+      "Seafood Watch",
+      "Volunteer Tools",
+      "Visitor Services",
+      "Cannery Row"
+    ];
+
+    const HUB_CACHE_MESSAGE_KEY = "mba-hub-cache-message";
+    const HUB_CACHE_PREFIX = "mba-hub";
+
+    const searchInput = document.getElementById("search-input");
+    const categoryButtons = document.getElementById("category-buttons");
+    const appList = document.getElementById("app-list");
+    const emptyState = document.getElementById("empty-state");
+    const clearCacheButton = document.getElementById("clear-cache-button");
+    const updateMessage = document.getElementById("update-message");
+
+    let activeCategory = "All";
+
+    function getApps() {
+      return Array.isArray(window.MBA_APP_REGISTRY)
+        ? window.MBA_APP_REGISTRY
+        : [];
+    }
+
+    function escapeHTML(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function appMatchesSearch(app, query) {
+      const cleanQuery = query.trim().toLowerCase();
+
+      if (!cleanQuery) {
+        return true;
+      }
+
+      const searchableText = [
+        app.id,
+        app.title,
+        app.category,
+        app.description,
+        app.contentType,
+        app.locationType,
+        ...(app.tags || [])
+      ].join(" ").toLowerCase();
+
+      return searchableText.includes(cleanQuery);
+    }
+
+    function getCategories() {
+      const appCategories = getApps()
+        .map(app => app.category)
+        .filter(Boolean);
+
+      return DEFAULT_CATEGORIES.filter(category =>
+        category === "All" || appCategories.includes(category)
+      );
+    }
+
+    function renderCategoryButtons() {
+      categoryButtons.innerHTML = getCategories().map(category => `
+        <button
+          class="category-button ${category === activeCategory ? "active" : ""}"
+          type="button"
+          data-category="${escapeHTML(category)}"
+        >
+          ${escapeHTML(category)}
+        </button>
+      `).join("");
+
+      document.querySelectorAll(".category-button").forEach(button => {
+        button.addEventListener("click", () => {
+          activeCategory = button.dataset.category;
+          renderCategoryButtons();
+          renderApps();
+        });
+      });
+    }
+
+    function groupAppsByCategory(apps) {
+      return apps.reduce((groups, app) => {
+        const category = app.category || "Other";
+
+        if (!groups[category]) {
+          groups[category] = [];
+        }
+
+        groups[category].push(app);
+        return groups;
+      }, {});
+    }
+
+    function renderApps() {
+      const query = searchInput.value || "";
+
+      const filteredApps = getApps().filter(app => {
+        const categoryMatch = activeCategory === "All" || app.category === activeCategory;
+        return categoryMatch && appMatchesSearch(app, query);
+      });
+
+      emptyState.hidden = filteredApps.length !== 0;
+
+      const grouped = groupAppsByCategory(filteredApps);
+
+      appList.innerHTML = Object.keys(grouped).map(category => `
+        <section class="app-section">
+          <h2 class="section-heading">${escapeHTML(category)}</h2>
+          <div class="app-grid">
+            ${grouped[category].map(app => `
+              <a class="app-card" href="${escapeHTML(app.path)}">
+                <div class="app-title-row">
+                  <span class="app-icon" aria-hidden="true">${escapeHTML(app.icon || "🌊")}</span>
+                  <h3>${escapeHTML(app.title)}</h3>
+                </div>
+                <p>${escapeHTML(app.description || "")}</p>
+                <div class="tags">
+                  ${(app.tags || []).slice(0, 5).map(tag => `
+                    <span class="tag">${escapeHTML(tag)}</span>
+                  `).join("")}
+                </div>
+              </a>
+            `).join("")}
+          </div>
+        </section>
+      `).join("");
+    }
+
+    function restoreUpdateMessage() {
+      const savedMessage = localStorage.getItem(HUB_CACHE_MESSAGE_KEY);
+
+      if (savedMessage) {
+        updateMessage.textContent = savedMessage;
+      }
+    }
+
+    async function clearHubCache() {
+      const now = new Date();
+      const successMessage = `Cache cleared. Last checked: ${now.toLocaleString()}`;
+
+      updateMessage.textContent = successMessage;
+      localStorage.setItem(HUB_CACHE_MESSAGE_KEY, successMessage);
+
+      try {
+        if ("caches" in window) {
+          const cacheNames = await caches.keys();
+
+          const hubCaches = cacheNames.filter(cacheName =>
+            cacheName.startsWith(HUB_CACHE_PREFIX)
+          );
+
+          await Promise.all(
+            hubCaches.map(cacheName => caches.delete(cacheName))
+          );
+        }
+
+        if ("serviceWorker" in navigator) {
+          const registration = await navigator.serviceWorker.getRegistration("./");
+
+          if (registration) {
+            await registration.update();
+          }
+        }
+      } catch (error) {
+        console.warn("Hub cache clear warning:", error);
+
+        const warningMessage = `Cache check completed with a warning. Last checked: ${now.toLocaleString()}`;
+        updateMessage.textContent = warningMessage;
+        localStorage.setItem(HUB_CACHE_MESSAGE_KEY, warningMessage);
+      }
+
+      window.location.reload();
+    }
+
+    function registerServiceWorker() {
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(error => {
+            console.warn("Hub service worker registration failed:", error);
+          });
+        });
+      }
+    }
+
+    searchInput.addEventListener("input", renderApps);
+    clearCacheButton.addEventListener("click", clearHubCache);
+
+    restoreUpdateMessage();
+    renderCategoryButtons();
+    renderApps();
+    registerServiceWorker();
+  </script>
 </body>
 </html>
