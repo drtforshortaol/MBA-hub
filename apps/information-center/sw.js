@@ -1,11 +1,11 @@
-const CACHE_NAME = "mba-information-center-v6";
+const CACHE_NAME = "mba-information-center-visual-refresh-v1";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
-  "./styles.css",
-  "./app.js",
-  "./data.js",
+  "./styles.css?v=10-topic-v1",
+  "./app.js?v=10-topic-v1",
+  "./data.js?v=10-topic-v1",
   "./manifest.json",
   "./images/icon.svg"
 ];
@@ -39,19 +39,19 @@ self.addEventListener("fetch", (event) => {
   }
 
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
+    fetch(event.request)
+      .then((networkResponse) => {
+        return caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+      })
+      .catch(() => {
+        return caches.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
 
-      return fetch(event.request)
-        .then((networkResponse) => {
-          return caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          });
-        })
-        .catch(() => {
           if (event.request.mode === "navigate") {
             return caches.match("./index.html");
           }
@@ -61,6 +61,6 @@ self.addEventListener("fetch", (event) => {
             statusText: "Offline"
           });
         });
-    })
+      })
   );
 });

@@ -1,66 +1,25 @@
-const CACHE_NAME = "mba-information-center-visual-refresh-v1";
-
-const FILES_TO_CACHE = [
+const CACHE = "mba-hub-v3-registry";
+const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=10-topic-v1",
-  "./app.js?v=10-topic-v1",
-  "./data.js?v=10-topic-v1",
+  "./styles.css",
+  "./data.js",
+  "./apps.js",
+  "./app.js",
   "./manifest.json",
-  "./images/icon.svg"
+  "./icon.svg"
 ];
 
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES_TO_CACHE))
-  );
-
-  self.skipWaiting();
+self.addEventListener("install", event => {
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
 });
 
-self.addEventListener("activate", (event) => {
+self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((cacheName) => cacheName.startsWith("mba-information-center"))
-          .filter((cacheName) => cacheName !== CACHE_NAME)
-          .map((cacheName) => caches.delete(cacheName))
-      );
-    })
+    caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))
   );
-
-  self.clients.claim();
 });
 
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") {
-    return;
-  }
-
-  event.respondWith(
-    fetch(event.request)
-      .then((networkResponse) => {
-        return caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        });
-      })
-      .catch(() => {
-        return caches.match(event.request).then((cachedResponse) => {
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-
-          if (event.request.mode === "navigate") {
-            return caches.match("./index.html");
-          }
-
-          return new Response("Offline and this file is not cached.", {
-            status: 503,
-            statusText: "Offline"
-          });
-        });
-      })
-  );
+self.addEventListener("fetch", event => {
+  event.respondWith(caches.match(event.request).then(response => response || fetch(event.request)));
 });
