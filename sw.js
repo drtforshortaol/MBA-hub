@@ -1,4 +1,4 @@
-const CACHE_NAME = "mba-information-center-10-topic-v1";
+const CACHE_NAME = "mba-information-center-visual-refresh-v1";
 
 const FILES_TO_CACHE = [
   "./",

@@ -1,87 +1,66 @@
-.topic-section {
-  border-left: 8px solid var(--topic-color, var(--mba-blue));
-}
+xconst CACHE_NAME = "mba-information-center-10-topic-v1";
 
-.topic-section .topic-icon {
-  background: var(--topic-color, var(--mba-blue));
-}
+const FILES_TO_CACHE = [
+  "./",
+  "./index.html",
+  "./styles.css?v=10-topic-v1",
+  "./app.js?v=10-topic-v1",
+  "./data.js?v=10-topic-v1",
+  "./manifest.json",
+  "./images/icon.svg"
+];
 
-.topic-count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.9rem;
-  height: 1.6rem;
-  padding: 0 0.5rem;
-  border-radius: 999px;
-  color: var(--topic-color, var(--mba-blue));
-  background: #eefafa;
-  border: 1px solid #c9dcdf;
-  font-size: 0.78rem;
-  font-weight: 900;
-}
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES_TO_CACHE))
+  );
 
-.emergency-topic {
-  border-left-color: var(--danger);
-}
+  self.skipWaiting();
+});
 
-.emergency-topic .topic-icon {
-  background: var(--danger);
-}
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames
+          .filter((cacheName) => cacheName.startsWith("mba-information-center"))
+          .filter((cacheName) => cacheName !== CACHE_NAME)
+          .map((cacheName) => caches.delete(cacheName))
+      );
+    })
+  );
 
-.emergency-topic .topic-count {
-  color: var(--danger);
-  background: #fff5f5;
-  border-color: #f5c0b8;
-}
+  self.clients.claim();
+});
 
-.quick-reference-content {
-  display: block;
-}
-
-.quick-reference-grid {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.quick-reference-card {
-  padding: 0.9rem;
-  border: 1px solid #f5c0b8;
-  border-radius: 16px;
-  background: #fff8f6;
-}
-
-.quick-reference-label {
-  margin: 0 0 0.25rem;
-  color: var(--danger);
-  font-size: 0.78rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.quick-reference-value {
-  margin: 0 0 0.25rem;
-  color: var(--text);
-  font-size: 1.08rem;
-  font-weight: 900;
-  word-break: break-word;
-}
-
-.quick-reference-sub {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-@media (min-width: 760px) {
-  .quick-reference-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") {
+    return;
   }
-}
 
-@media (min-width: 980px) {
-  .quick-reference-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
+  event.respondWith(
+    fetch(event.request)
+      .then((networkResponse) => {
+        return caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+      })
+      .catch(() => {
+        return caches.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+
+          if (event.request.mode === "navigate") {
+            return caches.match("./index.html");
+          }
+
+          return new Response("Offline and this file is not cached.", {
+            status: 503,
+            statusText: "Offline"
+          });
+        });
+      })
+  );
+});
