@@ -1,296 +1,434 @@
-window.appData = {
-  sections: [
-    {
-      id: "quick-reference-emergency-info",
-      label: "Quick Reference & Emergency Info",
-      icon: "🚨",
-      summary: "Important phone numbers, emergency contacts, and visitor support resources.",
-      emergency: true,
-      quickReference: true,
-      color: "#c0392b",
-      cards: [
-        {
-          label: "IC Extension",
-          value: "4986",
-          sub: "Information Center phone, internal."
-        },
-        {
-          label: "Center Desk",
-          value: "4840",
-          sub: "Lost children, high-value lost items, emergencies."
-        },
-        {
-          label: "Membership Desk",
-          value: "4910",
-          sub: "Guest complaints, remedies, lockers, service animals."
-        },
-        {
-          label: "Aquarium Main",
-          value: "(831) 648-4800",
-          sub: "Main public line."
-        },
-        {
-          label: "Volunteer Hotline",
-          value: "(831) 648-4867",
-          sub: "Last-minute illness or cannot make shift."
-        },
-        {
-          label: "Radio Channel",
-          value: "Channel 7",
-          sub: "Guest Experience. Do not change."
-        },
-        {
-          label: "Interpretive Programs",
-          value: "geinterpretiveprograms@mbayaq.org",
-          sub: "7 days/week coverage."
-        },
-        {
-          label: "Aquarium Website",
-          value: "montereybayaquarium.org",
-          sub: "Hours, exhibits, accessibility information."
-        },
-        {
-          label: "Pacific Grove Visitor Center",
-          value: "(831) 324-4668",
-          sub: "584 Central Ave. Daily 10am–5pm."
-        },
-        {
-          label: "Monterey Visitor Center",
-          value: "(888) 221-1010",
-          sub: "Daily 9am–5pm."
-        }
-      ],
-      items: []
-    },
-
-    {
-      id: "communication-security",
-      label: "Communication & Security",
-      icon: "📞",
-      summary: "How to contact Center/Security and what information not to share.",
-      color: "#1a6b8a",
-      items: [
-        {
-          question: "What does “Center” mean?",
-          answer: "“Center” means Security. Always use the phone to reach them. Radio channel 7 is backup only.",
-          tags: ["center", "security", "phone", "radio"]
-        },
-        {
-          question: "When do I call Center?",
-          answer: "Call Center for lost children, medical emergencies, fights or disruptions, any serious issue, and valuable lost items.",
-          tags: ["center", "emergency", "lost children", "security"]
-        },
-        {
-          question: "What should I not do with staff information?",
-          answer: "Never give out staff schedules or confirm where specific staff members are located.",
-          tags: ["staff", "privacy", "security"]
-        }
-      ]
-    },
-
-    {
-      id: "lost-found",
-      label: "Lost & Found",
-      icon: "🔍",
-      summary: "What to do with valuable items, less valuable items, and lost children.",
-      color: "#7c4d8a",
-      items: [
-        {
-          question: "What do I do with valuable items?",
-          answer: "Valuable or expensive items go directly to Center/Security. Do not hold them at the podium.",
-          tags: ["lost and found", "valuable items", "center"]
-        },
-        {
-          question: "What about less valuable items?",
-          answer: "Less valuable items may be handled locally or passed to Membership.",
-          tags: ["lost and found", "membership"]
-        },
-        {
-          question: "Lost children — what is the process?",
-          answer: "Call Center immediately. Wristbands are available for families. The phone number goes on the inside. Center/Security handles contacting parents.",
-          tags: ["lost child", "wristbands", "center", "security"]
-        }
-      ]
-    },
-
-    {
-      id: "guest-support",
-      label: "Guest Support",
-      icon: "🤝",
-      summary: "Where to send upset guests and how to get backup.",
-      color: "#2e7d52",
-      items: [
-        {
-          question: "Where do I send angry or upset guests?",
-          answer: "Send disappointed or angry guests to Membership. They can help with complaints and may offer remedies, but nothing is guaranteed.",
-          tags: ["angry guests", "complaints", "membership"]
-        },
-        {
-          question: "Who are good resources when I need backup?",
-          answer: "Staff with radios or earpieces, naturalists, jelly-tube staff, and Membership are good resources. Do not hesitate to ask shift captains or other volunteers too.",
-          tags: ["backup", "staff", "naturalists", "membership"]
-        },
-        {
-          question: "What is the etiquette for helping guests?",
-          answer: "Smile and greet guests. Point with an open hand, not one finger. Avoid overexplaining. Give helpful highlights. Ask for help when you need it.",
-          tags: ["guest support", "etiquette", "open hand", "help"]
-        }
-      ]
-    },
-
-    {
-      id: "medical-food-animals",
-      label: "Medical, Food & Animals",
-      icon: "🩺",
-      summary: "Medical emergencies, outside food, pets, and service animals.",
-      color: "#b5451b",
-      items: [
-        {
-          question: "What should I do for medical emergencies?",
-          answer: "Call Center immediately. Do not administer anything yourself. You can hand a guest a Band-Aid or cold pack, but let them apply or administer it themselves.",
-          tags: ["medical", "emergency", "band-aid", "cold pack"]
-        },
-        {
-          question: "Can guests bring outside food?",
-          answer: "Outside food is generally discouraged. Small snacks are usually ignored. Large picnics may require involving Center or Membership.",
-          tags: ["food", "outside food", "picnic", "membership"]
-        },
-        {
-          question: "What about pets and service animals?",
-          answer: "Refer pet and emotional support animal questions to Membership. Service animal issues are handled carefully. Always escalate to Membership.",
-          tags: ["pets", "service animals", "emotional support animals", "membership"]
-        }
-      ]
-    },
-
-    {
-      id: "directions-exhibits",
-      label: "Directions & Exhibits",
-      icon: "🗺️",
-      summary: "Basic directions and exhibit guidance for common guest questions.",
-      color: "#1a5c8a",
-      items: [
-        {
-          question: "Where are the restrooms?",
-          answer: "Near the store, same wall.",
-          tags: ["restrooms", "bathroom", "store"]
-        },
-        {
-          question: "How do I direct guests to the sea otter exhibit?",
-          answer: "Say: “This is the sea otter exhibit — go around it.”",
-          tags: ["sea otters", "directions", "exhibit"]
-        },
-        {
-          question: "What is the must-see exhibit guests often miss?",
-          answer: "Into the Deep. Go up and over, then downstairs in the other building. Also highlight jellies, the million-gallon tank, and the giant Japanese spider crab.",
-          tags: ["Into the Deep", "jellies", "million-gallon tank", "spider crab"]
-        }
-      ]
-    },
-
-    {
-      id: "podium-supplies",
-      label: "Podium Supplies",
-      icon: "🗂️",
-      summary: "What is stored at the podium and where extra supplies go.",
-      color: "#5a6e2a",
-      items: [
-        {
-          question: "What is kept at the podium?",
-          answer: "Maps, program guides, language guides, Seafood Watch cards, birthday/celebration buttons, Sharpies, wristbands, Band-Aids, tissues, hand sanitizer, masks, stamps, flashlight, magnifier, and otter materials.",
-          tags: ["podium", "supplies", "maps", "buttons", "wristbands"]
-        },
-        {
-          question: "Where are extra supplies stored?",
-          answer: "Extra supplies and some wheelchairs are in the back or “Harry Potter closet” area, the storage room behind the podium area.",
-          tags: ["extra supplies", "storage", "Harry Potter closet", "wheelchairs"]
-        },
-        {
-          question: "What happens at end of day?",
-          answer: "iPads, radio, and stamps all go to Membership for charging and storage. Do not leave them at the podium overnight.",
-          tags: ["end of day", "ipad", "radio", "stamps", "membership"]
-        },
-        {
-          question: "What is in the podium drawer?",
-          answer: "The drawer contains pencils, envelopes, maps, Aquarium guides, Shell-a-Brate birthday/celebration buttons sorted by color/type, a magnifier, tissues, Band-Aids, Tampax, hand sanitizer, and an Info Center badge/sign.",
-          tags: ["podium drawer", "buttons", "magnifier", "band-aids", "badge"]
-        }
-      ]
-    },
-
-    {
-      id: "language-guides",
-      label: "Language Guides",
-      icon: "🌐",
-      summary: "Available language guides and sensory map storage.",
-      color: "#8a5a1a",
-      items: [
-        {
-          question: "What language guides are available?",
-          answer: "Eight languages are stocked in the guide sorter:\n• English\n• Chinese\n• French\n• German\n• Italian\n• Japanese\n• Spanish\n• Portuguese",
-          tags: ["language guides", "translations", "Spanish", "Portuguese", "Japanese"]
-        },
-        {
-          question: "Where are the language guides kept?",
-          answer: "They are kept in the wooden multi-slot sorter. Each language has its own labeled shelf slot. The sorter with Spanish and Portuguese is in the back area. English, Chinese, French, German, Italian, and Japanese are in the front podium sorter.",
-          tags: ["language guides", "sorter", "podium", "back area"]
-        },
-        {
-          question: "What about sensory guides?",
-          answer: "Sensory maps are stored in the back storage room in a labeled cardboard box marked “Sensory Maps.”",
-          tags: ["sensory maps", "accessibility", "storage"]
-        }
-      ]
-    },
-
-    {
-      id: "wheelchairs-lockers",
-      label: "Wheelchairs & Lockers",
-      icon: "♿",
-      summary: "Wheelchair storage, loaner wheelchair details, and lockers.",
-      color: "#4a4a8a",
-      items: [
-        {
-          question: "Where are wheelchairs?",
-          answer: "Wheelchairs may be available near storage, in the back or “Harry Potter closet” area. If you are alone or busy, send guests to Membership as backup.",
-          tags: ["wheelchairs", "storage", "membership", "accessibility"]
-        },
-        {
-          question: "What do the loaner wheelchairs look like?",
-          answer: "They have a black vinyl seat and back, with a distinctive blue disc on the rear wheel. Nova brand. They are stored in the back storage area near the shelving units.",
-          tags: ["loaner wheelchairs", "Nova", "blue disc", "accessibility"]
-        },
-        {
-          question: "What about lockers?",
-          answer: "Lockers are handled entirely by Membership. Guest lockers cost approximately $10.",
-          tags: ["lockers", "membership", "guest lockers"]
-        }
-      ]
-    },
-
-    {
-      id: "interpretive-programs",
-      label: "Interpretive Programs",
-      icon: "🎓",
-      summary: "Specialty program materials, binder, and logging issues.",
-      color: "#1a7a6a",
-      items: [
-        {
-          question: "Where are specialty program materials stored?",
-          answer: "They are in the labeled cabinet in the back storage area. Shelves are labeled “Interpretive Programs - Specialty Programs.” The area contains a black hard case, small plastic drawer units, and a binder with program reference materials.",
-          tags: ["interpretive programs", "specialty programs", "binder", "storage"]
-        },
-        {
-          question: "What is in the Interpretive Programs binder?",
-          answer: "The binder includes Information Center FAQs and a log sheet for recording issues/questions with date, name, question/comment, and follow-up columns.",
-          tags: ["binder", "FAQs", "log sheet", "follow-up"]
-        },
-        {
-          question: "What should I log in the binder?",
-          answer: "Log any supply issues, facility problems, or notable guest questions. Examples from past entries include flashlight battery dead, birthday pins running low, and podium door needing a screw. Always note follow-up when resolved.",
-          tags: ["log", "supply issues", "facility problems", "guest questions"]
-        }
-      ]
-    }
-  ]
-};
+window.IC_SECTIONS = [
+  {
+    id: 0,
+    title: "Quick Reference & Emergency Info",
+    icon: "🚨",
+    emergency: true,
+    content: [
+      {
+        type: "quickref",
+        cards: [
+          { label: "IC Extension", value: "4986", note: "Information Center phone" },
+          { label: "Center Desk", value: "4840", note: "Lost children, high-value items, emergencies" },
+          { label: "Volunteer Hotline", value: "(831) 648-4867", note: "Last-minute illness or can't make shift" },
+          { label: "Radio Channel", value: "Channel 7", note: "Guest Experience — do not change" },
+          { label: "Interpretive Programs", value: "geinterpretiveprograms@mbayaq.org", note: "7 days/week coverage" },
+          { label: "Pacific Grove Visitor Ctr", value: "(831) 324-4668", note: "584 Central Ave — daily 10am–5pm" },
+          { label: "Monterey Visitor Center", value: "(888) 221-1010", note: "Daily 9am–5pm" }
+        ]
+      },
+      { type: "subheading", text: "Emergencies & Medicals" },
+      {
+        type: "alertlist",
+        items: [
+          "Call Center (ext. 4840) for ANY emergency — guest injury, illness, or concerning behavior. State who you are, where you are, and what you need.",
+          "Band-aids available at the IC for minor injuries. Restock from Shipping & Receiving.",
+          "Evacuation: Exit immediately on fire alarm. Proceed to the designated volunteer evacuation location. Escort guests if possible — you are NOT required to stay behind.",
+          "Emergency guide booklets are in each Information Center Kiosk."
+        ]
+      },
+      { type: "subheading", text: "Lost Children / Lost Parties" },
+      {
+        type: "alertlist",
+        items: [
+          "Call Center (ext. 4840) immediately. State whether you are with the lost child or the adult.",
+          "Ask the lost party to stay with you and reassure them help is coming.",
+          "Center does NOT search for lost adults unless developmental disability or medical emergency.",
+          "Center communicates via all radio channels — they do NOT use the PA system.",
+          "Only Center should remove a child's wristband."
+        ]
+      },
+      { type: "subheading", text: "High-Value Lost Items" },
+      {
+        type: "alertlist",
+        items: [
+          "Call Center (ext. 4840). Do NOT state what the item is on the phone or over the radio.",
+          "If the owner arrives before Center does, wait — Center will hand off the item to the guest.",
+          "High-value items kept 60 days, then donated if unclaimed."
+        ]
+      },
+      { type: "subheading", text: "Wheelchairs — Quick Steps" },
+      {
+        type: "alertlist",
+        items: [
+          "Available at no cost, first-come first-served. Located in Shipping & Receiving and Membership closet (under Open Sea Wing stairs).",
+          "Radio Guest Experience to have one brought to you, or retrieve one yourself.",
+          "Wheelchairs must NOT leave Aquarium property."
+        ]
+      }
+    ]
+  },
+  {
+    id: 1,
+    title: "Welcome & Your Role",
+    icon: "🐠",
+    content: [
+      { type: "intro", text: "Your goal as an Information Center volunteer is to be like a concierge — listen to what guests need and send them in the right direction." },
+      {
+        type: "list",
+        heading: "Your role is to…",
+        items: [
+          "Welcome guests with a warm, friendly smile",
+          "Provide Program Guides and help plan their visit",
+          "Recognize and celebrate birthdays and special occasions",
+          "Give directions and provide maps or Peninsula destinations",
+          "Give tips on places to see or dine around the Peninsula",
+          "Provide foreign guests with Program Guides in their language",
+          "Provide wristbands to families with small children",
+          "Assist in re-uniting lost parties",
+          "Direct people to the nearest restrooms 😊"
+        ]
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "Responsibilities & Expectations",
+    icon: "📋",
+    content: [
+      {
+        type: "list",
+        items: [
+          "Follow the Monterey Bay Aquarium Volunteer Handbook guidelines.",
+          "Follow the Information Center Policies and Procedures described in this document.",
+          "Be on time for your shift enrichment and participate, even when substituting.",
+          "Monday–Friday shifts operate weekly; weekend shifts operate every other week.",
+          "Two volunteers work together on each shift.",
+          "For last-minute illness or emergency, contact the Volunteer Hotline: (831) 648-4867."
+        ]
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "Best Practices & Tips",
+    icon: "💡",
+    content: [
+      {
+        type: "list",
+        items: [
+          "Stand when a guest approaches — it's a universally friendly gesture. You may stand just in front of the podium, but never leave it unattended.",
+          "Communicate with your partner if you need to step away. If alone, contact staff.",
+          "Direct guests with a full open hand — never the index finger (disrespectful in many cultures).",
+          "Avoid the OK sign or thumbs-up, which are insulting in many cultures.",
+          "Never store personal items for guests behind the Information Center.",
+          "Program guides are stored in cubbies and handed to guests — do not place them on top of podiums."
+        ]
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: "Opening & Closing Procedures",
+    icon: "🔑",
+    content: [
+      { type: "subheading", text: "Opening (1st Shift)" },
+      {
+        type: "list",
+        items: [
+          "Make sure the radio and iPads are at the kiosks.",
+          "Check supplies.",
+          "Verify that the programs listed on the Program Guide match the monitors above the desk. (Programs may change at short notice — always double-check.)"
+        ]
+      },
+      { type: "subheading", text: "Closing (Last Shift)" },
+      {
+        type: "list",
+        items: [
+          "iPads and radio must be charged overnight.",
+          "Staff from membership and tours will collect iPads, radio, and hand stamps at end of shift.",
+          "Bringing items to them is appreciated but not required."
+        ]
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: "Volunteer Dress Guidelines",
+    icon: "👔",
+    content: [
+      {
+        type: "list",
+        items: [
+          "Name Badge — Wear at all times on duty. Speak to a Specialist/Coordinator about a language badge if you speak another language.",
+          "Vest — Aquarium-issued vest required at all times. Loaner vests available if you forget yours.",
+          "Shirt — Polo, mock/regular turtleneck, crew/jewel neck t-shirt, or dress shirt. Colors: white, black, or navy only.",
+          "Pants/Skirts — Navy, black, or khaki solids only; no prints or patterns. Skirts must be knee-length or below.",
+          "Shoes — Comfortable and safe. No heels, open-toed shoes, or sandals.",
+          "Personal Belongings — Store in the lockers in the Volunteer Lounge, not at the shared kiosk."
+        ]
+      }
+    ]
+  },
+  {
+    id: 6,
+    title: "Finding a Substitute",
+    icon: "🔄",
+    content: [
+      { type: "intro", text: "If you know you will be out for a shift, you are expected to find a substitute." },
+      {
+        type: "numbered",
+        heading: "Steps to find a sub:",
+        items: [
+          "Use the Info Center Substitute List. Click the tab matching your shift day and scroll to your shift.",
+          "Call or email three listed volunteers (don't always start at the top of the list!).",
+          "Remove yourself from Sign Up Genius. Your sub is responsible for adding themselves.",
+          "If subbing for someone, add the comment \"Subbing for X\" when signing up."
+        ]
+      },
+      {
+        type: "list",
+        items: [
+          "Substitute volunteers without a home shift are expected to volunteer at least an average of two shifts per month.",
+          "Reciprocity is encouraged!"
+        ]
+      }
+    ]
+  },
+  {
+    id: 7,
+    title: "Communication Protocols",
+    icon: "📻",
+    content: [
+      { type: "subheading", text: "Phone Policies" },
+      {
+        type: "list",
+        items: [
+          "Information Center extension: 4986.",
+          "Call Center at extension 4840 for lost children, high-value lost items, and guest behavior or health emergencies.",
+          "Use the phone for conversations with Aquarium employees.",
+          "Guests may use the phone for domestic and international calls to locate their party.",
+          "Personal cell phones should not be used on shift, except to contact Center or the Volunteer Hotline."
+        ]
+      },
+      { type: "subheading", text: "Radio Best Practices" },
+      {
+        type: "list",
+        items: [
+          "Guest Experience is on Channel 7. Always stay on Channel 7.",
+          "Listen for other radio traffic before transmitting.",
+          "Keep volume at an appropriate level; turn off when not in use.",
+          "Hold transmit button 1–2 seconds before speaking.",
+          "Identify who you're calling first, then yourself — e.g. 'Guest Experience, this is [Name] at the Information Center' — wait for response — then state your need.",
+          "Release transmit button after talking.",
+          "Keep transmissions brief and concise.",
+          "For longer conversations, ask the person to call you at extension 4986."
+        ]
+      },
+      { type: "subheading", text: "Communication Log" },
+      {
+        type: "list",
+        items: [
+          "Use the log to communicate questions, concerns, and ideas to Interpreters or Guest Experience between shifts.",
+          "For immediate needs during a shift, call out for the Interpretive Programs team by radio."
+        ]
+      }
+    ]
+  },
+  {
+    id: 8,
+    title: "Guest Comments & Questions",
+    icon: "💬",
+    content: [
+      {
+        type: "list",
+        items: [
+          "An electronic Comments & Questions form is available on the iPads.",
+          "First ask: would the guest like to speak to a person or fill out a form?",
+          "To speak to a person — use the radio to call for a supervisor.",
+          "To fill out a form — open the Information Center Portal on the iPad, scroll to Comments and Questions, hand it to the guest, and retrieve when finished."
+        ]
+      }
+    ]
+  },
+  {
+    id: 9,
+    title: "Supplies",
+    icon: "📦",
+    content: [
+      { type: "subheading", text: "General Supplies" },
+      {
+        type: "list",
+        items: [
+          "Foreign language Program Guides, celebration buttons, and other materials are in Shipping & Receiving — enter through the double doors in the far back corner behind the Boilers Exhibit; the supply cabinet is immediately to your left.",
+          "If supplies are low and you can't restock, radio Guest Experience.",
+          "English Program Guides and Seafood Watch cards are restocked by Guest Experience at end of day. Radio for more if you run out."
+        ]
+      },
+      { type: "subheading", text: "Foreign Language Program Guides" },
+      {
+        type: "list",
+        items: [
+          "Available at both kiosks in: Spanish, French, German, Japanese, Chinese, Portuguese, and Italian.",
+          "If a foreign guest is having trouble communicating, radio Guest Experience to ask if someone onsite speaks the language."
+        ]
+      }
+    ]
+  },
+  {
+    id: 10,
+    title: "Lost & Found",
+    icon: "🔍",
+    content: [
+      { type: "subheading", text: "Low-Value Items" },
+      {
+        type: "list",
+        items: [
+          "Items such as sweaters, shoes, and reading glasses are stored in a plastic bin in the Information Center Kiosk.",
+          "Center empties the bin at end of day; low-value items are stored for 30 days."
+        ]
+      },
+      { type: "subheading", text: "High-Value Items (purses, wallets, cameras, phones, jewelry, credit cards, prescription glasses…)" },
+      {
+        type: "list",
+        items: [
+          "Call Center at extension 4840. Do NOT state what the item is on the phone or radio.",
+          "If a guest asks about a lost high-value item, ask for a description, call Center, and pass the info on.",
+          "If Center has been called but hasn't arrived and the owner shows up, wait for Center to hand off the item.",
+          "A link to the online lost item report is on the iPads. Guests can also visit the Aquarium website's visitor FAQ page.",
+          "High-value items are kept 60 days, then donated if unclaimed.",
+          "Unclaimed lost money is donated to the Aquarium's general fund after 60 days.",
+          "Anyone returning found property may request a vested interest — contact Center."
+        ]
+      }
+    ]
+  },
+  {
+    id: 11,
+    title: "Lost Parties",
+    icon: "👧",
+    content: [
+      {
+        type: "list",
+        items: [
+          "Call Center at extension 4840 right away. Tell Center whether you are with the lost child or the adult.",
+          "Ask lost parties to stay with you and reassure them help is on the way.",
+          "Allow adult guests to use the Information Center phone to call their party.",
+          "Center does not search for lost adults unless there are developmental disabilities or a medical emergency.",
+          "Center does not use the PA system — they communicate via all radio channels to staff."
+        ]
+      },
+      { type: "subheading", text: "Wristbands" },
+      {
+        type: "list",
+        items: [
+          "Offer wristbands for children at the start of their visit to speed up reuniting lost parties.",
+          "Write the parent/guardian's mobile phone number (not home phone) on the inside of the wristband.",
+          "If separated, Center will remove the wristband and call the number. Only Center should remove wristbands."
+        ]
+      }
+    ]
+  },
+  {
+    id: 12,
+    title: "Directions",
+    icon: "🗺️",
+    content: [
+      {
+        type: "list",
+        items: [
+          "Use an available map when giving directions.",
+          "Popular area destinations are on the touch screens at the kiosks.",
+          "Suggest guests take a photo of directions on their phones.",
+          "Use iPads to find directions to specific locations or restaurants.",
+          "Your supervisor can set up one-on-one training for any kiosk technology."
+        ]
+      }
+    ]
+  },
+  {
+    id: 13,
+    title: "Emergencies, Medicals & Evacuation",
+    icon: "🚑",
+    content: [
+      {
+        type: "list",
+        items: [
+          "Call Center (extension 4840) for any emergency, including concerning guest behavior. Describe the situation in detail — who you are, where you are, and what you need.",
+          "Band-aids are available at the Information Center for very minor injuries. Restock from Shipping & Receiving.",
+          "In an evacuation: exit immediately upon audible/visual fire alarm alerts and proceed to the designated volunteer evacuation location. Escort as many guests as possible, but you are not required to stay behind.",
+          "Emergency guide booklets are located in each Information Center Kiosk."
+        ]
+      }
+    ]
+  },
+  {
+    id: 14,
+    title: "Wheelchairs",
+    icon: "♿",
+    content: [
+      {
+        type: "list",
+        items: [
+          "Wheelchairs are available at no cost, first-come first-served, during the Aquarium visit.",
+          "Located in Shipping & Receiving and in the Membership closet under the stairs to the Open Sea Wing.",
+          "Reservations are not available in advance.",
+          "Wheelchairs must not leave Aquarium property.",
+          "Retrieve one yourself or radio Guest Experience to bring one to you."
+        ]
+      },
+      { type: "subheading", text: "When a wheelchair is returned:" },
+      {
+        type: "list",
+        items: [
+          "Call a staff member to clean and return it, OR return it yourself if: the IC is not left unattended, no more than four wheelchairs are in Shipping & Receiving (use Membership closet if full), and the chair is cleaned with disinfectant wipes.",
+          "If you prefer not to clean it, call a staff member."
+        ]
+      }
+    ]
+  },
+  {
+    id: 15,
+    title: "Birthday & Celebration Buttons",
+    icon: "🎉",
+    content: [
+      {
+        type: "list",
+        items: [
+          "Celebrate birthdays and anniversaries — we cannot offer buttons for First-time Visits.",
+          "Buttons are in the drawers at the Information Center.",
+          "Write the guest's name, or offer a Sharpie for them to write it.",
+          "Backup supply is in the wooden cabinets in Shipping & Receiving.",
+          "Radio Guest Experience if buttons are unavailable in either location."
+        ]
+      }
+    ]
+  },
+  {
+    id: 16,
+    title: "Aquarium Tours & Adventures",
+    icon: "🤿",
+    content: [
+      {
+        type: "list",
+        items: [
+          "A variety of tours are offered daily throughout the year.",
+          "Summer may include Underwater Explorers (scuba for kids) and other special programs.",
+          "Direct guests to the Membership and Tours Desk for availability and inquiries.",
+          "Sleepover programs are not currently available."
+        ]
+      }
+    ]
+  },
+  {
+    id: 17,
+    title: "Miscellaneous",
+    icon: "ℹ️",
+    content: [
+      {
+        type: "list",
+        items: [
+          "Family restroom & nursing lounge (with bottle warmer) — 2nd floor of Open Sea Wing near Soaring with Seabirds.",
+          "Changing tables — available in every restroom (men's and women's).",
+          "Water fountains (3): Just past the Auditorium to the right of the escalator; by Splash Zone entrance (currently closed); by first floor Open Sea restrooms.",
+          "Water bottle refill stations (5): Right of escalator; left entryway of cafe; outside 2nd floor Open Sea restrooms; Into the Deep Exhibit (1st floor Open Sea); Splash Zone tropical fish exhibit (currently closed).",
+          "Sensory bags (noise-reducing headphones + fidget toys) — at the Membership and Tours Desk.",
+          "Mail — direct guests to the nearest post office.",
+          "Device charging — guests may use any outlet throughout the Aquarium. Do not charge devices behind the Information Center.",
+          "Pacific Grove Visitor Information Center: 584 Central Avenue, open daily 10am–5pm, (831) 324-4668.",
+          "Monterey Visitor Center: open daily 9am–5pm, (888) 221-1010."
+        ]
+      }
+    ]
+  }
+];

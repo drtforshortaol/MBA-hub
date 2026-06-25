@@ -2,81 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>MBA Information Center</title>
-
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="manifest" href="manifest.json" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <meta name="theme-color" content="#005f73" />
-  <meta name="description" content="Monterey Bay Aquarium volunteer Information Center companion app." />
-
-  <link rel="icon" href="images/icon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="images/icon.svg" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="IC Handbook" />
+  <title>Information Center Handbook</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <header class="app-header">
-    <div class="top-buttons">
-      <a class="hub-button" href="../../index.html">← MBA Hub</a>
-      <button id="clear-cache-button" class="cache-button" type="button">↻ Clear Cache</button>
-    </div>
+  <a class="hub-button" href="../../index.html">← MBA Hub</a>
 
-    <p id="update-message" class="update-message">
-      App loaded. 10-topic repair active.
-    </p>
-
-    <section class="hero">
-      <p class="eyebrow">Monterey Bay Aquarium Volunteer Companion</p>
-      <h1>Information Center</h1>
-      <p class="subtitle">
-        10-topic volunteer quick reference with emergency contacts, communication,
-        lost and found, guest support, medical guidance, directions, supplies,
-        language guides, wheelchairs, lockers, and interpretive programs.
-      </p>
-    </section>
-
-    <section class="tool-panel" aria-label="Information Center tools">
-      <label for="search-input">Search this app</label>
-      <input
-        id="search-input"
-        type="search"
-        placeholder="Try: Center, 4986, lost child, wheelchairs, language guides, restroom..."
-        autocomplete="off"
-      />
-
-      <div class="topic-controls">
-        <button id="expand-all-button" type="button">Expand All Topics</button>
-        <button id="collapse-all-button" type="button">Collapse All Topics</button>
-      </div>
-    </section>
+  <header class="header">
+    <div class="header-badge">Monterey Bay Aquarium</div>
+    <h1>Information Center<br>Handbook</h1>
+    <p>Version 2.0 · Updated May 2026 · 18 Sections</p>
   </header>
+  <div class="wave"></div>
 
   <main>
-    <section class="intro-card">
-      <h2>All 10 Topics</h2>
-      <p>
-        Tap a topic to open it. Then tap a question or card inside that topic for the next level of information.
-      </p>
+    <section class="tools-panel" aria-label="Handbook tools">
+      <label class="search-label" for="searchInput">Search handbook</label>
+      <div class="search-row">
+        <input id="searchInput" type="search" placeholder="Search wheelchair, radio, lost child…" autocomplete="off" />
+        <button id="clearSearchBtn" type="button">Clear</button>
+      </div>
+      <div class="quick-actions" aria-label="Quick navigation">
+        <button type="button" data-jump="0">🚨 Emergency</button>
+        <button type="button" data-jump="0">📞 Phone Numbers</button>
+        <button type="button" data-jump="7">📻 Radio</button>
+        <button type="button" data-jump="11">👧 Lost Child</button>
+        <button type="button" data-jump="14">♿ Wheelchairs</button>
+        <button type="button" data-jump="12">🗺 Directions</button>
+        <button type="button" data-jump="15">🎉 Celebrations</button>
+      </div>
+      <div class="controls">
+        <button class="toggle-all-btn" id="toggleAllBtn" type="button">Expand All</button>
+      </div>
     </section>
 
-    <section id="topics-container" class="topics-container" aria-label="All Information Center topics"></section>
-
-    <section id="no-results" class="empty-state" hidden>
-      <h2>No matching results</h2>
-      <p>Try a broader search word such as Center, lost child, Membership, supplies, language, restroom, or wheelchair.</p>
-    </section>
+    <section class="sections" id="sectionsContainer" aria-label="Information Center sections"></section>
   </main>
 
-  <footer class="app-footer">
-    <p>
-      Volunteer quick-reference tool. Always defer to current Aquarium policy,
-      posted signs, staff direction, and official operating updates.
-    </p>
+  <footer class="footer">
+    <strong>Information Center Handbook</strong><br />
+    Version 2.0 · Updated May 2026<br />
+    Interpretive Programs · geinterpretiveprograms@mbayaq.org<br />
+    Volunteer Hotline · (831) 648-4867
   </footer>
 
   <script src="data.js"></script>
   <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js');
+      });
+    }
+  </script>
 </body>
 </html>
