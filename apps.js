@@ -8,7 +8,8 @@ window.MBA_APP_REGISTRY = [
     description: "Guide-friendly exhibit page for Kelp Forest facts, visitor Q&A, kids facts, conservation messages, and volunteer talking points.",
     contentType: "EXHIBIT",
     locationType: "EXHIBIT_SPACE",
-    tags: ["kelp forest", "giant kelp", "exhibit", "food web", "rockfish", "mpa", "seafood watch"]
+    tags: ["kelp forest", "giant kelp", "exhibit", "food web", "rockfish", "mpa", "seafood watch"],
+    relatedApps: ["whale-parasites-associates", "northern-elephant-seal"]
   },
   {
     id: "northern-elephant-seal",
@@ -19,7 +20,8 @@ window.MBA_APP_REGISTRY = [
     description: "Guide-friendly animal page covering migration, deep diving, breeding, pups, sleep, and conservation recovery.",
     contentType: "ANIMAL",
     locationType: "EXHIBIT_SPACE",
-    tags: ["elephant seal", "marine mammal", "migration", "deep sea", "conservation", "marine mammal cart"]
+    tags: ["elephant seal", "marine mammal", "migration", "deep sea", "conservation", "marine mammal cart"],
+    relatedApps: ["whale-parasites-associates", "kelp-forest"]
   },
   {
     id: "volunteer-dropdown-tool",
@@ -30,7 +32,8 @@ window.MBA_APP_REGISTRY = [
     description: "A quick dropdown-based reference tool for volunteers.",
     contentType: "VOLUNTEER_TOOL",
     locationType: "HUB_TOOL",
-    tags: ["volunteer", "tools", "dropdown", "training"]
+    tags: ["volunteer", "tools", "dropdown", "training"],
+    relatedApps: ["information-center"]
   },
   {
     id: "information-center",
@@ -41,24 +44,36 @@ window.MBA_APP_REGISTRY = [
     description: "Quick visitor answers, Cannery Row guidance, parking help, dining suggestions, and guest-support scripts.",
     contentType: "VOLUNTEER_TOOL",
     locationType: "HUB_TOOL",
-    tags: ["visitor questions", "information center", "parking", "dining", "Cannery Row"]
+    tags: ["visitor questions", "information center", "parking", "dining", "Cannery Row"],
+    relatedApps: ["volunteer-dropdown-tool", "whale-parasites-associates"]
   },
   {
-  id: "whale-parasites-associates",
-  title: "Whale Parasites & Associates",
-  icon: "🐋",
-  category: "Animals",
-  path: "apps/whale-parasites-associates/",
-  description: "Guide-friendly reference covering whale parasites, barnacles, whale lice, remoras, cookiecutter shark scars, and host relationships.",
-  contentType: "ANIMAL",
-  locationType: "EXHIBIT_SPACE",
-  tags: [
-    "whales",
-    "parasites",
-    "barnacles",
-    "remora",
-    "whale lice",
-    "cookiecutter shark"
-  ]
-}
+    id: "whale-parasites-associates",
+    title: "Whale Parasites & Associates",
+    icon: "🐋",
+    category: "Animals",
+    path: "apps/whale-parasites-associates/",
+    description: "Guide-friendly reference covering whale parasites, barnacles, whale lice, remoras, cookiecutter shark scars, and host relationships.",
+    contentType: "ANIMAL",
+    locationType: "EXHIBIT_SPACE",
+    tags: [
+      "whales",
+      "marine mammals",
+      "parasites",
+      "barnacles",
+      "remora",
+      "whale lice",
+      "cookiecutter shark",
+      "blue whale",
+      "fin whale",
+      "humpback whale",
+      "gray whale",
+      "field ID"
+    ],
+    relatedApps: [
+      "northern-elephant-seal",
+      "kelp-forest",
+      "information-center"
+    ]
+  }
 ];

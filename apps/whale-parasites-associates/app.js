@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
   restoreUpdateMessage();
   setupClearCache();
   registerServiceWorker();
+
+  if (window.renderRelatedHubTopics) {
+    window.renderRelatedHubTopics("whale-parasites-associates");
+  }
 });
 
 function escapeHTML(value) {
@@ -175,6 +179,7 @@ function setupClearCache() {
 
       if ("serviceWorker" in navigator) {
         const registration = await navigator.serviceWorker.getRegistration("./");
+
         if (registration) {
           await registration.update();
         }
