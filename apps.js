@@ -42,5 +42,23 @@ window.MBA_APP_REGISTRY = [
     contentType: "VOLUNTEER_TOOL",
     locationType: "HUB_TOOL",
     tags: ["visitor questions", "information center", "parking", "dining", "Cannery Row"]
-  }
+  },
+  {
+  id: "whale-parasites-associates",
+  title: "Whale Parasites & Associates",
+  icon: "🐋",
+  category: "Animals",
+  path: "apps/whale-parasites-associates/",
+  description: "Guide-friendly reference covering whale parasites, barnacles, whale lice, remoras, cookiecutter shark scars, and host relationships.",
+  contentType: "ANIMAL",
+  locationType: "EXHIBIT_SPACE",
+  tags: [
+    "whales",
+    "parasites",
+    "barnacles",
+    "remora",
+    "whale lice",
+    "cookiecutter shark"
+  ]
+}
 ];
