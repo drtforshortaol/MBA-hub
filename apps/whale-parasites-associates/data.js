@@ -68,7 +68,7 @@ const PARASITES = [
       "Despite the parasite label, harm is generally limited to added drag and weight. The barnacles themselves can be parasitized by gooseneck barnacles, creating a stacked parasite-on-parasite arrangement."
     ],
     hostsTitle: "Primary hosts",
-    hosts: ["Humpback whales primary", "Rarely: other baleen whales"],
+    hosts: ["Humpback whales", "Rarely other baleen whales"],
     harm: "Drag & weight only",
     harmDots: 1,
     facts: [
@@ -110,10 +110,10 @@ const PARASITES = [
     categories: ["whale"],
     paragraphs: [
       "A gooseneck barnacle that parasitizes whale barnacles — specifically attaching to and feeding on Coronula species. Its two fleshy lobes at the top of the stalk resemble rabbit ears.",
-      "This creates a true layered parasitic system: the whale hosts Coronula barnacles, which in turn host Conchoderma."
+      "This creates a true layered parasitic system: the whale hosts Coronula barnacles, which in turn host Conchoderma. The gooseneck draws nutrients from the whale barnacle rather than directly from the whale."
     ],
     hostsTitle: "Substrate",
-    hosts: ["Coronula diadema primary", "Coronula reginae", "Occasionally direct on whale skin"],
+    hosts: ["Coronula diadema", "Coronula reginae", "Occasionally direct on whale skin"],
     harm: "Indirect; harms barnacle host",
     harmDots: 1,
     facts: [
@@ -131,11 +131,11 @@ const PARASITES = [
     tagClass: "tag-specific",
     categories: ["specific", "mutualist"],
     paragraphs: [
-      "Host-specific to gray whales. Gray whale barnacles spread broadly across the body — heavily around the blowhole and rostrum, and as large patchy clusters elsewhere.",
-      "Gray whales often have such dense encrustation that the barnacles become a field-identification feature."
+      "Host-specific to gray whales. Unlike humpback barnacles which concentrate on appendages, gray whale barnacles spread broadly across the body — encrusting heavily around the blowhole and rostrum, and appearing as large patchy clusters anywhere on the body.",
+      "Gray whales often have such dense encrustation that the barnacles become a field-identification feature. The distinctive orange and white barnacle patches are visible from distance on cooperative animals."
     ],
     hostsTitle: "Host",
-    hosts: ["Gray whales exclusive"],
+    hosts: ["Gray whales"],
     harm: "Drag; ID feature in the field",
     harmDots: 1,
     facts: [
@@ -154,11 +154,11 @@ const PARASITES = [
     tagClass: "tag-specific",
     categories: ["specific"],
     paragraphs: [
-      "Not insects — whale lice are crustaceans. Despite the name, they are weakly parasitic at best, grazing on algae growth and dead skin from whale surfaces.",
-      "Transfer between whales occurs only during close contact. On humpbacks, look for them tucked into skin folds, barnacle margins, and around the rostrum."
+      "Not insects — whale lice are crustaceans. Despite the name, they are weakly parasitic at best, grazing on algae growth and dead skin from whale surfaces. Their entire lifecycle plays out on a single whale host.",
+      "Transfer between whales occurs only during close contact. Because opportunities to switch hosts are rare, whale lice populations are highly host-specific. On humpbacks, look for them tucked into skin folds, barnacle margins, and around the rostrum."
     ],
     hostsTitle: "On humpback whales",
-    hosts: ["Cyamus boopis", "Skin folds & barnacle margins"],
+    hosts: ["Cyamus boopis", "Skin folds", "Barnacle margins"],
     harm: "Minimal; grazes dead skin",
     harmDots: 1,
     facts: [

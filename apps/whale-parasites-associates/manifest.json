@@ -1,8 +1,9 @@
 {
   "name": "Whale Parasites & Associates",
   "short_name": "Whale Parasites",
-  "description": "MBA volunteer reference for whale parasites, barnacles, lice, remoras, and associates.",
+  "description": "MBA volunteer reference for whale parasites, barnacles, whale lice, remoras, and cookiecutter shark scars.",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#EFF6F7",
   "theme_color": "#0B2A4A",

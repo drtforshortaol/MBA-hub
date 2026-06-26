@@ -1,20 +1,28 @@
-const CACHE_NAME = "whale-parasites-associates-v1";
+const CACHE_MESSAGE_KEY = "whale-parasites-associates-cache-message";
+const APP_CACHE_PREFIX = "whale-parasites-associates";
 
 document.addEventListener("DOMContentLoaded", () => {
   buildJumpMenu();
   buildFilters();
   buildCards();
+  restoreUpdateMessage();
   setupClearCache();
-
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
-  }
+  registerServiceWorker();
 });
+
+function escapeHTML(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
 function buildJumpMenu() {
   const select = document.getElementById("jumpSelect");
 
-  PARASITES.forEach(item => {
+  PARASITES.forEach((item) => {
     const option = document.createElement("option");
     option.value = item.id;
     option.textContent = item.name;
@@ -25,99 +33,166 @@ function buildJumpMenu() {
     const id = select.value;
     if (!id) return;
 
-    const el = document.getElementById(id);
-    if (!el) return;
+    const card = document.getElementById(id);
+    if (!card) return;
 
-    el.open = true;
-    setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+    card.open = true;
+
+    setTimeout(() => {
+      card.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 75);
+
     select.value = "";
   });
 }
 
 function buildFilters() {
-  const tabs = document.getElementById("filterTabs");
+  const filterTabs = document.getElementById("filterTabs");
 
-  FILTERS.forEach(([id, label], index) => {
-    const button = document.createElement("button");
-    button.className = `filter-tab ${index === 0 ? "active" : ""}`;
-    button.textContent = label;
-    button.addEventListener("click", () => filterCards(id, button));
-    tabs.appendChild(button);
+  filterTabs.innerHTML = FILTERS.map(([id, label], index) => `
+    <button
+      class="filter-tab ${index === 0 ? "active" : ""}"
+      type="button"
+      data-filter="${escapeHTML(id)}"
+    >
+      ${escapeHTML(label)}
+    </button>
+  `).join("");
+
+  document.querySelectorAll(".filter-tab").forEach((button) => {
+    button.addEventListener("click", () => {
+      filterCards(button.dataset.filter, button);
+    });
   });
 }
 
 function buildCards() {
-  const list = document.getElementById("cardList");
+  const cardList = document.getElementById("cardList");
 
-  list.innerHTML = PARASITES.map(item => `
-    <details class="card" id="${item.id}" data-category="${item.categories.join(" ")}">
-      <summary class="card-trigger">
-        <div class="card-icon" style="background:${item.iconBg};">${item.icon}</div>
-        <div class="card-meta">
-          <div class="card-name">${item.name}</div>
-          <div class="card-sci">${item.sci}</div>
-        </div>
-        <span class="card-tag ${item.tagClass}">${item.tag}</span>
-        <span class="card-chevron">›</span>
-      </summary>
+  cardList.innerHTML = PARASITES.map((item) => {
+    const paragraphs = item.paragraphs
+      .map((paragraph) => `<p>${escapeHTML(paragraph)}</p>`)
+      .join("");
 
-      <div class="card-body">
-        ${item.paragraphs.map(p => `<p>${p}</p>`).join("")}
+    const hosts = item.hosts
+      .map((host) => `<span class="host-chip">${escapeHTML(host)}</span>`)
+      .join("");
 
-        <div class="hosts-label">${item.hostsTitle}</div>
-        <div class="host-chips">
-          ${item.hosts.map(host => `<span class="host-chip">${host}</span>`).join("")}
-        </div>
+    const dots = [1, 2, 3, 4].map((number) => {
+      const filled = number <= item.harmDots ? "filled" : "";
+      const warn = item.warn ? "warn" : "";
+      return `<span class="dot ${filled} ${warn}"></span>`;
+    }).join("");
 
-        <div class="harm-bar">
-          <span>Harm level</span>
-          <div class="harm-dots">
-            ${[1,2,3,4].map(n => `
-              <div class="dot ${n <= item.harmDots ? "filled" : ""} ${item.warn ? "warn" : ""}"></div>
-            `).join("")}
+    const facts = item.facts
+      .map(([label, value]) => `
+        <span class="fact-pill">
+          <strong>${escapeHTML(label)}</strong> ${escapeHTML(value)}
+        </span>
+      `)
+      .join("");
+
+    return `
+      <details class="card" id="${escapeHTML(item.id)}" data-category="${escapeHTML(item.categories.join(" "))}">
+        <summary class="card-trigger">
+          <div class="card-icon" style="background:${escapeHTML(item.iconBg)};">${escapeHTML(item.icon)}</div>
+
+          <div class="card-meta">
+            <div class="card-name">${escapeHTML(item.name)}</div>
+            <div class="card-sci">${escapeHTML(item.sci)}</div>
           </div>
-          <span>${item.harm}</span>
-        </div>
 
-        <div class="fact-row">
-          ${item.facts.map(([label, value]) => `
-            <span class="fact-pill"><strong>${label}</strong> ${value}</span>
-          `).join("")}
+          <span class="card-tag ${escapeHTML(item.tagClass)}">${escapeHTML(item.tag)}</span>
+          <span class="card-chevron">›</span>
+        </summary>
+
+        <div class="card-body">
+          ${paragraphs}
+
+          <div class="hosts-label">${escapeHTML(item.hostsTitle)}</div>
+          <div class="host-chips">
+            ${hosts}
+          </div>
+
+          <div class="harm-bar">
+            <span class="harm-label">Harm</span>
+            <div class="harm-dots">${dots}</div>
+            <span>${escapeHTML(item.harm)}</span>
+          </div>
+
+          <div class="fact-row">
+            ${facts}
+          </div>
         </div>
-      </div>
-    </details>
-  `).join("");
+      </details>
+    `;
+  }).join("");
 }
 
-function filterCards(category, btn) {
-  document.querySelectorAll(".filter-tab").forEach(tab => tab.classList.remove("active"));
-  btn.classList.add("active");
-
-  document.querySelectorAll(".card").forEach(card => {
-    const cats = card.dataset.category || "";
-    card.dataset.hidden = category !== "all" && !cats.includes(category);
+function filterCards(category, activeButton) {
+  document.querySelectorAll(".filter-tab").forEach((button) => {
+    button.classList.remove("active");
   });
+
+  activeButton.classList.add("active");
+
+  document.querySelectorAll(".card").forEach((card) => {
+    const categories = card.dataset.category || "";
+    const shouldHide = category !== "all" && !categories.includes(category);
+    card.dataset.hidden = shouldHide ? "true" : "false";
+  });
+}
+
+function restoreUpdateMessage() {
+  const updateMessage = document.getElementById("updateMessage");
+  const savedMessage = localStorage.getItem(CACHE_MESSAGE_KEY);
+
+  if (savedMessage) {
+    updateMessage.textContent = savedMessage;
+  }
 }
 
 function setupClearCache() {
   const button = document.getElementById("clearCacheBtn");
-  const message = document.getElementById("updateMessage");
+  const updateMessage = document.getElementById("updateMessage");
 
   button.addEventListener("click", async () => {
-    if ("caches" in window) {
-      const names = await caches.keys();
-      await Promise.all(names.map(name => caches.delete(name)));
-    }
+    const now = new Date();
+    const successMessage = `Cache cleared. Last checked: ${now.toLocaleString()}`;
 
-    const checked = new Date().toLocaleString();
-    localStorage.setItem("whaleParasitesLastChecked", checked);
-    message.textContent = `Cache cleared. Last checked: ${checked}`;
+    updateMessage.textContent = successMessage;
+    localStorage.setItem(CACHE_MESSAGE_KEY, successMessage);
+
+    try {
+      if ("caches" in window) {
+        const cacheNames = await caches.keys();
+        const thisAppCaches = cacheNames.filter((cacheName) =>
+          cacheName.startsWith(APP_CACHE_PREFIX)
+        );
+
+        await Promise.all(thisAppCaches.map((cacheName) => caches.delete(cacheName)));
+      }
+
+      if ("serviceWorker" in navigator) {
+        const registration = await navigator.serviceWorker.getRegistration("./");
+        if (registration) {
+          await registration.update();
+        }
+      }
+    } catch (error) {
+      console.warn("Cache clear warning:", error);
+    }
 
     setTimeout(() => window.location.reload(), 700);
   });
+}
 
-  const lastChecked = localStorage.getItem("whaleParasitesLastChecked");
-  if (lastChecked) {
-    message.textContent = `Cache cleared. Last checked: ${lastChecked}`;
+function registerServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js", { scope: "./" }).catch((error) => {
+        console.warn("Service worker registration failed:", error);
+      });
+    });
   }
 }
