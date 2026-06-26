@@ -1,4 +1,4 @@
-const CACHE_NAME = "whale-parasites-associates-v2";
+const CACHE_NAME = "whale-parasites-associates-v3";
 
 const FILES_TO_CACHE = [
   "./",
@@ -6,7 +6,9 @@ const FILES_TO_CACHE = [
   "./styles.css",
   "./app.js",
   "./data.js",
-  "./manifest.json"
+  "./manifest.json",
+  "../../apps.js",
+  "../../hub-links.js"
 ];
 
 self.addEventListener("install", (event) => {
@@ -22,9 +24,13 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((cacheNames) =>
       Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME && cacheName.startsWith("whale-parasites-associates")) {
+          if (
+            cacheName !== CACHE_NAME &&
+            cacheName.startsWith("whale-parasites-associates")
+          ) {
             return caches.delete(cacheName);
           }
+
           return null;
         })
       )
