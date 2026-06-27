@@ -1,0 +1,20 @@
+MBA Hub Repair Instructions
+
+Use this package when the Whale Parasites app is appearing as the Hub.
+
+1. Back up your current broken folder first.
+2. Replace the entire MBA-hub folder with this MBA-hub folder, OR copy these root files into your existing MBA-hub root:
+   - index.html
+   - styles.css
+   - app.js
+   - data.js
+   - manifest.json
+   - sw.js
+   - icon.svg
+3. Make sure the apps folder stays at:
+   MBA-hub/apps/
+4. Make sure Whale Parasites is at:
+   MBA-hub/apps/whale-parasites-associates/index.html
+5. Do not put Whale Parasites index.html into the MBA-hub root.
+6. After replacing files, open the site root. It should show MBA Hub, not Whale Parasites & Associates.
+7. In Chrome, press Ctrl + Shift + R. On iPhone, clear Safari website data if the old page still appears.

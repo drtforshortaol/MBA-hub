@@ -1,13 +1,19 @@
 const CACHE_MESSAGE_KEY = "whale-parasites-associates-cache-message";
 const APP_CACHE_PREFIX = "whale-parasites-associates";
 
+let currentFilter = "all";
+let currentSearch = "";
+
 document.addEventListener("DOMContentLoaded", () => {
   buildJumpMenu();
   buildFilters();
   buildCards();
+  setupSearch();
+  setupTroubleshooting();
   restoreUpdateMessage();
   setupClearCache();
   registerServiceWorker();
+  applyCardVisibility();
 
   if (window.renderRelatedHubTopics) {
     window.renderRelatedHubTopics("whale-parasites-associates");
@@ -23,8 +29,13 @@ function escapeHTML(value) {
     .replaceAll("'", "&#039;");
 }
 
+function normalizeText(value) {
+  return String(value || "").toLowerCase().trim();
+}
+
 function buildJumpMenu() {
   const select = document.getElementById("jumpSelect");
+  if (!select) return;
 
   PARASITES.forEach((item) => {
     const option = document.createElement("option");
@@ -40,6 +51,7 @@ function buildJumpMenu() {
     const card = document.getElementById(id);
     if (!card) return;
 
+    card.dataset.hidden = "false";
     card.open = true;
 
     setTimeout(() => {
@@ -52,12 +64,14 @@ function buildJumpMenu() {
 
 function buildFilters() {
   const filterTabs = document.getElementById("filterTabs");
+  if (!filterTabs) return;
 
   filterTabs.innerHTML = FILTERS.map(([id, label], index) => `
     <button
       class="filter-tab ${index === 0 ? "active" : ""}"
       type="button"
       data-filter="${escapeHTML(id)}"
+      aria-pressed="${index === 0 ? "true" : "false"}"
     >
       ${escapeHTML(label)}
     </button>
@@ -65,13 +79,23 @@ function buildFilters() {
 
   document.querySelectorAll(".filter-tab").forEach((button) => {
     button.addEventListener("click", () => {
-      filterCards(button.dataset.filter, button);
+      currentFilter = button.dataset.filter || "all";
+
+      document.querySelectorAll(".filter-tab").forEach((tab) => {
+        tab.classList.remove("active");
+        tab.setAttribute("aria-pressed", "false");
+      });
+
+      button.classList.add("active");
+      button.setAttribute("aria-pressed", "true");
+      applyCardVisibility();
     });
   });
 }
 
 function buildCards() {
   const cardList = document.getElementById("cardList");
+  if (!cardList) return;
 
   cardList.innerHTML = PARASITES.map((item) => {
     const paragraphs = item.paragraphs
@@ -85,7 +109,7 @@ function buildCards() {
     const dots = [1, 2, 3, 4].map((number) => {
       const filled = number <= item.harmDots ? "filled" : "";
       const warn = item.warn ? "warn" : "";
-      return `<span class="dot ${filled} ${warn}"></span>`;
+      return `<span class="dot ${filled} ${warn}" aria-hidden="true"></span>`;
     }).join("");
 
     const facts = item.facts
@@ -96,10 +120,26 @@ function buildCards() {
       `)
       .join("");
 
+    const searchableText = [
+      item.name,
+      item.sci,
+      item.tag,
+      item.hostsTitle,
+      item.harm,
+      item.paragraphs.join(" "),
+      item.hosts.join(" "),
+      item.facts.flat().join(" ")
+    ].join(" ");
+
     return `
-      <details class="card" id="${escapeHTML(item.id)}" data-category="${escapeHTML(item.categories.join(" "))}">
+      <details
+        class="card"
+        id="${escapeHTML(item.id)}"
+        data-category="${escapeHTML(item.categories.join(" "))}"
+        data-search="${escapeHTML(normalizeText(searchableText))}"
+      >
         <summary class="card-trigger">
-          <div class="card-icon" style="background:${escapeHTML(item.iconBg)};">${escapeHTML(item.icon)}</div>
+          <div class="card-icon" style="background:${escapeHTML(item.iconBg)};" aria-hidden="true">${escapeHTML(item.icon)}</div>
 
           <div class="card-meta">
             <div class="card-name">${escapeHTML(item.name)}</div>
@@ -107,7 +147,7 @@ function buildCards() {
           </div>
 
           <span class="card-tag ${escapeHTML(item.tagClass)}">${escapeHTML(item.tag)}</span>
-          <span class="card-chevron">›</span>
+          <span class="card-chevron" aria-hidden="true">›</span>
         </summary>
 
         <div class="card-body">
@@ -118,7 +158,7 @@ function buildCards() {
             ${hosts}
           </div>
 
-          <div class="harm-bar">
+          <div class="harm-bar" aria-label="Harm level: ${escapeHTML(item.harm)}">
             <span class="harm-label">Harm</span>
             <div class="harm-dots">${dots}</div>
             <span>${escapeHTML(item.harm)}</span>
@@ -133,17 +173,80 @@ function buildCards() {
   }).join("");
 }
 
-function filterCards(category, activeButton) {
-  document.querySelectorAll(".filter-tab").forEach((button) => {
-    button.classList.remove("active");
+function setupSearch() {
+  const searchInput = document.getElementById("searchInput");
+  if (!searchInput) return;
+
+  searchInput.addEventListener("input", () => {
+    currentSearch = normalizeText(searchInput.value);
+    applyCardVisibility();
+  });
+}
+
+function applyCardVisibility() {
+  const cards = Array.from(document.querySelectorAll(".card"));
+  const resultCount = document.getElementById("resultCount");
+  let visibleCount = 0;
+
+  cards.forEach((card) => {
+    const categories = card.dataset.category || "";
+    const searchableText = card.dataset.search || "";
+    const matchesFilter = currentFilter === "all" || categories.split(" ").includes(currentFilter);
+    const matchesSearch = !currentSearch || searchableText.includes(currentSearch);
+    const shouldShow = matchesFilter && matchesSearch;
+
+    card.dataset.hidden = shouldShow ? "false" : "true";
+    if (shouldShow) visibleCount += 1;
   });
 
-  activeButton.classList.add("active");
+  if (resultCount) {
+    if (visibleCount === cards.length && !currentSearch && currentFilter === "all") {
+      resultCount.textContent = `${visibleCount} entries shown.`;
+    } else {
+      resultCount.textContent = `${visibleCount} matching entr${visibleCount === 1 ? "y" : "ies"} shown.`;
+    }
+  }
+}
 
-  document.querySelectorAll(".card").forEach((card) => {
-    const categories = card.dataset.category || "";
-    const shouldHide = category !== "all" && !categories.includes(category);
-    card.dataset.hidden = shouldHide ? "true" : "false";
+function setupTroubleshooting() {
+  const openButton = document.getElementById("troubleshootingBtn");
+  const closeButton = document.getElementById("closeTroubleshootingBtn");
+  const panel = document.getElementById("troubleshootingPanel");
+
+  if (!openButton || !closeButton || !panel) return;
+
+  const openPanel = () => {
+    panel.hidden = false;
+    openButton.setAttribute("aria-expanded", "true");
+    panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  };
+
+  const closePanel = () => {
+    panel.hidden = true;
+    openButton.setAttribute("aria-expanded", "false");
+    openButton.focus({ preventScroll: true });
+  };
+
+  openButton.addEventListener("click", () => {
+    if (panel.hidden) {
+      openPanel();
+    } else {
+      closePanel();
+    }
+  });
+
+  closeButton.addEventListener("click", closePanel);
+
+  panel.addEventListener("click", (event) => {
+    if (event.target && event.target.id === "closeTroubleshootingBtn") {
+      closePanel();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !panel.hidden) {
+      closePanel();
+    }
   });
 }
 
@@ -151,7 +254,7 @@ function restoreUpdateMessage() {
   const updateMessage = document.getElementById("updateMessage");
   const savedMessage = localStorage.getItem(CACHE_MESSAGE_KEY);
 
-  if (savedMessage) {
+  if (updateMessage && savedMessage) {
     updateMessage.textContent = savedMessage;
   }
 }
@@ -159,6 +262,8 @@ function restoreUpdateMessage() {
 function setupClearCache() {
   const button = document.getElementById("clearCacheBtn");
   const updateMessage = document.getElementById("updateMessage");
+
+  if (!button || !updateMessage) return;
 
   button.addEventListener("click", async () => {
     const now = new Date();
@@ -178,11 +283,12 @@ function setupClearCache() {
       }
 
       if ("serviceWorker" in navigator) {
-        const registration = await navigator.serviceWorker.getRegistration("./");
-
-        if (registration) {
-          await registration.update();
-        }
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(
+          registrations
+            .filter((registration) => registration.scope.includes("whale-parasites-associates"))
+            .map((registration) => registration.update())
+        );
       }
     } catch (error) {
       console.warn("Cache clear warning:", error);

@@ -1,0 +1,21 @@
+App Name: Whale Parasites & Associates
+Version: v1.5
+Date: 2026-06-26
+Backup Name: WhaleParasitesAssociates_Backup_20260626_000000
+Files Changed: index.html, styles.css, app.js, manifest.json, sw.js, images/icon.svg, README.md, CHANGELOG.txt
+Summary of Changes:
+- Repaired malformed index.html that had duplicated closing body/html content.
+- Added standard top bar controls: ← MBA Hub, Clear Cache, Troubleshooting.
+- Added Troubleshooting panel with visible × Close button.
+- Added JavaScript close handler, fallback click close handling, and Escape-key close support.
+- Added search box for app content.
+- Preserved jump menu, filter tabs, dropdown cards, related Hub topic section, and cache controls.
+- Replaced missing PNG icon references with included SVG icon reference.
+- Updated service worker cache name to whale-parasites-associates-v5.
+- Added offline navigation fallback to cached index.html.
+- Added README documentation.
+Reason for Revision:
+Bring app into alignment with Core Categories v2 top-bar, troubleshooting, cache, PWA, documentation, and accessibility standards.
+Approved By: User review pending
+Notes:
+Test on PC Chrome and iPhone Safari before publishing to the Hub.

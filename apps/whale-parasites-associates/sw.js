@@ -1,4 +1,4 @@
-const CACHE_NAME = "whale-parasites-associates-v4";
+const CACHE_NAME = "whale-parasites-associates-v5";
 
 const FILES_TO_CACHE = [
   "./",
@@ -7,6 +7,7 @@ const FILES_TO_CACHE = [
   "./app.js",
   "./data.js",
   "./manifest.json",
+  "./images/icon.svg",
   "../../apps.js",
   "../../hub-links.js"
 ];
@@ -45,7 +46,13 @@ self.addEventListener("fetch", (event) => {
 
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
+      return cachedResponse || fetch(event.request).catch(() => {
+        if (event.request.mode === "navigate") {
+          return caches.match("./index.html");
+        }
+
+        return cachedResponse;
+      });
     })
   );
 });

@@ -1,51 +1,24 @@
-const CACHE_NAME = "whale-parasites-associates-v4";
-
-const FILES_TO_CACHE = [
+const CACHE = "mba-hub-v2";
+const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
-  "./app.js",
   "./data.js",
+  "./app.js",
   "./manifest.json",
-  "../../apps.js",
-  "../../hub-links.js"
+  "./icon.svg"
 ];
 
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES_TO_CACHE))
-  );
-
-  self.skipWaiting();
+self.addEventListener("install", event => {
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
 });
 
-self.addEventListener("activate", (event) => {
+self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then((cacheNames) =>
-      Promise.all(
-        cacheNames.map((cacheName) => {
-          if (
-            cacheName !== CACHE_NAME &&
-            cacheName.startsWith("whale-parasites-associates")
-          ) {
-            return caches.delete(cacheName);
-          }
-
-          return null;
-        })
-      )
-    )
+    caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))
   );
-
-  self.clients.claim();
 });
 
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
-
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
-    })
-  );
+self.addEventListener("fetch", event => {
+  event.respondWith(caches.match(event.request).then(response => response || fetch(event.request)));
 });

@@ -1,88 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Whale Parasites & Associates · MBA Reference</title>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#005f73" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="MBA Hub" />
+  <title>MBA Volunteer Companion</title>
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#0B2A4A" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <header class="app-header">
-    <div class="top-actions">
-      <a class="top-button" href="../../index.html">← MBA Hub</a>
-      <button class="top-button" id="clearCacheBtn" type="button">↻ Clear Cache</button>
-    </div>
-
-    <div id="updateMessage" class="update-message">
-      App loaded. Cache has not been cleared yet.
-    </div>
-
-    <div class="header-eyebrow">MBA Volunteer Reference</div>
-    <h1 class="header-title">Whale <span>Parasites</span> &amp; Associates</h1>
-    <p class="header-subtitle">
-      Barnacles, whale lice, remoras, cookiecutter scars, and field ID clues.
-    </p>
-
-    <div class="select-wrapper">
-      <select id="jumpSelect" aria-label="Jump to a parasite">
-        <option value="">— Jump to a parasite —</option>
-      </select>
-    </div>
+  <header class="hero">
+    <div class="badge">MBA Volunteer Companion</div>
+    <h1>MBA Hub</h1>
+    <p>Volunteer guide hub for exhibits, animals, visitor questions, guide talks, aquarium updates, and Monterey Bay interpretation.</p>
+    <p class="version">Version 1.1 · Last updated 2026-06-21</p>
   </header>
 
-  <main>
-    <section class="naturalist-note">
-      <div class="note-eye">Field note · June 2025</div>
-      <p>
-        Super friendly humpbacks gave us great looks at barnacles, lice, and remora scars.
-        Blue and fin whales running offshore brought cookiecutter shark bites and clusters of whalesuckers.
-        Coastal species often show heavier parasite loads because drifting larvae are nearby.
-      </p>
+  <main class="shell">
+    <section id="bannerArea" class="banner-area"></section>
+
+    <section class="search-panel">
+      <label for="searchInput">Search</label>
+      <input id="searchInput" type="search" placeholder="Search otter, kelp forest, upwelling..." autocomplete="off" />
+      <div id="searchResults" class="search-results"></div>
     </section>
 
-    <section class="quick-guide">
-      <h2>Fast field cues</h2>
-      <div class="quick-grid">
-        <div><strong>Round scars</strong><span>Cookiecutter shark</span></div>
-        <div><strong>White clusters</strong><span>Whale barnacles</span></div>
-        <div><strong>Tiny crustaceans</strong><span>Whale lice</span></div>
-        <div><strong>Dark clinging fish</strong><span>Whalesucker remora</span></div>
-      </div>
+    <section class="jump-panel">
+      <label for="categoryJump">Jump To Category</label>
+      <select id="categoryJump">
+        <option value="">Choose a category...</option>
+      </select>
     </section>
 
-    <nav class="filter-tabs" id="filterTabs" aria-label="Filter parasite cards"></nav>
+    <section id="recentPanel" class="recent-panel" style="display:none;">
+      <h2>Recent Searches</h2>
+      <div id="recentSearches" class="recent-searches"></div>
+    </section>
 
-    <section id="cardList" class="card-list"></section>
+    <section class="section-heading">
+      <h2>Guide Categories</h2>
+      <p>Large touch-friendly tiles for quick use during a volunteer shift.</p>
+    </section>
+
+    <section id="tileGrid" class="tile-grid"></section>
   </main>
 
-  <footer>
-    MBA Volunteer Reference · Whale Parasites &amp; Associates<br />
-    Content based on naturalist field notes · June 2025
+  <footer class="footer">
+    <p>Offline-capable PWA starter hub.</p>
   </footer>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
-    <section id="relatedHubTopics" class="related-hub-topics"></section>
-  </main>
-
-  <footer>
-    MBA Volunteer Reference · Whale Parasites &amp; Associates<br />
-    Content based on naturalist field notes · June 2025
-  </footer>
-
-  <script src="../../apps.js"></script>
-  <script src="../../hub-links.js"></script>
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
