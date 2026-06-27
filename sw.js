@@ -1,10 +1,14 @@
-const CACHE_NAME = "mba-hub-restore-final-v1";
+const CACHE_NAME = "whale-parasites-associates-v4";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
-  "./apps.js",
-  "./manifest.json"
+  "./styles.css",
+  "./app.js",
+  "./data.js",
+  "./manifest.json",
+  "../../apps.js",
+  "../../hub-links.js"
 ];
 
 self.addEventListener("install", (event) => {
@@ -17,47 +21,31 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((cacheName) => cacheName.startsWith("mba-hub"))
-          .filter((cacheName) => cacheName !== CACHE_NAME)
-          .map((cacheName) => caches.delete(cacheName))
-      );
-    })
+    caches.keys().then((cacheNames) =>
+      Promise.all(
+        cacheNames.map((cacheName) => {
+          if (
+            cacheName !== CACHE_NAME &&
+            cacheName.startsWith("whale-parasites-associates")
+          ) {
+            return caches.delete(cacheName);
+          }
+
+          return null;
+        })
+      )
+    )
   );
 
   self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") {
-    return;
-  }
+  if (event.request.method !== "GET") return;
 
   event.respondWith(
-    fetch(event.request)
-      .then((networkResponse) => {
-        return caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        });
-      })
-      .catch(() => {
-        return caches.match(event.request).then((cachedResponse) => {
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-
-          if (event.request.mode === "navigate") {
-            return caches.match("./index.html");
-          }
-
-          return new Response("Offline and this file is not cached.", {
-            status: 503,
-            statusText: "Offline"
-          });
-        });
-      })
+    caches.match(event.request).then((cachedResponse) => {
+      return cachedResponse || fetch(event.request);
+    })
   );
 });

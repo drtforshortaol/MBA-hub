@@ -1,12 +1,22 @@
 {
-  "name": "MBA Volunteer Companion",
-  "short_name": "MBA Hub",
+  "name": "Whale Parasites & Associates",
+  "short_name": "Whale Parasites",
+  "description": "MBA volunteer reference for whale parasites, barnacles, whale lice, remoras, and cookiecutter shark scars.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#eef8fb",
-  "theme_color": "#005f73",
+  "background_color": "#EFF6F7",
+  "theme_color": "#0B2A4A",
   "icons": [
-    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml"}
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ]
 }

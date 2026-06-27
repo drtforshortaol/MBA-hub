@@ -1,16 +1,18 @@
-const searchInput = document.getElementById("search-input");
-const content = document.getElementById("content");
-const emergencySection = document.getElementById("emergency-section");
-const updateMessage = document.getElementById("update-message");
-const clearCacheButton = document.getElementById("clear-cache-button");
-const topicButtonList = document.getElementById("topic-button-list");
-const selectedTopicLabel = document.getElementById("selected-topic-label");
-const topicDropdown = document.getElementById("topic-dropdown");
+const CACHE_MESSAGE_KEY = "whale-parasites-associates-cache-message";
+const APP_CACHE_PREFIX = "whale-parasites-associates";
 
-const CACHE_MESSAGE_KEY = "mba-information-center-cache-message";
-const APP_CACHE_PREFIX = "mba-information-center";
+document.addEventListener("DOMContentLoaded", () => {
+  buildJumpMenu();
+  buildFilters();
+  buildCards();
+  restoreUpdateMessage();
+  setupClearCache();
+  registerServiceWorker();
 
-let currentSectionIndex = 0;
+  if (window.renderRelatedHubTopics) {
+    window.renderRelatedHubTopics("whale-parasites-associates");
+  }
+});
 
 function escapeHTML(value) {
   return String(value)
@@ -21,134 +23,132 @@ function escapeHTML(value) {
     .replaceAll("'", "&#039;");
 }
 
-function highlight(text, query) {
-  const safeText = escapeHTML(text);
-  const cleanQuery = query.trim();
+function buildJumpMenu() {
+  const select = document.getElementById("jumpSelect");
 
-  if (!cleanQuery) {
-    return safeText;
-  }
+  PARASITES.forEach((item) => {
+    const option = document.createElement("option");
+    option.value = item.id;
+    option.textContent = item.name;
+    select.appendChild(option);
+  });
 
-  const escapedQuery = cleanQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const regex = new RegExp(`(${escapedQuery})`, "gi");
+  select.addEventListener("change", () => {
+    const id = select.value;
+    if (!id) return;
 
-  return safeText.replace(regex, "<mark>$1</mark>");
+    const card = document.getElementById(id);
+    if (!card) return;
+
+    card.open = true;
+
+    setTimeout(() => {
+      card.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 75);
+
+    select.value = "";
+  });
 }
 
-function renderTopicButtons() {
-  topicButtonList.innerHTML = appData.sections.map((section, index) => `
+function buildFilters() {
+  const filterTabs = document.getElementById("filterTabs");
+
+  filterTabs.innerHTML = FILTERS.map(([id, label], index) => `
     <button
-      class="topic-button ${index === currentSectionIndex ? "active" : ""}"
+      class="filter-tab ${index === 0 ? "active" : ""}"
       type="button"
-      data-section-index="${index}"
+      data-filter="${escapeHTML(id)}"
     >
-      ${escapeHTML(section.label)}
+      ${escapeHTML(label)}
     </button>
   `).join("");
 
-  selectedTopicLabel.textContent = appData.sections[currentSectionIndex].label;
-
-  document.querySelectorAll(".topic-button").forEach((button) => {
+  document.querySelectorAll(".filter-tab").forEach((button) => {
     button.addEventListener("click", () => {
-      const sectionIndex = Number(button.dataset.sectionIndex);
-
-      currentSectionIndex = sectionIndex;
-      searchInput.value = "";
-
-      renderTopicButtons();
-      renderSection(currentSectionIndex);
-
-      topicDropdown.open = false;
-      content.scrollIntoView({ behavior: "smooth", block: "start" });
+      filterCards(button.dataset.filter, button);
     });
   });
 }
 
-function renderEmergency() {
-  emergencySection.innerHTML = `
-    <h2>${escapeHTML(appData.emergency.title)}</h2>
-    <div class="emergency-grid">
-      ${appData.emergency.items.map((item) => `
-        <article class="emergency-card">
-          <h3>${escapeHTML(item.label)}</h3>
-          <p>${escapeHTML(item.text)}</p>
-        </article>
-      `).join("")}
-    </div>
-  `;
+function buildCards() {
+  const cardList = document.getElementById("cardList");
+
+  cardList.innerHTML = PARASITES.map((item) => {
+    const paragraphs = item.paragraphs
+      .map((paragraph) => `<p>${escapeHTML(paragraph)}</p>`)
+      .join("");
+
+    const hosts = item.hosts
+      .map((host) => `<span class="host-chip">${escapeHTML(host)}</span>`)
+      .join("");
+
+    const dots = [1, 2, 3, 4].map((number) => {
+      const filled = number <= item.harmDots ? "filled" : "";
+      const warn = item.warn ? "warn" : "";
+      return `<span class="dot ${filled} ${warn}"></span>`;
+    }).join("");
+
+    const facts = item.facts
+      .map(([label, value]) => `
+        <span class="fact-pill">
+          <strong>${escapeHTML(label)}</strong> ${escapeHTML(value)}
+        </span>
+      `)
+      .join("");
+
+    return `
+      <details class="card" id="${escapeHTML(item.id)}" data-category="${escapeHTML(item.categories.join(" "))}">
+        <summary class="card-trigger">
+          <div class="card-icon" style="background:${escapeHTML(item.iconBg)};">${escapeHTML(item.icon)}</div>
+
+          <div class="card-meta">
+            <div class="card-name">${escapeHTML(item.name)}</div>
+            <div class="card-sci">${escapeHTML(item.sci)}</div>
+          </div>
+
+          <span class="card-tag ${escapeHTML(item.tagClass)}">${escapeHTML(item.tag)}</span>
+          <span class="card-chevron">›</span>
+        </summary>
+
+        <div class="card-body">
+          ${paragraphs}
+
+          <div class="hosts-label">${escapeHTML(item.hostsTitle)}</div>
+          <div class="host-chips">
+            ${hosts}
+          </div>
+
+          <div class="harm-bar">
+            <span class="harm-label">Harm</span>
+            <div class="harm-dots">${dots}</div>
+            <span>${escapeHTML(item.harm)}</span>
+          </div>
+
+          <div class="fact-row">
+            ${facts}
+          </div>
+        </div>
+      </details>
+    `;
+  }).join("");
 }
 
-function renderSection(index) {
-  const section = appData.sections[index] || appData.sections[0];
-
-  content.innerHTML = `
-    <h2>${escapeHTML(section.label)}</h2>
-    <div class="accordion">
-      ${section.items.map((item) => `
-        <details>
-          <summary>${escapeHTML(item.question)}</summary>
-          <p>${escapeHTML(item.answer)}</p>
-        </details>
-      `).join("")}
-    </div>
-  `;
-}
-
-function renderSearchResults(query) {
-  const cleanQuery = query.trim().toLowerCase();
-
-  if (!cleanQuery) {
-    renderTopicButtons();
-    renderSection(currentSectionIndex);
-    return;
-  }
-
-  const results = [];
-
-  appData.sections.forEach((section) => {
-    section.items.forEach((item) => {
-      const searchableText = `${section.label} ${item.question} ${item.answer}`.toLowerCase();
-
-      if (searchableText.includes(cleanQuery)) {
-        results.push({
-          section: section.label,
-          question: item.question,
-          answer: item.answer
-        });
-      }
-    });
-  });
-
-  selectedTopicLabel.textContent = `Search: ${query}`;
-
-  document.querySelectorAll(".topic-button").forEach((button) => {
+function filterCards(category, activeButton) {
+  document.querySelectorAll(".filter-tab").forEach((button) => {
     button.classList.remove("active");
   });
 
-  if (results.length === 0) {
-    content.innerHTML = `
-      <h2>Search Results</h2>
-      <p class="empty-state">No matching topics found. Try another keyword or choose a topic from the dropdown.</p>
-    `;
-    return;
-  }
+  activeButton.classList.add("active");
 
-  content.innerHTML = `
-    <h2>Search Results</h2>
-    <p class="result-count">${results.length} result${results.length === 1 ? "" : "s"} found.</p>
-    <div class="accordion">
-      ${results.map((item) => `
-        <details open>
-          <summary>${highlight(item.question, query)}</summary>
-          <p class="section-label">${highlight(item.section, query)}</p>
-          <p>${highlight(item.answer, query)}</p>
-        </details>
-      `).join("")}
-    </div>
-  `;
+  document.querySelectorAll(".card").forEach((card) => {
+    const categories = card.dataset.category || "";
+    const shouldHide = category !== "all" && !categories.includes(category);
+    card.dataset.hidden = shouldHide ? "true" : "false";
+  });
 }
 
 function restoreUpdateMessage() {
+  const updateMessage = document.getElementById("updateMessage");
   const savedMessage = localStorage.getItem(CACHE_MESSAGE_KEY);
 
   if (savedMessage) {
@@ -156,42 +156,40 @@ function restoreUpdateMessage() {
   }
 }
 
-async function clearAppCache() {
-  const now = new Date();
-  const successMessage = `Cache cleared. Last checked: ${now.toLocaleString()}`;
+function setupClearCache() {
+  const button = document.getElementById("clearCacheBtn");
+  const updateMessage = document.getElementById("updateMessage");
 
-  updateMessage.textContent = successMessage;
-  localStorage.setItem(CACHE_MESSAGE_KEY, successMessage);
+  button.addEventListener("click", async () => {
+    const now = new Date();
+    const successMessage = `Cache cleared. Last checked: ${now.toLocaleString()}`;
 
-  try {
-    if ("caches" in window) {
-      const cacheNames = await caches.keys();
+    updateMessage.textContent = successMessage;
+    localStorage.setItem(CACHE_MESSAGE_KEY, successMessage);
 
-      const thisAppCaches = cacheNames.filter((cacheName) =>
-        cacheName.startsWith(APP_CACHE_PREFIX)
-      );
+    try {
+      if ("caches" in window) {
+        const cacheNames = await caches.keys();
+        const thisAppCaches = cacheNames.filter((cacheName) =>
+          cacheName.startsWith(APP_CACHE_PREFIX)
+        );
 
-      await Promise.all(
-        thisAppCaches.map((cacheName) => caches.delete(cacheName))
-      );
-    }
-
-    if ("serviceWorker" in navigator) {
-      const registration = await navigator.serviceWorker.getRegistration("./");
-
-      if (registration) {
-        await registration.update();
+        await Promise.all(thisAppCaches.map((cacheName) => caches.delete(cacheName)));
       }
+
+      if ("serviceWorker" in navigator) {
+        const registration = await navigator.serviceWorker.getRegistration("./");
+
+        if (registration) {
+          await registration.update();
+        }
+      }
+    } catch (error) {
+      console.warn("Cache clear warning:", error);
     }
-  } catch (error) {
-    console.warn("Cache clear warning:", error);
 
-    const warningMessage = `Cache check completed with a warning. Last checked: ${now.toLocaleString()}`;
-    updateMessage.textContent = warningMessage;
-    localStorage.setItem(CACHE_MESSAGE_KEY, warningMessage);
-  }
-
-  window.location.reload();
+    setTimeout(() => window.location.reload(), 700);
+  });
 }
 
 function registerServiceWorker() {
@@ -203,15 +201,3 @@ function registerServiceWorker() {
     });
   }
 }
-
-searchInput.addEventListener("input", (event) => {
-  renderSearchResults(event.target.value);
-});
-
-clearCacheButton.addEventListener("click", clearAppCache);
-
-restoreUpdateMessage();
-renderTopicButtons();
-renderEmergency();
-renderSection(currentSectionIndex);
-registerServiceWorker();
