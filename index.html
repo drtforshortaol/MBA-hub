@@ -1,54 +1,116 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <meta name="theme-color" content="#005f73" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="MBA Hub" />
-  <title>MBA Volunteer Companion</title>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="MBA Hub 2" />
+  <title>MBA Hub 2</title>
   <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <nav class="top-bar" aria-label="Hub controls">
+    <a class="top-bar-btn home-btn" href="index.html" aria-current="page">← MBA Hub 2</a>
+    <button class="top-bar-btn" id="clearHubCacheBtn" type="button">Clear Cache</button>
+    <button class="top-bar-btn" id="troubleshootingBtn" type="button" aria-expanded="false" aria-controls="troubleshootingPanel">Troubleshooting</button>
+  </nav>
+
+  <div class="status-message" id="statusMessage" role="status" aria-live="polite" hidden></div>
+
+  <section class="troubleshooting-panel" id="troubleshootingPanel" aria-label="Troubleshooting help" hidden>
+    <div class="troubleshooting-card" role="region" aria-labelledby="troubleshootingTitle">
+      <div class="troubleshooting-head">
+        <h2 id="troubleshootingTitle">Troubleshooting</h2>
+        <button class="close-troubleshooting" id="closeTroubleshootingBtn" type="button" aria-label="Close troubleshooting panel">× Close</button>
+      </div>
+
+      <div class="troubleshooting-grid">
+        <div>
+          <h3>Refresh Hub 2</h3>
+          <ol>
+            <li>Tap <strong>Clear Cache</strong>.</li>
+            <li>Let Hub 2 reload.</li>
+            <li>Confirm the version at the bottom shows the newest date.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>PC Chrome hard refresh</h3>
+          <p>Press <strong>Ctrl + Shift + R</strong> to force Chrome to reload the newest Hub files.</p>
+        </div>
+        <div>
+          <h3>iPhone Safari cache</h3>
+          <ol>
+            <li>Open iPhone <strong>Settings</strong>.</li>
+            <li>Go to <strong>Apps → Safari → Advanced → Website Data</strong>.</li>
+            <li>Search for the site, delete matching website data, then reopen Hub 2.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Broken app link</h3>
+          <p>If an app opens incorrectly or Return to Hub gives 404, check that the app folder is inside <strong>apps/app-folder-name/</strong> and that the app uses <strong>../../index.html</strong> for the MBA Hub button.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <header class="hero">
-    <div class="badge">MBA Volunteer Companion</div>
-    <h1>MBA Hub</h1>
-    <p>Volunteer guide hub for exhibits, animals, visitor questions, guide talks, aquarium updates, and Monterey Bay interpretation.</p>
-    <p class="version">Version 1.1 · Last updated 2026-06-21</p>
+    <div class="hero-badge">Monterey Bay Aquarium Volunteer Companion</div>
+    <h1>MBA Hub 2</h1>
+    <p>Clean second-generation hub for installed PWA dropdown apps, built with search, categories, tags, cache controls, troubleshooting, and a first installed app card.</p>
   </header>
 
-  <main class="shell">
-    <section id="bannerArea" class="banner-area"></section>
-
-    <section class="search-panel">
-      <label for="searchInput">Search</label>
-      <input id="searchInput" type="search" placeholder="Search otter, kelp forest, upwelling..." autocomplete="off" />
-      <div id="searchResults" class="search-results"></div>
+  <main>
+    <section class="notice-card" id="hubNotice" aria-label="Hub update notice">
+      <div>
+        <strong>Hub 2 started:</strong> Information Center Handbook is installed as the first active app. Add future apps to the registry and cards will appear automatically.
+      </div>
+      <button id="dismissNoticeBtn" type="button" aria-label="Dismiss update notice">×</button>
     </section>
 
-    <section class="jump-panel">
-      <label for="categoryJump">Jump To Category</label>
-      <select id="categoryJump">
-        <option value="">Choose a category...</option>
-      </select>
+    <section class="tools-panel" aria-label="Hub tools">
+      <label class="search-label" for="searchInput">Search apps, tags, categories, or descriptions</label>
+      <div class="search-row">
+        <input id="searchInput" type="search" placeholder="Search information center, volunteer tools, emergency…" autocomplete="off" />
+        <button id="clearSearchBtn" type="button">Clear Search</button>
+      </div>
+      <div class="filter-row" id="categoryFilters" aria-label="Category filters"></div>
+      <div class="controls">
+        <button class="toggle-all-btn" id="expandAllBtn" type="button">Expand All Categories</button>
+        <button class="toggle-all-btn" id="collapseAllBtn" type="button">Collapse All Categories</button>
+      </div>
     </section>
 
-    <section id="recentPanel" class="recent-panel" style="display:none;">
-      <h2>Recent Searches</h2>
-      <div id="recentSearches" class="recent-searches"></div>
+    <section class="hub-summary" aria-label="Hub summary">
+      <div class="summary-card">
+        <span class="summary-number" id="activeAppCount">0</span>
+        <span class="summary-label">Active Apps</span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-number" id="categoryCount">0</span>
+        <span class="summary-label">Categories</span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-number">v2.0</span>
+        <span class="summary-label">Hub Version</span>
+      </div>
     </section>
 
-    <section class="section-heading">
-      <h2>Guide Categories</h2>
-      <p>Large touch-friendly tiles for quick use during a volunteer shift.</p>
-    </section>
+    <section class="category-list" id="categoryList" aria-label="Hub categories"></section>
 
-    <section id="tileGrid" class="tile-grid"></section>
+    <section class="references-card" aria-label="References and source notes">
+      <h2>References and Source Notes</h2>
+      <p>Hub structure follows the uploaded <em>App Building Core Categories Version 2.0</em> protocol. Individual app content and images should maintain their own source notes inside each app folder.</p>
+    </section>
   </main>
 
   <footer class="footer">
-    <p>Offline-capable PWA starter hub.</p>
+    <strong>MBA Hub 2</strong><br />
+    Version 2.0 · Started June 27, 2026<br />
+    Installed apps: Information Center Handbook
   </footer>
 
   <script src="data.js"></script>

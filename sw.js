@@ -1,24 +1,49 @@
-const CACHE = "mba-hub-v2";
-const ASSETS = [
+const CACHE_NAME = "mba-hub-2-v2.0.0";
+const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./styles.css",
-  "./data.js",
   "./app.js",
+  "./data.js",
   "./manifest.json",
-  "./icon.svg"
+  "./icon.svg",
+  "./apps/information-center/index.html",
+  "./apps/information-center/styles.css",
+  "./apps/information-center/app.js",
+  "./apps/information-center/data.js",
+  "./apps/information-center/manifest.webmanifest",
+  "./apps/information-center/icon.svg"
 ];
 
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE))
+  );
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))
+    caches.keys().then(keys => Promise.all(
+      keys
+        .filter(key => key.startsWith("mba-hub-2-") && key !== CACHE_NAME)
+        .map(key => caches.delete(key))
+    ))
   );
+  self.clients.claim();
 });
 
 self.addEventListener("fetch", event => {
-  event.respondWith(caches.match(event.request).then(response => response || fetch(event.request)));
+  if (event.request.method !== "GET") return;
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      if (cached) return cached;
+      return fetch(event.request).then(response => {
+        if (!response || response.status !== 200 || response.type === "opaque") return response;
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+        return response;
+      }).catch(() => caches.match("./index.html"));
+    })
+  );
 });

@@ -1,12 +1,18 @@
 {
-  "name": "MBA Volunteer Companion",
-  "short_name": "MBA Hub",
+  "name": "MBA Hub 2 \u2014 Monterey Bay Aquarium Volunteer Companion",
+  "short_name": "MBA Hub 2",
+  "description": "Second-generation Monterey Bay Aquarium volunteer companion hub for PWA dropdown apps.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#eef8fb",
+  "background_color": "#f7fbfc",
   "theme_color": "#005f73",
   "icons": [
-    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml"}
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
   ]
 }

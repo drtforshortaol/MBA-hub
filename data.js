@@ -1,27 +1,38 @@
-window.MBA_HUB = {
-  version: "1.0",
-  lastUpdated: "2026-06-21",
-  banners: [
-    {
-      title: "MBA Hub foundation started",
-      category: "Volunteer Announcement",
-      message: "The first version of the volunteer companion hub is being built.",
-      startDate: "2026-06-21",
-      expirationDate: "2026-07-21",
-      link: "#"
-    }
-  ],
+window.MBA_HUB_2 = {
+  version: "2.0",
+  lastUpdated: "2026-06-27",
+  title: "MBA Hub 2",
   categories: [
-    { title: "Aquarium Updates", icon: "📰", description: "Recent animal news, program changes, facility notes, and volunteer announcements.", url: "#", tags: ["updates", "news", "announcements"] },
-    { title: "Exhibits", icon: "🐟", description: "Kelp Forest, Open Sea, Rocky Shore, Sandy Shore, Penguins, Touch Pools, and Drifter Gallery.", url: "#", tags: ["exhibits", "kelp forest", "open sea"] },
-    { title: "Animals", icon: "🦦", description: "Species and animal groups for quick guide reference.", url: "#", tags: ["animals", "species", "sea otter"] },
-    { title: "Visitor Questions", icon: "❓", description: "Fast answers to common visitor questions.", url: "#", tags: ["questions", "faq", "visitor"] },
-    { title: "Guide Talks", icon: "🎤", description: "Two-minute, five-minute, and longer interpretive talks.", url: "#", tags: ["talks", "guide talks", "interpretation"] },
-    { title: "Concepts", icon: "🌊", description: "Upwelling, food webs, conservation, climate, ecology, and ocean processes.", url: "#", tags: ["concepts", "upwelling", "food web"] },
-    { title: "Making the Aquarium Come Alive", icon: "🌅", description: "Connect exhibits to the real Monterey Bay outside the windows and deck.", url: "#", tags: ["deck", "wildlife", "monterey bay"] },
-    { title: "Seafood Watch", icon: "🦀", description: "Seafood Watch basics, recommendations, fishing methods, and visitor questions.", url: "#", tags: ["seafood watch", "conservation", "sustainable seafood"] },
-    { title: "Volunteer Tools", icon: "🧰", description: "Information desk, carts, training resources, and hub instructions.", url: "#", tags: ["volunteer", "tools", "training"] },
-    { title: "Visitor Services", icon: "🗺️", description: "Restrooms, elevators, accessibility, café, gift shop, and wayfinding.", url: "#", tags: ["services", "restrooms", "accessibility"] },
-    { title: "Cannery Row", icon: "🏭", description: "Cannery Row history, Steinbeck, Ed Ricketts, walking tours, and visitor recommendations.", url: "#", tags: ["cannery row", "history", "walking tour"] }
+    { id: "aquarium-updates", title: "Aquarium Updates", icon: "📰", description: "Recent animal news, program changes, facility notes, and volunteer announcements." },
+    { id: "exhibits", title: "Exhibits", icon: "🌊", description: "Exhibit reference apps and habitat information." },
+    { id: "animals", title: "Animals", icon: "🐟", description: "Species apps, animal facts, conservation notes, and guide-ready explanations." },
+    { id: "visitor-questions", title: "Visitor Questions", icon: "❓", description: "Common visitor questions and short answers." },
+    { id: "guide-talks", title: "Guide Talks", icon: "🎤", description: "Talk outlines, themes, stories, and interpretive prompts." },
+    { id: "concepts", title: "Concepts", icon: "💡", description: "Science, ocean literacy, ecology, and conservation concepts." },
+    { id: "making-the-aquarium-come-alive", title: "Making the Aquarium Come Alive", icon: "✨", description: "Stories, kid facts, visitor engagement, and interpretation tools." },
+    { id: "seafood-watch", title: "Seafood Watch", icon: "🍽️", description: "Seafood Watch tools, talking points, and visitor resources." },
+    { id: "volunteer-tools", title: "Volunteer Tools", icon: "🧰", description: "Volunteer reference tools, procedures, quick references, and support apps." },
+    { id: "visitor-services", title: "Visitor Services", icon: "🗺️", description: "Visitor support, directions, accessibility, and service information." },
+    { id: "cannery-row", title: "Cannery Row", icon: "🏛️", description: "Cannery Row history, concierge tools, restaurants, hotels, and walking guides." }
+  ],
+  apps: [
+    {
+      id: "information-center",
+      name: "Information Center Handbook",
+      folder: "information-center",
+      url: "apps/information-center/index.html",
+      category: "volunteer-tools",
+      appType: "PWA dropdown reference app",
+      version: "2.1",
+      releaseDate: "2026-06-27",
+      lastUpdated: "2026-06-27",
+      purpose: "Provide quick Information Center reference support for Monterey Bay Aquarium volunteers.",
+      description: "Volunteer Information Center handbook with emergency items, quick navigation, search, dropdown sections, cache refresh, and troubleshooting.",
+      tags: ["information center", "volunteer tools", "handbook", "quick reference", "emergency", "radio", "lost child", "wheelchair", "directions"],
+      relatedApps: [],
+      status: "Active",
+      testingStatus: "Installed in Hub 2; needs PC Chrome, iPhone Safari, and offline confirmation after upload.",
+      notes: "First installed app in Hub 2. App folder path is apps/information-center/. Return to Hub path remains ../../index.html."
+    }
   ]
 };

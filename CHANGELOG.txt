@@ -1,0 +1,35 @@
+MBA Hub 2 Changelog
+
+Version: 2.0
+Date: 2026-06-27
+Backup Name: MBAHub2_Backup_20260627_000000
+Files Changed:
+- index.html
+- styles.css
+- app.js
+- data.js
+- manifest.json
+- sw.js
+- icon.svg
+- README.md
+- CHANGELOG.txt
+- app-registry.json
+- tag-registry.json
+- apps/information-center/* copied into Hub 2
+
+Summary of Changes:
+- Created clean Hub 2 root PWA.
+- Installed Information Center Handbook as the first active app.
+- Added Core Categories v2 category list.
+- Added top bar controls: MBA Hub 2, Clear Cache, Troubleshooting.
+- Added troubleshooting panel with visible × Close button, overlay fallback, and Escape-key support.
+- Added search, category filters, expandable category sections, app cards, app registry, and tag registry.
+
+Reason for Revision:
+- Start a clean Hub 2 because the previous hub had navigation/cache/path problems.
+
+Approved By:
+- User pending PC/iPhone testing.
+
+Notes:
+- Information Center app remains in apps/information-center/ so its ../../index.html Return to Hub path points to the Hub 2 root index.html.

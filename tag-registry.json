@@ -1,0 +1,77 @@
+{
+  "lastUpdated": "2026-06-27",
+  "tags": [
+    {
+      "tagName": "information center",
+      "tagType": "topic",
+      "description": "Information Center reference material and procedures.",
+      "relatedApps": [
+        "information-center"
+      ],
+      "relatedCategories": [
+        "Volunteer Tools"
+      ],
+      "dateCreated": "2026-06-27",
+      "lastUpdated": "2026-06-27",
+      "notes": "First Hub 2 installed app tag."
+    },
+    {
+      "tagName": "volunteer tools",
+      "tagType": "category",
+      "description": "Tools that support Monterey Bay Aquarium volunteers.",
+      "relatedApps": [
+        "information-center"
+      ],
+      "relatedCategories": [
+        "Volunteer Tools"
+      ],
+      "dateCreated": "2026-06-27",
+      "lastUpdated": "2026-06-27",
+      "notes": "Core MBA Hub category tag."
+    },
+    {
+      "tagName": "quick reference",
+      "tagType": "content",
+      "description": "Fast lookup cards, procedures, or guide support information.",
+      "relatedApps": [
+        "information-center"
+      ],
+      "relatedCategories": [
+        "Volunteer Tools",
+        "Visitor Services"
+      ],
+      "dateCreated": "2026-06-27",
+      "lastUpdated": "2026-06-27",
+      "notes": "Use for future short-answer support apps."
+    },
+    {
+      "tagName": "emergency",
+      "tagType": "procedure",
+      "description": "Emergency procedures and urgent visitor-support information.",
+      "relatedApps": [
+        "information-center"
+      ],
+      "relatedCategories": [
+        "Volunteer Tools",
+        "Visitor Services"
+      ],
+      "dateCreated": "2026-06-27",
+      "lastUpdated": "2026-06-27",
+      "notes": "High-priority tag."
+    },
+    {
+      "tagName": "radio",
+      "tagType": "procedure",
+      "description": "Radio procedures and communication references.",
+      "relatedApps": [
+        "information-center"
+      ],
+      "relatedCategories": [
+        "Volunteer Tools"
+      ],
+      "dateCreated": "2026-06-27",
+      "lastUpdated": "2026-06-27",
+      "notes": "Use for communication-related apps."
+    }
+  ]
+}

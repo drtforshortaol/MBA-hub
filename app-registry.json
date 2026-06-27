@@ -1,0 +1,34 @@
+{
+  "hubName": "MBA Hub 2",
+  "hubVersion": "2.0",
+  "lastUpdated": "2026-06-27",
+  "apps": [
+    {
+      "appName": "Information Center Handbook",
+      "appFolderName": "information-center",
+      "appPath": "apps/information-center/index.html",
+      "hubCategory": "Volunteer Tools",
+      "appType": "PWA dropdown reference app",
+      "version": "2.1",
+      "releaseDate": "2026-06-27",
+      "lastUpdatedDate": "2026-06-27",
+      "purpose": "Provide quick Information Center reference support for Monterey Bay Aquarium volunteers.",
+      "shortDescription": "Information Center handbook with search, dropdown sections, quick references, cache refresh, and troubleshooting.",
+      "tags": [
+        "information center",
+        "volunteer tools",
+        "handbook",
+        "quick reference",
+        "emergency",
+        "radio",
+        "lost child",
+        "wheelchair",
+        "directions"
+      ],
+      "relatedApps": [],
+      "status": "Active",
+      "testingStatus": "Needs PC Chrome, iPhone Safari, and offline confirmation after Hub 2 upload.",
+      "notes": "First installed app in Hub 2. Return to Hub path should resolve to ../../index.html."
+    }
+  ]
+}

@@ -1,153 +1,255 @@
-const hub = window.MBA_HUB || { categories: [], banners: [] };
-const tileGrid = document.getElementById("tileGrid");
-const searchInput = document.getElementById("searchInput");
-const searchResults = document.getElementById("searchResults");
-const bannerArea = document.getElementById("bannerArea");
-const categoryJump = document.getElementById("categoryJump");
-const recentPanel = document.getElementById("recentPanel");
-const recentSearches = document.getElementById("recentSearches");
-const RECENT_KEY = "mbaRecentSearches";
+document.addEventListener("DOMContentLoaded", () => {
+  buildCategoryFilters();
+  renderHub();
+  setupSearch();
+  setupControls();
+  setupNotice();
+  setupTroubleshooting();
+  setupClearCache();
+  registerServiceWorker();
+});
 
-function todayISO() {
-  return new Date().toISOString().slice(0, 10);
+let activeCategory = "all";
+let searchTerm = "";
+let expandedCategories = new Set(["volunteer-tools"]);
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
-function isActiveBanner(banner) {
-  const today = todayISO();
-  return (!banner.startDate || banner.startDate <= today) && (!banner.expirationDate || banner.expirationDate >= today);
+function getData() {
+  return window.MBA_HUB_2 || { categories: [], apps: [] };
 }
 
-function renderBanners() {
-  const active = (hub.banners || []).filter(isActiveBanner);
-  bannerArea.innerHTML = active.map(banner => `
-    <article class="banner">
-      <div class="banner__label">${banner.category || "Update"}</div>
-      <h2>${banner.title}</h2>
-      <p>${banner.message || ""}</p>
-      <small>Expires ${banner.expirationDate || "when removed"}</small>
-    </article>
+function buildCategoryFilters() {
+  const { categories } = getData();
+  const container = document.getElementById("categoryFilters");
+  if (!container) return;
+
+  const buttons = [
+    { id: "all", title: "All" },
+    ...categories.map(category => ({ id: category.id, title: category.title }))
+  ];
+
+  container.innerHTML = buttons.map(button => `
+    <button class="filter-btn${button.id === activeCategory ? " active" : ""}" type="button" data-category="${escapeHTML(button.id)}">
+      ${escapeHTML(button.title)}
+    </button>
   `).join("");
+
+  container.querySelectorAll("button[data-category]").forEach(button => {
+    button.addEventListener("click", () => {
+      activeCategory = button.dataset.category || "all";
+      if (activeCategory !== "all") expandedCategories.add(activeCategory);
+      buildCategoryFilters();
+      renderHub();
+    });
+  });
 }
 
-function slugify(text) {
-  return String(text).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+function renderHub() {
+  const { categories, apps } = getData();
+  const list = document.getElementById("categoryList");
+  const activeAppCount = document.getElementById("activeAppCount");
+  const categoryCount = document.getElementById("categoryCount");
+  if (!list) return;
+
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+  const activeApps = apps.filter(app => app.status !== "Retired" && app.status !== "Archived");
+
+  if (activeAppCount) activeAppCount.textContent = String(activeApps.length);
+  if (categoryCount) categoryCount.textContent = String(categories.length);
+
+  const filteredCategories = categories
+    .map(category => {
+      const categoryApps = activeApps.filter(app => app.category === category.id);
+      const visibleApps = categoryApps.filter(app => appMatches(app, category, normalizedSearch));
+      return { ...category, apps: visibleApps, totalApps: categoryApps.length };
+    })
+    .filter(category => {
+      if (activeCategory !== "all" && category.id !== activeCategory) return false;
+      if (normalizedSearch && category.apps.length === 0) return false;
+      if (!normalizedSearch && activeCategory === "all" && category.totalApps === 0) return true;
+      return category.apps.length > 0 || activeCategory === category.id;
+    });
+
+  if (filteredCategories.length === 0) {
+    list.innerHTML = `<div class="no-results">No apps matched your search. Try a different keyword or clear the search.</div>`;
+    return;
+  }
+
+  list.innerHTML = filteredCategories.map(category => renderCategory(category)).join("");
+
+  list.querySelectorAll(".category-toggle").forEach(button => {
+    button.addEventListener("click", () => {
+      const id = button.dataset.category;
+      if (!id) return;
+      if (expandedCategories.has(id)) expandedCategories.delete(id);
+      else expandedCategories.add(id);
+      renderHub();
+    });
+  });
 }
 
-function tileMarkup(item) {
-  const id = slugify(item.title);
-  const tags = (item.tags || []).map(tag => `<button class="tag" data-tag="${tag}">${tag}</button>`).join("");
+function appMatches(app, category, normalizedSearch) {
+  if (!normalizedSearch) return true;
+  const haystack = [
+    app.name,
+    app.description,
+    app.purpose,
+    app.status,
+    app.testingStatus,
+    app.version,
+    category.title,
+    ...(app.tags || [])
+  ].join(" ").toLowerCase();
+  return haystack.includes(normalizedSearch);
+}
+
+function renderCategory(category) {
+  const isExpanded = expandedCategories.has(category.id) || activeCategory === category.id || searchTerm.trim();
+  const appCountLabel = `${category.apps.length} ${category.apps.length === 1 ? "app" : "apps"}`;
   return `
-    <article class="tile" id="${id}">
-      <div class="tile__icon">${item.icon || "•"}</div>
-      <h3>${item.title}</h3>
-      <p>${item.description || ""}</p>
-      <div class="tags">${tags}</div>
-      <a class="open-link ${item.url === "#" ? "disabled" : ""}" href="${item.url || "#"}">${item.url === "#" ? "Coming soon" : "Open"}</a>
+    <article class="category-section" id="category-${escapeHTML(category.id)}">
+      <button class="category-toggle" type="button" data-category="${escapeHTML(category.id)}" aria-expanded="${isExpanded ? "true" : "false"}">
+        <span>
+          <span class="category-title"><span aria-hidden="true">${escapeHTML(category.icon)}</span>${escapeHTML(category.title)}</span>
+          <span class="category-meta">${escapeHTML(category.description)}</span>
+        </span>
+        <span class="category-meta">${escapeHTML(appCountLabel)} ${isExpanded ? "▴" : "▾"}</span>
+      </button>
+      <div class="category-content" ${isExpanded ? "" : "hidden"}>
+        ${category.apps.length ? `<div class="app-grid">${category.apps.map(app => renderAppCard(app)).join("")}</div>` : `<div class="no-results">No apps installed in this category yet.</div>`}
+      </div>
     </article>
   `;
 }
 
-function renderTiles(items = hub.categories || []) {
-  tileGrid.innerHTML = items.map(tileMarkup).join("");
-  bindTags();
+function renderAppCard(app) {
+  const tags = (app.tags || []).slice(0, 8).map(tag => `<span class="tag">${escapeHTML(tag)}</span>`).join("");
+  return `
+    <article class="app-card">
+      <h3>${escapeHTML(app.name)}</h3>
+      <p>${escapeHTML(app.description)}</p>
+      <div class="app-tags" aria-label="Tags">${tags}</div>
+      <div class="app-card-footer">
+        <span class="status-pill">${escapeHTML(app.status)} · v${escapeHTML(app.version)}</span>
+        <a class="open-app" href="${escapeHTML(app.url)}">Open App</a>
+      </div>
+    </article>
+  `;
 }
 
-function matches(item, query) {
-  const q = query.toLowerCase();
-  const text = [item.title, item.description, ...(item.tags || [])].join(" ").toLowerCase();
-  return text.includes(q);
-}
-
-function getRecentSearches() {
-  try {
-    return JSON.parse(localStorage.getItem(RECENT_KEY)) || [];
-  } catch {
-    return [];
-  }
-}
-
-function saveRecentSearch(query) {
-  const q = query.trim();
-  if (!q) return;
-  const existing = getRecentSearches().filter(item => item.toLowerCase() !== q.toLowerCase());
-  const updated = [q, ...existing].slice(0, 6);
-  localStorage.setItem(RECENT_KEY, JSON.stringify(updated));
-  renderRecentSearches();
-}
-
-function renderRecentSearches() {
-  const items = getRecentSearches();
-  if (!items.length) {
-    recentPanel.style.display = "none";
-    recentSearches.innerHTML = "";
-    return;
-  }
-  recentPanel.style.display = "block";
-  recentSearches.innerHTML = items.map(item => `<button class="recent-chip" data-query="${item}">${item}</button>`).join("");
-  document.querySelectorAll(".recent-chip").forEach(button => {
-    button.addEventListener("click", () => {
-      searchInput.value = button.dataset.query;
-      renderSearch(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+function setupSearch() {
+  const input = document.getElementById("searchInput");
+  const clear = document.getElementById("clearSearchBtn");
+  if (input) {
+    input.addEventListener("input", () => {
+      searchTerm = input.value;
+      renderHub();
     });
-  });
-}
-
-function renderSearch(remember = false) {
-  const q = searchInput.value.trim();
-  if (!q) {
-    searchResults.innerHTML = "";
-    renderTiles();
-    return;
   }
-  const matchesList = (hub.categories || []).filter(item => matches(item, q));
-  searchResults.innerHTML = `<strong>${matchesList.length} result${matchesList.length === 1 ? "" : "s"}</strong>`;
-  renderTiles(matchesList);
-  if (remember) saveRecentSearch(q);
-}
-
-function renderCategoryJump() {
-  categoryJump.innerHTML = `<option value="">Choose a category...</option>` +
-    (hub.categories || []).map(item => `<option value="${slugify(item.title)}">${item.icon || ""} ${item.title}</option>`).join("");
-}
-
-function bindCategoryJump() {
-  categoryJump.addEventListener("change", () => {
-    const targetId = categoryJump.value;
-    if (!targetId) return;
-    searchInput.value = "";
-    searchResults.innerHTML = "";
-    renderTiles();
-    setTimeout(() => {
-      const target = document.getElementById(targetId);
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 50);
-  });
-}
-
-function bindTags() {
-  document.querySelectorAll(".tag").forEach(button => {
-    button.addEventListener("click", () => {
-      searchInput.value = button.dataset.tag;
-      renderSearch(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+  if (clear) {
+    clear.addEventListener("click", () => {
+      searchTerm = "";
+      if (input) input.value = "";
+      renderHub();
+      input?.focus();
     });
+  }
+}
+
+function setupControls() {
+  const expand = document.getElementById("expandAllBtn");
+  const collapse = document.getElementById("collapseAllBtn");
+  const { categories } = getData();
+  expand?.addEventListener("click", () => {
+    expandedCategories = new Set(categories.map(category => category.id));
+    renderHub();
+  });
+  collapse?.addEventListener("click", () => {
+    expandedCategories = new Set();
+    renderHub();
   });
 }
 
-renderBanners();
-renderCategoryJump();
-renderRecentSearches();
-renderTiles();
-bindCategoryJump();
-searchInput.addEventListener("input", () => renderSearch(false));
-searchInput.addEventListener("search", () => renderSearch(true));
-searchInput.addEventListener("keydown", event => {
-  if (event.key === "Enter") renderSearch(true);
-});
+function setupNotice() {
+  const notice = document.getElementById("hubNotice");
+  const dismiss = document.getElementById("dismissNoticeBtn");
+  const key = "mba-hub-2-notice-dismissed-v2.0";
+  if (!notice || !dismiss) return;
+  if (localStorage.getItem(key) === "true") notice.hidden = true;
+  dismiss.addEventListener("click", () => {
+    localStorage.setItem(key, "true");
+    notice.hidden = true;
+  });
+}
 
-if ("serviceWorker" in navigator) {
+function setupTroubleshooting() {
+  const openButton = document.getElementById("troubleshootingBtn");
+  const panel = document.getElementById("troubleshootingPanel");
+  const closeButton = document.getElementById("closeTroubleshootingBtn");
+  if (!openButton || !panel || !closeButton) return;
+
+  const openPanel = () => {
+    panel.hidden = false;
+    openButton.setAttribute("aria-expanded", "true");
+    closeButton.focus();
+  };
+  const closePanel = () => {
+    panel.hidden = true;
+    openButton.setAttribute("aria-expanded", "false");
+    openButton.focus();
+  };
+
+  openButton.addEventListener("click", openPanel);
+  closeButton.addEventListener("click", closePanel);
+  panel.addEventListener("click", event => {
+    if (event.target === panel) closePanel();
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && !panel.hidden) closePanel();
+  });
+}
+
+function setupClearCache() {
+  const button = document.getElementById("clearHubCacheBtn");
+  button?.addEventListener("click", async () => {
+    showStatus("Clearing Hub 2 cache and reloading…");
+    try {
+      if ("serviceWorker" in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(registrations.map(registration => registration.update()));
+      }
+      if ("caches" in window) {
+        const keys = await caches.keys();
+        await Promise.all(keys.filter(key => key.startsWith("mba-hub-2-")).map(key => caches.delete(key)));
+      }
+    } catch (error) {
+      console.warn("Cache clear issue:", error);
+    } finally {
+      window.location.reload();
+    }
+  });
+}
+
+function showStatus(message) {
+  const status = document.getElementById("statusMessage");
+  if (!status) return;
+  status.textContent = message;
+  status.hidden = false;
+}
+
+function registerServiceWorker() {
+  if (!("serviceWorker" in navigator)) return;
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js").catch(() => {});
+    navigator.serviceWorker.register("sw.js").catch(error => {
+      console.warn("Hub service worker registration failed:", error);
+    });
   });
 }
