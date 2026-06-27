@@ -1,11 +1,12 @@
 {
-  "name": "Northern Elephant Seal \u2014 MBA Guide App",
+  "name": "Northern Elephant Seal — MBA Guide App",
   "short_name": "Elephant Seal",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0a2540",
   "theme_color": "#0a2540",
-  "description": "MBA volunteer companion app for northern elephant seal talking points.",
+  "description": "MBA volunteer companion app for northern elephant seal talking points, migration, diving, sleep science, conservation, and visitor-safe messaging.",
   "icons": [
     {
       "src": "icon.svg",
