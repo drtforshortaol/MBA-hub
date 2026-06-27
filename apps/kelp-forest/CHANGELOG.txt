@@ -22,3 +22,13 @@ Approved By:
 - User review pending.
 Notes:
 - Related app links remain placeholders until the Hub registry and related apps are connected.
+
+
+Version: 1.2.1
+Date: 2026-06-26
+Backup Name: KelpForest_Backup_20260626_HHmmSS
+Files Changed: index.html, styles.css, data.js, sw.js, README.md, CHANGELOG.txt, registry-entry.txt
+Summary of Changes: Moved Clear Cache and Troubleshooting buttons into the top sticky control bar next to the Return to MBA Hub button. Updated PWA cache name to v1.2.1.
+Reason for Revision: User requested common controls to appear together in the top bar for better usability.
+Approved By: User
+Notes: This is a layout refinement only; core content and app function are preserved.

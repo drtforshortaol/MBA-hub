@@ -15,3 +15,5 @@ Related Apps: Giant Kelp; Rockfish; Marine Protected Areas; Seafood Watch
 Status: Testing
 Testing Status: Needs PC Chrome and iPhone Safari testing after update
 Notes: Updated to Core Categories v2 MASTER standard. Related links are placeholders until connected in Hub registry.
+
+Top-bar update: Clear Cache and Troubleshooting buttons moved next to Return to MBA Hub.

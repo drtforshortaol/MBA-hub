@@ -11,7 +11,11 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <a class="hub-button" href="../../index.html">← MBA Hub</a>
+  <nav class="top-bar" aria-label="Primary app controls">
+    <a class="top-bar-button hub-button" href="../../index.html">← MBA Hub</a>
+    <button id="clearCacheButton" class="top-bar-button" type="button">Clear Cache</button>
+    <button id="troubleshootingButton" class="top-bar-button" type="button" aria-expanded="false" aria-controls="troubleshootingPanel">Troubleshooting</button>
+  </nav>
 
   <header class="app-header">
     <div class="header-text">
@@ -24,11 +28,6 @@
 
   <main class="app-shell">
     <section class="notice" id="notificationArea" aria-label="App notification"></section>
-
-    <section class="top-actions" aria-label="App actions">
-      <button id="clearCacheButton" class="action-button" type="button">Clear Cache / Refresh App</button>
-      <button id="troubleshootingButton" class="action-button secondary" type="button" aria-expanded="false" aria-controls="troubleshootingPanel">Troubleshooting</button>
-    </section>
 
     <section id="cacheStatus" class="status-message" aria-live="polite"></section>
 

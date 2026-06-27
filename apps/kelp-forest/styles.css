@@ -31,17 +31,46 @@ body {
   font-size: 16px;
 }
 
-.hub-button {
+.top-bar {
   position: sticky;
   top: 0;
   z-index: 20;
-  display: block;
-  padding: 0.9rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.45rem;
+  padding: calc(0.55rem + env(safe-area-inset-top)) 0.55rem 0.55rem;
   background: var(--ocean-deep);
-  color: var(--white);
-  font-weight: 850;
-  text-decoration: none;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+}
+
+.top-bar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 0.62rem 0.45rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  font: inherit;
+  font-size: clamp(0.78rem, 3.4vw, 0.95rem);
+  font-weight: 850;
+  line-height: 1.05;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.top-bar-button:hover,
+.top-bar-button:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.hub-button {
+  background: var(--kelp-gold);
+  color: #102733;
+  border-color: rgba(255, 255, 255, 0.55);
 }
 
 .app-header {
@@ -139,32 +168,7 @@ h2 {
   display: block;
 }
 
-.top-actions {
-  display: grid;
-  gap: 0.7rem;
-  margin: 0.8rem 0 1rem;
-}
-
-.action-button {
-  width: 100%;
-  border: 0;
-  border-radius: 999px;
-  padding: 0.85rem 1rem;
-  background: var(--ocean-deep);
-  color: var(--white);
-  font: inherit;
-  font-weight: 850;
-  cursor: pointer;
-  min-height: 48px;
-  box-shadow: var(--shadow);
-}
-
-.action-button.secondary {
-  background: var(--ocean-mid);
-}
-
-.action-button:focus-visible,
-.hub-button:focus-visible,
+.top-bar-button:focus-visible,
 select:focus-visible,
 input[type="search"]:focus-visible,
 summary:focus-visible,
@@ -330,8 +334,18 @@ a {
     padding-top: 2rem;
   }
 
-  .top-actions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .top-bar {
+    grid-template-columns: auto auto auto;
+    justify-content: start;
+    gap: 0.6rem;
+    padding-left: max(1rem, calc((100vw - 980px) / 2 + 1rem));
+    padding-right: max(1rem, calc((100vw - 980px) / 2 + 1rem));
+  }
+
+  .top-bar-button {
+    min-width: 130px;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .controls {

@@ -53,3 +53,9 @@ Content and image source notes are included in the app's References and Sources 
 ## Maintenance
 
 Update this README when major content, navigation, versioning, references, tags, or troubleshooting instructions change.
+
+
+## Version 1.2.1 Update
+
+- Moved Clear Cache and Troubleshooting controls into the sticky top bar next to the Return to MBA Hub button.
+- Updated service worker cache name to `mba-kelp-forest-v1.2.1`.
