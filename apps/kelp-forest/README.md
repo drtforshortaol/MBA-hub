@@ -38,7 +38,7 @@ It provides guide-friendly quick facts, visitor questions, conservation messages
 
 ## Version
 
-Current version: v1.2
+Current version: v1.2.2
 Last updated: 2026-06-26
 
 ## Known Issues
@@ -59,3 +59,9 @@ Update this README when major content, navigation, versioning, references, tags,
 
 - Moved Clear Cache and Troubleshooting controls into the sticky top bar next to the Return to MBA Hub button.
 - Updated service worker cache name to `mba-kelp-forest-v1.2.1`.
+
+## Version 1.2.2 Update
+
+- Added an obvious `× Close` button inside the Troubleshooting panel.
+- Added Escape-key closing support for keyboard users.
+- Updated service worker cache name to `mba-kelp-forest-v1.2.2`.

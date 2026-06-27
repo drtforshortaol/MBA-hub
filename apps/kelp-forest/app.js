@@ -135,10 +135,35 @@ function setupTroubleshooting() {
   const button = document.getElementById("troubleshootingButton");
   const panel = document.getElementById("troubleshootingPanel");
 
+  const closeButton = document.getElementById("closeTroubleshootingButton");
+
+  function openPanel() {
+    panel.classList.remove("hidden");
+    button.setAttribute("aria-expanded", "true");
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    closeButton.focus({ preventScroll: true });
+  }
+
+  function closePanel() {
+    panel.classList.add("hidden");
+    button.setAttribute("aria-expanded", "false");
+    button.focus({ preventScroll: true });
+  }
+
   button.addEventListener("click", () => {
-    const isHidden = panel.classList.toggle("hidden");
-    button.setAttribute("aria-expanded", String(!isHidden));
-    if (!isHidden) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (panel.classList.contains("hidden")) {
+      openPanel();
+    } else {
+      closePanel();
+    }
+  });
+
+  closeButton.addEventListener("click", closePanel);
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && !panel.classList.contains("hidden")) {
+      closePanel();
+    }
   });
 }
 

@@ -159,6 +159,36 @@ h2 {
   margin: 0;
 }
 
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.panel-heading h2 {
+  margin: 0;
+}
+
+.panel-close-button {
+  min-height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.5rem 0.75rem;
+  background: var(--foam);
+  color: var(--ocean-deep);
+  font: inherit;
+  font-weight: 850;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.panel-close-button:hover,
+.panel-close-button:active {
+  background: #d7eef6;
+}
+
 .status-message {
   display: none;
   border-left: 6px solid var(--success);
@@ -172,7 +202,8 @@ h2 {
 select:focus-visible,
 input[type="search"]:focus-visible,
 summary:focus-visible,
-a:focus-visible {
+a:focus-visible,
+.panel-close-button:focus-visible {
   outline: 3px solid var(--kelp-gold);
   outline-offset: 3px;
 }
@@ -325,6 +356,17 @@ a {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 420px) {
+  .panel-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .panel-close-button {
+    width: 100%;
+  }
 }
 
 @media (min-width: 720px) {

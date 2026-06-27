@@ -32,3 +32,13 @@ Summary of Changes: Moved Clear Cache and Troubleshooting buttons into the top s
 Reason for Revision: User requested common controls to appear together in the top bar for better usability.
 Approved By: User
 Notes: This is a layout refinement only; core content and app function are preserved.
+
+
+Version: v1.2.2
+Date: 2026-06-26
+Backup Name: KelpForest_Backup_20260626_HHmmSS
+Files Changed: index.html, styles.css, app.js, data.js, sw.js, README.md, CHANGELOG.txt, registry-entry.txt
+Summary of Changes: Added an obvious × Close button inside the Troubleshooting panel and Escape-key close support. Updated PWA cache name to v1.2.2.
+Reason for Revision: User requested an easier way to close the Troubleshooting panel.
+Approved By: User
+Notes: This is a usability refinement only; core content and app function are preserved.

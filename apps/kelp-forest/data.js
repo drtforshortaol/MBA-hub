@@ -3,12 +3,12 @@ window.APP_DATA = {
   category: "Exhibits",
   contentType: "EXHIBIT",
   locationType: "EXHIBIT_SPACE",
-  version: "1.2.1",
+  version: "1.2.2",
   lastUpdated: "2026-06-26",
   summary: "Guide-friendly companion page for the Monterey Bay Aquarium Kelp Forest exhibit, with quick facts, visitor Q&A, conservation messages, volunteer talking points, references, and troubleshooting support.",
   notification: {
     title: "Core update",
-    message: "This version places Clear Cache and Troubleshooting in the top bar next to the MBA Hub button."
+    message: "This version adds an easy close button to the Troubleshooting panel while preserving the top-bar controls."
   },
   images: [
     {
