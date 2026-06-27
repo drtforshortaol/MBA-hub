@@ -5,7 +5,7 @@ App Folder Name: apps/kelp-forest
 App URL or Path: apps/kelp-forest/index.html
 Hub Category: Exhibits
 App Type: Exhibit Reference / Volunteer Companion
-Version: v1.2.2
+Version: v1.2.3
 Release Date: 2026-06-21
 Last Updated: 2026-06-26
 Purpose: Guide-friendly companion page for the Monterey Bay Aquarium Kelp Forest exhibit.

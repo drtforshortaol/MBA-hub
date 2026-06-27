@@ -3,7 +3,7 @@ window.APP_DATA = {
   category: "Exhibits",
   contentType: "EXHIBIT",
   locationType: "EXHIBIT_SPACE",
-  version: "1.2.2",
+  version: "1.2.3",
   lastUpdated: "2026-06-26",
   summary: "Guide-friendly companion page for the Monterey Bay Aquarium Kelp Forest exhibit, with quick facts, visitor Q&A, conservation messages, volunteer talking points, references, and troubleshooting support.",
   notification: {

@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#003d5c" />
   <meta name="description" content="Monterey Bay Aquarium volunteer companion page for the Kelp Forest exhibit." />
   <title>Kelp Forest | MBA Hub</title>
-  <link rel="manifest" href="manifest.json" />
+  <link rel="manifest" href="manifest.json?v=1.2.3" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -34,7 +34,7 @@
     <section id="troubleshootingPanel" class="troubleshooting-panel hidden" aria-label="Troubleshooting help">
       <div class="panel-heading">
         <h2>Troubleshooting</h2>
-        <button id="closeTroubleshootingButton" class="panel-close-button" type="button" aria-label="Close troubleshooting panel">× Close</button>
+        <button id="closeTroubleshootingButton" class="panel-close-button" type="button" aria-label="Close troubleshooting panel" onclick="closeTroubleshootingPanel()">× Close</button>
       </div>
       <p>If this app shows old information or does not load correctly, try the steps below.</p>
 
@@ -89,7 +89,20 @@
     <span id="versionLine"></span>
   </footer>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="data.js?v=1.2.3"></script>
+  <script>
+    function closeTroubleshootingPanel() {
+      var panel = document.getElementById("troubleshootingPanel");
+      var button = document.getElementById("troubleshootingButton");
+      if (panel) {
+        panel.classList.add("hidden");
+        panel.setAttribute("hidden", "");
+      }
+      if (button) {
+        button.setAttribute("aria-expanded", "false");
+      }
+    }
+  </script>
+  <script src="app.js?v=1.2.3"></script>
 </body>
 </html>

@@ -134,31 +134,51 @@ function setupSearch() {
 function setupTroubleshooting() {
   const button = document.getElementById("troubleshootingButton");
   const panel = document.getElementById("troubleshootingPanel");
-
   const closeButton = document.getElementById("closeTroubleshootingButton");
+
+  if (!button || !panel) return;
 
   function openPanel() {
     panel.classList.remove("hidden");
+    panel.removeAttribute("hidden");
     button.setAttribute("aria-expanded", "true");
     panel.scrollIntoView({ behavior: "smooth", block: "start" });
-    closeButton.focus({ preventScroll: true });
+    if (closeButton) closeButton.focus({ preventScroll: true });
   }
 
   function closePanel() {
     panel.classList.add("hidden");
+    panel.setAttribute("hidden", "");
     button.setAttribute("aria-expanded", "false");
     button.focus({ preventScroll: true });
   }
 
+  // Make the close function available to the inline onclick fallback.
+  window.closeTroubleshootingPanel = closePanel;
+
   button.addEventListener("click", () => {
-    if (panel.classList.contains("hidden")) {
+    if (panel.classList.contains("hidden") || panel.hasAttribute("hidden")) {
       openPanel();
     } else {
       closePanel();
     }
   });
 
-  closeButton.addEventListener("click", closePanel);
+  if (closeButton) {
+    closeButton.addEventListener("click", event => {
+      event.preventDefault();
+      closePanel();
+    });
+  }
+
+  // Extra event-delegation backup in case cached markup or nested elements interfere.
+  document.addEventListener("click", event => {
+    const target = event.target.closest && event.target.closest("#closeTroubleshootingButton, [data-close-troubleshooting]");
+    if (target) {
+      event.preventDefault();
+      closePanel();
+    }
+  });
 
   document.addEventListener("keydown", event => {
     if (event.key === "Escape" && !panel.classList.contains("hidden")) {
