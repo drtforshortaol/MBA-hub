@@ -13,21 +13,70 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <a class="hub-button" href="../../index.html">← MBA Hub</a>
+  <nav class="top-bar" aria-label="App controls">
+    <a class="top-bar-btn hub-btn" href="../../index.html">← MBA Hub</a>
+    <button class="top-bar-btn" id="clearAppCacheBtn" type="button">Clear Cache</button>
+    <button class="top-bar-btn" id="troubleshootingBtn" type="button" aria-expanded="false" aria-controls="troubleshootingPanel">Troubleshooting</button>
+  </nav>
+
+  <div class="status-message" id="statusMessage" role="status" aria-live="polite" hidden></div>
+
+  <section class="troubleshooting-panel" id="troubleshootingPanel" aria-label="Troubleshooting help" hidden>
+    <div class="troubleshooting-card" role="region" aria-labelledby="troubleshootingTitle">
+      <div class="troubleshooting-head">
+        <h2 id="troubleshootingTitle">Troubleshooting</h2>
+        <button class="close-troubleshooting" id="closeTroubleshootingBtn" type="button" aria-label="Close troubleshooting panel">× Close</button>
+      </div>
+
+      <div class="troubleshooting-grid">
+        <div>
+          <h3>Update or refresh this app</h3>
+          <ol>
+            <li>Tap <strong>Clear Cache</strong> in the top bar.</li>
+            <li>Let the page reload.</li>
+            <li>Confirm the version shown below is current.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>PC hard refresh</h3>
+          <p>Press <strong>Ctrl + Shift + R</strong> in Chrome to force the browser to reload the newest files.</p>
+        </div>
+        <div>
+          <h3>iPhone Safari cache</h3>
+          <ol>
+            <li>Open iPhone <strong>Settings</strong>.</li>
+            <li>Go to <strong>Apps → Safari → Advanced → Website Data</strong>.</li>
+            <li>Search for the site, delete matching website data, then reopen the app.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>If something looks broken</h3>
+          <p>Clear cache first. If the problem continues, reopen the MBA Hub and launch this app again.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <header class="header">
     <div class="header-badge">Monterey Bay Aquarium</div>
     <h1>Information Center<br>Handbook</h1>
-    <p>Version 2.0 · Updated May 2026 · 18 Sections</p>
+    <p>Version 2.1 · Updated June 2026 · 18 Sections</p>
   </header>
   <div class="wave"></div>
 
   <main>
+    <section class="notice-card" id="appNotice" aria-label="App update notice">
+      <div>
+        <strong>App update:</strong> Top controls now include MBA Hub, Clear Cache, and Troubleshooting. The Troubleshooting panel has a working × Close button and Escape-key support on PC.
+      </div>
+      <button id="dismissNoticeBtn" type="button" aria-label="Dismiss update notice">×</button>
+    </section>
+
     <section class="tools-panel" aria-label="Handbook tools">
       <label class="search-label" for="searchInput">Search handbook</label>
       <div class="search-row">
         <input id="searchInput" type="search" placeholder="Search wheelchair, radio, lost child…" autocomplete="off" />
-        <button id="clearSearchBtn" type="button">Clear</button>
+        <button id="clearSearchBtn" type="button">Clear Search</button>
       </div>
       <div class="quick-actions" aria-label="Quick navigation">
         <button type="button" data-jump="0">🚨 Emergency</button>
@@ -48,19 +97,12 @@
 
   <footer class="footer">
     <strong>Information Center Handbook</strong><br />
-    Version 2.0 · Updated May 2026<br />
+    Version 2.1 · Updated June 2026<br />
     Interpretive Programs · geinterpretiveprograms@mbayaq.org<br />
     Volunteer Hotline · (831) 648-4867
   </footer>
 
   <script src="data.js"></script>
   <script src="app.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js');
-      });
-    }
-  </script>
 </body>
 </html>

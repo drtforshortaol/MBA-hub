@@ -1,3 +1,7 @@
+const APP_VERSION = 'information-center-v2.1.0';
+const APP_CACHE_PREFIX = 'information-center';
+const NOTICE_DISMISSED_KEY = 'information-center-notice-dismissed-v2.1.0';
+
 const sections = window.IC_SECTIONS || [];
 const openState = {};
 let searchTerm = '';
@@ -37,17 +41,17 @@ function renderBlock(block) {
   if (block.type === 'list') {
     let html = '';
     if (block.heading) html += '<p class="list-label">' + highlight(block.heading) + '</p>';
-    html += '<ul class="bullet-list">' + block.items.map(i => '<li>' + highlight(i) + '</li>').join('') + '</ul>';
+    html += '<ul class="bullet-list">' + (block.items || []).map(i => '<li>' + highlight(i) + '</li>').join('') + '</ul>';
     return html;
   }
   if (block.type === 'numbered') {
     let html = '';
     if (block.heading) html += '<p class="list-label">' + highlight(block.heading) + '</p>';
-    html += '<ol class="numbered-list">' + block.items.map(i => '<li>' + highlight(i) + '</li>').join('') + '</ol>';
+    html += '<ol class="numbered-list">' + (block.items || []).map(i => '<li>' + highlight(i) + '</li>').join('') + '</ol>';
     return html;
   }
   if (block.type === 'quickref') {
-    return '<div class="quickref-grid">' + block.cards.map(c =>
+    return '<div class="quickref-grid">' + (block.cards || []).map(c =>
       '<div class="qr-card">' +
         '<div class="qr-label">' + highlight(c.label) + '</div>' +
         '<div class="qr-value">' + highlight(c.value) + '</div>' +
@@ -56,7 +60,7 @@ function renderBlock(block) {
     ).join('') + '</div>';
   }
   if (block.type === 'alertlist') {
-    return '<ul class="alert-list">' + block.items.map(i => '<li>' + highlight(i) + '</li>').join('') + '</ul>';
+    return '<ul class="alert-list">' + (block.items || []).map(i => '<li>' + highlight(i) + '</li>').join('') + '</ul>';
   }
   return '';
 }
@@ -65,10 +69,10 @@ function renderSection(section) {
   const isOpen = !!openState[section.id];
   const isEmergency = !!section.emergency;
   const num = String(section.id).padStart(2, '0');
-  const bodyHtml = section.content.map(renderBlock).join('');
+  const bodyHtml = (section.content || []).map(renderBlock).join('');
   return `
     <article class="section-card${isEmergency ? ' emergency' : ''}" id="card-${section.id}">
-      <div class="section-header${isOpen ? ' open' : ''}" id="header-${section.id}" role="button" tabindex="0" aria-expanded="${isOpen}" onclick="toggle(${section.id})" onkeydown="handleHeaderKey(event, ${section.id})">
+      <div class="section-header${isOpen ? ' open' : ''}" id="header-${section.id}" role="button" tabindex="0" aria-expanded="${isOpen}" data-section-id="${section.id}">
         <div class="section-left">
           <span class="section-num">${num}</span>
           <span class="section-icon">${section.icon}</span>
@@ -91,11 +95,15 @@ function filteredSections() {
 function renderAll() {
   const visibleSections = filteredSections();
   const container = document.getElementById('sectionsContainer');
+  if (!container) return;
+
   if (!visibleSections.length) {
     container.innerHTML = '<div class="no-results">No matching handbook sections found.</div>';
   } else {
     container.innerHTML = visibleSections.map(renderSection).join('');
   }
+
+  wireSectionHeaders();
   updateToggleBtn();
 }
 
@@ -117,6 +125,14 @@ function handleHeaderKey(event, id) {
     event.preventDefault();
     toggle(id);
   }
+}
+
+function wireSectionHeaders() {
+  document.querySelectorAll('.section-header[data-section-id]').forEach(header => {
+    const id = Number(header.dataset.sectionId);
+    header.addEventListener('click', () => toggle(id));
+    header.addEventListener('keydown', event => handleHeaderKey(event, id));
+  });
 }
 
 function toggleAll() {
@@ -146,6 +162,8 @@ function jumpToSection(id) {
 function setupSearch() {
   const input = document.getElementById('searchInput');
   const clear = document.getElementById('clearSearchBtn');
+  if (!input || !clear) return;
+
   input.addEventListener('input', () => {
     searchTerm = input.value;
     if (searchTerm.trim()) {
@@ -155,6 +173,7 @@ function setupSearch() {
     }
     renderAll();
   });
+
   clear.addEventListener('click', () => {
     input.value = '';
     searchTerm = '';
@@ -167,9 +186,132 @@ function setupQuickActions() {
   document.querySelectorAll('[data-jump]').forEach(button => {
     button.addEventListener('click', () => jumpToSection(Number(button.dataset.jump)));
   });
-  document.getElementById('toggleAllBtn').addEventListener('click', toggleAll);
+
+  const toggleAllBtn = document.getElementById('toggleAllBtn');
+  if (toggleAllBtn) toggleAllBtn.addEventListener('click', toggleAll);
 }
 
-renderAll();
-setupSearch();
-setupQuickActions();
+function setStatus(message, persistent = false) {
+  const status = document.getElementById('statusMessage');
+  if (!status) return;
+  status.textContent = message;
+  status.hidden = false;
+  if (!persistent) {
+    window.setTimeout(() => {
+      status.hidden = true;
+      status.textContent = '';
+    }, 4500);
+  }
+}
+
+function openTroubleshooting() {
+  const panel = document.getElementById('troubleshootingPanel');
+  const button = document.getElementById('troubleshootingBtn');
+  if (!panel || !button) return;
+  panel.hidden = false;
+  button.setAttribute('aria-expanded', 'true');
+  const closeBtn = document.getElementById('closeTroubleshootingBtn');
+  if (closeBtn) closeBtn.focus({ preventScroll: true });
+}
+
+function closeTroubleshooting() {
+  const panel = document.getElementById('troubleshootingPanel');
+  const button = document.getElementById('troubleshootingBtn');
+  if (!panel || !button) return;
+  panel.hidden = true;
+  button.setAttribute('aria-expanded', 'false');
+}
+
+function toggleTroubleshooting() {
+  const panel = document.getElementById('troubleshootingPanel');
+  if (!panel) return;
+  if (panel.hidden) openTroubleshooting();
+  else closeTroubleshooting();
+}
+
+async function clearAppCache() {
+  setStatus('Clearing cached app files…', true);
+
+  try {
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      await Promise.all(
+        keys
+          .filter(key => key.startsWith(APP_CACHE_PREFIX))
+          .map(key => caches.delete(key))
+      );
+    }
+
+    if ('serviceWorker' in navigator) {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(
+        registrations
+          .filter(reg => reg.scope.includes('/information-center/'))
+          .map(reg => reg.unregister())
+      );
+    }
+
+    setStatus('Cache cleared. Reloading the newest app files…', true);
+    const cleanPath = window.location.pathname.replace(/\/+$/, '/');
+    window.setTimeout(() => {
+      window.location.replace(cleanPath + '?refresh=' + Date.now());
+    }, 600);
+  } catch (error) {
+    console.error('Clear cache failed:', error);
+    setStatus('Cache clear did not fully complete. Try Ctrl + Shift + R on PC, or clear Safari Website Data on iPhone.', true);
+  }
+}
+
+function setupTopControls() {
+  const clearCacheBtn = document.getElementById('clearAppCacheBtn');
+  const troubleshootingBtn = document.getElementById('troubleshootingBtn');
+  const closeBtn = document.getElementById('closeTroubleshootingBtn');
+  const panel = document.getElementById('troubleshootingPanel');
+
+  if (clearCacheBtn) clearCacheBtn.addEventListener('click', clearAppCache);
+  if (troubleshootingBtn) troubleshootingBtn.addEventListener('click', toggleTroubleshooting);
+  if (closeBtn) closeBtn.addEventListener('click', closeTroubleshooting);
+
+  if (panel) {
+    panel.addEventListener('click', event => {
+      if (event.target === panel) closeTroubleshooting();
+    });
+  }
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeTroubleshooting();
+  });
+}
+
+function setupNotice() {
+  const notice = document.getElementById('appNotice');
+  const dismiss = document.getElementById('dismissNoticeBtn');
+  if (!notice || !dismiss) return;
+
+  if (localStorage.getItem(NOTICE_DISMISSED_KEY) === 'true') {
+    notice.hidden = true;
+  }
+
+  dismiss.addEventListener('click', () => {
+    notice.hidden = true;
+    localStorage.setItem(NOTICE_DISMISSED_KEY, 'true');
+  });
+}
+
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(error => {
+      console.warn('Service worker registration failed:', error);
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderAll();
+  setupSearch();
+  setupQuickActions();
+  setupTopControls();
+  setupNotice();
+  registerServiceWorker();
+});

@@ -1,7 +1,7 @@
 {
-  "name": "Information Center Handbook",
+  "name": "Information Center Handbook \u2014 MBA Volunteer Reference",
   "short_name": "IC Handbook",
-  "description": "Monterey Bay Aquarium Information Center Volunteer Handbook",
+  "description": "Monterey Bay Aquarium Information Center Volunteer Handbook, quick reference, emergency procedures, and volunteer tools.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

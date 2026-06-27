@@ -1,0 +1,22 @@
+Information Center Handbook — CHANGELOG
+
+Version: v2.1
+Date: 2026-06-26
+Backup Name: InformationCenter_Backup_20260626_before_v2.1
+Files Changed: index.html, styles.css, app.js, sw.js, manifest.webmanifest, README.md, CHANGELOG.txt
+Summary of Changes:
+- Added consistent top control bar.
+- Added ← MBA Hub, Clear Cache, and Troubleshooting controls in the required top-bar order.
+- Added working Troubleshooting panel with visible × Close button.
+- Added click-outside fallback close behavior.
+- Added Escape-key close support for PC.
+- Added app update notice.
+- Renamed search clear button to Clear Search to avoid confusion with Clear Cache.
+- Bumped service worker cache to information-center-v2.1.0.
+- Improved cache cleanup so old information-center caches are deleted on activation.
+Reason for Revision:
+- Align Information Center app with Core Categories v2 top-bar, cache, and troubleshooting standards.
+Approved By: Glenn / MBA Hub workflow
+Notes:
+- Replace the entire apps/information-center/ folder contents with this package.
+- After upload, open the app online, tap Clear Cache once, reload, and retest on PC and iPhone.
