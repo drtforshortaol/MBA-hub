@@ -1,32 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#003d5c" />
+  <meta name="description" content="Monterey Bay Aquarium volunteer companion page for the Kelp Forest exhibit." />
   <title>Kelp Forest | MBA Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#006b7f">
-  <meta name="description" content="Volunteer companion app for the Monterey Bay Aquarium Kelp Forest exhibit.">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <a class="hub-button" href="../../index.html">← MBA Hub</a>
+
   <header class="app-header">
-    <a class="hub-button" href="../../index.html">← MBA Hub</a>
-    <div class="title-wrap">
-      <p class="eyebrow">Exhibits</p>
-      <h1 id="app-title">Kelp Forest</h1>
-      <p id="app-summary" class="summary"></p>
+    <div class="header-text">
+      <p class="eyebrow" id="appMeta">Exhibits · EXHIBIT</p>
+      <h1 id="appTitle">Kelp Forest</h1>
+      <p id="appSummary"></p>
     </div>
+    <figure class="hero-image" id="heroImage"></figure>
   </header>
 
-  <main class="app-main">
-    <section id="hero-section" class="hero"></section>
-    <section id="content"></section>
+  <main class="app-shell">
+    <section class="notice" id="notificationArea" aria-label="App notification"></section>
+
+    <section class="top-actions" aria-label="App actions">
+      <button id="clearCacheButton" class="action-button" type="button">Clear Cache / Refresh App</button>
+      <button id="troubleshootingButton" class="action-button secondary" type="button" aria-expanded="false" aria-controls="troubleshootingPanel">Troubleshooting</button>
+    </section>
+
+    <section id="cacheStatus" class="status-message" aria-live="polite"></section>
+
+    <section id="troubleshootingPanel" class="troubleshooting-panel hidden" aria-label="Troubleshooting help">
+      <h2>Troubleshooting</h2>
+      <p>If this app shows old information or does not load correctly, try the steps below.</p>
+
+      <details>
+        <summary>Clear cache / reload app</summary>
+        <div class="section-body">
+          <p>Use the <strong>Clear Cache / Refresh App</strong> button near the top of this page. The app will remove stored files and reload fresh content.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>PC manual refresh</summary>
+        <div class="section-body">
+          <p>On a PC, press <strong>Ctrl + Shift + R</strong> to force a hard refresh.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>iPhone Safari cache clearing</summary>
+        <div class="section-body">
+          <ol>
+            <li>Open <strong>Settings</strong>.</li>
+            <li>Go to <strong>Apps</strong>.</li>
+            <li>Open <strong>Safari</strong>.</li>
+            <li>Go to <strong>Advanced</strong>, then <strong>Website Data</strong>.</li>
+            <li>Use the search bar and type <strong>git</strong> if the app is hosted through GitHub.</li>
+            <li>Delete matching website data, then reopen the app.</li>
+          </ol>
+        </div>
+      </details>
+
+      <details>
+        <summary>FAQ</summary>
+        <div class="section-body">
+          <div id="faqList" class="grid"></div>
+        </div>
+      </details>
+    </section>
+
+    <section class="controls" aria-label="Page controls">
+      <label for="sectionJump">Jump to a section</label>
+      <select id="sectionJump">
+        <option value="">Choose a dropdown…</option>
+      </select>
+      <input id="searchBox" type="search" placeholder="Search this app…" aria-label="Search this app" />
+    </section>
+
+    <div id="sections"></div>
   </main>
 
-  <footer class="app-footer">
-    <p>Monterey Bay Aquarium Volunteer Companion</p>
+  <footer class="footer">
+    <span id="versionLine"></span>
   </footer>
 
   <script src="data.js"></script>

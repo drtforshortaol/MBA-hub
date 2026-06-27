@@ -1,0 +1,29 @@
+Tag Registry / Cross-Link Update - Kelp Forest
+
+Primary App: Kelp Forest
+Version: v1.2
+Last Updated: 2026-06-26
+
+Tags to include:
+- kelp forest | topic/exhibit | Main exhibit and habitat tag | Related app: Kelp Forest
+- giant kelp | species/algae/concept | Main structural algae of the exhibit | Related apps: Kelp Forest, Giant Kelp
+- exhibit | category | Aquarium exhibit reference | Related apps: all exhibit apps
+- food web | concept | Feeding relationships and ecosystem structure | Related apps: Kelp Forest, Seafood Watch
+- rockfish | species/group | Important fish group in the exhibit and conservation story | Related apps: Kelp Forest, Rockfish
+- MPA | concept/conservation | Marine Protected Area visitor explanation | Related apps: Kelp Forest, Marine Protected Areas
+- marine protected areas | concept/conservation | Expanded form of MPA | Related apps: Kelp Forest, Marine Protected Areas
+- Seafood Watch | conservation/program | Responsible seafood visitor connection | Related apps: Kelp Forest, Seafood Watch
+- conservation | concept | Habitat protection and recovery messaging | Related apps: Kelp Forest, Marine Protected Areas, Seafood Watch
+- Monterey Bay Aquarium | organization/location | Aquarium-specific app context | Related apps: MBA Hub apps
+- guide talk | content type | Useful for volunteer interpretation | Related apps: guide talk apps
+- visitor questions | content type | Visitor-facing Q&A content | Related apps: visitor question apps
+
+Suggested cross-links:
+- Giant Kelp
+- Rockfish
+- Marine Protected Areas
+- Seafood Watch
+- Monterey Bay Ecosystem
+
+Notes:
+- Related links currently remain placeholders in data.js until target app paths are confirmed.

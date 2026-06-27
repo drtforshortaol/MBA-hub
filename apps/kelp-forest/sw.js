@@ -1,5 +1,4 @@
-const CACHE_NAME = "mba-kelp-forest-v1.1";
-
+const CACHE_NAME = "mba-kelp-forest-v1.2";
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,7 +7,7 @@ const ASSETS = [
   "./data.js",
   "./manifest.json",
   "./icon.svg",
-  "./images/kelp-forest-exhibit-01.png"
+  "./images/kelp-forest-hero.jpg"
 ];
 
 self.addEventListener("install", event => {
@@ -21,14 +20,9 @@ self.addEventListener("install", event => {
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(
-        keys
-          .filter(key => key !== CACHE_NAME)
-          .map(key => caches.delete(key))
-      )
-    )
+      Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener("fetch", event => {
@@ -38,13 +32,11 @@ self.addEventListener("fetch", event => {
     caches.match(event.request).then(cached => {
       if (cached) return cached;
 
-      return fetch(event.request)
-        .then(response => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
-          return response;
-        })
-        .catch(() => caches.match("./index.html"));
+      return fetch(event.request).then(response => {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+        return response;
+      }).catch(() => caches.match("./index.html"));
     })
   );
 });

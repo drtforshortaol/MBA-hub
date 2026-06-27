@@ -3,303 +3,193 @@ window.APP_DATA = {
   category: "Exhibits",
   contentType: "EXHIBIT",
   locationType: "EXHIBIT_SPACE",
-  version: "1.1",
-  lastUpdated: "2026-06-21",
-  summary: "Guide-friendly exhibit page for the Monterey Bay Aquarium Kelp Forest, with quick facts, visitor Q&A, kids facts, exhibit details, habitat connections, and conservation talking points.",
-
+  version: "1.2",
+  lastUpdated: "2026-06-26",
+  summary: "Guide-friendly companion page for the Monterey Bay Aquarium Kelp Forest exhibit, with quick facts, visitor Q&A, conservation messages, volunteer talking points, references, and troubleshooting support.",
+  notification: {
+    title: "Core update",
+    message: "This version adds Clear Cache, Troubleshooting, References, README, changelog, and updated PWA cache controls."
+  },
   images: [
     {
-      src: "images/kelp-forest-exhibit-01.png",
-      alt: "View through the Kelp Forest exhibit windows with giant kelp, fish, and blue sunlit water",
-      caption: "Kelp Forest exhibit at Monterey Bay Aquarium. Image from the MBA Volunteer Naturalist Library."
+      src: "images/kelp-forest-hero.jpg",
+      alt: "View into a kelp forest exhibit with kelp and fish",
+      caption: "MBA Naturalist Library image approved for internal volunteer Hub use."
     }
   ],
-
   quickFacts: [
-    "The Kelp Forest is one of Monterey Bay Aquarium’s signature exhibits.",
-    "The exhibit recreates a living kelp forest community with giant kelp, fishes, invertebrates, algae, sunlight, surge, and seawater from Monterey Bay.",
-    "The exhibit is 31 feet deep, with about 28 feet of water.",
-    "It is about 66 feet long, 28 feet wide, and holds approximately 330,000 gallons of seawater.",
-    "About 1,600 gallons of seawater per minute are pumped through the exhibit from Monterey Bay.",
-    "The water in the exhibit can turn over completely in about 2 to 2.5 hours.",
-    "The water temperature usually ranges from about 48 to 58 degrees Fahrenheit.",
-    "The large first-floor acrylic windows are about 15 feet tall and 7 1/2 inches thick.",
-    "A surge machine creates water movement that helps the kelp sway, much like it would in the bay.",
-    "The exhibit is open to the sky so giant kelp can receive sunlight for photosynthesis.",
-    "Giant kelp is not a plant. It is a large brown alga.",
-    "In the exhibit, giant kelp commonly grows about 4 to 5 inches per day.",
-    "As of April 2026, the exhibit census included about 400 individual fish, not including schooling fish.",
-    "As of April 2026, the exhibit census included about 42 fish species, 56 invertebrate species, and 67 algae species."
+    "~400 individual fish on exhibit, not counting schooling anchovies.",
+    "About 42 fish species, 56 invertebrate species, and 67 algae species are represented in the exhibit census.",
+    "The exhibit is about 31 feet deep total, with about 28 feet of water.",
+    "The exhibit holds approximately 340,000 gallons, or about 1.26 million liters, of seawater.",
+    "Water enters at about 1,600 gallons per minute, with a full turnover about every 2 to 2.5 hours.",
+    "Typical exhibit temperature range: 48–58°F, or about 8.9–14.4°C.",
+    "Kelp in the exhibit is commonly reported to grow about 4–5 inches per day.",
+    "Feeding is usually once daily, often around 11:30 a.m. or 2:30 p.m.; exact timing can vary."
   ],
-
-  kidsFact: "A kelp forest is like an underwater treehouse city. Fish, sharks, crabs, snails, sea stars, and tiny animals use it for food, hiding places, and safe spots to grow.",
-
-  story: "Imagine shrinking down and swimming through a forest where the trees sway with waves instead of wind. Sunlight pours through golden-brown kelp blades, small fish flash like silver confetti, and a leopard shark glides quietly below. This exhibit is a living window into the kelp forests just outside the Aquarium in Monterey Bay.",
-
+  kidsFact: "Giant kelp can grow several inches in a single day. It makes an underwater forest where fish can hide, hunt, rest, and grow up.",
+  story: "Look into the Kelp Forest and imagine swimming through a forest where the trees sway with the waves instead of the wind. Giant kelp forms the living structure, while fish, crabs, sea stars, anemones, urchins, and many other animals use different parts of the forest like rooms in a home.\n\nThis exhibit is one of the Aquarium’s signature achievements. Before the Aquarium opened in 1984, growing giant kelp successfully in an aquarium had not been done at this scale. The open top brings in sunlight, cold bay water brings nutrients, and the surge machine creates the back-and-forth motion kelp needs.\n\nA good visitor message is simple: kelp forests are communities. When we protect the habitat, make smart seafood choices, and support healthy ocean management, the whole community has a better chance to thrive.",
   mainContent: [
     {
-      heading: "What visitors are seeing",
-      body: [
-        "The Kelp Forest exhibit shows a living version of a local Monterey Bay habitat.",
-        "Giant kelp forms the structure of the forest. Fishes swim through the open water, invertebrates live on the rocky surfaces, and many animals use the kelp for shelter, food, or hunting space.",
-        "Encourage visitors to look slowly from top to bottom. The canopy, midwater, rocky reef, and sandy bottom all have different animals and stories."
-      ]
+      heading: "Exhibit dimensions and systems",
+      body: "The Kelp Forest exhibit is approximately 66 feet long by 28 feet wide, with a total depth of about 31 feet and about 28 feet of water. It holds approximately 340,000 gallons of seawater. Water turnover is commonly listed at about 1,600 gallons per minute, with a full turnover about every 2 to 2.5 hours. The first-floor windows are about 15 feet tall and 7.25 inches thick, weighing about 2.5 tons each. The rockwork is fiberglass-reinforced concrete, not real rock."
     },
     {
-      heading: "Why this exhibit was a breakthrough",
-      body: [
-        "The Kelp Forest exhibit was created as a major experiment: could giant kelp be grown successfully inside an aquarium?",
-        "The exhibit uses sunlight, pumped bay seawater, strong water movement, and regular care to support the kelp and the community around it.",
-        "This made the exhibit more than a tank of animals. It became a living ecosystem display."
-      ]
+      heading: "How the kelp stays alive",
+      body: "The exhibit is open to the sky so giant kelp can receive direct sunlight for photosynthesis. Cold, nutrient-rich seawater from Monterey Bay helps support kelp growth. A surge machine built into the left rockwork creates a standing wave, often described as about 12–14 inches, to mimic natural ocean surge and keep nutrients moving across the kelp."
     },
     {
-      heading: "How the exhibit works",
-      body: [
-        "Seawater is pumped directly from Monterey Bay through the exhibit at about 1,600 gallons per minute.",
-        "During the day, filters help keep the water clear for visitor viewing. At night, raw nutrient-rich seawater can enter the exhibit.",
-        "A surge machine creates a standing wave of about 12 to 14 inches, helping recreate the motion of a real kelp forest.",
-        "The exhibit is open to the sky so the kelp can receive natural sunlight."
-      ]
+      heading: "Animals on exhibit",
+      body: "Commonly noted animals include northern anchovies, blue rockfish, blacksmith, gopher rockfish, striped seaperch, señorita, kelp surfperch, salema, halfmoon, opaleye, red sea urchin, copper rockfish, giant kelpfish, black rockfish, California sea cucumber, northern kelp crab, kelp greenling, California sheephead, kelp bass, bat stars, leopard sharks, wolf eels, giant sea bass, swell shark, and spiny lobster. Counts change over time, so use the current animal census for precise daily numbers."
     },
     {
-      heading: "Exhibit size and windows",
-      body: [
-        "The exhibit is about 31 feet deep, 66 feet long, and 28 feet wide.",
-        "It holds approximately 330,000 gallons of seawater.",
-        "The large first-floor acrylic viewing windows are about 15 feet tall and 7 1/2 inches thick.",
-        "Acrylic is used because it is strong, clear, and much lighter than glass at this thickness."
-      ]
+      heading: "Fish ecology",
+      body: "Kelp forests create many living spaces: canopy, midwater, rock faces, crevices, holdfasts, and the seafloor. Small schooling fish may use the forest as shelter. Rockfish, surfperch, kelpfish, and other species use the structure in different ways. Predators such as kelp bass, giant sea bass, leopard sharks, wolf eels, and larger rockfish help shape the community."
     },
     {
-      heading: "What kelp is",
-      body: [
-        "Kelp is a large brown alga, not a true plant.",
-        "Instead of roots, giant kelp has a holdfast that grips rock. Instead of a trunk, it has flexible stipes. Instead of leaves, it has blades that capture sunlight.",
-        "Many blades have gas-filled floats called pneumatocysts that help lift the kelp toward the light."
-      ]
+      heading: "Invertebrates and algae",
+      body: "Invertebrates are a major part of the kelp forest community. Sea stars, anemones, crabs, sea cucumbers, urchins, chitons, limpets, and spiny lobsters all use the habitat. Some filter food from the water, some graze algae, some eat drifting kelp pieces, and some hunt or scavenge. Giant kelp, Macrocystis pyrifera, is the ecosystem engineer that creates much of the structure."
     },
     {
-      heading: "A forest with layers",
-      body: [
-        "Like a forest on land, a kelp forest has different layers.",
-        "The canopy near the surface catches sunlight. Midwater areas provide swimming space and shelter. The rocky reef supports animals that crawl, cling, graze, filter-feed, or hide.",
-        "This structure creates many niches, so many species can live in the same habitat."
-      ]
+      heading: "Conservation messaging",
+      body: "Kelp forests connect naturally to three visitor messages: protect habitat, choose seafood responsibly, and understand the value of marine protected areas. Rockfish recovery is a strong local story: many rockfish populations were hurt by overfishing, and better management helped many groundfish fisheries improve. Marine protected areas can work like a bank account for ocean life, allowing animals and habitats to recover and support surrounding waters."
     },
     {
-      heading: "Animals visitors may notice",
-      body: [
-        "As of April 2026, the exhibit census included about 400 individual fish, not including schooling fish.",
-        "The exhibit census also included about 42 fish species, 56 invertebrate species, and 67 algae species.",
-        "Visitors may see schooling anchovies, surfperches, rockfish, leopard sharks, giant sea bass, wolf-eels, sheephead, garibaldi, kelp bass, greenlings, sea stars, urchins, anemones, sea cucumbers, and other animals.",
-        "The exact animal mix can change over time, but the April 2026 census is approved for this app."
-      ]
-    },
-    {
-      heading: "Feeding and care",
-      body: [
-        "Animals are usually fed once a day, commonly around the regular Kelp Forest feeding time.",
-        "The diet can include items such as squid, shrimp, whitefish, prawns, sardines, and krill, depending on the animals being fed.",
-        "Kelp is pruned and untangled regularly so the living forest can stay healthy and visible.",
-        "The exhibit is vacuumed on a regular schedule to help maintain habitat quality and visitor viewing."
-      ]
-    },
-    {
-      heading: "Why kelp forests matter",
-      body: [
-        "Kelp forests provide food, shelter, nursery space, and hunting grounds for many animals.",
-        "They support local food webs and many species that are important ecologically, culturally, and economically.",
-        "A healthy kelp forest is a community. When predators, grazers, fishes, invertebrates, algae, and people are in better balance, the whole ecosystem can be more resilient."
-      ]
-    },
-    {
-      heading: "Conservation connections",
-      body: [
-        "Kelp forests connect naturally to conversations about Marine Protected Areas, rockfish recovery, sea otters, urchins, sustainable seafood, and ocean stewardship.",
-        "California Marine Protected Areas help protect habitats where marine life can grow and reproduce.",
-        "Seafood Watch connects visitor choices to healthier ocean food webs by helping people choose seafood produced in more sustainable ways."
-      ]
-    },
-    {
-      heading: "Spanish language note",
-      body: [
-        "For the exhibit, use Bosque de Macroalgas.",
-        "For giant kelp, Macrocystis pyrifera, the approved Spanish common name is macrocistis.",
-        "Avoid using cachiyuyo for Monterey Bay giant kelp."
-      ]
+      heading: "Spanish naming note",
+      body: "The exhibit name in Spanish is Bosque de Macroalgas. The Spanish common name note from the source app says giant kelp should be referred to as macrocistis rather than the outdated cachiyuyo. Use current MBA Naturalist Library language standards when updating this page."
     }
   ],
-
   visitorQuestions: [
     {
-      question: "Where is the Kelp Forest exhibit?",
-      answer: "It is one of Monterey Bay Aquarium’s signature exhibits. Visitors can recognize it by the tall windows, swaying giant kelp, schooling fishes, sharks, and rocky reef habitat."
+      question: "How deep is the Kelp Forest tank?",
+      answer: "It is about 31 feet deep total, with about 28 feet of water. The first-floor windows are about 15 feet tall and over 7 inches thick."
     },
     {
-      question: "Is this real kelp?",
-      answer: "Yes. The giant kelp is living kelp, and the exhibit is designed to give it sunlight, water movement, cool seawater, and nutrients from Monterey Bay."
+      question: "How much water does it hold?",
+      answer: "About 340,000 gallons, or roughly 1.26 million liters. Water is pumped in from Monterey Bay and turns over about every 2 to 2.5 hours."
     },
     {
-      question: "Is kelp a plant?",
-      answer: "No. Kelp is a large brown alga. It looks plant-like, but it does not have true roots, stems, flowers, or seeds."
+      question: "Are the rocks real?",
+      answer: "No. The rockwork is fiberglass-reinforced concrete. It is designed to look like natural rocky reef while staying strong and lightweight enough for the exhibit."
     },
     {
-      question: "What holds kelp in place?",
-      answer: "Kelp uses a holdfast to grip rock. The holdfast acts like an anchor, not like a root. It holds on tightly, but it does not pull nutrients from the rock."
+      question: "How fast does kelp grow?",
+      answer: "In this exhibit, kelp is commonly reported to grow about 4–5 inches per day. Growth depends on light, nutrients, water motion, and conditions in the exhibit."
     },
     {
-      question: "Why does kelp float upward?",
-      answer: "Many giant kelp blades have gas-filled floats called pneumatocysts. They help lift the blades toward sunlight so the kelp can photosynthesize."
+      question: "Why is the exhibit open at the top?",
+      answer: "Giant kelp needs sunlight for photosynthesis, so the open top lets natural light reach the kelp. That is one of the features that helps this living forest grow indoors."
     },
     {
-      question: "How fast does the kelp grow?",
-      answer: "In this exhibit, giant kelp commonly grows about 4 to 5 inches per day. Growth can vary depending on light, nutrients, water motion, and other conditions."
+      question: "What makes the wave?",
+      answer: "A surge machine built into the rockwork pushes water back and forth. That motion mimics natural ocean surge and helps move nutrients across the kelp."
     },
     {
-      question: "Why does the kelp move so much?",
-      answer: "Kelp is flexible, so it bends with moving water instead of breaking. The exhibit has a surge machine that helps recreate the wave motion kelp experiences in the bay."
+      question: "When is feeding?",
+      answer: "Feeding is usually once daily, often around 11:30 a.m. or 2:30 p.m., but times can vary. Check the day’s schedule before giving visitors a specific time."
     },
     {
-      question: "Where does the water come from?",
-      answer: "The exhibit uses seawater pumped from Monterey Bay. That cool, nutrient-rich water helps support the living kelp forest community."
+      question: "What do the animals eat?",
+      answer: "The exhibit diet may include items such as squid, shrimp or prawns, whitefish, sardines, and krill. Different animals feed in different ways, just as they would in a natural kelp forest food web."
     },
     {
-      question: "Why is the exhibit open to the sky?",
-      answer: "The opening lets sunlight reach the giant kelp. Like plants and other algae, kelp needs light for photosynthesis."
+      question: "What is an MPA?",
+      answer: "An MPA is a Marine Protected Area. It is a place where some activities are limited so ocean life and habitats have room to recover and grow."
     },
     {
-      question: "How many animals are in the exhibit?",
-      answer: "As of April 2026, the approved census included about 400 individual fish, not including schooling fish, plus 42 fish species, 56 invertebrate species, and 67 algae species."
-    },
-    {
-      question: "What animals live in this exhibit?",
-      answer: "The exhibit can include anchovies, surfperches, rockfish, leopard sharks, wolf-eels, giant sea bass, sheephead, garibaldi, sea stars, sea cucumbers, urchins, anemones, crabs, and many other animals."
-    },
-    {
-      question: "Are the sharks dangerous?",
-      answer: "The sharks in this exhibit, such as leopard sharks and swell sharks, are not here as a danger story. They are part of the kelp forest community and usually feed on smaller animals like crabs, shrimp, clams, worms, and small fishes."
-    },
-    {
-      question: "Do sea otters help kelp forests?",
-      answer: "Often, yes. Sea otters can eat sea urchins and other grazers that feed on kelp. In many places, predators help keep grazing pressure in balance."
-    },
-    {
-      question: "Why are sea urchins important?",
-      answer: "Urchins are natural kelp forest grazers. In balance, they are part of the ecosystem. If grazing pressure becomes too high, urchins can reduce kelp growth and change the habitat."
-    },
-    {
-      question: "Why are there so many different fish?",
-      answer: "Kelp creates many living spaces. Some fish use the canopy, some use the midwater, some stay near rocks, and some hide in crevices. More structure means more places to live."
-    },
-    {
-      question: "When are the animals fed?",
-      answer: "The Kelp Forest animals are usually fed once a day, commonly around the regular feeding time. Volunteers should check the daily schedule before giving visitors a specific time."
-    },
-    {
-      question: "Why are rockfish a conservation story?",
-      answer: "Many rockfish are slow-growing and long-lived, so they can be vulnerable to overfishing. Better management, Marine Protected Areas, and sustainable seafood work have helped some groundfish populations recover."
-    },
-    {
-      question: "Can people eat kelp?",
-      answer: "Yes, some seaweeds and kelps are eaten by people around the world. A safe visitor answer is that seaweed should only be harvested from clean waters and according to local rules."
-    },
-    {
-      question: "Is the kelp forest endangered?",
-      answer: "Kelp forests are habitats, not one single endangered species. Some kelp forests are under stress from warming water, marine heat waves, storms, pollution, and ecosystem imbalance."
-    },
-    {
-      question: "What should we call this exhibit in Spanish?",
-      answer: "Use Bosque de Macroalgas for the Kelp Forest exhibit. For giant kelp, Macrocystis pyrifera, use macrocistis."
-    },
-    {
-      question: "Why is this exhibit important?",
-      answer: "It helps visitors see a habitat that is usually hidden underwater. When people can watch the community up close, it becomes easier to understand why Monterey Bay is worth protecting."
+      question: "Why are kelp forests important?",
+      answer: "They provide food, shelter, nursery space, and hunting grounds for many animals. They also help visitors see that a habitat is more than a backdrop — it is a living community."
     }
   ],
-
   guideNotes: [
-    "Use the forest analogy: holdfasts are anchors, stipes are flexible trunks, blades are solar panels, and floats are tiny balloons.",
-    "Invite visitors to scan in layers: surface canopy, schooling fish, midwater, kelp blades, rocky reef, crevices, and sandy bottom.",
-    "Point out that the kelp is alive and needs sunlight, nutrients, cool seawater, and motion.",
-    "Use the April 2026 census: about 400 individual fish not including schooling fish, about 42 fish species, 56 invertebrate species, and 67 algae species.",
-    "Good kid prompt: “How many hiding places can you find?”",
-    "Good family prompt: “What is swimming, and what is drifting with the water?”",
-    "Common misunderstanding: kelp is not a plant.",
-    "Common misunderstanding: the holdfast is not a root.",
-    "Common misunderstanding: the rockwork is not natural rock. It is artificial rockwork designed to look and function like habitat.",
-    "When talking about sharks, shift from fear to function: sharks are part of a healthy kelp forest food web.",
-    "When talking about urchins, avoid making them villains. Urchins are natural grazers; ecosystem imbalance is the key idea.",
-    "Connect to Sea Otter: otters can help kelp forests by eating urchins and other invertebrates.",
-    "Connect to Seafood Watch: sustainable seafood choices help people support healthier ocean food webs.",
-    "Connect to Marine Protected Areas: MPAs protect places where ocean life can grow, reproduce, and support surrounding ecosystems.",
-    "During feeding, connect food items such as squid, shrimp, fish, and krill to both wildlife and people.",
-    "Use rockfish as a hopeful conservation story: some heavily fished species have benefited from better science, management, and protection.",
-    "For Spanish, use Bosque de Macroalgas for the exhibit and macrocistis for giant kelp.",
-    "Image source note: the exhibit photo is from the MBA Volunteer Naturalist Library."
+    "Start with what visitors can see: swaying kelp, schooling fish, rockfish holding still, sea stars on the windows, or the surge moving the whole forest.",
+    "Helpful analogy: kelp is like the trees in a forest, but it is algae, not a plant. It creates structure that many animals use.",
+    "Another analogy: MPAs can work like a bank account for ocean health — life grows inside and can help surrounding waters over time.",
+    "Point out that the rocks are not real. This often surprises visitors and opens a conversation about exhibit design.",
+    "For kids, invite them to look for camouflage: giant kelpfish can blend into kelp, while rockfish often hover near structure.",
+    "For conservation, connect kelp forests to Seafood Watch: responsible seafood choices help people and ocean wildlife share healthy food webs.",
+    "Common misunderstanding: kelp is not a tree and not a true plant. Giant kelp is a brown alga.",
+    "Time-sensitive details such as animal counts, feeding schedules, exhibit updates, and Naturalist Library language guidance should be refreshed when the Library is updated.",
+    "Use this page as a guide-friendly companion, not as a replacement for current staff updates, official signage, or the latest Naturalist Library update."
   ],
-
   tags: [
     "kelp forest",
     "giant kelp",
+    "exhibit",
     "food web",
-    "upwelling",
-    "habitat",
-    "conservation",
-    "sea otter",
     "rockfish",
+    "mpa",
     "marine protected areas",
-    "seafood watch"
+    "seafood watch",
+    "conservation",
+    "monterey bay aquarium",
+    "guide talk",
+    "visitor questions"
   ],
-
   relatedItems: [
     {
-      title: "Sea Otter",
-      type: "Animal",
-      url: "../sea-otter/index.html",
-      tags: ["sea otter", "kelp forest", "conservation"]
-    },
-    {
-      title: "Leopard Shark",
-      type: "Animal",
+      title: "Giant Kelp",
+      type: "Animal / Algae Reference",
       url: "#",
-      tags: ["leopard shark", "kelp forest", "shark"]
-    },
-    {
-      title: "Giant Sea Bass",
-      type: "Animal",
-      url: "#",
-      tags: ["giant sea bass", "kelp forest", "predator"]
+      tags: ["giant kelp", "kelp forest"]
     },
     {
       title: "Rockfish",
-      type: "Animal",
+      type: "Animal Reference",
       url: "#",
-      tags: ["rockfish", "kelp forest", "seafood watch"]
-    },
-    {
-      title: "Sea Urchins",
-      type: "Animal",
-      url: "#",
-      tags: ["urchins", "kelp forest", "grazing"]
-    },
-    {
-      title: "Upwelling",
-      type: "Concept",
-      url: "#",
-      tags: ["upwelling", "nutrients", "food web"]
+      tags: ["rockfish", "kelp forest"]
     },
     {
       title: "Marine Protected Areas",
-      type: "Concept",
+      type: "Concept Reference",
       url: "#",
-      tags: ["marine protected areas", "conservation", "habitat"]
+      tags: ["mpa", "conservation"]
     },
     {
       title: "Seafood Watch",
-      type: "Seafood Watch",
+      type: "Seafood Watch Reference",
       url: "#",
-      tags: ["seafood watch", "conservation", "food web"]
+      tags: ["seafood watch", "conservation"]
+    }
+  ],
+  references: [
+    {
+      title: "Content source",
+      detail: "Compiled from Monterey Bay Aquarium Naturalist Library / volunteer reference notes supplied for internal volunteer Hub use. Refresh time-sensitive exhibit details against current MBA updates."
+    },
+    {
+      title: "Image source",
+      detail: "Hero image file: images/kelp-forest-hero.jpg. Source note from prior app: MBA Naturalist Library image approved for internal volunteer Hub use."
+    },
+    {
+      title: "Maintenance note",
+      detail: "Animal counts, feeding schedules, exhibit language, and current conservation examples should be checked against the latest Naturalist Library or staff updates before public or formal use."
+    }
+  ],
+  troubleshootingFaq: [
+    {
+      question: "The app still shows the old version.",
+      answer: "Tap Clear Cache / Refresh App. If that does not work, use Ctrl + Shift + R on PC or clear Safari website data on iPhone."
+    },
+    {
+      question: "The app will not open.",
+      answer: "Check your internet connection. If the app was installed as a PWA, try reopening from the home screen. If it still fails, clear cache and reload."
+    },
+    {
+      question: "The app looks broken.",
+      answer: "Refresh the page, then clear the cache if needed. If the problem continues, report the app name and version."
+    },
+    {
+      question: "The Return to Hub button does not work.",
+      answer: "Use the browser back button or reopen the Hub directly. Then report the broken link so the app path can be corrected."
+    },
+    {
+      question: "Images are missing.",
+      answer: "Open the app while online first so images can cache. Then test offline again."
+    },
+    {
+      question: "Search does not work.",
+      answer: "Clear cache and reload. If still broken, report the app name and version."
     }
   ]
 };

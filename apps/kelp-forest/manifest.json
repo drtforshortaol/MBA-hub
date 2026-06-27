@@ -1,12 +1,12 @@
 {
-  "name": "Kelp Forest | MBA Hub",
+  "name": "MBA Kelp Forest",
   "short_name": "Kelp Forest",
-  "description": "Volunteer companion app for the Monterey Bay Aquarium Kelp Forest exhibit.",
-  "start_url": "./index.html",
+  "description": "Monterey Bay Aquarium volunteer companion page for the Kelp Forest exhibit.",
+  "start_url": "index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#f3fbfc",
-  "theme_color": "#006b7f",
-  "orientation": "portrait-primary",
+  "background_color": "#f0f8fc",
+  "theme_color": "#003d5c",
   "icons": [
     {
       "src": "icon.svg",

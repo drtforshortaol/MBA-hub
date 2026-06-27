@@ -1,0 +1,17 @@
+App Registry Entry - Kelp Forest
+
+App Name: Kelp Forest
+App Folder Name: apps/kelp-forest
+App URL or Path: apps/kelp-forest/index.html
+Hub Category: Exhibits
+App Type: Exhibit Reference / Volunteer Companion
+Version: v1.2
+Release Date: 2026-06-21
+Last Updated: 2026-06-26
+Purpose: Guide-friendly companion page for the Monterey Bay Aquarium Kelp Forest exhibit.
+Short Description: Quick facts, visitor Q&A, conservation messages, story prompts, guide notes, tags, references, and troubleshooting support for the Kelp Forest exhibit.
+Tags: kelp forest; giant kelp; exhibit; food web; rockfish; MPA; marine protected areas; Seafood Watch; conservation; Monterey Bay Aquarium; guide talk; visitor questions
+Related Apps: Giant Kelp; Rockfish; Marine Protected Areas; Seafood Watch
+Status: Testing
+Testing Status: Needs PC Chrome and iPhone Safari testing after update
+Notes: Updated to Core Categories v2 MASTER standard. Related links are placeholders until connected in Hub registry.

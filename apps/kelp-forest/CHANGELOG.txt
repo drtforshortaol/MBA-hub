@@ -1,0 +1,24 @@
+Kelp Forest - Revision History
+
+Version: v1.2
+Date: 2026-06-26
+Backup Name: KelpForest_Backup_20260626_HHmmSS
+Files Changed: index.html, styles.css, app.js, data.js, manifest.json, sw.js, README.md, CHANGELOG.txt
+Summary of Changes:
+- Updated app to align with App Building Core Categories v2 MASTER.
+- Added Clear Cache / Refresh App button.
+- Added Troubleshooting button and troubleshooting panel.
+- Added notification area.
+- Added References and Sources dropdown section.
+- Added troubleshooting FAQ content.
+- Added README documentation.
+- Added CHANGELOG / revision history file.
+- Expanded tags for registry and cross-link support.
+- Updated app version from v1.1 to v1.2.
+- Updated service worker cache name from mba-kelp-forest-v1.0 to mba-kelp-forest-v1.2.
+Reason for Revision:
+- Standardization update to bring the app into closer compliance with Core Categories v2 MASTER.
+Approved By:
+- User review pending.
+Notes:
+- Related app links remain placeholders until the Hub registry and related apps are connected.
