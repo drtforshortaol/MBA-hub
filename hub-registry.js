@@ -128,8 +128,8 @@ window.MBA_HUB_REGISTRY = {
     {
       id: "northern-elephant-seal",
       name: "Northern Elephant Seal",
-      folder: "northern-elephant-seal",
-      url: "apps/northern-elephant-seal/index.html",
+      folder: "northern-elephant-seal-pwa-v1.2-final-hub (2)",
+      url: "apps/northern-elephant-seal-pwa-v1.2-final-hub%20(2)/index.html",
       category: "animals",
       appType: "Animal guide PWA dropdown app",
       version: "1.2",
@@ -165,9 +165,9 @@ window.MBA_HUB_REGISTRY = {
       ],
       status: "Active",
       testingStatus:
-        "Final Hub-ready v1.2 registry entry added; needs PC Chrome, iPhone Safari, Clear Cache, Animals category display, direct app link, images, dropdowns, search, troubleshooting, and offline confirmation after upload.",
+        "Temporary registry path corrected to match uploaded folder; needs PC Chrome, iPhone Safari, Clear Cache, Animals category display, direct app link, images, dropdowns, search, troubleshooting, and offline confirmation after upload.",
       notes:
-        "App folder path is apps/northern-elephant-seal/. Return to Hub path remains ../../index.html. Related app links are planned cross-links and may remain inactive until companion apps are created."
+        "Temporary path uses the uploaded folder name apps/northern-elephant-seal-pwa-v1.2-final-hub (2)/. Recommended cleanup later: rename/move files to apps/northern-elephant-seal/ and restore the clean registry URL apps/northern-elephant-seal/index.html. Return to Hub path remains ../../index.html."
     }
   ]
 };
