@@ -125,33 +125,6 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "First installed app in Hub 2. App folder path is apps/information-center/. Return to Hub path remains ../../index.html."
     },
-{
-  id: "five-senses-pwa",
-  name: "Five Senses Guide",
-  folder: "five-senses-pwa",
-  path: "apps/five-senses-pwa/index.html",
-  category: "Learning Tools",
-  appType: "Educational Dropdown Guide",
-  version: "v1.1",
-  releaseDate: "2026-06-28",
-  lastUpdated: "2026-06-28",
-  purpose: "Provide a compact educational guide to sight, hearing, smell, taste, and touch.",
-  description: "A mobile-friendly dropdown guide with search, review prompts, safety notes, activities, references, troubleshooting, and offline PWA support.",
-  tags: [
-    "five senses",
-    "science",
-    "learning",
-    "education",
-    "observation",
-    "activities",
-    "review questions",
-    "dropdown guide"
-  ],
-  relatedApps: [],
-  status: "Testing",
-  testingStatus: "Needs PC Chrome, iPhone Safari, offline, cache, Return to Hub, dropdown, troubleshooting, and search testing.",
-  notes: "Updated to hub-compatible PWA standard on 2026-06-28."
-},
 
     {
       id: "northern-elephant-seal",
