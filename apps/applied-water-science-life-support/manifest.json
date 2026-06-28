@@ -1,0 +1,17 @@
+{
+  "name": "Applied Water Science & Life Support Systems",
+  "short_name": "Water Science",
+  "description": "MBA volunteer PWA reference for seawater, biofouling, pigging, and life support systems.",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#003B6F",
+  "theme_color": "#003B6F",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
