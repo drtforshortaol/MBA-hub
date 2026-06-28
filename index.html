@@ -4,167 +4,226 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MBA Hub 2</title>
+
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
 </head>
 
 <body>
-  <header class="app-header">
+  <header class="hub-header">
     <div class="top-bar">
-      <a class="top-button" href="index.html">← MBA Hub</a>
+      <a class="top-button" href="index.html">← MBA Hub 2</a>
       <button class="top-button" id="clearCacheBtn" type="button">Clear Cache</button>
       <button class="top-button" id="troubleshootingBtn" type="button">Troubleshooting</button>
     </div>
 
     <h1>MBA Hub 2</h1>
-    <p class="subtitle">Monterey Bay Aquarium Volunteer Companion Hub</p>
-    <p class="version">Version 2.0 · Updated 2026-06-27</p>
+    <p>Monterey Bay Aquarium Volunteer Companion Hub</p>
+    <p class="version">Version 2.1 · Updated 2026-06-27</p>
   </header>
 
-  <main>
+  <main class="hub-main">
     <section class="notice">
       <strong>Hub 2 active.</strong> Use search or category cards to open installed apps.
     </section>
 
-    <section id="troubleshootingPanel" class="troubleshooting-panel hidden" aria-hidden="true">
-      <div class="troubleshooting-header">
-        <h2>Troubleshooting</h2>
-        <button id="closeTroubleshootingBtn" class="close-button" type="button">× Close</button>
-      </div>
-
-      <details>
-        <summary>Refresh or Clear Cache</summary>
-        <p>If the Hub or an app shows old content, use the Clear Cache button above.</p>
-        <p>On PC Chrome, press <strong>Ctrl + Shift + R</strong> for a hard refresh.</p>
-      </details>
-
-      <details>
-        <summary>iPhone Still Shows Old Version</summary>
-        <ol>
-          <li>Open the Hub in Safari.</li>
-          <li>Add a version code to the end of the address, such as <code>?v=20260627b</code>.</li>
-          <li>Reload the page.</li>
-          <li>If using the Home Screen PWA, remove and reinstall the Home Screen icon if needed.</li>
-        </ol>
-      </details>
-
-      <details>
-        <summary>Return to Hub Gives 404</summary>
-        <p>If Return to Hub gives a 404 error, check that the app button points to:</p>
-        <p><code>../../index.html</code></p>
-        <p>For apps inside <code>apps/app-name/</code>, this is usually the correct path.</p>
-      </details>
-
-      <details>
-        <summary>App Still Shows Old Version</summary>
-        <p>Use Clear Cache, then reload the app. If it still shows old content, close and reopen the browser.</p>
-      </details>
-
-      <details>
-        <summary>ChatGPT Recents Missing in Chrome</summary>
-
-        <h3>Problem</h3>
-        <p>Your ChatGPT Recents or conversation history are missing in Google Chrome, but they still appear on another device, such as your iPhone.</p>
-
-        <p>This usually means your conversations are still saved on your ChatGPT account. The issue is usually Chrome cache, cookies, site data, extensions, or a temporary sync problem.</p>
-
-        <h3>Most Likely Solutions</h3>
-
-        <ol>
-          <li>
-            <strong>Hard refresh the page:</strong><br />
-            Press <code>Ctrl + Shift + R</code>
-          </li>
-
-          <li>
-            <strong>Sign out and back in:</strong><br />
-            Sign out of ChatGPT, then sign back into the same account.
-          </li>
-
-          <li>
-            <strong>Clear only ChatGPT site data:</strong>
-            <ol>
-              <li>Open <code>chrome://settings/content/all</code></li>
-              <li>Search for <code>chatgpt.com</code></li>
-              <li>Delete the ChatGPT site data.</li>
-              <li>Reload ChatGPT.</li>
-              <li>Sign in again.</li>
-            </ol>
-          </li>
-
-          <li>
-            <strong>Restart Chrome:</strong><br />
-            Completely close Google Chrome and reopen it.
-          </li>
-
-          <li>
-            <strong>Restart your PC:</strong><br />
-            If the problem continues, restart your computer.
-          </li>
-        </ol>
-
-        <h3>What Are You Seeing?</h3>
-        <ul>
-          <li>The left sidebar is completely blank.</li>
-          <li>It says <strong>Unable to load history</strong>.</li>
-          <li>There is a spinning or loading indicator.</li>
-          <li>The sidebar itself is missing.</li>
-        </ul>
-
-        <p><strong>Tip:</strong> A screenshot usually helps diagnose the problem faster.</p>
-      </details>
-    </section>
-
     <section class="search-section">
       <label for="searchInput">Search Hub</label>
-      <input id="searchInput" type="search" placeholder="Search apps, categories, descriptions, or tags..." />
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Search apps, categories, descriptions, or tags..."
+      />
     </section>
 
     <section>
       <h2>Categories</h2>
-      <div id="categoriesContainer" class="categories-container"></div>
+      <div id="categoriesContainer" class="categories-grid"></div>
     </section>
 
     <section>
       <h2>Installed Apps</h2>
-      <div id="appsContainer" class="apps-container"></div>
+      <div id="appsContainer" class="apps-grid"></div>
     </section>
   </main>
 
-  <footer>
-    <p>MBA Hub 2 · Progressive Web App · Offline after first load</p>
+  <div id="troubleshootingOverlay" class="modal-overlay hidden" aria-hidden="true">
+    <section class="troubleshooting-modal" role="dialog" aria-modal="true" aria-labelledby="troubleshootingTitle">
+      <div class="troubleshooting-modal-header">
+        <h2 id="troubleshootingTitle">Troubleshooting</h2>
+        <button id="closeTroubleshootingBtn" class="close-button" type="button">× Close</button>
+      </div>
+
+      <div class="troubleshooting-grid">
+        <div class="trouble-card">
+          <h3>Refresh Hub 2</h3>
+          <ol>
+            <li>Tap <strong>Clear Cache</strong>.</li>
+            <li>Let Hub 2 reload.</li>
+            <li>Confirm the version at the bottom shows the newest date.</li>
+          </ol>
+        </div>
+
+        <div class="trouble-card">
+          <h3>PC Chrome hard refresh</h3>
+          <p>
+            Press <strong>Ctrl + Shift + R</strong> to force Chrome to reload the newest Hub files.
+          </p>
+        </div>
+
+        <div class="trouble-card">
+          <h3>iPhone Safari cache</h3>
+          <ol>
+            <li>Open iPhone <strong>Settings</strong>.</li>
+            <li>Go to <strong>Apps → Safari → Advanced → Website Data</strong>.</li>
+            <li>Search for the site, delete matching website data, then reopen Hub 2.</li>
+          </ol>
+        </div>
+
+        <div class="trouble-card">
+          <h3>Broken app link</h3>
+          <p>
+            If an app opens incorrectly or Return to Hub gives 404, check that the app folder is inside
+            <strong>apps/app-folder-name/</strong> and that the app uses
+            <strong>../../index.html</strong> for the MBA Hub button.
+          </p>
+        </div>
+
+        <div class="trouble-card">
+          <h3>ChatGPT Recents Missing in Chrome</h3>
+
+          <p>
+            If ChatGPT Recents or conversation history are missing in Chrome but still appear on your iPhone,
+            the chats are probably still saved to your account.
+          </p>
+
+          <p>
+            The issue is usually Chrome cache, cookies, site data, extensions, or temporary sync.
+          </p>
+
+          <ol>
+            <li><strong>Hard refresh:</strong> Press <strong>Ctrl + Shift + R</strong>.</li>
+            <li><strong>Sign out and back in</strong> to ChatGPT.</li>
+            <li>
+              <strong>Clear only ChatGPT site data:</strong>
+              open <code>chrome://settings/content/all</code>, search <code>chatgpt.com</code>,
+              delete the site data, reload ChatGPT, then sign in again.
+            </li>
+            <li><strong>Restart Chrome</strong> completely.</li>
+            <li><strong>Restart your PC</strong> if needed.</li>
+          </ol>
+
+          <p>
+            <strong>Check what you are seeing:</strong> blank left sidebar,
+            “Unable to load history,” spinning/loading indicator, or missing sidebar.
+          </p>
+
+          <p><strong>Tip:</strong> A screenshot usually helps diagnose the problem faster.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="hub-footer">
+    <p>MBA Hub 2 · Version 2.1 · Updated 2026-06-27 · PWA</p>
   </footer>
 
   <script src="data.js"></script>
-  <script src="app.js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const hubData = window.MBA_HUB_2 || {};
+      const categories = hubData.categories || [];
+      const apps = hubData.apps || [];
+
+      const categoriesContainer = document.getElementById("categoriesContainer");
+      const appsContainer = document.getElementById("appsContainer");
+      const searchInput = document.getElementById("searchInput");
+
       const troubleshootingBtn = document.getElementById("troubleshootingBtn");
+      const troubleshootingOverlay = document.getElementById("troubleshootingOverlay");
       const closeTroubleshootingBtn = document.getElementById("closeTroubleshootingBtn");
-      const troubleshootingPanel = document.getElementById("troubleshootingPanel");
       const clearCacheBtn = document.getElementById("clearCacheBtn");
 
+      function renderCategories(filterText = "") {
+        if (!categoriesContainer) return;
+
+        const term = filterText.toLowerCase().trim();
+
+        const filtered = categories.filter((category) => {
+          const text = `${category.title} ${category.description} ${category.id}`.toLowerCase();
+          return !term || text.includes(term);
+        });
+
+        categoriesContainer.innerHTML = filtered.map((category) => `
+          <article class="category-card">
+            <div class="card-icon">${category.icon || "🌊"}</div>
+            <h3>${category.title}</h3>
+            <p>${category.description || ""}</p>
+          </article>
+        `).join("");
+      }
+
+      function renderApps(filterText = "") {
+        if (!appsContainer) return;
+
+        const term = filterText.toLowerCase().trim();
+
+        const filtered = apps.filter((app) => {
+          const tags = Array.isArray(app.tags) ? app.tags.join(" ") : "";
+          const text = `${app.name} ${app.description} ${app.category} ${tags}`.toLowerCase();
+          return !term || text.includes(term);
+        });
+
+        appsContainer.innerHTML = filtered.map((app) => `
+          <article class="app-card">
+            <h3>${app.name}</h3>
+            <p>${app.description || ""}</p>
+            <p><strong>Category:</strong> ${app.category || "Uncategorized"}</p>
+            <p><strong>Status:</strong> ${app.status || "Active"}</p>
+            <a class="open-app-button" href="${app.url}">Open App</a>
+          </article>
+        `).join("");
+      }
+
+      function runSearch() {
+        const value = searchInput ? searchInput.value : "";
+        renderCategories(value);
+        renderApps(value);
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("input", runSearch);
+      }
+
       function openTroubleshooting() {
-        troubleshootingPanel.classList.remove("hidden");
-        troubleshootingPanel.setAttribute("aria-hidden", "false");
+        troubleshootingOverlay.classList.remove("hidden");
+        troubleshootingOverlay.setAttribute("aria-hidden", "false");
       }
 
       function closeTroubleshooting() {
-        troubleshootingPanel.classList.add("hidden");
-        troubleshootingPanel.setAttribute("aria-hidden", "true");
+        troubleshootingOverlay.classList.add("hidden");
+        troubleshootingOverlay.setAttribute("aria-hidden", "true");
       }
 
-      if (troubleshootingBtn && troubleshootingPanel) {
+      if (troubleshootingBtn) {
         troubleshootingBtn.addEventListener("click", openTroubleshooting);
       }
 
-      if (closeTroubleshootingBtn && troubleshootingPanel) {
+      if (closeTroubleshootingBtn) {
         closeTroubleshootingBtn.addEventListener("click", closeTroubleshooting);
       }
 
+      if (troubleshootingOverlay) {
+        troubleshootingOverlay.addEventListener("click", (event) => {
+          if (event.target === troubleshootingOverlay) {
+            closeTroubleshooting();
+          }
+        });
+      }
+
       document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && troubleshootingPanel) {
+        if (event.key === "Escape") {
           closeTroubleshooting();
         }
       });
@@ -179,18 +238,19 @@
 
             if ("serviceWorker" in navigator) {
               const registrations = await navigator.serviceWorker.getRegistrations();
-              await Promise.all(
-                registrations.map((registration) => registration.update())
-              );
+              await Promise.all(registrations.map((registration) => registration.update()));
             }
 
-            alert("Cache cleared. Reloading the Hub now.");
+            alert("Cache cleared. Reloading Hub 2 now.");
             window.location.reload();
           } catch (error) {
-            alert("Cache clear attempted. Please manually refresh with Ctrl + Shift + R.");
+            alert("Cache clear attempted. If old content remains, press Ctrl + Shift + R on PC.");
           }
         });
       }
+
+      renderCategories();
+      renderApps();
     });
   </script>
 </body>
