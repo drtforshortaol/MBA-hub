@@ -1,37 +1,27 @@
-function renderRelatedHubTopics(currentAppId) {
-  const container = document.getElementById("relatedHubTopics");
-  const registry = window.MBA_APP_REGISTRY || [];
+// ROOT HUB LINKS FILE: MBA-hub/hub-links.js
+// Hub 2.2 Registry Safety Update
+// Purpose: Optional intentional Hub-level cross-links.
+// Use this only for relationships that are stronger or more specific than shared tags.
+// Do not confuse this file with individual app data.js files.
 
-  if (!container) return;
+window.MBA_HUB_LINKS = {
+  version: "2.2",
+  lastUpdated: "2026-06-27",
 
-  const currentApp = registry.find((app) => app.id === currentAppId);
+  links: [
+    /*
+      Future example:
 
-  if (!currentApp || !currentApp.relatedApps || currentApp.relatedApps.length === 0) {
-    container.innerHTML = "";
-    return;
-  }
+      {
+        fromApp: "information-center",
+        toApp: "visitor-services-guide",
+        type: "manual-cross-link",
+        reason: "Information Center frequently sends visitors to Visitor Services resources.",
+        tags: ["visitor services", "guest support", "directions"]
+      }
 
-  const relatedApps = currentApp.relatedApps
-    .map((id) => registry.find((app) => app.id === id))
-    .filter(Boolean);
-
-  if (relatedApps.length === 0) {
-    container.innerHTML = "";
-    return;
-  }
-
-  container.innerHTML = `
-    <h2>Related Hub Topics</h2>
-    <div class="related-link-grid">
-      ${relatedApps.map((app) => `
-        <a class="related-link-card" href="../../${app.path}">
-          <span class="related-icon">${app.icon || "🔗"}</span>
-          <strong>${app.title}</strong>
-          <small>${app.category}</small>
-        </a>
-      `).join("")}
-    </div>
-  `;
-}
-
-window.renderRelatedHubTopics = renderRelatedHubTopics;
+      Keep this file for intentional cross-links only.
+      Automatic related apps should come from shared tags in hub-registry.js.
+    */
+  ]
+};
