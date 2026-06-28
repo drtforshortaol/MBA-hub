@@ -1,0 +1,120 @@
+Using the Five Senses
+Version: 1.1
+Last Updated: 2026-06-28
+Status: Testing
+Folder: apps/five-senses-pwa/
+
+Purpose
+This app helps Monterey Bay Aquarium volunteers use multisensory interpretation to make exhibits accessible, memorable, and engaging for every guest.
+
+Source Material
+This is a preservation rebuild from the original user-provided file:
+five-senses.html
+
+The rebuild preserves the original MBA Hub · Interpretation Skills purpose and the original sense-section material for:
+- Sight and verbal description
+- Touch
+- Hearing
+- Smell
+- Taste
+
+Main Features
+- Mobile-first PWA layout
+- Top bar with ← MBA Hub, Clear Cache, and Troubleshooting
+- Working troubleshooting panel with × Close button
+- Escape-key close support on PC
+- Search
+- Expand All / Collapse All / Reset Search
+- Dropdown guide sections
+- MBA-themed header visual
+- References and image notes
+- Version display
+- Manifest and service worker
+- Offline-capable after first successful online load
+
+Required Folder Structure
+apps/five-senses-pwa/
+  index.html
+  styles.css
+  app.js
+  data.js
+  manifest.json
+  sw.js
+  icon.svg
+  README.txt
+  CHANGELOG.txt
+  images/
+    header-five-senses-mba.svg
+
+How to Use
+1. Open the app from the MBA Hub or directly from apps/five-senses-pwa/index.html.
+2. Use Search to find topics such as touch, kelp, sound, baleen, taste, or accessibility.
+3. Open dropdowns for interpretation prompts.
+4. Use Clear Cache after updating files.
+5. Use Troubleshooting if the app shows old content or does not work correctly.
+
+Known Issues
+- This rebuild has not yet been user-tested on PC Chrome, iPhone Safari, or offline mode.
+- Registry entry must be added to the Hub registry before the app appears in the Hub.
+- Follow Monterey Bay Aquarium-approved guidance for any live animal, tactile, taste, smell, or guest interaction.
+
+Revision Summary
+v1.1 — 2026-06-28
+- Rebuilt the app from original five-senses.html source material.
+- Removed incorrect generic classroom/student content from the prior bad generated version.
+- Restored title: Using the Five Senses.
+- Restored context: MBA Hub · Interpretation Skills.
+- Restored purpose: Engage all senses to make exhibits accessible and memorable for every guest.
+- Preserved original Touch, Hearing, Smell, and Taste content.
+- Added Sight and Verbal Description section based on the original intro emphasis on visual exhibits and clear verbal descriptions.
+- Added hub-compatible top controls.
+- Added Clear Cache.
+- Added Troubleshooting panel with working close pattern.
+- Added search.
+- Added Expand All, Collapse All, and Reset Search.
+- Added references and image notes.
+- Added manifest.json.
+- Added sw.js.
+- Added icon.svg.
+- Added header image SVG.
+
+Backup Name
+UsingFiveSenses_Backup_20260628_120000
+
+Testing Checklist
+PC Chrome:
+- Open app.
+- Confirm layout.
+- Confirm top buttons.
+- Confirm Return to Hub.
+- Confirm Clear Cache.
+- Confirm Troubleshooting opens and closes.
+- Confirm Escape closes Troubleshooting.
+- Confirm dropdowns.
+- Confirm search.
+- Confirm Expand All / Collapse All / Reset Search.
+- Confirm image loads.
+- Confirm references display.
+
+iPhone Safari:
+- Confirm no horizontal scrolling.
+- Confirm readable text.
+- Confirm large tap targets.
+- Confirm top bar wraps cleanly.
+- Confirm dropdowns work by touch.
+- Confirm troubleshooting close button is easy to tap.
+- Confirm Return to Hub.
+- Confirm Clear Cache.
+
+Offline:
+- Open online first.
+- Let app fully load.
+- Turn on airplane mode.
+- Reopen app.
+- Confirm cached app loads.
+- Confirm dropdowns and search still work.
+
+References
+Content: User-provided original five-senses.html.
+Image: Original SVG header visual created for this rebuild.
+Design Standard: Hub-compatible PWA app structure with README, changelog, manifest, service worker, references, troubleshooting, cache controls, and registry entry.
