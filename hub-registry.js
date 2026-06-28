@@ -206,7 +206,21 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "Temporary path uses the uploaded folder name apps/northern-elephant-seal-pwa-v1.2-final-hub (2)/. Recommended cleanup later: rename/move files to apps/northern-elephant-seal/ and restore the clean registry URL apps/northern-elephant-seal/index.html. Return to Hub path remains ../../index.html."
     },
-
+{
+  id: "mba-leadership",
+  title: "MBA Leadership",
+  subtitle: "New leadership arrivals with photos for floor identification.",
+  category: "Aquarium Updates",
+  url: "apps/mba-leadership/index.html",
+  tags: [
+    "leadership",
+    "new arrivals",
+    "staff",
+    "volunteer reference",
+    "guide program",
+    "executive team"
+  ]
+},
     {
       id: "applied-water-science-life-support",
       name: "Applied Water Science",
