@@ -5,7 +5,7 @@
 
 window.MBA_HUB_REGISTRY = {
   version: "2.2",
-  lastUpdated: "2026-06-27",
+  lastUpdated: "2026-06-28",
   title: "MBA Hub 2.2",
   description:
     "Monterey Bay Aquarium volunteer companion hub for reference apps, guide tools, troubleshooting, tags, and cross-links.",
@@ -124,6 +124,50 @@ window.MBA_HUB_REGISTRY = {
         "Installed in Hub 2.2; needs PC Chrome, iPhone Safari, Clear Cache, troubleshooting, tag search, related app display, and offline confirmation after upload.",
       notes:
         "First installed app in Hub 2. App folder path is apps/information-center/. Return to Hub path remains ../../index.html."
+    },
+    {
+      id: "northern-elephant-seal",
+      name: "Northern Elephant Seal",
+      folder: "northern-elephant-seal",
+      url: "apps/northern-elephant-seal/index.html",
+      category: "animals",
+      appType: "Animal guide PWA dropdown app",
+      version: "1.2",
+      releaseDate: "2026-06-28",
+      lastUpdated: "2026-06-28",
+      purpose:
+        "Provide guide-friendly northern elephant seal reference support for Monterey Bay Aquarium volunteer conversations.",
+      description:
+        "Animal guide page for northern elephant seal size, migration, breeding, deep diving, underwater sleep, buoyancy, conservation comeback, beach-safe visitor messaging, visitor Q&A, and guide notes.",
+      tags: [
+        "elephant seal",
+        "northern elephant seal",
+        "marine mammal",
+        "pinniped",
+        "true seal",
+        "phocid",
+        "deep diving",
+        "migration",
+        "rookery",
+        "sleep",
+        "buoyancy",
+        "conservation",
+        "beach safety",
+        "visitor question",
+        "animals"
+      ],
+      relatedApps: [
+        "marine-mammal-rescue",
+        "great-white-shark",
+        "deep-sea",
+        "upwelling",
+        "responsible-wildlife-viewing"
+      ],
+      status: "Active",
+      testingStatus:
+        "Final Hub-ready v1.2 registry entry added; needs PC Chrome, iPhone Safari, Clear Cache, Animals category display, direct app link, images, dropdowns, search, troubleshooting, and offline confirmation after upload.",
+      notes:
+        "App folder path is apps/northern-elephant-seal/. Return to Hub path remains ../../index.html. Related app links are planned cross-links and may remain inactive until companion apps are created."
     }
   ]
 };
