@@ -328,6 +328,13 @@ main {
   color: var(--muted);
 }
 [hidden] { display: none !important; }
+.hidden {
+  display: none !important;
+}
+
+.modal-overlay.hidden {
+  display: none !important;
+}
 @media (max-width: 620px) {
   .top-bar { align-items: stretch; }
   .top-bar-btn { flex: 1 1 auto; padding-inline: 0.75rem; }
