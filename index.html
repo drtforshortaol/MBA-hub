@@ -3,59 +3,151 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MBA Hub 2</title>
+
+  <title>MBA Hub 2.1</title>
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
+
+  <meta name="theme-color" content="#003845" />
+  <meta name="description" content="MBA Hub 2.1 Monterey Bay Aquarium volunteer companion hub." />
 </head>
 
 <body>
-  <header class="hub-header">
-    <div class="top-bar">
-      <a class="top-button" href="index.html">← MBA Hub 2</a>
-      <button class="top-button" id="clearCacheBtn" type="button">Clear Cache</button>
-      <button class="top-button" id="troubleshootingBtn" type="button">Troubleshooting</button>
-    </div>
+  <nav class="top-bar" aria-label="Top controls">
+    <a class="top-bar-btn home-btn" href="index.html">← MBA Hub 2</a>
 
-    <h1>MBA Hub 2</h1>
-    <p>Monterey Bay Aquarium Volunteer Companion Hub</p>
-    <p class="version">Version 2.1 · Updated 2026-06-27</p>
+    <button class="top-bar-btn" id="clearHubCacheBtn" type="button">
+      Clear Cache
+    </button>
+
+    <button
+      class="top-bar-btn"
+      id="troubleshootingBtn"
+      type="button"
+      aria-expanded="false"
+      aria-controls="troubleshootingPanel"
+    >
+      Troubleshooting
+    </button>
+  </nav>
+
+  <div id="statusMessage" class="status-message" hidden></div>
+
+  <header class="hero">
+    <div class="hero-badge">Monterey Bay Aquarium Volunteer Companion</div>
+    <h1>MBA Hub 2.1</h1>
+    <p>
+      A mobile-first root navigation hub for dropdown apps, guide tools,
+      reference apps, troubleshooting, tags, and cross-links.
+    </p>
   </header>
 
-  <main class="hub-main">
-    <section class="notice">
-      <strong>Hub 2 active.</strong> Use search or category cards to open installed apps.
+  <main>
+    <section id="hubNotice" class="notice-card">
+      <div>
+        <strong>Hub 2.1 stable baseline.</strong>
+        Use search, category filters, tags, or app cards to find installed apps.
+        This version includes the updated troubleshooting panel, tag filtering,
+        and related-app cross-link support.
+      </div>
+
+      <button id="dismissNoticeBtn" type="button" aria-label="Dismiss notice">
+        ×
+      </button>
     </section>
 
-    <section class="search-section">
-      <label for="searchInput">Search Hub</label>
-      <input
-        id="searchInput"
-        type="search"
-        placeholder="Search apps, categories, descriptions, or tags..."
-      />
+    <section class="tools-panel" aria-labelledby="searchHeading">
+      <h2 id="searchHeading">Search Hub</h2>
+
+      <label class="search-label" for="searchInput">
+        Search by app name, category, description, or tag
+      </label>
+
+      <div class="search-row">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Example: information center, emergency, wheelchair, visitor services..."
+          autocomplete="off"
+        />
+
+        <button id="clearSearchBtn" type="button">
+          Clear Search
+        </button>
+      </div>
+
+      <div class="controls" aria-label="Category controls">
+        <button class="toggle-all-btn" id="expandAllBtn" type="button">
+          Expand All
+        </button>
+
+        <button class="toggle-all-btn" id="collapseAllBtn" type="button">
+          Collapse All
+        </button>
+      </div>
+
+      <div
+        id="categoryFilters"
+        class="filter-row"
+        aria-label="Category filters"
+      ></div>
     </section>
 
-    <section>
-      <h2>Categories</h2>
-      <div id="categoriesContainer" class="categories-grid"></div>
+    <section class="hub-summary" aria-label="Hub summary">
+      <article class="summary-card">
+        <span id="activeAppCount" class="summary-number">0</span>
+        <span class="summary-label">Active Apps</span>
+      </article>
+
+      <article class="summary-card">
+        <span id="categoryCount" class="summary-number">0</span>
+        <span class="summary-label">Categories</span>
+      </article>
     </section>
 
-    <section>
-      <h2>Installed Apps</h2>
-      <div id="appsContainer" class="apps-grid"></div>
+    <section aria-labelledby="categoriesHeading">
+      <h2 id="categoriesHeading">Categories and Apps</h2>
+      <div id="categoryList" class="category-list"></div>
+    </section>
+
+    <section class="references-card" aria-labelledby="referencesHeading">
+      <h2 id="referencesHeading">References and Notes</h2>
+      <p>
+        Hub categories, app registry structure, tags, testing expectations,
+        troubleshooting, and revision standards are based on the MBA Hub Core
+        Categories Version 2 protocol.
+      </p>
+      <p>
+        App content should be maintained inside each app folder and registered
+        in the Hub data file.
+      </p>
     </section>
   </main>
 
-  <div id="troubleshootingOverlay" class="modal-overlay hidden" aria-hidden="true">
-    <section class="troubleshooting-modal" role="dialog" aria-modal="true" aria-labelledby="troubleshootingTitle">
-      <div class="troubleshooting-modal-header">
+  <section
+    id="troubleshootingPanel"
+    class="troubleshooting-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="troubleshootingTitle"
+    hidden
+  >
+    <div class="troubleshooting-card">
+      <div class="troubleshooting-head">
         <h2 id="troubleshootingTitle">Troubleshooting</h2>
-        <button id="closeTroubleshootingBtn" class="close-button" type="button">× Close</button>
+
+        <button
+          id="closeTroubleshootingBtn"
+          class="close-troubleshooting"
+          type="button"
+        >
+          × Close
+        </button>
       </div>
 
       <div class="troubleshooting-grid">
-        <div class="trouble-card">
+        <div>
           <h3>Refresh Hub 2</h3>
           <ol>
             <li>Tap <strong>Clear Cache</strong>.</li>
@@ -64,194 +156,137 @@
           </ol>
         </div>
 
-        <div class="trouble-card">
-          <h3>PC Chrome hard refresh</h3>
+        <div>
+          <h3>PC Chrome Hard Refresh</h3>
           <p>
-            Press <strong>Ctrl + Shift + R</strong> to force Chrome to reload the newest Hub files.
+            Press <strong>Ctrl + Shift + R</strong> to force Chrome to reload
+            the newest Hub files.
           </p>
         </div>
 
-        <div class="trouble-card">
-          <h3>iPhone Safari cache</h3>
+        <div>
+          <h3>iPhone Safari Cache</h3>
           <ol>
             <li>Open iPhone <strong>Settings</strong>.</li>
-            <li>Go to <strong>Apps → Safari → Advanced → Website Data</strong>.</li>
-            <li>Search for the site, delete matching website data, then reopen Hub 2.</li>
+            <li>
+              Go to <strong>Apps → Safari → Advanced → Website Data</strong>.
+            </li>
+            <li>
+              Search for the site, delete matching website data, then reopen
+              Hub 2.
+            </li>
           </ol>
         </div>
 
-        <div class="trouble-card">
-          <h3>Broken app link</h3>
+        <div>
+          <h3>Broken App Link</h3>
           <p>
-            If an app opens incorrectly or Return to Hub gives 404, check that the app folder is inside
+            If an app opens incorrectly or Return to Hub gives 404, check that
+            the app folder is inside
             <strong>apps/app-folder-name/</strong> and that the app uses
             <strong>../../index.html</strong> for the MBA Hub button.
           </p>
         </div>
 
-        <div class="trouble-card">
+        <div>
+          <h3>App Still Shows Old Version</h3>
+          <p>
+            Use <strong>Clear Cache</strong>, then reload. If the old version
+            still appears, close and reopen the browser.
+          </p>
+          <p>
+            On iPhone, remove the old Home Screen icon if needed and add the
+            Hub again after clearing Safari website data.
+          </p>
+        </div>
+
+        <div>
+          <h3>Service Worker Blocking Updates</h3>
+          <p>
+            If the live Hub does not match the files you uploaded, the browser
+            may be showing old cached files.
+          </p>
+          <p>
+            On PC Chrome, open Developer Tools, go to
+            <strong>Application → Service Workers</strong>, unregister the old
+            worker, then clear site data and reload.
+          </p>
+        </div>
+
+        <div>
           <h3>ChatGPT Recents Missing in Chrome</h3>
 
           <p>
-            If ChatGPT Recents or conversation history are missing in Chrome but still appear on your iPhone,
-            the chats are probably still saved to your account.
+            If ChatGPT Recents or conversation history are missing in Chrome
+            but still appear on your iPhone, the chats are probably still saved
+            to your account.
           </p>
 
           <p>
-            The issue is usually Chrome cache, cookies, site data, extensions, or temporary sync.
+            The issue is usually Chrome cache, cookies, site data, extensions,
+            or temporary sync.
           </p>
 
           <ol>
-            <li><strong>Hard refresh:</strong> Press <strong>Ctrl + Shift + R</strong>.</li>
-            <li><strong>Sign out and back in</strong> to ChatGPT.</li>
+            <li>
+              <strong>Hard refresh:</strong>
+              Press <strong>Ctrl + Shift + R</strong>.
+            </li>
+
+            <li>
+              <strong>Sign out and back in</strong> to ChatGPT.
+            </li>
+
             <li>
               <strong>Clear only ChatGPT site data:</strong>
-              open <code>chrome://settings/content/all</code>, search <code>chatgpt.com</code>,
-              delete the site data, reload ChatGPT, then sign in again.
+              open <code>chrome://settings/content/all</code>, search
+              <code>chatgpt.com</code>, delete the site data, reload ChatGPT,
+              then sign in again.
             </li>
-            <li><strong>Restart Chrome</strong> completely.</li>
-            <li><strong>Restart your PC</strong> if needed.</li>
+
+            <li>
+              <strong>Restart Chrome</strong> completely.
+            </li>
+
+            <li>
+              <strong>Restart your PC</strong> if needed.
+            </li>
           </ol>
 
           <p>
             <strong>Check what you are seeing:</strong> blank left sidebar,
-            “Unable to load history,” spinning/loading indicator, or missing sidebar.
+            “Unable to load history,” spinning/loading indicator, or missing
+            sidebar.
           </p>
 
-          <p><strong>Tip:</strong> A screenshot usually helps diagnose the problem faster.</p>
+          <p>
+            <strong>Tip:</strong> A screenshot usually helps diagnose the
+            problem faster.
+          </p>
+        </div>
+
+        <div>
+          <h3>Tags and Cross-Links</h3>
+          <p>
+            Tags should appear on each app card. Clicking a tag should filter
+            the Hub search to that tag.
+          </p>
+          <p>
+            Related app links should appear on app cards when the app has
+            related apps listed in <code>data.js</code>.
+          </p>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
-  <footer class="hub-footer">
-    <p>MBA Hub 2 · Version 2.1 · Updated 2026-06-27 · PWA</p>
+  <footer class="footer">
+    <p>
+      MBA Hub 2.1 · Updated 2026-06-27 · PWA · Offline after first load
+    </p>
   </footer>
 
   <script src="data.js"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const hubData = window.MBA_HUB_2 || {};
-      const categories = hubData.categories || [];
-      const apps = hubData.apps || [];
-
-      const categoriesContainer = document.getElementById("categoriesContainer");
-      const appsContainer = document.getElementById("appsContainer");
-      const searchInput = document.getElementById("searchInput");
-
-      const troubleshootingBtn = document.getElementById("troubleshootingBtn");
-      const troubleshootingOverlay = document.getElementById("troubleshootingOverlay");
-      const closeTroubleshootingBtn = document.getElementById("closeTroubleshootingBtn");
-      const clearCacheBtn = document.getElementById("clearCacheBtn");
-
-      function renderCategories(filterText = "") {
-        if (!categoriesContainer) return;
-
-        const term = filterText.toLowerCase().trim();
-
-        const filtered = categories.filter((category) => {
-          const text = `${category.title} ${category.description} ${category.id}`.toLowerCase();
-          return !term || text.includes(term);
-        });
-
-        categoriesContainer.innerHTML = filtered.map((category) => `
-          <article class="category-card">
-            <div class="card-icon">${category.icon || "🌊"}</div>
-            <h3>${category.title}</h3>
-            <p>${category.description || ""}</p>
-          </article>
-        `).join("");
-      }
-
-      function renderApps(filterText = "") {
-        if (!appsContainer) return;
-
-        const term = filterText.toLowerCase().trim();
-
-        const filtered = apps.filter((app) => {
-          const tags = Array.isArray(app.tags) ? app.tags.join(" ") : "";
-          const text = `${app.name} ${app.description} ${app.category} ${tags}`.toLowerCase();
-          return !term || text.includes(term);
-        });
-
-        appsContainer.innerHTML = filtered.map((app) => `
-          <article class="app-card">
-            <h3>${app.name}</h3>
-            <p>${app.description || ""}</p>
-            <p><strong>Category:</strong> ${app.category || "Uncategorized"}</p>
-            <p><strong>Status:</strong> ${app.status || "Active"}</p>
-            <a class="open-app-button" href="${app.url}">Open App</a>
-          </article>
-        `).join("");
-      }
-
-      function runSearch() {
-        const value = searchInput ? searchInput.value : "";
-        renderCategories(value);
-        renderApps(value);
-      }
-
-      if (searchInput) {
-        searchInput.addEventListener("input", runSearch);
-      }
-
-      function openTroubleshooting() {
-        troubleshootingOverlay.classList.remove("hidden");
-        troubleshootingOverlay.setAttribute("aria-hidden", "false");
-      }
-
-      function closeTroubleshooting() {
-        troubleshootingOverlay.classList.add("hidden");
-        troubleshootingOverlay.setAttribute("aria-hidden", "true");
-      }
-
-      if (troubleshootingBtn) {
-        troubleshootingBtn.addEventListener("click", openTroubleshooting);
-      }
-
-      if (closeTroubleshootingBtn) {
-        closeTroubleshootingBtn.addEventListener("click", closeTroubleshooting);
-      }
-
-      if (troubleshootingOverlay) {
-        troubleshootingOverlay.addEventListener("click", (event) => {
-          if (event.target === troubleshootingOverlay) {
-            closeTroubleshooting();
-          }
-        });
-      }
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          closeTroubleshooting();
-        }
-      });
-
-      if (clearCacheBtn) {
-        clearCacheBtn.addEventListener("click", async () => {
-          try {
-            if ("caches" in window) {
-              const cacheNames = await caches.keys();
-              await Promise.all(cacheNames.map((name) => caches.delete(name)));
-            }
-
-            if ("serviceWorker" in navigator) {
-              const registrations = await navigator.serviceWorker.getRegistrations();
-              await Promise.all(registrations.map((registration) => registration.update()));
-            }
-
-            alert("Cache cleared. Reloading Hub 2 now.");
-            window.location.reload();
-          } catch (error) {
-            alert("Cache clear attempted. If old content remains, press Ctrl + Shift + R on PC.");
-          }
-        });
-      }
-
-      renderCategories();
-      renderApps();
-    });
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
