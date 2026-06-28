@@ -1,4 +1,4 @@
-const CACHE_NAME = "mba-northern-elephant-seal-v1-1";
+const CACHE_NAME = "mba-northern-elephant-seal-v1-2";
 
 const ASSETS = [
   "./",

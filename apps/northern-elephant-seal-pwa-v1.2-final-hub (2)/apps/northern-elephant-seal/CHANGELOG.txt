@@ -1,0 +1,22 @@
+Northern Elephant Seal — CHANGELOG
+
+v1.2 FINAL HUB VERSION — 2026-06-28
+Backup Name: NorthernElephantSeal_Backup_20260628_084500
+Files Changed: index.html, app.js, data.js, sw.js, README.txt, CHANGELOG.txt, REGISTRY_UPDATE.txt, images/*
+Summary:
+- Prepared final Hub-ready version.
+- Reordered dropdown sections for a stronger volunteer floor-use flow.
+- Preserved image-rich presentation using the final 11 supplied images.
+- Added a separate Diet section so diet is easier to find from search and dropdown navigation.
+- Updated version to 1.2 and service worker cache to v1.2.
+- Kept top bar controls: ← MBA Hub, Clear Cache, Troubleshooting.
+- Kept working Troubleshooting close button and Escape-key support.
+- Kept search, Expand All, Collapse All, references, tags, related items, manifest, and offline service worker.
+Reason for Revision:
+Final preparation for installation into the MBA Hub.
+Approved By: User pending PC/iPhone test.
+
+v1.1 — 2026-06-26 / 2026-06-28
+- Added image-rich guide sections, search, references, and stronger troubleshooting controls.
+- Added all 11 elephant seal images.
+- Added README and registry support text.

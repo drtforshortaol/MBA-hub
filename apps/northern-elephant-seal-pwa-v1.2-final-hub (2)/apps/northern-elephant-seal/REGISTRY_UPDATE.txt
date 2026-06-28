@@ -1,0 +1,59 @@
+Suggested hub-registry.js entry:
+
+{
+  id: "northern-elephant-seal",
+  name: "Northern Elephant Seal",
+  folder: "northern-elephant-seal",
+  url: "apps/northern-elephant-seal/index.html",
+  category: "Animals",
+  appType: "Animal Guide App",
+  version: "1.2",
+  releaseDate: "2026-06-28",
+  lastUpdated: "2026-06-28",
+  purpose: "Volunteer companion reference for northern elephant seal guide conversations.",
+  description: "Image-rich MBA guide app covering size, migration, rookery behavior, annual cycle, underwater sleep, buoyancy science, diet, conservation comeback, visitor Q&A, and beach-safe messaging.",
+  tags: [
+    "elephant seal",
+    "northern elephant seal",
+    "marine mammal",
+    "pinniped",
+    "phocid",
+    "true seal",
+    "deep diving",
+    "migration",
+    "rookery",
+    "sleep",
+    "buoyancy",
+    "diet",
+    "conservation",
+    "beach safety",
+    "visitor question"
+  ],
+  relatedApps: [
+    "marine-mammal-rescue",
+    "great-white-shark",
+    "deep-sea",
+    "upwelling",
+    "responsible-wildlife-viewing"
+  ],
+  status: "Testing",
+  testingStatus: "Ready for PC Chrome and iPhone Safari testing",
+  notes: "Final Hub-ready v1.2 package. Related app links are placeholders until companion apps are connected. Verify image credits before public release."
+}
+
+Suggested hub-tags.js additions or confirmations:
+- elephant seal: species tag
+- northern elephant seal: species tag
+- marine mammal: animal group tag
+- pinniped: animal group tag
+- phocid: animal group tag
+- true seal: animal group tag
+- deep diving: behavior/concept tag
+- migration: behavior/concept tag
+- rookery: behavior/habitat tag
+- sleep: concept tag
+- buoyancy: concept tag
+- diet: natural history tag
+- conservation: conservation tag
+- beach safety: visitor service / wildlife viewing tag
+- visitor question: visitor question tag

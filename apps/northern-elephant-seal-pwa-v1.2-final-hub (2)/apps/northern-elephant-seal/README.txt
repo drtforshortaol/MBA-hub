@@ -1,10 +1,29 @@
 Northern Elephant Seal — MBA Guide App
-Version: 1.1
-Last Updated: 2026-06-26
-Status: Testing
+Version: 1.2 FINAL HUB VERSION
+Last Updated: 2026-06-28
+Status: Ready for Hub testing
 
 Purpose
 This app is a Monterey Bay Aquarium volunteer companion reference for northern elephant seal conversations.
+
+Final Hub Flow
+1. Snapshot / Quick Facts
+2. Where to See It
+3. Natural History
+4. Annual Cycle and Rookery
+5. Sleep Science
+6. Buoyancy and Drift Dives
+7. Diet
+8. Conservation Comeback
+9. Short Fun Kids Fact
+10. Story
+11. Beach-Safe Visitor Message
+12. Visitor Q&A
+13. Guide Notes
+14. Tags
+15. Related Items
+16. References and Image Notes
+17. Version / Last Updated
 
 Main Features
 - Mobile-first PWA layout
@@ -15,6 +34,7 @@ Main Features
 - Expand All / Collapse All
 - Dropdown guide sections
 - Image-rich natural history and conservation sections
+- Separate Diet section
 - Visitor Q&A
 - Guide notes
 - Tags and related app suggestions
@@ -31,6 +51,8 @@ apps/northern-elephant-seal/
   sw.js
   icon.svg
   README.txt
+  CHANGELOG.txt
+  REGISTRY_UPDATE.txt
   images/
     size_compare.jpg
     size_sketch.jpg
@@ -45,36 +67,20 @@ apps/northern-elephant-seal/
     cons_success.jpg
 
 How to Use
-1. Open the app from the MBA Hub or directly from its index.html.
-2. Use Search to find topics such as sleep, migration, diet, pup, shark, rookery, or conservation.
-3. Open dropdowns for guide facts, images, Q&A, and talking points.
-4. Use Clear Cache after updating files.
-5. Use Troubleshooting if the app shows old content or images do not load.
+1. Place the full northern-elephant-seal folder inside apps/.
+2. Open the app from the MBA Hub or directly from apps/northern-elephant-seal/index.html.
+3. Use Search to find topics such as sleep, migration, diet, pup, shark, rookery, buoyancy, or conservation.
+4. Open dropdowns for guide facts, images, Q&A, and talking points.
+5. Use Clear Cache after updating files.
+6. Use Troubleshooting if the app shows old content or images do not load.
 
 Known Issues
 - Related app links are placeholders until companion apps are created or connected.
 - Local rescue hotline should be verified with current MBA-approved volunteer materials before being shared.
 - Image source details should be improved if formal source tracking is required.
 
-Revision Summary
-v1.1 — 2026-06-26
-- Added complete top bar controls.
-- Added Clear Cache button.
-- Added Troubleshooting panel with working × Close button.
-- Added Escape-key close support.
-- Added search.
-- Added Expand All / Collapse All.
-- Added image-rich sections using approved filenames.
-- Added Sleep Science section.
-- Added Buoyancy and Drift Dives section.
-- Added Annual Cycle and Rookery section.
-- Added Beach-Safe Visitor Message section.
-- Added References and Image Notes section.
-- Updated service worker cache name to v1.1.
-- Updated manifest description and scope.
-
 Backup Name
-NorthernElephantSeal_Backup_20260626_172500
+NorthernElephantSeal_Backup_20260628_084500
 
 Testing Checklist
 PC Chrome: open app, confirm layout, buttons, troubleshooting open/close, Escape close, dropdowns, search, images, Clear Cache, Return to Hub.
@@ -82,4 +88,4 @@ iPhone Safari: confirm no horizontal scrolling, tap targets, troubleshooting ope
 
 References
 Images: User-provided app assets.
-Content: User-provided guide app notes and standard northern elephant seal natural history topics.
+Content: User-provided guide app notes and standard northern elephant seal natural history topics. Verify public-facing content and image permissions before public release.

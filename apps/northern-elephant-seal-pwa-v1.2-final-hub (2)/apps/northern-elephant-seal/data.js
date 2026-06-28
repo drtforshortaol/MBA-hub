@@ -4,8 +4,8 @@ window.APP_DATA = {
   category: "Animals",
   contentType: "ANIMAL",
   locationType: "VOLUNTEER_GUIDE_REFERENCE",
-  version: "1.1",
-  lastUpdated: "2026-06-26",
+  version: "1.2",
+  lastUpdated: "2026-06-28",
   summary: "Guide-friendly animal page for northern elephant seal size, migration, breeding, deep diving, underwater sleep, conservation comeback, and beach-safe visitor messaging.",
   images: [
     { key: "size_compare", src: "images/size_compare.jpg", alt: "Graphic comparing the southern elephant seal, northern elephant seal, and walrus by size.", caption: "Pinniped size comparison: northern elephant seals are among the largest pinnipeds." },
