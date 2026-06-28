@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2d4a1e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="MBA Leadership" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>MBA Leadership · New Arrivals</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="top-actions">
+      <a class="hub-button" href="../../index.html">← MBA Hub</a>
+      <button id="clearCacheBtn" class="small-button" type="button">Clear Cache</button>
+      <button id="helpBtn" class="small-button" type="button">Help</button>
+    </div>
+
+    <div class="brand-row">
+      <div class="mba-logo" aria-hidden="true">🐟</div>
+      <div>
+        <h1>Leadership · New Arrivals</h1>
+        <p>Monterey Bay Aquarium volunteer floor reference</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <section class="quick-ask">
+    <div class="section-label compact">Who do I ask?</div>
+    <div id="quickLinks" class="quick-link-row"></div>
+  </section>
+
+  <section class="controls">
+    <input id="searchInput" type="search" placeholder="Search name, role, tag, or detail…" autocomplete="off" />
+    <select id="tagFilter">
+      <option value="all">All tags</option>
+    </select>
+  </section>
+
+  <section id="updatePanel" class="notice" hidden>
+    <strong>Offline cache refreshed.</strong> Close and reopen the app if old content still appears.
+  </section>
+
+  <section id="helpPanel" class="notice" hidden>
+    <button id="closeHelpBtn" class="close-button" type="button">×</button>
+    <strong>Future updates:</strong> add leaders in <code>data.js</code>. Add photos to <code>images/</code>, then reference the image path.
+  </section>
+
+  <div class="section-label">People</div>
+  <section id="cards" class="cards"></section>
+</main>
+
+  <footer>Monterey Bay Aquarium · Volunteer Reference · MBA Hub</footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

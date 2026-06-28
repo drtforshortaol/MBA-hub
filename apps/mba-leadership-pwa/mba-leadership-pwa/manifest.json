@@ -1,0 +1,18 @@
+{
+  "name": "MBA Leadership · New Arrivals",
+  "short_name": "MBA Leadership",
+  "description": "Monterey Bay Aquarium leadership reference with offline dropdown cards and identification images.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#2d4a1e",
+  "theme_color": "#2d4a1e",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
