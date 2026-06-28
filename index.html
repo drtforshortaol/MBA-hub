@@ -1,16 +1,20 @@
+<!-- ROOT HUB FILE: MBA-hub/index.html -->
+<!-- Hub 2.2 Registry Safety Update -->
+<!-- Purpose: Root Hub page. Do not confuse this with app index.html files. -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>MBA Hub 2.1</title>
+  <title>MBA Hub 2.2</title>
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
 
   <meta name="theme-color" content="#003845" />
-  <meta name="description" content="MBA Hub 2.1 Monterey Bay Aquarium volunteer companion hub." />
+  <meta name="description" content="MBA Hub 2.2 Monterey Bay Aquarium volunteer companion hub." />
 </head>
 
 <body>
@@ -36,7 +40,7 @@
 
   <header class="hero">
     <div class="hero-badge">Monterey Bay Aquarium Volunteer Companion</div>
-    <h1>MBA Hub 2.1</h1>
+    <h1>MBA Hub 2.2</h1>
     <p>
       A mobile-first root navigation hub for dropdown apps, guide tools,
       reference apps, troubleshooting, tags, and cross-links.
@@ -46,10 +50,12 @@
   <main>
     <section id="hubNotice" class="notice-card">
       <div>
-        <strong>Hub 2.1 stable baseline.</strong>
-        Use search, category filters, tags, or app cards to find installed apps.
-        This version includes the updated troubleshooting panel, tag filtering,
-        and related-app cross-link support.
+        <strong>Hub 2.2 registry safety update.</strong>
+        The root Hub no longer uses <code>data.js</code> as the long-term
+        registry. Hub-wide app listings, tags, and cross-links now use
+        <code>hub-registry.js</code>, <code>hub-tags.js</code>, and
+        <code>hub-links.js</code>. Individual app content still stays inside
+        each app folder.
       </div>
 
       <button id="dismissNoticeBtn" type="button" aria-label="Dismiss notice">
@@ -76,6 +82,8 @@
           Clear Search
         </button>
       </div>
+
+      <div id="searchResultStatus" class="search-result-status" aria-live="polite"></div>
 
       <div class="controls" aria-label="Category controls">
         <button class="toggle-all-btn" id="expandAllBtn" type="button">
@@ -119,8 +127,15 @@
         Categories Version 2 protocol.
       </p>
       <p>
-        App content should be maintained inside each app folder and registered
-        in the Hub data file.
+        Hub-wide app listings are maintained in <code>hub-registry.js</code>.
+        Hub-wide tag definitions are maintained in <code>hub-tags.js</code>.
+        Optional intentional cross-links are maintained in
+        <code>hub-links.js</code>.
+      </p>
+      <p>
+        Individual app content should remain inside each app folder. Individual
+        app <code>data.js</code> files are for that app’s own internal content,
+        not for the root Hub registry.
       </p>
     </section>
   </main>
@@ -272,8 +287,27 @@
             the Hub search to that tag.
           </p>
           <p>
-            Related app links should appear on app cards when the app has
-            related apps listed in <code>data.js</code>.
+            Related app links can come from two places:
+            <code>relatedApps</code> in <code>hub-registry.js</code>, or
+            automatic shared-tag matching between apps.
+          </p>
+          <p>
+            Intentional special cross-links can be stored in
+            <code>hub-links.js</code>.
+          </p>
+        </div>
+
+        <div>
+          <h3>Hub Registry Safety</h3>
+          <p>
+            Root Hub registry files now use unique names:
+            <code>hub-registry.js</code>, <code>hub-tags.js</code>, and
+            <code>hub-links.js</code>.
+          </p>
+          <p>
+            Individual app content files may still be named
+            <code>data.js</code>, but they should stay inside the individual
+            app folder.
           </p>
         </div>
       </div>
@@ -282,11 +316,13 @@
 
   <footer class="footer">
     <p>
-      MBA Hub 2.1 · Updated 2026-06-27 · PWA · Offline after first load
+      MBA Hub 2.2 · Updated 2026-06-27 · PWA · Offline after first load
     </p>
   </footer>
 
-  <script src="data.js"></script>
+  <script src="hub-registry.js"></script>
+  <script src="hub-tags.js"></script>
+  <script src="hub-links.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

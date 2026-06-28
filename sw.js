@@ -1,11 +1,18 @@
-const CACHE_NAME = "mba-hub-2-1-stable-20260627a";
+// ROOT HUB FILE: MBA-hub/sw.js
+// Hub 2.2 Registry Safety Update
+// Purpose: Root Hub service worker and offline cache.
+// Do not confuse this with individual app sw.js files.
+
+const CACHE_NAME = "mba-hub-2-2-registry-safety-20260627a";
 
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
-  "./data.js",
+  "./hub-registry.js",
+  "./hub-tags.js",
+  "./hub-links.js",
   "./manifest.json",
   "./icon.svg"
 ];
@@ -22,17 +29,23 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((cacheName) => {
-            return cacheName.startsWith("mba-hub-") && cacheName !== CACHE_NAME;
-          })
-          .map((cacheName) => caches.delete(cacheName))
-      );
-    }).then(() => {
-      return self.clients.claim();
-    })
+    caches
+      .keys()
+      .then((cacheNames) => {
+        return Promise.all(
+          cacheNames
+            .filter((cacheName) => {
+              return (
+                cacheName.startsWith("mba-hub-") &&
+                cacheName !== CACHE_NAME
+              );
+            })
+            .map((cacheName) => caches.delete(cacheName))
+        );
+      })
+      .then(() => {
+        return self.clients.claim();
+      })
   );
 });
 
