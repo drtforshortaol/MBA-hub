@@ -125,6 +125,7 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "First installed app in Hub 2. App folder path is apps/information-center/. Return to Hub path remains ../../index.html."
     },
+
     {
       id: "northern-elephant-seal",
       name: "Northern Elephant Seal",
@@ -163,46 +164,80 @@ window.MBA_HUB_REGISTRY = {
         "upwelling",
         "responsible-wildlife-viewing"
       ],
-{
-  title: "Applied Water Science",
-  folder: "apps/applied-water-science-life-support/",
-  url: "apps/applied-water-science-life-support/index.html",
-  category: "Concepts",
-  secondaryCategories: ["Volunteer Tools", "Behind the Scenes", "Exhibits", "Animal Care"],
-  description: "Guide to the Aquarium's seawater intake, life support systems, exhibit water flow, filtration, biofouling, pigging operations, water chemistry, and volunteer talking points.",
-  tags: [
-    "Water Science",
-    "Applied Water Science",
-    "Life Support",
-    "Life Support Systems",
-    "Water Quality",
-    "Engineering",
-    "Infrastructure",
-    "Filtration",
-    "Water Intake",
-    "Water Flow",
-    "Biofouling",
-    "Pigging",
-    "Pipeline Pig",
-    "Barnacles",
-    "Mussels",
-    "Sea Stars",
-    "Upwelling",
-    "Open Sea",
-    "Kelp Forest",
-    "Monterey Bay Habitats",
-    "Sea Otters",
-    "Behind the Scenes",
-    "Volunteer Guide",
-    "Visitor Questions",
-    "Animal Care"
-  ]
-},
       status: "Active",
       testingStatus:
         "Temporary registry path corrected to match uploaded folder; needs PC Chrome, iPhone Safari, Clear Cache, Animals category display, direct app link, images, dropdowns, search, troubleshooting, and offline confirmation after upload.",
       notes:
         "Temporary path uses the uploaded folder name apps/northern-elephant-seal-pwa-v1.2-final-hub (2)/. Recommended cleanup later: rename/move files to apps/northern-elephant-seal/ and restore the clean registry URL apps/northern-elephant-seal/index.html. Return to Hub path remains ../../index.html."
+    },
+
+    {
+      id: "applied-water-science-life-support",
+      name: "Applied Water Science",
+      folder: "applied-water-science-life-support",
+      url: "apps/applied-water-science-life-support/index.html",
+      category: "concepts",
+      appType: "PWA dropdown reference app",
+      version: "1.0",
+      releaseDate: "2026-06-28",
+      lastUpdated: "2026-06-28",
+      purpose:
+        "Provide volunteer reference support for aquarium seawater intake, water quality, exhibit flow, biofouling, pigging, and life support systems.",
+      description:
+        "Guide to the Aquarium's seawater intake, life support systems, exhibit water flow, filtration, biofouling, pigging operations, water chemistry, and volunteer talking points.",
+      tags: [
+        "water science",
+        "applied water science",
+        "life support",
+        "life support systems",
+        "lss",
+        "water quality",
+        "engineering",
+        "infrastructure",
+        "filtration",
+        "mechanical filtration",
+        "biological filtration",
+        "protein skimmer",
+        "ozone",
+        "uv sterilization",
+        "water intake",
+        "pump house",
+        "water flow",
+        "flow rate",
+        "biofouling",
+        "pigging",
+        "pipeline pig",
+        "barnacles",
+        "mussels",
+        "hydroids",
+        "sea stars",
+        "tube worms",
+        "algae",
+        "biofilm",
+        "upwelling",
+        "open sea",
+        "kelp forest",
+        "monterey bay habitats",
+        "sea otters",
+        "behind the scenes",
+        "volunteer guide",
+        "visitor questions",
+        "animal care"
+      ],
+      relatedApps: [
+        "information-center",
+        "kelp-forest",
+        "open-sea",
+        "monterey-bay-habitats",
+        "sea-otters",
+        "upwelling",
+        "visitor-questions"
+      ],
+      status: "Active",
+      testingStatus:
+        "Needs PC Chrome, iPhone Safari, Clear Cache, Concepts category display, direct app link, dropdowns, search, troubleshooting, and offline confirmation after upload.",
+      notes:
+        "App folder path is apps/applied-water-science-life-support/. Return to Hub path remains ../../index.html."
     }
   ]
 };
