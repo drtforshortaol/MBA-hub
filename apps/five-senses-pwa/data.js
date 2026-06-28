@@ -1,4 +1,5 @@
 /* APP CONTENT DATA FILE: apps/five-senses-pwa/data.js */
+/* Preservation rebuild from original five-senses.html */
 
 window.USING_FIVE_SENSES_DATA = {
   app: {
@@ -6,9 +7,9 @@ window.USING_FIVE_SENSES_DATA = {
     appFolderName: "five-senses-pwa",
     hubCategory: "Volunteer Tools",
     appType: "PWA interpretation skills app",
-    version: "1.1",
+    version: "1.2",
     lastUpdatedDate: "2026-06-28",
-    sourceNote: "Preservation rebuild from original five-senses.html source material.",
+    sourceNote: "Preserved from original five-senses.html. Generic classroom content removed.",
     tags: [
       "five senses",
       "interpretation skills",
@@ -18,46 +19,12 @@ window.USING_FIVE_SENSES_DATA = {
       "touch",
       "hearing",
       "smell",
-      "sight",
       "taste",
       "multisensory interpretation"
     ]
   },
 
   senses: [
-    {
-      id: "sight",
-      icon: "👁️",
-      title: "Sight and Verbal Description",
-      tagline: "Visual exhibits · clear description · accessibility",
-      accent: "sight",
-      sections: [
-        {
-          label: "Why it matters",
-          type: "paragraph",
-          content:
-            "Many exhibits rely on sight. Interpreters can make visual exhibits more accessible by using clear verbal descriptions and by connecting visual observations with touch, sound, smell, and occasional taste comparisons."
-        },
-        {
-          label: "Ways to describe what guests see",
-          type: "list",
-          content: [
-            "Describe shape, size, color, movement, and position.",
-            "Use plain language before adding technical terms.",
-            "Connect visible features to animal adaptations or habitat conditions.",
-            "Pair visual descriptions with tactile, sound, smell, or taste comparisons when appropriate."
-          ]
-        },
-        {
-          label: "Example phrase",
-          type: "quote",
-          content:
-            "Look at how the kelp moves in the water. It sways back and forth with the current, almost like a forest moving in slow motion."
-        }
-      ],
-      tags: ["sight", "verbal description", "accessibility", "visual interpretation"]
-    },
-
     {
       id: "touch",
       icon: "🤚",
@@ -111,7 +78,7 @@ window.USING_FIVE_SENSES_DATA = {
           content: "Always provide clear guidance on how to touch animals safely."
         }
       ],
-      tags: ["touch", "tactile items", "texture", "touch pools", "safe touch"]
+      tags: ["touch", "tactile items", "texture language", "touch pools", "safe touch"]
     },
 
     {
@@ -232,31 +199,31 @@ window.USING_FIVE_SENSES_DATA = {
 
   guideSections: [
     {
+      id: "original-introduction",
+      title: "Original App Introduction",
+      body: [
+        "While many exhibits rely on sight, interpreters can deepen engagement by using clear verbal descriptions and involving touch, sound, smell, and occasionally taste.",
+        "Multisensory interpretation benefits all visitors — not only guests who are visually impaired."
+      ],
+      tags: ["introduction", "accessibility", "multisensory interpretation"]
+    },
+    {
       id: "how-to-use",
-      title: "How to Use This App With Guests",
+      title: "How to Use This With Guests",
       body: [
         "Use this as a quick interpretation prompt guide, not as a script.",
-        "Open the sense that fits the exhibit or guest question.",
-        "Choose one short sensory prompt and connect it to the animal, habitat, or adaptation being discussed.",
-        "Use touch, smell, sound, and taste comparisons only when they are appropriate, safe, and consistent with aquarium guidance."
+        "Open the sense that fits the exhibit, object, animal, habitat, or guest question.",
+        "Choose one short sensory prompt and connect it to the animal, habitat, adaptation, or guest experience.",
+        "Use touch, sound, smell, and taste comparisons only when appropriate, safe, and consistent with aquarium guidance."
       ],
-      tags: ["guide use", "guest conversations", "interpretation"]
+      tags: ["guest conversations", "interpretation", "volunteer tool"]
     },
     {
-      id: "accessibility-note",
-      title: "Accessibility Note",
-      body: [
-        "Multisensory interpretation helps all guests. It can be especially useful when a guest cannot easily see an exhibit, but it should not be limited only to guests who are visually impaired.",
-        "Clear verbal description, tactile objects, sound cues, smell cues, and familiar taste or texture comparisons can make an exhibit more memorable and easier to understand."
-      ],
-      tags: ["accessibility", "all guests", "multisensory"]
-    },
-    {
-      id: "safety-note",
-      title: "Safety and Accuracy Note",
+      id: "safety-and-accuracy",
+      title: "Safety and Accuracy",
       body: [
         "Always follow Monterey Bay Aquarium guidance for guest touch experiences.",
-        "Do not invite guests to smell, touch, taste, or handle anything unless it is approved and safe.",
+        "Do not invite guests to touch, smell, taste, or handle anything unless it is approved and safe.",
         "Use taste as a comparison tool unless an approved sampling experience is specifically available."
       ],
       tags: ["safety", "approved guidance", "accuracy"]
@@ -264,11 +231,12 @@ window.USING_FIVE_SENSES_DATA = {
   ],
 
   references: [
-    "Content source: Original user-provided file five-senses.html, created 2026-06-28, preserving MBA Hub · Interpretation Skills content.",
-    "Original title: Using the Five Senses.",
+    "Content source: Original user-provided five-senses.html, created 2026-06-28.",
+    "Original app title: Using the Five Senses.",
+    "Original header: MBA Hub · Interpretation Skills.",
     "Original purpose: Engage all senses to make exhibits accessible and memorable for every guest.",
-    "Image: Original SVG header visual created for this preservation rebuild and stored as images/header-five-senses-mba.svg.",
-    "Design: Converted into hub-compatible PWA folder format with index.html, styles.css, app.js, data.js, manifest.json, sw.js, icon.svg, README.txt, CHANGELOG.txt, and images folder.",
-    "Safety note: Follow Monterey Bay Aquarium-approved guidance for any live animal, tactile, taste, or smell-related guest interaction."
+    "Preserved sections: Touch, Hearing, Smell, and Taste.",
+    "Generic classroom/student content was removed from this repair version.",
+    "Safety note: Follow Monterey Bay Aquarium-approved guidance for any live animal, tactile, smell, taste, or guest interaction."
   ]
 };
