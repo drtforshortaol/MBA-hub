@@ -85,10 +85,6 @@ a {
   outline-offset: 2px;
 }
 
-.home-btn {
-  background: var(--ocean-mid);
-}
-
 .status-message {
   margin: 0.8rem auto 0;
   width: min(1100px, calc(100% - 1.4rem));
@@ -141,7 +137,7 @@ main {
 .tools-panel,
 .references-card,
 .category-section,
-.summary-card {
+.compact-summary {
   background: rgba(255, 255, 255, 0.94);
   border: 1px solid rgba(0, 95, 115, 0.16);
   border-radius: var(--radius);
@@ -221,6 +217,13 @@ main {
   outline-offset: 2px;
 }
 
+.search-result-status {
+  min-height: 1.35rem;
+  margin-top: 0.65rem;
+  color: var(--muted);
+  font-weight: 850;
+}
+
 .filter-row,
 .controls {
   display: flex;
@@ -241,29 +244,19 @@ main {
   border-color: var(--ocean);
 }
 
-.hub-summary {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 1rem;
+.compact-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
   margin-bottom: 1rem;
-}
-
-.summary-card {
-  padding: 1rem;
-  text-align: center;
-}
-
-.summary-number {
-  display: block;
-  font-size: 2rem;
-  font-weight: 950;
-  color: var(--ocean);
-}
-
-.summary-label {
-  display: block;
-  font-weight: 800;
+  padding: 0.75rem 1rem;
   color: var(--muted);
+  font-weight: 850;
+}
+
+.compact-summary strong {
+  color: var(--ocean-dark);
 }
 
 .category-list {
@@ -447,7 +440,7 @@ button.tag {
   color: var(--muted);
 }
 
-/* Troubleshooting modal */
+/* Modal panels: Install and Troubleshooting */
 
 .troubleshooting-panel {
   position: fixed;
@@ -558,6 +551,10 @@ button.tag {
 
   .app-grid {
     grid-template-columns: 1fr;
+  }
+
+  .compact-summary {
+    align-items: flex-start;
   }
 
   .troubleshooting-grid {

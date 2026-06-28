@@ -1,6 +1,6 @@
 // ROOT HUB FILE: MBA-hub/app.js
-// Hub 2.2 Registry Safety Update
-// Purpose: Root Hub behavior, search, filtering, app cards, tags, and related apps.
+// Hub 2.2.1 Final Lockdown Cleanup
+// Purpose: Root Hub behavior, install panel, search, filtering, app cards, tags, and related apps.
 // Do not confuse this with individual app app.js files.
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSearch();
   setupControls();
   setupNotice();
+  setupInstallPanel();
   setupTroubleshooting();
   setupClearCache();
   registerServiceWorker();
@@ -33,7 +34,7 @@ function normalize(value) {
 
 function getData() {
   return window.MBA_HUB_REGISTRY || {
-    version: "2.2",
+    version: "2.2.1",
     lastUpdated: "",
     title: "MBA Hub",
     description: "",
@@ -561,7 +562,7 @@ function setupControls() {
 function setupNotice() {
   const notice = document.getElementById("hubNotice");
   const dismiss = document.getElementById("dismissNoticeBtn");
-  const key = "mba-hub-2-notice-dismissed-v2.2";
+  const key = "mba-hub-2-notice-dismissed-v2.2.1";
 
   if (!notice || !dismiss) return;
 
@@ -572,6 +573,47 @@ function setupNotice() {
   dismiss.addEventListener("click", () => {
     localStorage.setItem(key, "true");
     notice.hidden = true;
+  });
+}
+
+function setupInstallPanel() {
+  const openButton = document.getElementById("installBtn");
+  const panel = document.getElementById("installPanel");
+  const closeButton = document.getElementById("closeInstallBtn");
+
+  if (!openButton || !panel || !closeButton) return;
+
+  const openPanel = () => {
+    panel.hidden = false;
+    openButton.setAttribute("aria-expanded", "true");
+
+    setTimeout(() => {
+      closeButton.focus();
+    }, 0);
+  };
+
+  const closePanel = () => {
+    panel.hidden = true;
+    openButton.setAttribute("aria-expanded", "false");
+
+    setTimeout(() => {
+      openButton.focus();
+    }, 0);
+  };
+
+  openButton.addEventListener("click", openPanel);
+  closeButton.addEventListener("click", closePanel);
+
+  panel.addEventListener("click", (event) => {
+    if (event.target === panel) {
+      closePanel();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !panel.hidden) {
+      closePanel();
+    }
   });
 }
 
@@ -622,7 +664,7 @@ function setupClearCache() {
   if (!button) return;
 
   button.addEventListener("click", async () => {
-    showStatus("Clearing Hub 2 cache and reloading…");
+    showStatus("Clearing Hub cache and reloading…");
 
     try {
       if ("serviceWorker" in navigator) {

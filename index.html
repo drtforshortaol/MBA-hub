@@ -1,5 +1,5 @@
 <!-- ROOT HUB FILE: MBA-hub/index.html -->
-<!-- Hub 2.2 Registry Safety Update -->
+<!-- Hub 2.2.1 Final Lockdown Cleanup -->
 <!-- Purpose: Root Hub page. Do not confuse this with app index.html files. -->
 
 <!DOCTYPE html>
@@ -8,18 +8,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>MBA Hub 2.2</title>
+  <title>MBA Hub 2.2.1</title>
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
 
   <meta name="theme-color" content="#003845" />
-  <meta name="description" content="MBA Hub 2.2 Monterey Bay Aquarium volunteer companion hub." />
+  <meta name="description" content="MBA Hub 2.2.1 Monterey Bay Aquarium volunteer companion hub." />
 </head>
 
 <body>
   <nav class="top-bar" aria-label="Top controls">
-    <a class="top-bar-btn home-btn" href="index.html">← MBA Hub 2</a>
+    <button
+      class="top-bar-btn"
+      id="installBtn"
+      type="button"
+      aria-expanded="false"
+      aria-controls="installPanel"
+    >
+      Install
+    </button>
 
     <button class="top-bar-btn" id="clearHubCacheBtn" type="button">
       Clear Cache
@@ -40,7 +48,7 @@
 
   <header class="hero">
     <div class="hero-badge">Monterey Bay Aquarium Volunteer Companion</div>
-    <h1>MBA Hub 2.2</h1>
+    <h1>MBA Hub 2.2.1</h1>
     <p>
       A mobile-first root navigation hub for dropdown apps, guide tools,
       reference apps, troubleshooting, tags, and cross-links.
@@ -50,12 +58,12 @@
   <main>
     <section id="hubNotice" class="notice-card">
       <div>
-        <strong>Hub 2.2 registry safety update.</strong>
-        The root Hub no longer uses <code>data.js</code> as the long-term
-        registry. Hub-wide app listings, tags, and cross-links now use
+        <strong>Hub 2.2.1 final lockdown cleanup.</strong>
+        The Hub top bar now contains Install, Clear Cache, and Troubleshooting.
+        The Return to Hub button belongs inside individual apps, not on the Hub itself.
+        Hub-wide app listings, tags, and cross-links are maintained in
         <code>hub-registry.js</code>, <code>hub-tags.js</code>, and
-        <code>hub-links.js</code>. Individual app content still stays inside
-        each app folder.
+        <code>hub-links.js</code>.
       </div>
 
       <button id="dismissNoticeBtn" type="button" aria-label="Dismiss notice">
@@ -102,16 +110,13 @@
       ></div>
     </section>
 
-    <section class="hub-summary" aria-label="Hub summary">
-      <article class="summary-card">
-        <span id="activeAppCount" class="summary-number">0</span>
-        <span class="summary-label">Active Apps</span>
-      </article>
-
-      <article class="summary-card">
-        <span id="categoryCount" class="summary-number">0</span>
-        <span class="summary-label">Categories</span>
-      </article>
+    <section class="compact-summary" aria-label="Hub summary">
+      <span><strong>Hub summary:</strong></span>
+      <span><span id="activeAppCount">0</span> active app(s)</span>
+      <span>·</span>
+      <span><span id="categoryCount">0</span> categories</span>
+      <span>·</span>
+      <span>Registry: Hub 2.2.1</span>
     </section>
 
     <section aria-labelledby="categoriesHeading">
@@ -139,6 +144,113 @@
       </p>
     </section>
   </main>
+
+  <section
+    id="installPanel"
+    class="troubleshooting-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="installTitle"
+    hidden
+  >
+    <div class="troubleshooting-card">
+      <div class="troubleshooting-head">
+        <h2 id="installTitle">Install MBA Hub</h2>
+
+        <button
+          id="closeInstallBtn"
+          class="close-troubleshooting"
+          type="button"
+        >
+          × Close
+        </button>
+      </div>
+
+      <div class="troubleshooting-grid">
+        <div>
+          <h3>Windows / PC</h3>
+          <p><strong>Best method: install from Chrome.</strong></p>
+          <ol>
+            <li>Open Chrome.</li>
+            <li>Go to <code>https://drtforshortaol.github.io/MBA-hub/</code>.</li>
+            <li>Look at the right side of the address bar.</li>
+            <li>Click the <strong>Install app</strong> icon or the <strong>Open in app / Install</strong> icon.</li>
+            <li>Choose <strong>Install</strong>.</li>
+            <li>After it opens as an app window, right-click its icon on the taskbar.</li>
+            <li>Click <strong>Pin to taskbar</strong>.</li>
+          </ol>
+        </div>
+
+        <div>
+          <h3>Windows if Install Icon Is Missing</h3>
+          <ol>
+            <li>Click the Chrome <strong>three-dot menu</strong>.</li>
+            <li>Choose <strong>Save and share</strong>.</li>
+            <li>Choose <strong>Install page as app</strong> or <strong>Create shortcut</strong>.</li>
+            <li>If available, check <strong>Open as window</strong>.</li>
+            <li>Click <strong>Create</strong> or <strong>Install</strong>.</li>
+          </ol>
+        </div>
+
+        <div>
+          <h3>iPhone</h3>
+          <ol>
+            <li>Open Safari.</li>
+            <li>Go to <code>https://drtforshortaol.github.io/MBA-hub/</code>.</li>
+            <li>Tap the <strong>Share</strong> button.</li>
+            <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+            <li>Rename it <strong>MBA Hub 2.2.1</strong>.</li>
+            <li>Tap <strong>Add</strong>.</li>
+          </ol>
+          <p>
+            The Hub will appear like an app icon on your iPhone Home Screen.
+          </p>
+        </div>
+
+        <div>
+          <h3>Android</h3>
+          <p><strong>Best method: install from Chrome.</strong></p>
+          <ol>
+            <li>Open Chrome on the Android phone or tablet.</li>
+            <li>Go to <code>https://drtforshortaol.github.io/MBA-hub/</code>.</li>
+            <li>Tap the <strong>three-dot menu</strong> in the upper-right corner.</li>
+            <li>Tap <strong>Add to Home screen</strong>.</li>
+            <li>If Chrome offers <strong>Install app</strong>, choose <strong>Install app</strong>.</li>
+            <li>If Chrome offers <strong>Create shortcut</strong>, choose <strong>Create shortcut</strong>.</li>
+            <li>Rename it <strong>MBA Hub 2.2.1</strong>.</li>
+            <li>Tap <strong>Add</strong> or <strong>Install</strong>.</li>
+          </ol>
+          <p>
+            The Hub should now appear as an app icon on the Android Home Screen.
+          </p>
+        </div>
+
+        <div>
+          <h3>After Installing</h3>
+          <p>Open the installed Hub icon and test:</p>
+          <ol>
+            <li><strong>Install</strong> opens and closes.</li>
+            <li><strong>Troubleshooting</strong> opens and closes.</li>
+            <li><strong>Clear Cache</strong> works.</li>
+            <li><strong>Information Center</strong> opens.</li>
+            <li>Search works.</li>
+            <li>Return to Hub works from inside individual apps.</li>
+          </ol>
+        </div>
+
+        <div>
+          <h3>If the Installed Version Looks Old</h3>
+          <ol>
+            <li>Open Safari or Chrome directly.</li>
+            <li>Go to <code>https://drtforshortaol.github.io/MBA-hub/index.html?v=2.2.1</code>.</li>
+            <li>Tap or click <strong>Clear Cache</strong>.</li>
+            <li>Remove the old Home Screen or desktop icon.</li>
+            <li>Reinstall from the clean URL: <code>https://drtforshortaol.github.io/MBA-hub/</code>.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section
     id="troubleshootingPanel"
@@ -194,6 +306,18 @@
         </div>
 
         <div>
+          <h3>Android Chrome Cache</h3>
+          <ol>
+            <li>Open Chrome.</li>
+            <li>Tap the <strong>three-dot menu</strong>.</li>
+            <li>Go to <strong>Settings → Privacy and security</strong>.</li>
+            <li>Tap <strong>Clear browsing data</strong>.</li>
+            <li>Select cached images/files and site data if needed.</li>
+            <li>Reopen the Hub from the clean URL.</li>
+          </ol>
+        </div>
+
+        <div>
           <h3>Broken App Link</h3>
           <p>
             If an app opens incorrectly or Return to Hub gives 404, check that
@@ -210,8 +334,8 @@
             still appears, close and reopen the browser.
           </p>
           <p>
-            On iPhone, remove the old Home Screen icon if needed and add the
-            Hub again after clearing Safari website data.
+            On iPhone or Android, remove the old Home Screen icon if needed and
+            add the Hub again after clearing website data.
           </p>
         </div>
 
@@ -225,58 +349,6 @@
             On PC Chrome, open Developer Tools, go to
             <strong>Application → Service Workers</strong>, unregister the old
             worker, then clear site data and reload.
-          </p>
-        </div>
-
-        <div>
-          <h3>ChatGPT Recents Missing in Chrome</h3>
-
-          <p>
-            If ChatGPT Recents or conversation history are missing in Chrome
-            but still appear on your iPhone, the chats are probably still saved
-            to your account.
-          </p>
-
-          <p>
-            The issue is usually Chrome cache, cookies, site data, extensions,
-            or temporary sync.
-          </p>
-
-          <ol>
-            <li>
-              <strong>Hard refresh:</strong>
-              Press <strong>Ctrl + Shift + R</strong>.
-            </li>
-
-            <li>
-              <strong>Sign out and back in</strong> to ChatGPT.
-            </li>
-
-            <li>
-              <strong>Clear only ChatGPT site data:</strong>
-              open <code>chrome://settings/content/all</code>, search
-              <code>chatgpt.com</code>, delete the site data, reload ChatGPT,
-              then sign in again.
-            </li>
-
-            <li>
-              <strong>Restart Chrome</strong> completely.
-            </li>
-
-            <li>
-              <strong>Restart your PC</strong> if needed.
-            </li>
-          </ol>
-
-          <p>
-            <strong>Check what you are seeing:</strong> blank left sidebar,
-            “Unable to load history,” spinning/loading indicator, or missing
-            sidebar.
-          </p>
-
-          <p>
-            <strong>Tip:</strong> A screenshot usually helps diagnose the
-            problem faster.
           </p>
         </div>
 
@@ -316,7 +388,7 @@
 
   <footer class="footer">
     <p>
-      MBA Hub 2.2 · Updated 2026-06-27 · PWA · Offline after first load
+      MBA Hub 2.2.1 · Updated 2026-06-27 · PWA · Offline after first load
     </p>
   </footer>
 
