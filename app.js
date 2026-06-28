@@ -1,6 +1,6 @@
 // ROOT HUB FILE: MBA-hub/app.js
-// Hub 2.2.1 Final Lockdown Cleanup
-// Purpose: Root Hub behavior, install panel, search, filtering, app cards, tags, and related apps.
+// Hub 2.2.2 Floor-Use Layout Cleanup
+// Purpose: Root Hub behavior, install panel, help panel, search, filtering, app cards, tags, and related apps.
 // Do not confuse this with individual app app.js files.
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupControls();
   setupNotice();
   setupInstallPanel();
-  setupTroubleshooting();
+  setupHelpPanel();
   setupClearCache();
   registerServiceWorker();
 });
@@ -34,7 +34,7 @@ function normalize(value) {
 
 function getData() {
   return window.MBA_HUB_REGISTRY || {
-    version: "2.2.1",
+    version: "2.2.2",
     lastUpdated: "",
     title: "MBA Hub",
     description: "",
@@ -562,7 +562,7 @@ function setupControls() {
 function setupNotice() {
   const notice = document.getElementById("hubNotice");
   const dismiss = document.getElementById("dismissNoticeBtn");
-  const key = "mba-hub-2-notice-dismissed-v2.2.1";
+  const key = "mba-hub-2-notice-dismissed-v2.2.2";
 
   if (!notice || !dismiss) return;
 
@@ -581,47 +581,18 @@ function setupInstallPanel() {
   const panel = document.getElementById("installPanel");
   const closeButton = document.getElementById("closeInstallBtn");
 
-  if (!openButton || !panel || !closeButton) return;
-
-  const openPanel = () => {
-    panel.hidden = false;
-    openButton.setAttribute("aria-expanded", "true");
-
-    setTimeout(() => {
-      closeButton.focus();
-    }, 0);
-  };
-
-  const closePanel = () => {
-    panel.hidden = true;
-    openButton.setAttribute("aria-expanded", "false");
-
-    setTimeout(() => {
-      openButton.focus();
-    }, 0);
-  };
-
-  openButton.addEventListener("click", openPanel);
-  closeButton.addEventListener("click", closePanel);
-
-  panel.addEventListener("click", (event) => {
-    if (event.target === panel) {
-      closePanel();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !panel.hidden) {
-      closePanel();
-    }
-  });
+  setupModal(openButton, panel, closeButton);
 }
 
-function setupTroubleshooting() {
-  const openButton = document.getElementById("troubleshootingBtn");
-  const panel = document.getElementById("troubleshootingPanel");
-  const closeButton = document.getElementById("closeTroubleshootingBtn");
+function setupHelpPanel() {
+  const openButton = document.getElementById("helpBtn");
+  const panel = document.getElementById("helpPanel");
+  const closeButton = document.getElementById("closeHelpBtn");
 
+  setupModal(openButton, panel, closeButton);
+}
+
+function setupModal(openButton, panel, closeButton) {
   if (!openButton || !panel || !closeButton) return;
 
   const openPanel = () => {

@@ -1,9 +1,9 @@
 // ROOT HUB FILE: MBA-hub/sw.js
-// Hub 2.2.1 Final Lockdown Cleanup
+// Hub 2.2.2 Floor-Use Layout Cleanup
 // Purpose: Root Hub service worker and offline cache.
 // Do not confuse this with individual app sw.js files.
 
-const CACHE_NAME = "mba-hub-2-2-1-final-lockdown-20260627a";
+const CACHE_NAME = "mba-hub-2-2-2-floor-use-20260627a";
 
 const CORE_ASSETS = [
   "./",

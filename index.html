@@ -1,5 +1,5 @@
 <!-- ROOT HUB FILE: MBA-hub/index.html -->
-<!-- Hub 2.2.1 Final Lockdown Cleanup -->
+<!-- Hub 2.2.2 Floor-Use Layout Cleanup -->
 <!-- Purpose: Root Hub page. Do not confuse this with app index.html files. -->
 
 <!DOCTYPE html>
@@ -8,19 +8,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>MBA Hub 2.2.1</title>
+  <title>MBA Hub 2.2.2</title>
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
 
   <meta name="theme-color" content="#003845" />
-  <meta name="description" content="MBA Hub 2.2.1 Monterey Bay Aquarium volunteer companion hub." />
+  <meta name="description" content="MBA Hub 2.2.2 Monterey Bay Aquarium volunteer companion hub." />
 </head>
 
 <body>
   <nav class="top-bar" aria-label="Top controls">
     <button
-      class="top-bar-btn"
+      class="top-bar-btn top-bar-btn-small"
       id="installBtn"
       type="button"
       aria-expanded="false"
@@ -29,18 +29,18 @@
       Install
     </button>
 
-    <button class="top-bar-btn" id="clearHubCacheBtn" type="button">
+    <button class="top-bar-btn top-bar-btn-primary" id="clearHubCacheBtn" type="button">
       Clear Cache
     </button>
 
     <button
-      class="top-bar-btn"
-      id="troubleshootingBtn"
+      class="top-bar-btn top-bar-btn-small"
+      id="helpBtn"
       type="button"
       aria-expanded="false"
-      aria-controls="troubleshootingPanel"
+      aria-controls="helpPanel"
     >
-      Troubleshooting
+      Help
     </button>
   </nav>
 
@@ -48,7 +48,7 @@
 
   <header class="hero">
     <div class="hero-badge">Monterey Bay Aquarium Volunteer Companion</div>
-    <h1>MBA Hub 2.2.1</h1>
+    <h1>MBA Hub 2.2.2</h1>
     <p>
       A mobile-first root navigation hub for dropdown apps, guide tools,
       reference apps, troubleshooting, tags, and cross-links.
@@ -56,14 +56,9 @@
   </header>
 
   <main>
-    <section id="hubNotice" class="notice-card">
+    <section id="hubNotice" class="notice-strip">
       <div>
-        <strong>Hub 2.2.1 final lockdown cleanup.</strong>
-        The Hub top bar now contains Install, Clear Cache, and Troubleshooting.
-        The Return to Hub button belongs inside individual apps, not on the Hub itself.
-        Hub-wide app listings, tags, and cross-links are maintained in
-        <code>hub-registry.js</code>, <code>hub-tags.js</code>, and
-        <code>hub-links.js</code>.
+        <strong>Hub 2.2.2</strong> · Floor-use layout · Registry-safe Hub
       </div>
 
       <button id="dismissNoticeBtn" type="button" aria-label="Dismiss notice">
@@ -116,57 +111,37 @@
       <span>·</span>
       <span><span id="categoryCount">0</span> categories</span>
       <span>·</span>
-      <span>Registry: Hub 2.2.1</span>
+      <span>Registry: Hub 2.2.2</span>
     </section>
 
     <section aria-labelledby="categoriesHeading">
       <h2 id="categoriesHeading">Categories and Apps</h2>
       <div id="categoryList" class="category-list"></div>
     </section>
-
-    <section class="references-card" aria-labelledby="referencesHeading">
-      <h2 id="referencesHeading">References and Notes</h2>
-      <p>
-        Hub categories, app registry structure, tags, testing expectations,
-        troubleshooting, and revision standards are based on the MBA Hub Core
-        Categories Version 2 protocol.
-      </p>
-      <p>
-        Hub-wide app listings are maintained in <code>hub-registry.js</code>.
-        Hub-wide tag definitions are maintained in <code>hub-tags.js</code>.
-        Optional intentional cross-links are maintained in
-        <code>hub-links.js</code>.
-      </p>
-      <p>
-        Individual app content should remain inside each app folder. Individual
-        app <code>data.js</code> files are for that app’s own internal content,
-        not for the root Hub registry.
-      </p>
-    </section>
   </main>
 
   <section
     id="installPanel"
-    class="troubleshooting-panel"
+    class="modal-panel"
     role="dialog"
     aria-modal="true"
     aria-labelledby="installTitle"
     hidden
   >
-    <div class="troubleshooting-card">
-      <div class="troubleshooting-head">
+    <div class="modal-card">
+      <div class="modal-head">
         <h2 id="installTitle">Install MBA Hub</h2>
 
         <button
           id="closeInstallBtn"
-          class="close-troubleshooting"
+          class="close-modal"
           type="button"
         >
           × Close
         </button>
       </div>
 
-      <div class="troubleshooting-grid">
+      <div class="modal-grid">
         <div>
           <h3>Windows / PC</h3>
           <p><strong>Best method: install from Chrome.</strong></p>
@@ -199,7 +174,7 @@
             <li>Go to <code>https://drtforshortaol.github.io/MBA-hub/</code>.</li>
             <li>Tap the <strong>Share</strong> button.</li>
             <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
-            <li>Rename it <strong>MBA Hub 2.2.1</strong>.</li>
+            <li>Rename it <strong>MBA Hub 2.2.2</strong>.</li>
             <li>Tap <strong>Add</strong>.</li>
           </ol>
           <p>
@@ -217,7 +192,7 @@
             <li>Tap <strong>Add to Home screen</strong>.</li>
             <li>If Chrome offers <strong>Install app</strong>, choose <strong>Install app</strong>.</li>
             <li>If Chrome offers <strong>Create shortcut</strong>, choose <strong>Create shortcut</strong>.</li>
-            <li>Rename it <strong>MBA Hub 2.2.1</strong>.</li>
+            <li>Rename it <strong>MBA Hub 2.2.2</strong>.</li>
             <li>Tap <strong>Add</strong> or <strong>Install</strong>.</li>
           </ol>
           <p>
@@ -230,7 +205,7 @@
           <p>Open the installed Hub icon and test:</p>
           <ol>
             <li><strong>Install</strong> opens and closes.</li>
-            <li><strong>Troubleshooting</strong> opens and closes.</li>
+            <li><strong>Help</strong> opens and closes.</li>
             <li><strong>Clear Cache</strong> works.</li>
             <li><strong>Information Center</strong> opens.</li>
             <li>Search works.</li>
@@ -242,7 +217,7 @@
           <h3>If the Installed Version Looks Old</h3>
           <ol>
             <li>Open Safari or Chrome directly.</li>
-            <li>Go to <code>https://drtforshortaol.github.io/MBA-hub/index.html?v=2.2.1</code>.</li>
+            <li>Go to <code>https://drtforshortaol.github.io/MBA-hub/index.html?v=2.2.2</code>.</li>
             <li>Tap or click <strong>Clear Cache</strong>.</li>
             <li>Remove the old Home Screen or desktop icon.</li>
             <li>Reinstall from the clean URL: <code>https://drtforshortaol.github.io/MBA-hub/</code>.</li>
@@ -253,32 +228,32 @@
   </section>
 
   <section
-    id="troubleshootingPanel"
-    class="troubleshooting-panel"
+    id="helpPanel"
+    class="modal-panel"
     role="dialog"
     aria-modal="true"
-    aria-labelledby="troubleshootingTitle"
+    aria-labelledby="helpTitle"
     hidden
   >
-    <div class="troubleshooting-card">
-      <div class="troubleshooting-head">
-        <h2 id="troubleshootingTitle">Troubleshooting</h2>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="helpTitle">Help</h2>
 
         <button
-          id="closeTroubleshootingBtn"
-          class="close-troubleshooting"
+          id="closeHelpBtn"
+          class="close-modal"
           type="button"
         >
           × Close
         </button>
       </div>
 
-      <div class="troubleshooting-grid">
+      <div class="modal-grid">
         <div>
-          <h3>Refresh Hub 2</h3>
+          <h3>Refresh Hub</h3>
           <ol>
             <li>Tap <strong>Clear Cache</strong>.</li>
-            <li>Let Hub 2 reload.</li>
+            <li>Let the Hub reload.</li>
             <li>Confirm the version at the bottom shows the newest date.</li>
           </ol>
         </div>
@@ -300,7 +275,7 @@
             </li>
             <li>
               Search for the site, delete matching website data, then reopen
-              Hub 2.
+              Hub.
             </li>
           </ol>
         </div>
@@ -370,16 +345,30 @@
         </div>
 
         <div>
+          <h3>References and Notes</h3>
+          <p>
+            Hub-wide app listings are maintained in <code>hub-registry.js</code>.
+            Hub-wide tag definitions are maintained in <code>hub-tags.js</code>.
+            Optional intentional cross-links are maintained in
+            <code>hub-links.js</code>.
+          </p>
+          <p>
+            Individual app content should remain inside each app folder.
+            Individual app <code>data.js</code> files are for that app’s own
+            internal content, not for the root Hub registry.
+          </p>
+        </div>
+
+        <div>
           <h3>Hub Registry Safety</h3>
           <p>
-            Root Hub registry files now use unique names:
+            Root Hub registry files use unique names:
             <code>hub-registry.js</code>, <code>hub-tags.js</code>, and
             <code>hub-links.js</code>.
           </p>
           <p>
-            Individual app content files may still be named
-            <code>data.js</code>, but they should stay inside the individual
-            app folder.
+            The root Hub should not use <code>data.js</code> as the long-term
+            registry.
           </p>
         </div>
       </div>
@@ -388,7 +377,7 @@
 
   <footer class="footer">
     <p>
-      MBA Hub 2.2.1 · Updated 2026-06-27 · PWA · Offline after first load
+      MBA Hub 2.2.2 · Updated 2026-06-27 · PWA · Offline after first load
     </p>
   </footer>
 
