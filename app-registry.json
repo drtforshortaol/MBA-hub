@@ -31,30 +31,34 @@
       "notes": "First installed app in Hub 2. Return to Hub path should resolve to ../../index.html."
     },
     {
-      "appName": "Five Senses Guide",
+      "appName": "Using the Five Senses",
       "appFolderName": "five-senses-pwa",
       "appPath": "apps/five-senses-pwa/index.html",
       "hubCategory": "Volunteer Tools",
-      "appType": "PWA dropdown learning app",
-      "version": "1.1",
+      "appType": "PWA interpretation skills app",
+      "version": "1.2",
       "releaseDate": "2026-06-28",
       "lastUpdatedDate": "2026-06-28",
-      "purpose": "Provide a compact educational guide to sight, hearing, smell, taste, and touch.",
-      "shortDescription": "Five senses learning guide with searchable dropdowns, activities, review questions, cache refresh, troubleshooting, and offline support.",
+      "purpose": "Help Monterey Bay Aquarium volunteers use multisensory interpretation to make exhibits accessible, engaging, and memorable.",
+      "shortDescription": "MBA interpretation skills guide for using touch, hearing, smell, and taste comparisons with guests.",
       "tags": [
         "five senses",
-        "learning",
-        "science",
-        "education",
-        "observation",
-        "activities",
-        "review questions",
-        "dropdown guide"
+        "interpretation skills",
+        "volunteer tools",
+        "accessibility",
+        "guest engagement",
+        "touch",
+        "hearing",
+        "smell",
+        "taste",
+        "multisensory interpretation"
       ],
-      "relatedApps": [],
+      "relatedApps": [
+        "information-center"
+      ],
       "status": "Active",
-      "testingStatus": "Needs PC Chrome, iPhone Safari, and offline confirmation after Hub upload.",
-      "notes": "Return to Hub path should resolve to ../../index.html. App folder should be apps/five-senses-pwa/."
+      "testingStatus": "Independent app opens correctly. Needs Hub display confirmation, PC Chrome, iPhone Safari, and offline testing.",
+      "notes": "Preservation rebuild from original five-senses.html. App folder should be apps/five-senses-pwa/."
     }
   ]
 }
