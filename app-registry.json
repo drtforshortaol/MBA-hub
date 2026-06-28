@@ -1,20 +1,34 @@
-{
-  "hubName": "MBA Hub 2",
-  "hubVersion": "2.0",
-  "lastUpdated": "2026-06-28",
-  "apps": [
+/* ROOT HUB REGISTRY FILE: MBA-hub/hub-registry.js */
+
+window.MBA_HUB_REGISTRY = {
+  version: "2.2.2",
+  lastUpdated: "2026-06-28",
+  title: "MBA Hub 2",
+  description: "Monterey Bay Aquarium volunteer tools and reference apps.",
+
+  categories: [
     {
-      "appName": "Information Center Handbook",
-      "appFolderName": "information-center",
-      "appPath": "apps/information-center/index.html",
-      "hubCategory": "Volunteer Tools",
-      "appType": "PWA dropdown reference app",
-      "version": "2.1",
-      "releaseDate": "2026-06-27",
-      "lastUpdatedDate": "2026-06-27",
-      "purpose": "Provide quick Information Center reference support for Monterey Bay Aquarium volunteers.",
-      "shortDescription": "Information Center handbook with search, dropdown sections, quick references, cache refresh, and troubleshooting.",
-      "tags": [
+      id: "volunteer-tools",
+      title: "Volunteer Tools",
+      description: "Reference tools and interpretation support for MBA volunteers.",
+      icon: "🧰"
+    }
+  ],
+
+  apps: [
+    {
+      id: "information-center",
+      name: "Information Center Handbook",
+      folder: "information-center",
+      url: "apps/information-center/index.html",
+      category: "volunteer-tools",
+      appType: "PWA dropdown reference app",
+      version: "2.1",
+      releaseDate: "2026-06-27",
+      lastUpdatedDate: "2026-06-27",
+      purpose: "Provide quick Information Center reference support for Monterey Bay Aquarium volunteers.",
+      description: "Information Center handbook with search, dropdown sections, quick references, cache refresh, and troubleshooting.",
+      tags: [
         "information center",
         "volunteer tools",
         "handbook",
@@ -25,23 +39,24 @@
         "wheelchair",
         "directions"
       ],
-      "relatedApps": [],
-      "status": "Active",
-      "testingStatus": "Needs PC Chrome, iPhone Safari, and offline confirmation after Hub 2 upload.",
-      "notes": "First installed app in Hub 2. Return to Hub path should resolve to ../../index.html."
+      relatedApps: [],
+      status: "Active",
+      testingStatus: "Needs PC Chrome, iPhone Safari, and offline confirmation after Hub 2 upload.",
+      notes: "First installed app in Hub 2. Return to Hub path should resolve to ../../index.html."
     },
     {
-      "appName": "Using the Five Senses",
-      "appFolderName": "five-senses-pwa",
-      "appPath": "apps/five-senses-pwa/index.html",
-      "hubCategory": "Volunteer Tools",
-      "appType": "PWA interpretation skills app",
-      "version": "1.2",
-      "releaseDate": "2026-06-28",
-      "lastUpdatedDate": "2026-06-28",
-      "purpose": "Help Monterey Bay Aquarium volunteers use multisensory interpretation to make exhibits accessible, engaging, and memorable.",
-      "shortDescription": "MBA interpretation skills guide for using touch, hearing, smell, and taste comparisons with guests.",
-      "tags": [
+      id: "five-senses-pwa",
+      name: "Using the Five Senses",
+      folder: "five-senses-pwa",
+      url: "apps/five-senses-pwa/index.html",
+      category: "volunteer-tools",
+      appType: "PWA interpretation skills app",
+      version: "1.2",
+      releaseDate: "2026-06-28",
+      lastUpdatedDate: "2026-06-28",
+      purpose: "Help Monterey Bay Aquarium volunteers use multisensory interpretation to make exhibits accessible, engaging, and memorable.",
+      description: "MBA interpretation skills guide for using touch, hearing, smell, and taste comparisons with guests.",
+      tags: [
         "five senses",
         "interpretation skills",
         "volunteer tools",
@@ -53,12 +68,12 @@
         "taste",
         "multisensory interpretation"
       ],
-      "relatedApps": [
+      relatedApps: [
         "information-center"
       ],
-      "status": "Active",
-      "testingStatus": "Independent app opens correctly. Needs Hub display confirmation, PC Chrome, iPhone Safari, and offline testing.",
-      "notes": "Preservation rebuild from original five-senses.html. App folder should be apps/five-senses-pwa/."
+      status: "Active",
+      testingStatus: "Independent app opens correctly. Needs Hub display confirmation, PC Chrome, iPhone Safari, and offline testing.",
+      notes: "Preservation rebuild from original five-senses.html. App folder should be apps/five-senses-pwa/."
     }
   ]
-}
+};

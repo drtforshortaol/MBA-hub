@@ -127,6 +127,42 @@ window.MBA_HUB_REGISTRY = {
     },
 
     {
+      id: "five-senses-pwa",
+      name: "Using the Five Senses",
+      folder: "five-senses-pwa",
+      url: "apps/five-senses-pwa/index.html",
+      category: "volunteer-tools",
+      appType: "PWA interpretation skills app",
+      version: "1.2",
+      releaseDate: "2026-06-28",
+      lastUpdated: "2026-06-28",
+      purpose:
+        "Help Monterey Bay Aquarium volunteers use multisensory interpretation to make exhibits accessible, engaging, and memorable.",
+      description:
+        "MBA interpretation skills guide for using touch, hearing, smell, and taste comparisons with guests.",
+      tags: [
+        "five senses",
+        "interpretation skills",
+        "volunteer tools",
+        "accessibility",
+        "guest engagement",
+        "touch",
+        "hearing",
+        "smell",
+        "taste",
+        "multisensory interpretation"
+      ],
+      relatedApps: [
+        "information-center"
+      ],
+      status: "Active",
+      testingStatus:
+        "Independent app opens correctly. Needs Hub display confirmation, PC Chrome, iPhone Safari, Clear Cache, troubleshooting, search, and offline testing.",
+      notes:
+        "Preservation rebuild from original five-senses.html. App folder path is apps/five-senses-pwa/. Return to Hub path remains ../../index.html."
+    },
+
+    {
       id: "northern-elephant-seal",
       name: "Northern Elephant Seal",
       folder: "northern-elephant-seal-pwa-v1.2-final-hub (2)",
