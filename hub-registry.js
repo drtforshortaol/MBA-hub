@@ -1,7 +1,5 @@
 // ROOT HUB REGISTRY FILE: MBA-hub/hub-registry.js
 // Hub 2.2 Registry Safety Update
-// Purpose: Master list of installed Hub apps.
-// Do not confuse this file with individual app data.js files.
 
 window.MBA_HUB_REGISTRY = {
   version: "2.2",
@@ -152,9 +150,7 @@ window.MBA_HUB_REGISTRY = {
         "taste",
         "multisensory interpretation"
       ],
-      relatedApps: [
-        "information-center"
-      ],
+      relatedApps: ["information-center"],
       status: "Active",
       testingStatus:
         "Independent app opens correctly. Needs Hub display confirmation, PC Chrome, iPhone Safari, Clear Cache, troubleshooting, search, and offline testing.",
@@ -206,21 +202,38 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "Temporary path uses the uploaded folder name apps/northern-elephant-seal-pwa-v1.2-final-hub (2)/. Recommended cleanup later: rename/move files to apps/northern-elephant-seal/ and restore the clean registry URL apps/northern-elephant-seal/index.html. Return to Hub path remains ../../index.html."
     },
-{
-  id: "mba-leadership",
-  title: "MBA Leadership",
-  subtitle: "New leadership arrivals with photos for floor identification.",
-  category: "Aquarium Updates",
-  url: "apps/mba-leadership/index.html",
-  tags: [
-    "leadership",
-    "new arrivals",
-    "staff",
-    "volunteer reference",
-    "guide program",
-    "executive team"
-  ]
-},
+
+    {
+      id: "mba-leadership",
+      name: "MBA Leadership",
+      folder: "mba-leadership",
+      url: "apps/mba-leadership/index.html",
+      category: "aquarium-updates",
+      appType: "PWA dropdown reference app",
+      version: "1.0",
+      releaseDate: "2026-06-28",
+      lastUpdated: "2026-06-28",
+      purpose:
+        "Provide Monterey Bay Aquarium volunteers with leadership arrivals and photos for floor identification.",
+      description:
+        "New leadership arrivals with photos, dropdown cards, tags, search, quick links, and offline support.",
+      tags: [
+        "leadership",
+        "new arrivals",
+        "staff",
+        "volunteer reference",
+        "guide program",
+        "executive team",
+        "aquarium updates"
+      ],
+      relatedApps: ["information-center"],
+      status: "Active",
+      testingStatus:
+        "Needs PC Chrome, iPhone Safari, Clear Cache, Aquarium Updates category display, direct app link, images, dropdowns, search, quick links, and offline confirmation.",
+      notes:
+        "App folder path is apps/mba-leadership/. Return to Hub path remains ../../index.html."
+    },
+
     {
       id: "applied-water-science-life-support",
       name: "Applied Water Science",
