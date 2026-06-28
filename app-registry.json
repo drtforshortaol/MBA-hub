@@ -1,7 +1,7 @@
 {
   "hubName": "MBA Hub 2",
   "hubVersion": "2.0",
-  "lastUpdated": "2026-06-27",
+  "lastUpdated": "2026-06-28",
   "apps": [
     {
       "appName": "Information Center Handbook",
@@ -29,6 +29,32 @@
       "status": "Active",
       "testingStatus": "Needs PC Chrome, iPhone Safari, and offline confirmation after Hub 2 upload.",
       "notes": "First installed app in Hub 2. Return to Hub path should resolve to ../../index.html."
+    },
+    {
+      "appName": "Five Senses Guide",
+      "appFolderName": "five-senses-pwa",
+      "appPath": "apps/five-senses-pwa/index.html",
+      "hubCategory": "Volunteer Tools",
+      "appType": "PWA dropdown learning app",
+      "version": "1.1",
+      "releaseDate": "2026-06-28",
+      "lastUpdatedDate": "2026-06-28",
+      "purpose": "Provide a compact educational guide to sight, hearing, smell, taste, and touch.",
+      "shortDescription": "Five senses learning guide with searchable dropdowns, activities, review questions, cache refresh, troubleshooting, and offline support.",
+      "tags": [
+        "five senses",
+        "learning",
+        "science",
+        "education",
+        "observation",
+        "activities",
+        "review questions",
+        "dropdown guide"
+      ],
+      "relatedApps": [],
+      "status": "Active",
+      "testingStatus": "Needs PC Chrome, iPhone Safari, and offline confirmation after Hub upload.",
+      "notes": "Return to Hub path should resolve to ../../index.html. App folder should be apps/five-senses-pwa/."
     }
   ]
 }
