@@ -1,0 +1,231 @@
+<!-- APP FILE: apps/five-senses-pwa/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Five Senses Guide</title>
+
+  <meta
+    name="description"
+    content="A compact dropdown-first guide to the five senses: sight, hearing, smell, taste, and touch."
+  />
+
+  <meta name="theme-color" content="#315f7d" />
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+
+  <div class="app-shell">
+    <header class="app-header">
+      <nav class="top-bar" aria-label="App controls">
+        <a class="top-button hub-button" href="../../index.html" aria-label="Return to Hub">
+          ← Hub
+        </a>
+
+        <button class="top-button" id="clearCacheButton" type="button">
+          Clear Cache
+        </button>
+
+        <button
+          class="top-button"
+          id="troubleshootingOpenButton"
+          type="button"
+          aria-haspopup="dialog"
+          aria-controls="troubleshootingPanel"
+        >
+          Troubleshooting
+        </button>
+      </nav>
+
+      <section class="hero-card" aria-labelledby="appTitle">
+        <div class="hero-text">
+          <p class="eyebrow">Learning Tool</p>
+          <h1 id="appTitle">Five Senses Guide</h1>
+          <p class="app-description">
+            A simple, mobile-friendly guide to sight, hearing, smell, taste, and touch.
+            Use the dropdowns to explore each sense, quick examples, activity ideas, and
+            review questions.
+          </p>
+
+          <p class="version-pill" id="versionDisplay">
+            Version v1.1 · Updated 2026-06-28
+          </p>
+        </div>
+
+        <div class="hero-image-wrap">
+          <img
+            src="images/header-five-senses.svg"
+            alt="Colorful icon-style illustration representing the five senses"
+            class="hero-image"
+          />
+        </div>
+      </section>
+
+      <section class="notice" id="notificationArea" aria-label="App notice">
+        <div>
+          <strong>Notice:</strong>
+          This app is designed as an educational reference tool. Clear cache after updates if
+          the old version still appears.
+        </div>
+        <button id="dismissNoticeButton" class="notice-close" type="button" aria-label="Dismiss notice">
+          ×
+        </button>
+      </section>
+    </header>
+
+    <main id="mainContent" class="main-content">
+      <section class="control-panel" aria-labelledby="toolsHeading">
+        <h2 id="toolsHeading">Tools</h2>
+
+        <label class="search-label" for="searchInput">Search this app</label>
+        <input
+          id="searchInput"
+          class="search-input"
+          type="search"
+          placeholder="Search sight, smell, activity, question..."
+          autocomplete="off"
+        />
+
+        <div class="button-row" aria-label="Dropdown controls">
+          <button id="expandAllButton" class="secondary-button" type="button">
+            Expand All
+          </button>
+
+          <button id="collapseAllButton" class="secondary-button" type="button">
+            Collapse All
+          </button>
+
+          <button id="resetSearchButton" class="secondary-button" type="button">
+            Reset Search
+          </button>
+        </div>
+
+        <p class="result-note" id="resultNote" aria-live="polite"></p>
+      </section>
+
+      <section class="featured-card" aria-labelledby="quickUseHeading">
+        <h2 id="quickUseHeading">Quick Use</h2>
+        <p>
+          Open one sense at a time for short explanations, examples, activities, and review
+          prompts. This structure works well for quick lessons, family learning, classroom
+          review, or self-guided exploration.
+        </p>
+      </section>
+
+      <section class="dropdown-section" aria-labelledby="senseSectionsHeading">
+        <h2 id="senseSectionsHeading">Five Senses</h2>
+        <div id="senseList" class="accordion-list"></div>
+      </section>
+
+      <section class="dropdown-section" aria-labelledby="extraSectionsHeading">
+        <h2 id="extraSectionsHeading">Extra Learning Sections</h2>
+        <div id="extraList" class="accordion-list"></div>
+      </section>
+
+      <section class="dropdown-section" aria-labelledby="referencesHeading">
+        <h2 id="referencesHeading">References and Image Notes</h2>
+
+        <details class="accordion-item">
+          <summary>Sources and Notes</summary>
+          <div class="accordion-content">
+            <ul id="referenceList"></ul>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>
+        Five Senses Guide · v1.1 · Last updated 2026-06-28
+      </p>
+      <p>
+        Tags: five senses, learning, science, observation, education, dropdown guide
+      </p>
+    </footer>
+  </div>
+
+  <section
+    id="troubleshootingPanel"
+    class="troubleshooting-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="troubleshootingTitle"
+    hidden
+  >
+    <div class="troubleshooting-card">
+      <div class="troubleshooting-header">
+        <h2 id="troubleshootingTitle">Troubleshooting</h2>
+        <button
+          id="troubleshootingCloseButton"
+          class="close-button"
+          type="button"
+          aria-label="Close troubleshooting panel"
+        >
+          × Close
+        </button>
+      </div>
+
+      <div class="troubleshooting-content">
+        <details open>
+          <summary>The app still shows the old version</summary>
+          <p>
+            Tap <strong>Clear Cache</strong>, then reload the app. On PC, you can also press
+            <strong>Ctrl + Shift + R</strong>.
+          </p>
+        </details>
+
+        <details>
+          <summary>The app looks broken</summary>
+          <p>
+            Refresh the page. If that does not work, use Clear Cache and reopen the app.
+          </p>
+        </details>
+
+        <details>
+          <summary>iPhone Safari cache clearing</summary>
+          <ol>
+            <li>Open Settings.</li>
+            <li>Open Safari.</li>
+            <li>Go to Advanced, then Website Data.</li>
+            <li>Search for the hosting site keyword, such as “git”.</li>
+            <li>Delete matching website data and reopen the app.</li>
+          </ol>
+        </details>
+
+        <details>
+          <summary>Offline mode does not work</summary>
+          <p>
+            Open the app while online first. Let it fully load, then test offline again.
+          </p>
+        </details>
+
+        <details>
+          <summary>Return to Hub does not work</summary>
+          <p>
+            Use the browser back button or reopen the Hub directly. Then check whether this app
+            is stored at <code>apps/five-senses-pwa/</code> so the Hub link path works.
+          </p>
+        </details>
+
+        <details>
+          <summary>Troubleshooting panel will not close</summary>
+          <p>
+            Tap <strong>× Close</strong>. On PC, press <strong>Escape</strong>. If needed,
+            refresh the page and then use Clear Cache.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
