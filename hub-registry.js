@@ -123,7 +123,48 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "First installed app in Hub 2. App folder path is apps/information-center/. Return to Hub path remains ../../index.html."
     },
-
+{
+  id: "interpretation-principles",
+  name: "Six Interpretation Principles",
+  folder: "interpretation-principles",
+  url: "apps/interpretation-principles/index.html",
+  category: "volunteer-tools",
+  appType: "PWA interpretation reference app",
+  version: "1.0",
+  releaseDate: "2026-06-28",
+  lastUpdated: "2026-06-28",
+  purpose:
+    "Provide Monterey Bay Aquarium volunteers with Freeman Tilden's six interpretation principles adapted for effective guest engagement and guide conversations.",
+  description:
+    "Volunteer guide to the six interpretation principles with dropdown lessons, examples, visitor conversations, child engagement techniques, tags, cross-links, search, and offline support.",
+  tags: [
+    "interpretation",
+    "Freeman Tilden",
+    "guide talks",
+    "visitor engagement",
+    "storytelling",
+    "questioning",
+    "children",
+    "guest interaction",
+    "communication",
+    "volunteer tools",
+    "education",
+    "training",
+    "kelp forest",
+    "visitor questions"
+  ],
+  relatedApps: [
+    "five-senses-pwa",
+    "information-center",
+    "mba-leadership",
+    "applied-water-science-life-support"
+  ],
+  status: "Active",
+  testingStatus:
+    "Needs PC Chrome, iPhone Safari, Clear Cache, Volunteer Tools category display, Guide Talks and Concepts cross-links, dropdown testing, search, tag display, troubleshooting, and offline confirmation.",
+  notes:
+    "App folder path is apps/interpretation-principles/. Return to Hub path remains ../../index.html."
+},
     {
       id: "five-senses-pwa",
       name: "Using the Five Senses",

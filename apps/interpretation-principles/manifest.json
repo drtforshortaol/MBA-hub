@@ -1,0 +1,18 @@
+{
+  "name": "MBA Six Interpretation Principles",
+  "short_name": "MBA Principles",
+  "description": "MBA Volunteer Hub app for interpretation principles, tags, links, and guide prompts.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F5F0E8",
+  "theme_color": "#005F8E",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#005F8E" />
+  <meta name="description" content="MBA Volunteer Hub PWA dropdown app for six interpretation principles, tags, links, and guide prompts." />
+  <title>Six Interpretation Principles · MBA Hub</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="top-actions">
+      <a class="hub-button" href="../../index.html">← MBA Hub</a>
+      <button id="installHelpBtn" class="small-button" type="button">Install</button>
+      <button id="troubleshootingBtn" class="small-button" type="button">Troubleshooting</button>
+      <button id="clearCacheBtn" class="small-button" type="button">Clear Cache</button>
+    </div>
+    <div class="eyebrow">MBA Volunteer Hub · Volunteer Tools</div>
+    <h1>Six Interpretation Principles</h1>
+    <p>Fast guide prompts for meaningful visitor conversations</p>
+  </header>
+
+  <div class="wave-bar" aria-hidden="true"></div>
+
+  <main>
+    <section class="notice" id="statusMessage" hidden></section>
+
+    <section class="controls" aria-label="Search and filters">
+      <label class="search-label" for="searchInput">Search principles, examples, tags</label>
+      <input id="searchInput" class="search-input" type="search" placeholder="Try: kids, kelp, questions, storytelling" autocomplete="off" />
+
+      <div class="filter-row">
+        <select id="tagSelect" class="tag-select" aria-label="Filter by tag">
+          <option value="">All tags</option>
+        </select>
+        <button id="resetBtn" class="small-button light" type="button">Reset</button>
+      </div>
+
+      <div id="tagCloud" class="tag-cloud" aria-label="Tag shortcuts"></div>
+    </section>
+
+    <section class="quick-card">
+      <h2>Floor reminder</h2>
+      <p><strong>Relate → Reveal → Story → Engage → Whole → Adjust.</strong> Start with what the visitor notices, then connect the meaning.</p>
+    </section>
+
+    <section id="principlesList" class="principles-list" aria-label="Interpretation principles"></section>
+
+    <section class="links-card">
+      <h2>Hub links</h2>
+      <div id="hubLinks" class="link-list"></div>
+
+      <h2>Related apps</h2>
+      <div id="relatedLinks" class="link-list"></div>
+    </section>
+  </main>
+
+  <dialog id="installDialog" class="help-dialog">
+    <form method="dialog">
+      <button class="dialog-close" aria-label="Close">×</button>
+      <h2>Install on phone</h2>
+      <p><strong>iPhone:</strong> Open in Safari → Share → Add to Home Screen.</p>
+      <p><strong>Android:</strong> Open in Chrome → menu ⋮ → Add to Home screen or Install app.</p>
+      <p>After the first online load, this app is cached for offline floor use.</p>
+    </form>
+  </dialog>
+
+  <dialog id="troubleshootingDialog" class="help-dialog">
+    <form method="dialog">
+      <button class="dialog-close" aria-label="Close">×</button>
+      <h2>Troubleshooting</h2>
+      <p><strong>App looks old?</strong> Tap Clear Cache, then reload once while online.</p>
+      <p><strong>404 from Hub?</strong> Confirm the folder path is <code>apps/interpretation-principles/index.html</code>.</p>
+      <p><strong>Not showing in Hub?</strong> Confirm the registry entry URL exactly matches <code>apps/interpretation-principles/index.html</code>.</p>
+    </form>
+  </dialog>
+
+  <footer>Monterey Bay Aquarium · Volunteer Reference · MBA Hub</footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
