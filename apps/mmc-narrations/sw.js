@@ -1,6 +1,6 @@
 /* APP FILE: apps/mmc-narrations/sw.js */
 
-const CACHE_NAME = "mmc-narrations-v1-0-20260629";
+const CACHE_NAME = "mmc-narrations-v1-0-1-20260629";
 
 const APP_SHELL = [
   "./",
