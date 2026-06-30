@@ -201,13 +201,13 @@ window.MBA_HUB_REGISTRY = {
         "Preservation rebuild from original five-senses.html. App folder path is apps/five-senses-pwa/. Return to Hub path remains ../../index.html."
     },
     {
-      id: "mmc-narrations",
-      name: "MMC Narrations",
+     id: "mmc-narrations",
+name: "Marine Mammal Cart",
       folder: "mmc-narrations",
       url: "apps/mmc-narrations/index.html",
       category: "exhibits",
       appType: "PWA dropdown exhibit narration app",
-      version: "1.0",
+      version: "1.1",
       releaseDate: "2026-06-29",
       lastUpdated: "2026-06-29",
       purpose:
