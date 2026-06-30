@@ -1,0 +1,30 @@
+
+# `apps/mmc-narrations/CHANGELOG.txt`
+
+```text
+App Name: MMC Narrations
+Version: v1.0
+Date: 2026-06-29
+Backup Name: MMCNarrations_Backup_20260629_000000
+Files Changed:
+- index.html
+- styles.css
+- app.js
+- data.js
+- manifest.json
+- sw.js
+- icon.svg
+- README.md
+- CHANGELOG.txt
+
+Summary of Changes:
+Created the first hub-compatible dropdown PWA shell for MMC Narrations. Added standard top controls, searchable dropdown structure, troubleshooting panel, cache clearing, manifest, service worker, icon, references, README, and changelog.
+
+Reason for Revision:
+Initial conversion/build into the standard Hub-compatible app format.
+
+Approved By:
+User review pending.
+
+Notes:
+Final narration content from MMC Narrations.tsx still needs to be imported into data.js.

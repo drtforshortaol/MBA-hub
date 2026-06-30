@@ -1,0 +1,120 @@
+<!-- APP FILE: apps/mmc-narrations/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MMC Narrations</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+
+  <meta name="theme-color" content="#0b5f73" />
+  <meta name="description" content="A mobile-friendly dropdown PWA for MMC narration prompts, scripts, and reference notes." />
+</head>
+
+<body>
+  <header class="app-header">
+    <nav class="top-bar" aria-label="App controls">
+      <a class="top-button" href="../../index.html">← MBA Hub</a>
+      <button class="top-button" id="clearCacheButton" type="button">Clear Cache</button>
+      <button class="top-button" id="troubleshootingButton" type="button" aria-expanded="false" aria-controls="troubleshootingPanel">
+        Troubleshooting
+      </button>
+    </nav>
+
+    <section class="hero-card" aria-labelledby="appTitle">
+      <div class="hero-visual" role="img" aria-label="Stylized ocean wave and narration cards icon">
+        <span>MMC</span>
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Volunteer Tool</p>
+        <h1 id="appTitle">MMC Narrations</h1>
+        <p class="subtitle">
+          Quick-access narration prompts, interpretive notes, and dropdown sections for mobile use.
+        </p>
+      </div>
+    </section>
+
+    <div class="notice" id="notificationArea" role="status">
+      Version v1.0 draft. Replace the placeholder narration sections in <strong>data.js</strong> with the final MMC narration content.
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="controls-card" aria-label="Search and display controls">
+      <label class="search-label" for="searchInput">Search narrations</label>
+      <input
+        id="searchInput"
+        class="search-input"
+        type="search"
+        placeholder="Search by title, topic, keyword, or tag..."
+        autocomplete="off"
+      />
+
+      <div class="action-row">
+        <button class="secondary-button" id="expandAllButton" type="button">Expand All</button>
+        <button class="secondary-button" id="collapseAllButton" type="button">Collapse All</button>
+        <button class="secondary-button" id="resetSearchButton" type="button">Reset Search</button>
+      </div>
+
+      <p class="result-count" id="resultCount">Loading sections...</p>
+    </section>
+
+    <section id="dropdownContainer" class="dropdown-container" aria-label="Narration dropdown sections">
+      <noscript>
+        <p>This app needs JavaScript enabled for dropdowns, search, and cache controls.</p>
+      </noscript>
+    </section>
+
+    <section class="references-card" aria-labelledby="referencesTitle">
+      <h2 id="referencesTitle">References and Source Notes</h2>
+      <ul id="referencesList"></ul>
+    </section>
+
+    <section class="version-card" aria-label="Version information">
+      <p><strong>App:</strong> MMC Narrations</p>
+      <p><strong>Version:</strong> <span id="versionDisplay">v1.0</span></p>
+      <p><strong>Last updated:</strong> 2026-06-29</p>
+      <p><strong>Status:</strong> Draft content shell ready for narration import.</p>
+    </section>
+  </main>
+
+  <aside id="troubleshootingPanel" class="troubleshooting-panel" hidden aria-labelledby="troubleshootingTitle">
+    <div class="troubleshooting-content">
+      <div class="panel-header">
+        <h2 id="troubleshootingTitle">Troubleshooting</h2>
+        <button class="close-button" id="closeTroubleshootingButton" type="button">× Close</button>
+      </div>
+
+      <div class="troubleshooting-grid">
+        <section>
+          <h3>If the app shows old content</h3>
+          <p>Tap <strong>Clear Cache</strong>, then reload the page. On PC, you can also press <strong>Ctrl + Shift + R</strong>.</p>
+        </section>
+
+        <section>
+          <h3>If dropdowns do not open</h3>
+          <p>Reload the app. If the issue continues, clear cache and reopen from the Hub.</p>
+        </section>
+
+        <section>
+          <h3>If the app will not open offline</h3>
+          <p>Open it once while online, let it fully load, then test offline again.</p>
+        </section>
+
+        <section>
+          <h3>If the Hub button does not work</h3>
+          <p>Use the browser back button or reopen the MBA Hub directly, then report the broken link.</p>
+        </section>
+      </div>
+    </div>
+  </aside>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -6,22 +6,28 @@
 
 window.MBA_HUB_LINKS = {
   version: "2.2",
-  lastUpdated: "2026-06-27",
+  lastUpdated: "2026-06-29",
 
   links: [
-    /*
-      Future example:
-
-      {
-        fromApp: "information-center",
-        toApp: "visitor-services-guide",
-        type: "manual-cross-link",
-        reason: "Information Center frequently sends visitors to Visitor Services resources.",
-        tags: ["visitor services", "guest support", "directions"]
-      }
-
-      Keep this file for intentional cross-links only.
-      Automatic related apps should come from shared tags in hub-registry.js.
-    */
+    {
+      fromApp: "mmc-narrations",
+      toApps: [
+        "interpretation-principles",
+        "five-senses-pwa",
+        "information-center"
+      ],
+      type: "manual-cross-link",
+      reason:
+        "MMC Narrations supports guide talks, visitor question responses, and interpretive storytelling. These related apps support interpretation principles, sensory engagement, and volunteer reference support.",
+      tags: [
+        "narrations",
+        "interpretation",
+        "guide talks",
+        "visitor engagement",
+        "volunteer tools"
+      ],
+      dateCreated: "2026-06-29",
+      lastUpdated: "2026-06-29"
+    }
   ]
 };

@@ -1,9 +1,11 @@
 // ROOT HUB REGISTRY FILE: MBA-hub/hub-registry.js
 // Hub 2.2 Registry Safety Update
+// Purpose: Master Hub app registry.
+// Do not confuse this file with individual app data.js files.
 
 window.MBA_HUB_REGISTRY = {
   version: "2.2",
-  lastUpdated: "2026-06-28",
+  lastUpdated: "2026-06-29",
   title: "MBA Hub 2.2",
   description:
     "Monterey Bay Aquarium volunteer companion hub for reference apps, guide tools, troubleshooting, tags, and cross-links.",
@@ -123,48 +125,48 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "First installed app in Hub 2. App folder path is apps/information-center/. Return to Hub path remains ../../index.html."
     },
-{
-  id: "interpretation-principles",
-  name: "Six Interpretation Principles",
-  folder: "interpretation-principles",
-  url: "apps/interpretation-principles/index.html",
-  category: "volunteer-tools",
-  appType: "PWA interpretation reference app",
-  version: "1.0",
-  releaseDate: "2026-06-28",
-  lastUpdated: "2026-06-28",
-  purpose:
-    "Provide Monterey Bay Aquarium volunteers with Freeman Tilden's six interpretation principles adapted for effective guest engagement and guide conversations.",
-  description:
-    "Volunteer guide to the six interpretation principles with dropdown lessons, examples, visitor conversations, child engagement techniques, tags, cross-links, search, and offline support.",
-  tags: [
-    "interpretation",
-    "Freeman Tilden",
-    "guide talks",
-    "visitor engagement",
-    "storytelling",
-    "questioning",
-    "children",
-    "guest interaction",
-    "communication",
-    "volunteer tools",
-    "education",
-    "training",
-    "kelp forest",
-    "visitor questions"
-  ],
-  relatedApps: [
-    "five-senses-pwa",
-    "information-center",
-    "mba-leadership",
-    "applied-water-science-life-support"
-  ],
-  status: "Active",
-  testingStatus:
-    "Needs PC Chrome, iPhone Safari, Clear Cache, Volunteer Tools category display, Guide Talks and Concepts cross-links, dropdown testing, search, tag display, troubleshooting, and offline confirmation.",
-  notes:
-    "App folder path is apps/interpretation-principles/. Return to Hub path remains ../../index.html."
-},
+    {
+      id: "interpretation-principles",
+      name: "Six Interpretation Principles",
+      folder: "interpretation-principles",
+      url: "apps/interpretation-principles/index.html",
+      category: "volunteer-tools",
+      appType: "PWA interpretation reference app",
+      version: "1.0",
+      releaseDate: "2026-06-28",
+      lastUpdated: "2026-06-28",
+      purpose:
+        "Provide Monterey Bay Aquarium volunteers with Freeman Tilden's six interpretation principles adapted for effective guest engagement and guide conversations.",
+      description:
+        "Volunteer guide to the six interpretation principles with dropdown lessons, examples, visitor conversations, child engagement techniques, tags, cross-links, search, and offline support.",
+      tags: [
+        "interpretation",
+        "Freeman Tilden",
+        "guide talks",
+        "visitor engagement",
+        "storytelling",
+        "questioning",
+        "children",
+        "guest interaction",
+        "communication",
+        "volunteer tools",
+        "education",
+        "training",
+        "kelp forest",
+        "visitor questions"
+      ],
+      relatedApps: [
+        "five-senses-pwa",
+        "information-center",
+        "mba-leadership",
+        "applied-water-science-life-support"
+      ],
+      status: "Active",
+      testingStatus:
+        "Needs PC Chrome, iPhone Safari, Clear Cache, Volunteer Tools category display, Guide Talks and Concepts cross-links, dropdown testing, search, tag display, troubleshooting, and offline confirmation.",
+      notes:
+        "App folder path is apps/interpretation-principles/. Return to Hub path remains ../../index.html."
+    },
     {
       id: "five-senses-pwa",
       name: "Using the Five Senses",
@@ -198,7 +200,40 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "Preservation rebuild from original five-senses.html. App folder path is apps/five-senses-pwa/. Return to Hub path remains ../../index.html."
     },
-
+    {
+      id: "mmc-narrations",
+      name: "MMC Narrations",
+      folder: "mmc-narrations",
+      url: "apps/mmc-narrations/index.html",
+      category: "volunteer-tools",
+      appType: "PWA dropdown narration app",
+      version: "1.0",
+      releaseDate: "2026-06-29",
+      lastUpdated: "2026-06-29",
+      purpose:
+        "Provide quick mobile access to MMC narration prompts, scripts, and interpretive notes.",
+      description:
+        "Searchable dropdown narration guide for MMC-related volunteer talking points, guide preparation, and visitor engagement.",
+      tags: [
+        "volunteer tools",
+        "guide talks",
+        "narrations",
+        "interpretation",
+        "visitor engagement",
+        "quick reference",
+        "monterey bay aquarium"
+      ],
+      relatedApps: [
+        "interpretation-principles",
+        "five-senses-pwa",
+        "information-center"
+      ],
+      status: "Draft",
+      testingStatus:
+        "Needs PC Chrome, iPhone Safari, Clear Cache, Volunteer Tools category display, direct app link, dropdowns, search, troubleshooting, and offline confirmation.",
+      notes:
+        "Initial PWA shell created. Final content import from MMC Narrations.tsx still required. App folder path is apps/mmc-narrations/. Return to Hub path remains ../../index.html."
+    },
     {
       id: "northern-elephant-seal",
       name: "Northern Elephant Seal",
@@ -243,7 +278,6 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "Temporary path uses the uploaded folder name apps/northern-elephant-seal-pwa-v1.2-final-hub (2)/. Recommended cleanup later: rename/move files to apps/northern-elephant-seal/ and restore the clean registry URL apps/northern-elephant-seal/index.html. Return to Hub path remains ../../index.html."
     },
-
     {
       id: "mba-leadership",
       name: "MBA Leadership",
@@ -274,7 +308,6 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "App folder path is apps/mba-leadership/. Return to Hub path remains ../../index.html."
     },
-
     {
       id: "applied-water-science-life-support",
       name: "Applied Water Science",
