@@ -200,8 +200,7 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "Preservation rebuild from original five-senses.html. App folder path is apps/five-senses-pwa/. Return to Hub path remains ../../index.html."
     },
-
-       {
+    {
       id: "mmc-narrations",
       name: "MMC Narrations",
       folder: "mmc-narrations",
@@ -235,12 +234,6 @@ window.MBA_HUB_REGISTRY = {
         "Needs PC Chrome, iPhone Safari, Clear Cache, Exhibits category display, direct app link, dropdowns, search, troubleshooting, and offline confirmation.",
       notes:
         "MMC is categorized as an Exhibit app. App folder path must be exactly apps/mmc-narrations/. Return to Hub path remains ../../index.html. If the Hub opens a 404, confirm index.html exists at apps/mmc-narrations/index.html."
-    },
-      status: "Draft",
-      testingStatus:
-        "Needs PC Chrome, iPhone Safari, Clear Cache, Volunteer Tools category display, direct app link, dropdowns, search, troubleshooting, and offline confirmation.",
-      notes:
-        "Initial PWA shell created. Final content import from MMC Narrations.tsx still required. App folder path is apps/mmc-narrations/. Return to Hub path remains ../../index.html."
     },
     {
       id: "northern-elephant-seal",
