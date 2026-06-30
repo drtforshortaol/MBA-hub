@@ -21,11 +21,10 @@ window.MBA_HUB_TAGS = {
       type: "hub category",
       description: "Tools intended to support Monterey Bay Aquarium volunteers.",
       relatedApps: [
-        "information-center",
-        "interpretation-principles",
-        "five-senses-pwa",
-        "mmc-narrations"
-      ],
+  "information-center",
+  "interpretation-principles",
+  "five-senses-pwa"
+],
       relatedCategories: ["volunteer-tools"],
       notes: "General category tag for volunteer support apps."
     },
@@ -42,7 +41,7 @@ window.MBA_HUB_TAGS = {
       type: "content type",
       description: "Fast lookup material for use while guiding or assisting visitors.",
       relatedApps: ["information-center", "mmc-narrations"],
-      relatedCategories: ["volunteer-tools"],
+   relatedCategories: ["volunteer-tools", "exhibits"],
       notes: "Useful for information that needs to be found quickly."
     },
     {
@@ -109,18 +108,7 @@ window.MBA_HUB_TAGS = {
       relatedCategories: ["volunteer-tools", "visitor-services"],
       notes: "Used for first aid, safety, or health-related visitor support."
     },
-    {
-      tag: "narrations",
-      type: "topic",
-      description:
-        "Apps or sections containing spoken narration prompts, script notes, or interpretive talk material.",
-      relatedApps: ["mmc-narrations"],
-      relatedCategories: ["volunteer-tools", "guide-talks"],
-      dateCreated: "2026-06-29",
-      lastUpdated: "2026-06-29",
-      notes: "Created for MMC Narrations app."
-    },
-    {
+       {
       tag: "interpretation",
       type: "concept",
       description:
@@ -188,6 +176,37 @@ window.MBA_HUB_TAGS = {
       lastUpdated: "2026-06-29",
       notes: "General organization tag for MBA volunteer hub apps."
     },
+{
+  tag: "mmc",
+  type: "exhibit",
+  description: "MMC exhibit-related narration, interpretation, and visitor-facing talking point material.",
+  relatedApps: ["mmc-narrations"],
+  relatedCategories: ["exhibits"],
+  dateCreated: "2026-06-29",
+  lastUpdated: "2026-06-29",
+  notes: "Created for MMC Narrations exhibit app."
+},
+{
+  tag: "narrations",
+  type: "content type",
+  description:
+    "Apps or sections containing spoken narration prompts, script notes, or interpretive talk material.",
+  relatedApps: ["mmc-narrations"],
+  relatedCategories: ["exhibits", "guide-talks"],
+  dateCreated: "2026-06-29",
+  lastUpdated: "2026-06-29",
+  notes: "Used for MMC Narrations and future narration-based apps."
+},
+{
+  tag: "exhibits",
+  type: "hub category",
+  description: "Exhibit reference apps, habitat information, and exhibit-specific interpretation tools.",
+  relatedApps: ["mmc-narrations"],
+  relatedCategories: ["exhibits"],
+  dateCreated: "2026-06-29",
+  lastUpdated: "2026-06-29",
+  notes: "Used for apps that belong in the Exhibits category."
+},
     {
       tag: "guest support",
       type: "visitor support",

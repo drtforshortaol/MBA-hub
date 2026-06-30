@@ -200,34 +200,42 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "Preservation rebuild from original five-senses.html. App folder path is apps/five-senses-pwa/. Return to Hub path remains ../../index.html."
     },
-    {
-      id: "mmc-narrations",
-      name: "MMC Narrations",
-      folder: "mmc-narrations",
-      url: "apps/mmc-narrations/index.html",
-      category: "volunteer-tools",
-      appType: "PWA dropdown narration app",
-      version: "1.0",
-      releaseDate: "2026-06-29",
-      lastUpdated: "2026-06-29",
-      purpose:
-        "Provide quick mobile access to MMC narration prompts, scripts, and interpretive notes.",
-      description:
-        "Searchable dropdown narration guide for MMC-related volunteer talking points, guide preparation, and visitor engagement.",
-      tags: [
-        "volunteer tools",
-        "guide talks",
-        "narrations",
-        "interpretation",
-        "visitor engagement",
-        "quick reference",
-        "monterey bay aquarium"
-      ],
-      relatedApps: [
-        "interpretation-principles",
-        "five-senses-pwa",
-        "information-center"
-      ],
+
+   {
+  id: "mmc-narrations",
+  name: "MMC Narrations",
+  folder: "mmc-narrations",
+  url: "apps/mmc-narrations/index.html",
+  category: "exhibits",
+  appType: "PWA dropdown exhibit narration app",
+  version: "1.0",
+  releaseDate: "2026-06-29",
+  lastUpdated: "2026-06-29",
+  purpose:
+    "Provide quick mobile access to MMC exhibit narration prompts, scripts, and interpretive notes.",
+  description:
+    "Searchable dropdown exhibit narration guide for MMC-related talking points, guide preparation, and visitor engagement.",
+  tags: [
+    "exhibits",
+    "mmc",
+    "narrations",
+    "interpretation",
+    "visitor engagement",
+    "guide talks",
+    "quick reference",
+    "monterey bay aquarium"
+  ],
+  relatedApps: [
+    "interpretation-principles",
+    "five-senses-pwa",
+    "information-center"
+  ],
+  status: "Draft",
+  testingStatus:
+    "Needs PC Chrome, iPhone Safari, Clear Cache, Exhibits category display, direct app link, dropdowns, search, troubleshooting, and offline confirmation.",
+  notes:
+    "MMC is categorized as an Exhibit app. App folder path must be exactly apps/mmc-narrations/. Return to Hub path remains ../../index.html. If the Hub opens a 404, confirm index.html exists at apps/mmc-narrations/index.html."
+},
       status: "Draft",
       testingStatus:
         "Needs PC Chrome, iPhone Safari, Clear Cache, Volunteer Tools category display, direct app link, dropdowns, search, troubleshooting, and offline confirmation.",
