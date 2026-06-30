@@ -1,120 +1,433 @@
-<!-- APP FILE: apps/mmc-narrations/index.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+/* APP FILE: apps/mmc-narrations/styles.css */
 
-  <title>MMC Narrations</title>
+:root {
+  --bg: #eef7f8;
+  --surface: #ffffff;
+  --surface-soft: #f6fbfc;
+  --ink: #13343d;
+  --muted: #4e6b73;
+  --primary: #0b5f73;
+  --primary-dark: #08495a;
+  --accent: #f4b44b;
+  --accent-soft: #fff2d8;
+  --border: #c9e2e7;
+  --shadow: 0 10px 24px rgba(12, 64, 78, 0.14);
+  --radius: 18px;
+  --focus: 0 0 0 4px rgba(244, 180, 75, 0.45);
+}
 
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+* {
+  box-sizing: border-box;
+}
 
-  <meta name="theme-color" content="#0b5f73" />
-  <meta name="description" content="A mobile-friendly dropdown PWA for MMC narration prompts, scripts, and reference notes." />
-</head>
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
 
-<body>
-  <header class="app-header">
-    <nav class="top-bar" aria-label="App controls">
-      <a class="top-button" href="../../index.html">← MBA Hub</a>
-      <button class="top-button" id="clearCacheButton" type="button">Clear Cache</button>
-      <button class="top-button" id="troubleshootingButton" type="button" aria-expanded="false" aria-controls="troubleshootingPanel">
-        Troubleshooting
-      </button>
-    </nav>
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(80, 174, 194, 0.22), transparent 34rem),
+    linear-gradient(180deg, #e9f8fb 0%, #f8fcfd 52%, #eef7f8 100%);
+  line-height: 1.5;
+}
 
-    <section class="hero-card" aria-labelledby="appTitle">
-      <div class="hero-visual" role="img" aria-label="Stylized ocean wave and narration cards icon">
-        <span>MMC</span>
-      </div>
+button,
+input,
+a {
+  font: inherit;
+}
 
-      <div class="hero-copy">
-        <p class="eyebrow">Volunteer Tool</p>
-        <h1 id="appTitle">MMC Narrations</h1>
-        <p class="subtitle">
-          Quick-access narration prompts, interpretive notes, and dropdown sections for mobile use.
-        </p>
-      </div>
-    </section>
+button {
+  cursor: pointer;
+}
 
-    <div class="notice" id="notificationArea" role="status">
-      Version v1.0 draft. Replace the placeholder narration sections in <strong>data.js</strong> with the final MMC narration content.
-    </div>
-  </header>
+a {
+  color: inherit;
+}
 
-  <main class="app-main">
-    <section class="controls-card" aria-label="Search and display controls">
-      <label class="search-label" for="searchInput">Search narrations</label>
-      <input
-        id="searchInput"
-        class="search-input"
-        type="search"
-        placeholder="Search by title, topic, keyword, or tag..."
-        autocomplete="off"
-      />
+.app-header,
+.app-main {
+  width: min(980px, calc(100% - 24px));
+  margin: 0 auto;
+}
 
-      <div class="action-row">
-        <button class="secondary-button" id="expandAllButton" type="button">Expand All</button>
-        <button class="secondary-button" id="collapseAllButton" type="button">Collapse All</button>
-        <button class="secondary-button" id="resetSearchButton" type="button">Reset Search</button>
-      </div>
+.app-header {
+  padding: 14px 0 8px;
+}
 
-      <p class="result-count" id="resultCount">Loading sections...</p>
-    </section>
+.top-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
 
-    <section id="dropdownContainer" class="dropdown-container" aria-label="Narration dropdown sections">
-      <noscript>
-        <p>This app needs JavaScript enabled for dropdowns, search, and cache controls.</p>
-      </noscript>
-    </section>
+.top-button,
+.secondary-button,
+.close-button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    <section class="references-card" aria-labelledby="referencesTitle">
-      <h2 id="referencesTitle">References and Source Notes</h2>
-      <ul id="referencesList"></ul>
-    </section>
+.top-button {
+  color: #ffffff;
+  background: var(--primary);
+  box-shadow: 0 4px 12px rgba(11, 95, 115, 0.22);
+}
 
-    <section class="version-card" aria-label="Version information">
-      <p><strong>App:</strong> MMC Narrations</p>
-      <p><strong>Version:</strong> <span id="versionDisplay">v1.0</span></p>
-      <p><strong>Last updated:</strong> 2026-06-29</p>
-      <p><strong>Status:</strong> Draft content shell ready for narration import.</p>
-    </section>
-  </main>
+.top-button:hover,
+.top-button:focus-visible {
+  background: var(--primary-dark);
+}
 
-  <aside id="troubleshootingPanel" class="troubleshooting-panel" hidden aria-labelledby="troubleshootingTitle">
-    <div class="troubleshooting-content">
-      <div class="panel-header">
-        <h2 id="troubleshootingTitle">Troubleshooting</h2>
-        <button class="close-button" id="closeTroubleshootingButton" type="button">× Close</button>
-      </div>
+.secondary-button {
+  color: var(--primary-dark);
+  background: #e4f3f6;
+  border: 1px solid var(--border);
+}
 
-      <div class="troubleshooting-grid">
-        <section>
-          <h3>If the app shows old content</h3>
-          <p>Tap <strong>Clear Cache</strong>, then reload the page. On PC, you can also press <strong>Ctrl + Shift + R</strong>.</p>
-        </section>
+.secondary-button:hover,
+.secondary-button:focus-visible {
+  background: #d6edf2;
+}
 
-        <section>
-          <h3>If dropdowns do not open</h3>
-          <p>Reload the app. If the issue continues, clear cache and reopen from the Hub.</p>
-        </section>
+.close-button {
+  color: #ffffff;
+  background: #9b2c2c;
+}
 
-        <section>
-          <h3>If the app will not open offline</h3>
-          <p>Open it once while online, let it fully load, then test offline again.</p>
-        </section>
+.close-button:hover,
+.close-button:focus-visible {
+  background: #7d2020;
+}
 
-        <section>
-          <h3>If the Hub button does not work</h3>
-          <p>Use the browser back button or reopen the MBA Hub directly, then report the broken link.</p>
-        </section>
-      </div>
-    </div>
-  </aside>
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
+.hero-card,
+.controls-card,
+.references-card,
+.version-card,
+.dropdown-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.hero-card {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+}
+
+.hero-visual {
+  width: 112px;
+  height: 112px;
+  border-radius: 26px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent),
+    linear-gradient(145deg, #0b5f73, #1c91a8);
+  box-shadow: inset 0 -14px 28px rgba(0, 0, 0, 0.14);
+}
+
+.hero-visual span {
+  display: inline-block;
+  padding: 8px 10px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--primary);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 9vw, 4rem);
+  line-height: 1;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 1.04rem;
+}
+
+.notice {
+  margin-top: 12px;
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: var(--accent-soft);
+  border: 1px solid #f5d291;
+  color: #5f3b00;
+}
+
+.app-main {
+  padding: 8px 0 36px;
+}
+
+.controls-card,
+.references-card,
+.version-card {
+  padding: 16px;
+  margin-top: 14px;
+}
+
+.search-label {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.search-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  background: #ffffff;
+  color: var(--ink);
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.result-count {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.dropdown-container {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.dropdown-card {
+  overflow: hidden;
+}
+
+.dropdown-card[hidden] {
+  display: none;
+}
+
+.dropdown-summary {
+  list-style: none;
+  min-height: 58px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  cursor: pointer;
+  background: linear-gradient(180deg, #ffffff, var(--surface-soft));
+}
+
+.dropdown-summary::-webkit-details-marker {
+  display: none;
+}
+
+.dropdown-summary-title {
+  font-size: 1.08rem;
+  font-weight: 900;
+}
+
+.dropdown-summary-meta {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-top: 2px;
+}
+
+.dropdown-chevron {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: var(--primary);
+  transition: transform 160ms ease;
+}
+
+details[open] .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown-body {
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.dropdown-body h3 {
+  margin: 16px 0 6px;
+}
+
+.dropdown-body p {
+  margin: 8px 0;
+}
+
+.prompt-list,
+.tag-list {
+  padding-left: 1.1rem;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #e4f3f6;
+  color: var(--primary-dark);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.empty-state {
+  padding: 18px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+}
+
+.references-card h2,
+.version-card p {
+  margin-top: 0;
+}
+
+.references-card ul {
+  padding-left: 1.2rem;
+  margin-bottom: 0;
+}
+
+.troubleshooting-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  padding: 18px;
+  background: rgba(6, 29, 36, 0.72);
+  overflow-y: auto;
+}
+
+.troubleshooting-content {
+  width: min(860px, 100%);
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+.panel-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+
+.panel-header h2 {
+  margin: 0;
+}
+
+.troubleshooting-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.troubleshooting-grid section {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.troubleshooting-grid h3 {
+  margin: 0 0 6px;
+}
+
+.troubleshooting-grid p {
+  margin: 0;
+}
+
+@media (min-width: 720px) {
+  .troubleshooting-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .app-header,
+  .app-main {
+    width: min(100% - 18px, 980px);
+  }
+
+  .hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    width: 100%;
+    height: 96px;
+    border-radius: 20px;
+  }
+
+  .top-button,
+  .secondary-button {
+    flex: 1 1 auto;
+  }
+
+  .panel-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .close-button {
+    width: 100%;
+  }
+}
