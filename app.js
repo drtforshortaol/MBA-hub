@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let activeCategory = "all";
 let searchTerm = "";
-let expandedCategories = new Set(["volunteer-tools"]);
+let expandedCategories = new Set();
 
 function escapeHTML(value) {
   return String(value ?? "")
@@ -532,7 +532,7 @@ function setupSearch() {
         input.focus();
       }
 
-      expandedCategories = new Set(["volunteer-tools"]);
+      expandedCategories = new Set();
       buildCategoryFilters();
       renderHub();
     });
