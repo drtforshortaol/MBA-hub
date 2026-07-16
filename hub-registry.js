@@ -5,7 +5,7 @@
 
 window.MBA_HUB_REGISTRY = {
   version: "2.2",
-  lastUpdated: "2026-06-29",
+  lastUpdated: "2026-07-15",
   title: "MBA Hub 2.2",
   description:
     "Monterey Bay Aquarium volunteer companion hub for reference apps, guide tools, troubleshooting, tags, and cross-links.",
@@ -125,6 +125,7 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "First installed app in Hub 2. App folder path is apps/information-center/. Return to Hub path remains ../../index.html."
     },
+
     {
       id: "interpretation-principles",
       name: "Six Interpretation Principles",
@@ -167,6 +168,7 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "App folder path is apps/interpretation-principles/. Return to Hub path remains ../../index.html."
     },
+
     {
       id: "five-senses-pwa",
       name: "Using the Five Senses",
@@ -200,9 +202,10 @@ window.MBA_HUB_REGISTRY = {
       notes:
         "Preservation rebuild from original five-senses.html. App folder path is apps/five-senses-pwa/. Return to Hub path remains ../../index.html."
     },
+
     {
-     id: "mmc-narrations",
-name: "Marine Mammal Cart",
+      id: "mmc-narrations",
+      name: "Marine Mammal Cart",
       folder: "mmc-narrations",
       url: "apps/mmc-narrations/index.html",
       category: "exhibits",
@@ -235,6 +238,7 @@ name: "Marine Mammal Cart",
       notes:
         "MMC is categorized as an Exhibit app. App folder path must be exactly apps/mmc-narrations/. Return to Hub path remains ../../index.html. If the Hub opens a 404, confirm index.html exists at apps/mmc-narrations/index.html."
     },
+
     {
       id: "northern-elephant-seal",
       name: "Northern Elephant Seal",
@@ -279,6 +283,7 @@ name: "Marine Mammal Cart",
       notes:
         "Temporary path uses the uploaded folder name apps/northern-elephant-seal-pwa-v1.2-final-hub (2)/. Recommended cleanup later: rename/move files to apps/northern-elephant-seal/ and restore the clean registry URL apps/northern-elephant-seal/index.html. Return to Hub path remains ../../index.html."
     },
+
     {
       id: "mba-leadership",
       name: "MBA Leadership",
@@ -309,51 +314,54 @@ name: "Marine Mammal Cart",
       notes:
         "App folder path is apps/mba-leadership/. Return to Hub path remains ../../index.html."
     },
-{
-  id: "open-sea",
-  name: "Open Sea Exhibit",
-  folder: "open-sea",
-  url: "apps/open-sea/index.html",
-  category: "Exhibits",
-  appType: "Exhibit Reference",
-  version: "v1.0",
-  releaseDate: "2026-07-15",
-  lastUpdated: "2026-07-15",
-  purpose:
-    "Help Monterey Bay Aquarium volunteers explain the physical conditions and biological adaptations of the open-ocean pelagic environment.",
-  description:
-    "Searchable dropdown reference covering temperature, light, pressure, oxygen, salinity, nutrients, thermohaline circulation, currents, sound, and open-sea adaptations.",
-  tags: [
-    "Open Sea",
-    "Pelagic Zone",
-    "Exhibits",
-    "Physical Environment",
-    "Intangible Environment",
-    "Temperature",
-    "Thermocline",
-    "Light",
-    "Pressure",
-    "Oxygen",
-    "Salinity",
-    "Nutrients",
-    "Ocean Currents",
-    "Thermohaline Circulation",
-    "Adaptations",
-    "Bioluminescence",
-    "Volunteer Training"
-  ],
-  relatedApps: [
-    "into-the-deep",
-    "monterey-bay-habitat",
-    "ocean-currents",
-    "kelp-forest",
-    "animal-adaptations"
-  ],
-  status: "Testing",
-  testingStatus: "Not yet tested",
-  notes:
-    "Converted from the original open-seas.html reference into the standard MBA Hub dropdown PWA format."
-},
+
+    {
+      id: "open-sea",
+      name: "Open Sea Exhibit",
+      folder: "open-sea",
+      url: "apps/open-sea/index.html",
+      category: "exhibits",
+      appType: "PWA dropdown exhibit reference app",
+      version: "1.0",
+      releaseDate: "2026-07-15",
+      lastUpdated: "2026-07-15",
+      purpose:
+        "Help Monterey Bay Aquarium volunteers explain the physical conditions and biological adaptations of the open-ocean pelagic environment.",
+      description:
+        "Searchable dropdown reference covering temperature, light, pressure, oxygen, salinity, nutrients, thermohaline circulation, currents, sound, and open-sea adaptations.",
+      tags: [
+        "open sea",
+        "pelagic zone",
+        "exhibits",
+        "physical environment",
+        "intangible environment",
+        "temperature",
+        "thermocline",
+        "light",
+        "pressure",
+        "oxygen",
+        "salinity",
+        "nutrients",
+        "ocean currents",
+        "thermohaline circulation",
+        "adaptations",
+        "bioluminescence",
+        "volunteer training"
+      ],
+      relatedApps: [
+        "into-the-deep",
+        "monterey-bay-habitat",
+        "ocean-currents",
+        "kelp-forest",
+        "animal-adaptations"
+      ],
+      status: "Testing",
+      testingStatus:
+        "Needs PC Chrome, iPhone Safari, Clear Cache, Exhibits category display, direct app link, dropdowns, search, troubleshooting, and offline confirmation.",
+      notes:
+        "App folder path must be exactly apps/open-sea/. Return to Hub path remains ../../index.html."
+    },
+
     {
       id: "applied-water-science-life-support",
       name: "Applied Water Science",
