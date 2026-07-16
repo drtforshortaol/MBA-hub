@@ -309,6 +309,51 @@ name: "Marine Mammal Cart",
       notes:
         "App folder path is apps/mba-leadership/. Return to Hub path remains ../../index.html."
     },
+{
+  id: "open-sea",
+  name: "Open Sea Exhibit",
+  folder: "open-sea",
+  url: "apps/open-sea/index.html",
+  category: "Exhibits",
+  appType: "Exhibit Reference",
+  version: "v1.0",
+  releaseDate: "2026-07-15",
+  lastUpdated: "2026-07-15",
+  purpose:
+    "Help Monterey Bay Aquarium volunteers explain the physical conditions and biological adaptations of the open-ocean pelagic environment.",
+  description:
+    "Searchable dropdown reference covering temperature, light, pressure, oxygen, salinity, nutrients, thermohaline circulation, currents, sound, and open-sea adaptations.",
+  tags: [
+    "Open Sea",
+    "Pelagic Zone",
+    "Exhibits",
+    "Physical Environment",
+    "Intangible Environment",
+    "Temperature",
+    "Thermocline",
+    "Light",
+    "Pressure",
+    "Oxygen",
+    "Salinity",
+    "Nutrients",
+    "Ocean Currents",
+    "Thermohaline Circulation",
+    "Adaptations",
+    "Bioluminescence",
+    "Volunteer Training"
+  ],
+  relatedApps: [
+    "into-the-deep",
+    "monterey-bay-habitat",
+    "ocean-currents",
+    "kelp-forest",
+    "animal-adaptations"
+  ],
+  status: "Testing",
+  testingStatus: "Not yet tested",
+  notes:
+    "Converted from the original open-seas.html reference into the standard MBA Hub dropdown PWA format."
+},
     {
       id: "applied-water-science-life-support",
       name: "Applied Water Science",

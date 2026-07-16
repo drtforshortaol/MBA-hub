@@ -217,6 +217,37 @@ window.MBA_HUB_TAGS = {
       relatedApps: ["information-center"],
       relatedCategories: ["visitor-services", "volunteer-tools"],
       notes: "Broad tag for helping visitors with practical needs."
-    }
+    },
+{
+  name: "Open Sea",
+  type: "exhibit",
+  description: "Open-ocean and pelagic exhibit interpretation.",
+  relatedApps: ["open-sea"],
+  relatedCategories: ["Exhibits"],
+  dateCreated: "2026-07-15",
+  lastUpdated: "2026-07-15",
+  notes: ""
+},
+{
+  name: "Pelagic Zone",
+  type: "habitat",
+  description: "Open-ocean waters away from shore and above the seafloor.",
+  relatedApps: ["open-sea"],
+  relatedCategories: ["Exhibits", "Concepts"],
+  dateCreated: "2026-07-15",
+  lastUpdated: "2026-07-15",
+  notes: ""
+},
+{
+  name: "Intangible Environment",
+  type: "concept",
+  description:
+    "Environmental conditions such as light, pressure, oxygen, temperature, salinity, nutrients, sound, and currents.",
+  relatedApps: ["open-sea"],
+  relatedCategories: ["Exhibits", "Concepts"],
+  dateCreated: "2026-07-15",
+  lastUpdated: "2026-07-15",
+  notes: ""
+}
   ]
 };

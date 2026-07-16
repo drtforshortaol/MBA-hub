@@ -27,6 +27,18 @@ window.MBA_HUB_LINKS = {
     "guide talks",
     "visitor engagement"
   ],
+{
+  sourceApp: "open-sea",
+  relatedApps: [
+    "into-the-deep",
+    "monterey-bay-habitat",
+    "ocean-currents",
+    "kelp-forest",
+    "animal-adaptations"
+  ],
+  reason:
+    "Connects open-sea physical factors with deep-water habitats, Monterey Bay conditions, circulation, contrasting coastal habitats, and animal adaptations."
+},
   dateCreated: "2026-06-29",
   lastUpdated: "2026-06-29"
 }
