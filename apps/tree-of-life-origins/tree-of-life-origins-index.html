@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<!--
+APP FILE: apps/tree-of-life-origins/index.html
+APP NAME: Tree of Life Origins
+VERSION: 1.0
+LAST UPDATED: 2026-07-17
+PURPOSE: Explain the origin and earliest branching history of life for MBA guests, guides, and naturalists.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#083b4c" />
+  <meta
+    name="description"
+    content="A guest-friendly and guide-ready exploration of early Earth, the origin of life, LUCA, cyanobacteria, oxygen, eukaryotes, mitochondria, and the first branches of the Tree of Life."
+  />
+  <title>Tree of Life Origins</title>
+
+  <style>
+    :root {
+      --bg: #eef5f3;
+      --surface: #ffffff;
+      --surface-soft: #f7fbfa;
+      --ink: #183036;
+      --muted: #5d7277;
+      --primary: #083b4c;
+      --primary-2: #0b5963;
+      --accent: #d5a13b;
+      --border: #ccdcda;
+      --shadow: 0 10px 28px rgba(11, 53, 62, 0.12);
+      --radius: 18px;
+      --supported: #176c43;
+      --strong: #21618c;
+      --research: #956515;
+      --hypothesis: #9b4c1f;
+      --danger: #8b2f2f;
+      --max: 1050px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(213,161,59,.12), transparent 28rem),
+        linear-gradient(180deg, #e8f3f1 0, var(--bg) 22rem);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.58;
+    }
+
+    button, input { font: inherit; }
+
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      left: -10000px;
+      top: 1rem;
+      z-index: 100;
+      padding: .75rem 1rem;
+      border-radius: 10px;
+      color: white;
+      background: var(--primary);
+    }
+
+    .skip-link:focus { left: 1rem; }
+
+    .app-header {
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(2,29,38,.97), rgba(8,72,82,.94)),
+        radial-gradient(circle at 85% 10%, rgba(213,161,59,.35), transparent 18rem);
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .header-inner {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: auto;
+      padding: 1.1rem 0 2.3rem;
+    }
+
+    .top-row {
+      display: flex;
+      gap: .8rem;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .hub-button, .utility-button, .chapter-button {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px;
+      padding: .65rem .95rem;
+      color: white;
+      background: rgba(255,255,255,.1);
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .hub-button:hover, .utility-button:hover,
+    .hub-button:focus-visible, .utility-button:focus-visible {
+      background: rgba(255,255,255,.2);
+      outline: 3px solid rgba(255,255,255,.35);
+      outline-offset: 2px;
+    }
+
+    .eyebrow {
+      margin: 1.8rem 0 .3rem;
+      color: #cfe8e4;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.25rem, 6vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -.035em;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      margin: .8rem 0 0;
+      color: #e0f1ef;
+      font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+    }
+
+    .header-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .75rem;
+      margin-top: 1.5rem;
+    }
+
+    .header-fact {
+      padding: .85rem;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 14px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .header-fact strong {
+      display: block;
+      color: #ffe3a4;
+      font-size: 1rem;
+    }
+
+    .header-fact span {
+      color: #d8ebe9;
+      font-size: .9rem;
+    }
+
+    main {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto 5rem;
+    }
+
+    .controls-panel {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: .75rem;
+      margin: -1.15rem 0 1.3rem;
+      padding: .8rem;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(255,255,255,.95);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .search-wrap {
+      display: flex;
+      gap: .6rem;
+      min-width: 0;
+    }
+
+    #searchInput {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid #aebfbd;
+      border-radius: 10px;
+      padding: .72rem .85rem;
+      color: var(--ink);
+      background: white;
+    }
+
+    #searchInput:focus {
+      border-color: var(--primary-2);
+      outline: 3px solid rgba(11,89,99,.16);
+    }
+
+    .clear-button, .control-button {
+      border: 1px solid #b9c9c7;
+      border-radius: 10px;
+      padding: .7rem .85rem;
+      color: var(--primary);
+      background: #f8fbfa;
+      cursor: pointer;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .clear-button:hover, .control-button:hover {
+      background: #e7f2f0;
+    }
+
+    .control-group {
+      display: flex;
+      gap: .5rem;
+    }
+
+    .search-status {
+      grid-column: 1 / -1;
+      min-height: 1.2rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 1rem;
+      margin: 1.4rem 0;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .intro-card {
+      padding: 1.25rem 1.35rem;
+    }
+
+    .intro-card h2, .timeline-card h2 {
+      margin-top: 0;
+      color: var(--primary);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.7rem;
+    }
+
+    .big-question {
+      margin: 1rem 0 0;
+      padding: 1rem 1.1rem;
+      border-left: 5px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      color: var(--primary);
+      background: #fff8e8;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .confidence-list {
+      display: grid;
+      gap: .65rem;
+      margin-top: .8rem;
+    }
+
+    .confidence-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .55rem;
+      align-items: start;
+      font-size: .92rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      border-radius: 999px;
+      padding: .25rem .62rem;
+      color: white;
+      font-size: .74rem;
+      font-weight: 850;
+      letter-spacing: .015em;
+    }
+
+    .supported { background: var(--supported); }
+    .strong { background: var(--strong); }
+    .research { background: var(--research); }
+    .hypothesis { background: var(--hypothesis); }
+
+    .timeline-card {
+      margin: 1rem 0 1.4rem;
+      padding: 1.3rem;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: .65rem;
+    }
+
+    .time-point {
+      padding: .85rem;
+      border-top: 4px solid var(--accent);
+      border-radius: 10px;
+      background: var(--surface-soft);
+    }
+
+    .time-point strong {
+      display: block;
+      color: var(--primary);
+    }
+
+    .time-point span {
+      display: block;
+      margin-top: .2rem;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .quick-nav {
+      display: flex;
+      gap: .55rem;
+      overflow-x: auto;
+      margin: 1rem 0 1.2rem;
+      padding: .2rem .1rem .75rem;
+      scrollbar-width: thin;
+    }
+
+    .chapter-button {
+      flex: 0 0 auto;
+      border-color: var(--border);
+      color: var(--primary);
+      background: white;
+      box-shadow: 0 4px 12px rgba(11,53,62,.07);
+    }
+
+    .chapter-button:hover, .chapter-button:focus-visible {
+      color: white;
+      background: var(--primary);
+      outline: none;
+    }
+
+    .section-heading {
+      margin: 2.4rem 0 .85rem;
+    }
+
+    .section-heading .number {
+      color: var(--primary-2);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: .15rem 0 .25rem;
+      color: var(--primary);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      line-height: 1.08;
+    }
+
+    .section-heading p {
+      max-width: 780px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .topic-card {
+      margin: .8rem 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: var(--surface);
+      box-shadow: 0 6px 18px rgba(11,53,62,.07);
+    }
+
+    .topic-card[hidden] { display: none; }
+
+    .topic-card summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: .8rem;
+      align-items: center;
+      padding: 1rem 1.1rem;
+      cursor: pointer;
+      list-style: none;
+      color: var(--primary);
+      background: linear-gradient(90deg, #fff, #f5faf9);
+    }
+
+    .topic-card summary::-webkit-details-marker { display: none; }
+
+    .topic-card summary:hover { background: #eef7f5; }
+
+    .topic-card summary:focus-visible {
+      outline: 3px solid rgba(11,89,99,.25);
+      outline-offset: -3px;
+    }
+
+    .summary-title {
+      display: flex;
+      gap: .7rem;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .topic-icon {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 2.3rem;
+      height: 2.3rem;
+      border-radius: 12px;
+      color: white;
+      background: var(--primary-2);
+      font-size: 1.12rem;
+    }
+
+    .topic-name {
+      display: block;
+      font-size: 1.08rem;
+      font-weight: 850;
+    }
+
+    .topic-kicker {
+      display: block;
+      color: var(--muted);
+      font-size: .83rem;
+      font-weight: 600;
+    }
+
+    .summary-side {
+      display: flex;
+      gap: .6rem;
+      align-items: center;
+    }
+
+    .chevron {
+      color: var(--primary-2);
+      font-size: 1.2rem;
+      transition: transform .2s ease;
+    }
+
+    details[open] .chevron { transform: rotate(180deg); }
+
+    .topic-body {
+      padding: .2rem 1.15rem 1.2rem;
+      border-top: 1px solid #e3ecea;
+    }
+
+    .topic-body h3 {
+      margin: 1.05rem 0 .25rem;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    .topic-body p { margin: .45rem 0; }
+
+    .topic-body ul {
+      margin: .45rem 0;
+      padding-left: 1.25rem;
+    }
+
+    .topic-body li { margin: .25rem 0; }
+
+    .fact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .75rem;
+      margin-top: .9rem;
+    }
+
+    .mini-panel {
+      padding: .85rem .9rem;
+      border: 1px solid #d7e5e3;
+      border-radius: 12px;
+      background: var(--surface-soft);
+    }
+
+    .mini-panel strong {
+      display: block;
+      margin-bottom: .25rem;
+      color: var(--primary);
+    }
+
+    .museum-moment {
+      margin: .9rem 0;
+      padding: .9rem 1rem;
+      border: 1px solid #ead39c;
+      border-radius: 12px;
+      color: #533c12;
+      background: #fff8e8;
+    }
+
+    .museum-moment strong {
+      display: block;
+      margin-bottom: .2rem;
+      color: #785414;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      font-size: .78rem;
+    }
+
+    .guide-dive {
+      margin-top: .8rem;
+      border: 1px solid #cbd7e6;
+      border-radius: 12px;
+      background: #f5f8fc;
+    }
+
+    .guide-dive summary {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+      padding: .75rem .85rem;
+      color: #234d70;
+      background: transparent;
+      font-weight: 850;
+    }
+
+    .guide-dive .guide-body {
+      padding: 0 .9rem .85rem;
+      color: #304c61;
+    }
+
+    .equation {
+      margin: .8rem 0;
+      padding: .85rem;
+      overflow-x: auto;
+      border-radius: 11px;
+      color: #f0ffff;
+      background: #113d47;
+      text-align: center;
+      font-family: "Courier New", monospace;
+      font-weight: 800;
+    }
+
+    .tree-panel {
+      margin: 1rem 0;
+      padding: 1rem;
+      overflow-x: auto;
+      border: 1px solid #b8ceca;
+      border-radius: 14px;
+      color: #eafffb;
+      background: #0c3039;
+      box-shadow: var(--shadow);
+    }
+
+    .tree-panel pre {
+      width: max-content;
+      min-width: 100%;
+      margin: 0;
+      font: 700 .92rem/1.55 "Courier New", monospace;
+      white-space: pre;
+    }
+
+    .correction {
+      border-left: 5px solid var(--danger);
+      background: #fff3f3;
+    }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .8rem;
+      margin-top: .9rem;
+    }
+
+    .before-after h3 {
+      margin-top: 0;
+    }
+
+    .before { border-top: 4px solid #7a6851; }
+    .after { border-top: 4px solid var(--supported); }
+
+    .final-panel {
+      margin-top: 2.2rem;
+      padding: 1.35rem;
+      color: white;
+      background: linear-gradient(135deg, #073745, #0a5e63);
+    }
+
+    .final-panel h2 {
+      margin-top: 0;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .connection-buttons {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .connection-buttons a {
+      border-radius: 999px;
+      padding: .7rem 1rem;
+      color: var(--primary);
+      background: white;
+      text-decoration: none;
+      font-weight: 850;
+    }
+
+    footer {
+      padding: 2rem 1rem 5rem;
+      color: var(--muted);
+      text-align: center;
+      font-size: .88rem;
+    }
+
+    .back-top {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 30;
+      display: none;
+      width: 3rem;
+      height: 3rem;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      background: var(--primary);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .back-top.show { display: block; }
+
+    .no-results {
+      display: none;
+      margin: 1rem 0;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: white;
+    }
+
+    @media (max-width: 800px) {
+      .header-facts,
+      .timeline { grid-template-columns: 1fr; }
+
+      .intro-grid { grid-template-columns: 1fr; }
+
+      .controls-panel {
+        position: static;
+        grid-template-columns: 1fr;
+      }
+
+      .control-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .fact-grid, .before-after { grid-template-columns: 1fr; }
+
+      .summary-side .badge { display: none; }
+    }
+
+    @media (max-width: 520px) {
+      .header-inner, main {
+        width: min(100% - 1rem, var(--max));
+      }
+
+      .search-wrap {
+        display: grid;
+        grid-template-columns: 1fr auto;
+      }
+
+      .topic-card summary { padding: .85rem; }
+
+      .topic-body { padding: .15rem .9rem 1rem; }
+
+      .topic-icon {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .app-header { color: black; background: white; border-bottom: 2px solid black; }
+      .subtitle, .eyebrow, .header-fact span { color: black; }
+      .controls-panel, .quick-nav, .back-top, .hub-button, .utility-button { display: none !important; }
+      main { width: 100%; }
+      .topic-card { break-inside: avoid; box-shadow: none; }
+      .topic-card:not([open]) .topic-body { display: block; }
+      .panel { box-shadow: none; }
+    }
+  </style>
+</head>
+
+<body id="top">
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="top-row">
+        <a class="hub-button" href="../../index.html" aria-label="Return to MBA Hub">← Return to Hub</a>
+        <button class="utility-button" id="printButton" type="button">Print / Save PDF</button>
+      </div>
+
+      <p class="eyebrow">MBA Hub · Concepts · Evolution</p>
+      <h1>Tree of Life Origins</h1>
+      <p class="subtitle">
+        From the chemistry of the early Earth to LUCA, oxygen, complex cells,
+        and the first great branches of life.
+      </p>
+
+      <div class="header-facts" aria-label="Key app facts">
+        <div class="header-fact">
+          <strong>Guest Path</strong>
+          <span>Clear explanations and memorable talking points.</span>
+        </div>
+        <div class="header-fact">
+          <strong>Guide Deep Dive</strong>
+          <span>Scientific uncertainty, evidence, and nuance.</span>
+        </div>
+        <div class="header-fact">
+          <strong>Branching Story</strong>
+          <span>Evolution is a family tree, not a ladder.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <section class="controls-panel" aria-label="App controls">
+      <div class="search-wrap">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search: FUCA, oxygen, mitochondria, archaea..."
+          aria-label="Search topics"
+          autocomplete="off"
+        />
+        <button class="clear-button" id="clearSearch" type="button">Clear</button>
+      </div>
+
+      <div class="control-group">
+        <button class="control-button" id="expandAll" type="button">Expand All</button>
+        <button class="control-button" id="collapseAll" type="button">Re-collapse</button>
+      </div>
+
+      <div class="search-status" id="searchStatus" aria-live="polite"></div>
+    </section>
+
+    <section class="intro-grid">
+      <article class="panel intro-card">
+        <h2>How did a lifeless planet become alive?</h2>
+        <p>
+          Every organism—from bacteria and eelgrass to jellyfish and humans—is
+          part of one enormous branching family tree. This app follows the
+          earliest part of that story while separating well-supported evidence
+          from active research and hypothesis.
+        </p>
+        <p class="big-question">
+          What changed, why did it matter, and which living organisms still
+          carry that inheritance?
+        </p>
+      </article>
+
+      <aside class="panel intro-card">
+        <h2>Confidence Guide</h2>
+        <div class="confidence-list">
+          <div class="confidence-item">
+            <span class="badge supported">Well Supported</span>
+            <span>Multiple independent lines of evidence.</span>
+          </div>
+          <div class="confidence-item">
+            <span class="badge strong">Strong Evidence</span>
+            <span>Broad agreement; details remain under study.</span>
+          </div>
+          <div class="confidence-item">
+            <span class="badge research">Active Research</span>
+            <span>Evidence exists, but major questions remain.</span>
+          </div>
+          <div class="confidence-item">
+            <span class="badge hypothesis">Hypothesis</span>
+            <span>A plausible scientific explanation still being tested.</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel timeline-card" aria-labelledby="timelineHeading">
+      <h2 id="timelineHeading">A Compressed Timeline</h2>
+      <div class="timeline">
+        <div class="time-point">
+          <strong>4.54 billion years ago</strong>
+          <span>Earth forms.</span>
+        </div>
+        <div class="time-point">
+          <strong>At least 3.7 billion years ago</strong>
+          <span>Evidence indicates life was already present; the oldest claims remain difficult to interpret.</span>
+        </div>
+        <div class="time-point">
+          <strong>~3.5–3.4 billion years ago</strong>
+          <span>Compelling structural and microscopic evidence of cellular microbial life.</span>
+        </div>
+        <div class="time-point">
+          <strong>~2.43–2.33 billion years ago</strong>
+          <span>The Great Oxidation Event permanently raises atmospheric oxygen.</span>
+        </div>
+        <div class="time-point">
+          <strong>Much later</strong>
+          <span>Eukaryotes, multicellular organisms, animals, fungi, and plants diversify.</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="quick-nav" aria-label="Jump to section">
+      <a class="chapter-button" href="#earliest-earth">1. Earliest Earth</a>
+      <a class="chapter-button" href="#chemistry-life">2. Chemistry to Life</a>
+      <a class="chapter-button" href="#first-ancestors">3. FUCA & LUCA</a>
+      <a class="chapter-button" href="#first-branches">4. First Branches</a>
+      <a class="chapter-button" href="#oxygen">5. Oxygen Revolution</a>
+      <a class="chapter-button" href="#complex-cells">6. Complex Cells</a>
+      <a class="chapter-button" href="#big-picture">7. Big Picture</a>
+    </nav>
+
+    <div class="no-results" id="noResults">
+      No topic matched your search. Try a broader term such as “oxygen,” “cell,” “bacteria,” or “ancestor.”
+    </div>
+
+    <section id="earliest-earth" class="app-section">
+      <header class="section-heading">
+        <span class="number">Transition 1</span>
+        <h2>The Earliest Earth</h2>
+        <p>A young planet cools, forms oceans, and develops chemistry capable of supporting life.</p>
+      </header>
+
+      <details class="topic-card" open data-search="earth formation molten magma crust moon 4.54 billion cooling oceans">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">🌍</span>
+            <span>
+              <span class="topic-name">A Planet Forms</span>
+              <span class="topic-kicker">Earth begins as a hot, changing world</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge supported">Well Supported</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Earth formed about 4.54 billion years ago from rocky material orbiting
+            the young Sun. Impacts, compression, and radioactive decay kept the
+            young planet extremely hot. Its surface gradually cooled and developed
+            a solid crust.
+          </p>
+          <p>
+            Water vapor condensed, and stable bodies of liquid water developed
+            remarkably early in Earth's history. These oceans created environments
+            where complex chemistry could continue for immense spans of time.
+          </p>
+
+          <div class="museum-moment">
+            <strong>Museum Moment</strong>
+            The earliest evidence of life appears relatively soon after Earth became
+            capable of maintaining stable water and crust—but the exact sequence is
+            still under investigation.
+          </div>
+        </div>
+      </details>
+
+      <details class="topic-card" data-search="early atmosphere carbon dioxide nitrogen water vapor methane ammonia oxygen free oxygen anoxic">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">☁</span>
+            <span>
+              <span class="topic-name">The Early Atmosphere</span>
+              <span class="topic-kicker">A world without breathable oxygen</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge strong">Strong Evidence</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Early Earth's atmosphere was dominated by volcanic gases and contained
+            essentially no persistent free oxygen. Carbon dioxide, nitrogen, water
+            vapor, and smaller amounts of other gases were important components.
+            Its precise composition changed through time and remains an active field
+            of geochemical research.
+          </p>
+
+          <div class="mini-panel correction">
+            <strong>Scientific wording improvement</strong>
+            Rather than saying the original atmosphere was simply “carbon dioxide
+            and nitrogen,” say that it was <em>rich in carbon dioxide and nitrogen,
+            with water vapor and other gases, and almost no free oxygen</em>.
+          </div>
+
+          <h3>Why it mattered</h3>
+          <p>
+            The first organisms evolved anaerobically—without oxygen. Oxygen was
+            not initially a life requirement; for many early organisms it was toxic.
+          </p>
+        </div>
+      </details>
+
+      <details class="topic-card" data-search="3.85 3.8 3.7 greenland earliest signs life carbon isotope stromatolite controversial evidence">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">🔎</span>
+            <span>
+              <span class="topic-name">The Earliest Signs of Life</span>
+              <span class="topic-kicker">Ancient evidence is real—but difficult to interpret</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge research">Active Research</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Rocks from Greenland preserve carbon and structures dating to roughly
+            3.7 billion years ago that have been interpreted as evidence of life.
+            Some claims are compelling, but very ancient rocks have been heated,
+            compressed, and chemically altered, so scientists evaluate them cautiously.
+          </p>
+          <p>
+            By about 3.5–3.4 billion years ago, structural, microscopic, and chemical
+            evidence for microbial cellular life becomes substantially stronger,
+            including evidence from southern Africa and Western Australia.
+          </p>
+
+          <div class="mini-panel correction">
+            <strong>Recommended replacement for the original note</strong>
+            “Evidence indicates life existed by at least about 3.7 billion years ago,
+            although the oldest examples are debated. More compelling evidence of
+            cellular microbial life appears by approximately 3.5–3.4 billion years ago.”
+          </div>
+
+          <details class="guide-dive">
+            <summary>🔬 Guide Deep Dive</summary>
+            <div class="guide-body">
+              <p>
+                “First sign of life” can refer to several different evidence types:
+                carbon-isotope patterns, organic carbon, microscopic structures,
+                stromatolites, or cellular microfossils. They do not all carry the
+                same evidentiary weight.
+              </p>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <details class="topic-card" data-search="two billion years single celled microbes bacteria archaea microbial world multicellular">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">🦠</span>
+            <span>
+              <span class="topic-name">A Microbial Planet</span>
+              <span class="topic-kicker">For most of early history, life was microscopic</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge supported">Well Supported</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            For roughly the first two billion years after life's appearance,
+            Earth's biosphere was dominated by single-celled microbes. There were
+            no animals, land plants, forests, fish, or flowering plants.
+          </p>
+          <p>
+            This does not mean evolution was inactive. Microbes developed many
+            metabolic pathways, transformed global chemistry, exchanged genes,
+            and established the biochemical foundations still used by life today.
+          </p>
+
+          <div class="museum-moment">
+            <strong>Museum Moment</strong>
+            Complex visible life is a late development. Microbial life is not a
+            primitive footnote—it is the foundation and majority of life's history.
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="chemistry-life" class="app-section">
+      <header class="section-heading">
+        <span class="number">Transition 2</span>
+        <h2>From Chemistry to Life</h2>
+        <p>The origin of life is an active research problem, not a single completed explanation.</p>
+      </header>
+
+      <details class="topic-card" data-search="prebiotic chemistry amino acids nucleotides lipids lightning ultraviolet hydrothermal vents organic molecules">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">⚗</span>
+            <span>
+              <span class="topic-name">Prebiotic Chemistry</span>
+              <span class="topic-kicker">Natural chemistry produces biological building blocks</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge research">Active Research</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Before cells existed, naturally occurring chemical reactions produced
+            organic compounds. Possible environments include hydrothermal systems,
+            volcanic ponds, mineral surfaces, shorelines, ice, and wet-dry cycles.
+          </p>
+          <p>
+            Energy from ultraviolet radiation, geothermal heat, electrical activity,
+            and chemical gradients could have driven increasingly complex reactions.
+          </p>
+
+          <div class="fact-grid">
+            <div class="mini-panel">
+              <strong>What scientists can demonstrate</strong>
+              Organic building blocks can form through nonliving chemistry under
+              several plausible conditions.
+            </div>
+            <div class="mini-panel">
+              <strong>What remains unknown</strong>
+              The exact environment, sequence, and pathway that produced the first
+              evolving living system.
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="topic-card" data-search="RNA world hypothesis ribonucleic acid genetic information catalyst ribozyme replication">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">🧬</span>
+            <span>
+              <span class="topic-name">RNA World?</span>
+              <span class="topic-kicker">A possible bridge between chemistry and heredity</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge hypothesis">Hypothesis</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            The RNA World hypothesis proposes that RNA-like molecules once served
+            both as carriers of information and as catalysts for chemical reactions.
+            Modern RNA still performs both roles in limited ways.
+          </p>
+          <p>
+            RNA World is not the same as a fully established historical event.
+            Scientists continue investigating how RNA components could have formed,
+            replicated, and become enclosed within evolving systems.
+          </p>
+        </div>
+      </details>
+
+      <details class="topic-card" data-search="protocells lipid vesicles membrane droplets compartment not alive chemical systems">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">◉</span>
+            <span>
+              <span class="topic-name">Protocells</span>
+              <span class="topic-kicker">Compartments before modern cells</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge research">Active Research</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Certain fatty molecules spontaneously form membrane-like vesicles in
+            water. Such compartments can concentrate chemicals and separate internal
+            reactions from the surrounding environment.
+          </p>
+          <p>
+            Protocells are models for possible intermediate stages. They should not
+            automatically be called alive unless they also show heredity, variation,
+            and sustained evolution.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <section id="first-ancestors" class="app-section">
+      <header class="section-heading">
+        <span class="number">Transition 3</span>
+        <h2>FUCA, Early Lineages, and LUCA</h2>
+        <p>A careful distinction between speculative first ancestors and the shared ancestor inferred from all living cells.</p>
+      </header>
+
+      <div class="tree-panel" aria-label="Origin sequence">
+<pre>Prebiotic chemistry
+        │
+RNA World? (hypothesis)
+        │
+Protocells
+        │
+FUCA? (hypothetical)
+        │
+Many early lineages
+   ╱    │    ╲
+ extinct branches
+        │
+       LUCA
+      ╱    ╲
+ Bacteria  Archaea
+              ╲
+          Eukaryotic lineage</pre>
+      </div>
+
+      <details class="topic-card" open data-search="FUCA first universal common ancestor hypothetical first ancestor population primitive cells gene exchange">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">?</span>
+            <span>
+              <span class="topic-name">FUCA?</span>
+              <span class="topic-kicker">First Universal Common Ancestor—an uncertain concept</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge hypothesis">Hypothetical</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            FUCA is a proposed First Universal Common Ancestor: a possible earliest
+            ancestor from which all later life descended. It is useful for discussion,
+            but it is much less secure than LUCA.
+          </p>
+          <p>
+            The earliest evolving systems may not have formed a clean, modern-style
+            family tree. They may have been populations of primitive cells that
+            frequently exchanged genetic material.
+          </p>
+
+          <h3>Why FUCA is difficult to identify</h3>
+          <ul>
+            <li>The earliest geological record is incomplete and heavily altered.</li>
+            <li>Early organisms were microscopic and soft-bodied.</li>
+            <li>Genes may have moved extensively among primitive lineages.</li>
+            <li>“First life” may have been a gradual transition rather than one organism.</li>
+          </ul>
+
+          <div class="museum-moment">
+            <strong>Guide Language</strong>
+            “FUCA is a useful hypothetical idea, but scientists cannot yet point to
+            a single first organism. Early life may have involved communities of
+            primitive cells rather than one identifiable ancestor.”
+          </div>
+        </div>
+      </details>
+
+      <details class="topic-card" data-search="many early lineages extinct branches bush web evolution horizontal gene transfer">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">⑂</span>
+            <span>
+              <span class="topic-name">Many Early Lineages</span>
+              <span class="topic-kicker">The earliest history may have looked more like a web</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge research">Active Research</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Multiple early lineages likely appeared, changed, exchanged genes, and
+            disappeared. Most left no living descendants. The surviving genetic
+            systems eventually became established strongly enough for the deeper
+            branches of the modern Tree of Life to emerge.
+          </p>
+        </div>
+      </details>
+
+      <details class="topic-card" open data-search="LUCA last universal common ancestor DNA RNA ribosome cell membrane ATP genetic code no nucleus mitochondria chloroplast">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">◎</span>
+            <span>
+              <span class="topic-name">LUCA</span>
+              <span class="topic-kicker">The Last Universal Common Ancestor</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge strong">Strong Evidence</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            LUCA was not necessarily the first life. It was the most recent ancestral
+            population from which every organism alive today ultimately descends.
+            Scientists infer LUCA by identifying deeply shared features present in
+            bacteria, archaea, and eukaryotes.
+          </p>
+
+          <div class="fact-grid">
+            <div class="mini-panel">
+              <strong>LUCA probably had</strong>
+              DNA and RNA systems, ribosomes, a shared genetic code, cellular
+              membranes, enzymes, and ATP-based energy chemistry.
+            </div>
+            <div class="mini-panel">
+              <strong>LUCA did not have</strong>
+              A eukaryotic nucleus, mitochondria, chloroplasts, animals, fungi, or plants.
+            </div>
+          </div>
+
+          <div class="museum-moment">
+            <strong>What You Inherited</strong>
+            Your cells still use the same basic information system—DNA to RNA to
+            protein—and the same ATP energy currency inherited through life's deepest ancestry.
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="first-branches" class="app-section">
+      <header class="section-heading">
+        <span class="number">Transition 4</span>
+        <h2>The First Great Branches</h2>
+        <p>Bacteria and archaea are ancient sister-level branches, while eukaryotes arose later from within an archaeal-related lineage through symbiosis with bacteria.</p>
+      </header>
+
+      <div class="tree-panel" aria-label="Simplified first branches">
+<pre>                    LUCA
+                  ╱      ╲
+          Bacteria        Archaea
+             │               ╲
+             │          archaeal-related host
+             │                    +
+             │          alphaproteobacterium
+             │                    │
+             └────────────── Eukaryotes
+                              │
+                    animals · fungi · plants
+                    and many other lineages</pre>
+      </div>
+
+      <details class="topic-card" data-search="prokaryotes bacteria archaea no nucleus membrane bound organelles term">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">●</span>
+            <span>
+              <span class="topic-name">Prokaryotes</span>
+              <span class="topic-kicker">A useful cell description—not one natural branch</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge supported">Well Supported</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Bacteria and archaea are both called prokaryotes because their cells
+            lack a nucleus and most membrane-bound organelles. However, “prokaryote”
+            describes a cell organization; it should not imply that bacteria and
+            archaea form one branch excluding eukaryotes.
+          </p>
+        </div>
+      </details>
+
+      <details class="topic-card" data-search="bacteria domain microbes metabolism cyanobacteria alphaproteobacteria decomposition nitrogen">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">B</span>
+            <span>
+              <span class="topic-name">Bacteria</span>
+              <span class="topic-kicker">Metabolically diverse planetary engineers</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge supported">Well Supported</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Bacteria occupy nearly every environment and perform photosynthesis,
+            decomposition, fermentation, nitrogen cycling, and many other chemical
+            transformations. Two bacterial lineages are especially important later
+            in this story:
+          </p>
+          <ul>
+            <li><strong>Cyanobacteria</strong> produced oxygen through photosynthesis and later gave rise to chloroplasts.</li>
+            <li><strong>Alphaproteobacteria</strong> include the bacterial lineage from which mitochondria arose.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="topic-card" data-search="archaea extremophiles hydrothermal vents boiling high temperature chemical diet chemosynthesis ocean soil gut asgard">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">A</span>
+            <span>
+              <span class="topic-name">Archaea</span>
+              <span class="topic-kicker">Ancient cells closely tied to eukaryotic origins</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge supported">Well Supported</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Some archaea live in hot springs, hydrothermal systems, hypersaline
+            water, or acidic environments and obtain energy through chemical
+            pathways independent of sunlight. But archaea are not limited to extremes:
+            they are abundant in ordinary oceans, soils, sediments, and animal microbiomes.
+          </p>
+
+          <div class="mini-panel correction">
+            <strong>Scientific wording improvement</strong>
+            Do not define archaea only as organisms that live above boiling
+            temperature. Some are extremophiles, but many live under moderate conditions.
+          </div>
+
+          <details class="guide-dive">
+            <summary>🔬 Guide Deep Dive</summary>
+            <div class="guide-body">
+              Molecular evidence places eukaryotes within or very near archaeal
+              diversity, especially Asgard archaea. The exact identity and biology
+              of the host that acquired the mitochondrial ancestor remain under study.
+            </div>
+          </details>
+        </div>
+      </details>
+    </section>
+
+    <section id="oxygen" class="app-section">
+      <header class="section-heading">
+        <span class="number">Transition 5</span>
+        <h2>The Oxygen Revolution</h2>
+        <p>Photosynthetic microbes release a toxic waste product that eventually transforms the planet.</p>
+      </header>
+
+      <details class="topic-card" open data-search="cyanobacteria photosynthesis sunlight carbon dioxide water sugar glucose oxygen first poison">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">☀</span>
+            <span>
+              <span class="topic-name">Cyanobacteria</span>
+              <span class="topic-kicker">Microbes that changed the atmosphere</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge supported">Well Supported</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Cyanobacteria evolved oxygen-producing photosynthesis. They used light
+            energy to build organic molecules from carbon dioxide and water, releasing
+            oxygen as a byproduct.
+          </p>
+
+          <div class="equation">
+            light + carbon dioxide + water → organic sugars + oxygen
+          </div>
+
+          <p>
+            Early oxygen reacted with dissolved iron, volcanic gases, reduced minerals,
+            and other chemical sinks. Only after many sinks became less able to consume
+            it did oxygen begin accumulating persistently in the atmosphere.
+          </p>
+
+          <div class="museum-moment">
+            <strong>Museum Moment</strong>
+            Oxygen was once a dangerous microbial waste product. The gas we depend on
+            today initially poisoned many organisms adapted to an oxygen-free world.
+          </div>
+        </div>
+      </details>
+
+      <details class="topic-card" open data-search="great oxidation oxygenation event 2.4 2.43 2.33 billion atmosphere accumulate one billion years">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">O₂</span>
+            <span>
+              <span class="topic-name">The Great Oxidation Event</span>
+              <span class="topic-kicker">Sustained atmospheric oxygen begins about 2.4 billion years ago</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge supported">Well Supported</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            A major permanent increase in atmospheric oxygen occurred approximately
+            2.43–2.33 billion years ago. Oxygen did not immediately rise to modern
+            levels; the oceans and atmosphere continued changing through later
+            oxygenation episodes.
+          </p>
+
+          <div class="mini-panel correction">
+            <strong>Correction to the original note</strong>
+            Oxygen did not first begin accumulating only one billion years ago.
+            Sustained atmospheric oxygen began during the Great Oxidation Event
+            around 2.4 billion years ago, followed by a long, uneven rise.
+          </div>
+
+          <div class="before-after">
+            <div class="mini-panel before">
+              <h3>Before</h3>
+              <ul>
+                <li>Almost no persistent atmospheric oxygen</li>
+                <li>Mostly anaerobic ecosystems</li>
+                <li>No protective ozone layer comparable to later Earth</li>
+              </ul>
+            </div>
+            <div class="mini-panel after">
+              <h3>After</h3>
+              <ul>
+                <li>Oxygen becomes a major planetary chemical force</li>
+                <li>Aerobic metabolism expands</li>
+                <li>Ozone can reduce damaging ultraviolet radiation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="topic-card" data-search="oxygen poison anaerobic extinction reactive oxygen toxic oxidative stress">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">!</span>
+            <span>
+              <span class="topic-name">Oxygen: Poison and Opportunity</span>
+              <span class="topic-kicker">A reactive gas creates both danger and energy</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge strong">Strong Evidence</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Oxygen is chemically reactive. It damages cells unless organisms possess
+            protective enzymes and repair mechanisms. Many anaerobic microbes remained
+            restricted to oxygen-poor environments, while other lineages evolved ways
+            to tolerate or exploit oxygen.
+          </p>
+          <p>
+            Oxygen-based respiration can extract far more usable energy from many
+            organic molecules than fermentation alone, although early oxygen users
+            and the timing of different metabolic pathways remain subjects of research.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <section id="complex-cells" class="app-section">
+      <header class="section-heading">
+        <span class="number">Transition 6</span>
+        <h2>The Rise of Complex Cells</h2>
+        <p>Eukaryotes emerged through a deep evolutionary merger involving an archaeal-related host and a bacterium.</p>
+      </header>
+
+      <details class="topic-card" open data-search="eukaryotes oxygen metabolism developed result oxygen not directly caused nucleus endosymbiosis">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">◈</span>
+            <span>
+              <span class="topic-name">Eukaryotes</span>
+              <span class="topic-kicker">Cells with nuclei, internal organization, and mitochondria</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge strong">Strong Evidence</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Eukaryotic cells include animals, fungi, plants, algae, and many
+            single-celled lineages. Their origin involved major changes in cell
+            structure, genome organization, internal membranes, and energy metabolism.
+          </p>
+
+          <div class="mini-panel correction">
+            <strong>Important scientific refinement</strong>
+            Do not say that eukaryotes simply developed “as a result of oxygen
+            metabolism.” Oxygen availability was important, but eukaryogenesis was
+            a complex evolutionary process. The acquisition of the mitochondrial
+            ancestor was one of its defining events.
+          </div>
+        </div>
+      </details>
+
+      <details class="topic-card" open data-search="mitochondria free living bacterium alphaproteobacteria endosymbiosis ATP oxygen burn chemically release energy">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">⚡</span>
+            <span>
+              <span class="topic-name">Mitochondria</span>
+              <span class="topic-kicker">Descendants of an ancient bacterial endosymbiont</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge supported">Well Supported</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Mitochondria descend from an alphaproteobacterium that entered a lasting
+            symbiotic relationship with an archaeal-related host. Over evolutionary
+            time, many genes moved to the host nucleus, and the bacterium became an
+            organelle.
+          </p>
+          <p>
+            Mitochondria convert chemical energy into ATP. Many use oxygen as the
+            final electron acceptor in respiration, although some mitochondria and
+            related organelles function in low-oxygen or oxygen-free environments.
+          </p>
+
+          <h3>Evidence for bacterial ancestry</h3>
+          <ul>
+            <li>Mitochondria retain their own DNA.</li>
+            <li>They divide from preexisting mitochondria.</li>
+            <li>Their ribosomes and genes show bacterial ancestry.</li>
+            <li>They are surrounded by two membranes.</li>
+          </ul>
+
+          <div class="museum-moment">
+            <strong>What You Inherited</strong>
+            Nearly every cell in your body contains descendants of bacteria that
+            entered this partnership more than a billion years ago.
+          </div>
+        </div>
+      </details>
+
+      <details class="topic-card" data-search="chloroplast cyanobacteria endosymbiosis algae plants photosynthesis red green primary secondary">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">🌿</span>
+            <span>
+              <span class="topic-name">Chloroplasts</span>
+              <span class="topic-kicker">A second great endosymbiotic partnership</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge supported">Well Supported</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            Later, a eukaryotic cell incorporated a cyanobacterium. That symbiont
+            became the chloroplast ancestor of red algae, green algae, and land plants.
+            Other algal groups later acquired photosynthesis through additional
+            endosymbiotic events involving already-photosynthetic eukaryotes.
+          </p>
+          <p>
+            This is why plants have both mitochondria and chloroplasts: the
+            mitochondrial partnership came first in eukaryotic ancestry, and the
+            chloroplast partnership occurred later in one photosynthetic lineage.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <section id="big-picture" class="app-section">
+      <header class="section-heading">
+        <span class="number">Transition 7</span>
+        <h2>The Big Picture</h2>
+        <p>The earliest Tree of Life is a branching and merging history—not a straight march toward modern organisms.</p>
+      </header>
+
+      <div class="tree-panel" aria-label="Complete early tree of life">
+<pre>Prebiotic chemistry
+        │
+RNA World? (hypothesis)
+        │
+Protocells
+        │
+FUCA? (hypothetical)
+        │
+Many early lineages and extinct branches
+        │
+       LUCA
+      ╱    ╲
+ Bacteria  Archaea
+    │          ╲
+    │       archaeal-related host
+    │               +
+    ├── alphaproteobacterial ancestor
+    │               │
+    │          mitochondrion
+    │               │
+    └────────── Eukaryotes
+                     │
+             ┌───────┴────────┐
+             │                │
+       many nonphotosynthetic  cyanobacterial
+       eukaryotic lineages     endosymbiosis
+             │                │
+       animals · fungi    chloroplast lineage
+                              │
+                     red algae · green algae
+                              │
+                          land plants
+
+Note: Brown algae acquired chloroplasts later through secondary endosymbiosis
+and are not descendants of green algae or land plants.</pre>
+      </div>
+
+      <details class="topic-card" open data-search="five big ideas summary tree life branching ladder humans plants fungi algae">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">✓</span>
+            <span>
+              <span class="topic-name">Five Big Ideas</span>
+              <span class="topic-kicker">The core story to remember</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge supported">Summary</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <ol>
+            <li><strong>The transition from chemistry to life remains incompletely understood.</strong></li>
+            <li><strong>LUCA was not the first life;</strong> it was the shared ancestor of all living lineages.</li>
+            <li><strong>Evolution branches rather than climbs.</strong> Modern organisms are cousins, not higher and lower rungs.</li>
+            <li><strong>Microbes transformed the planet.</strong> Cyanobacteria oxygenated Earth, and bacteria became mitochondria and chloroplasts.</li>
+            <li><strong>Life's history includes cooperation and merger.</strong> Endosymbiosis is as important as competition in the origin of complex cells.</li>
+          </ol>
+        </div>
+      </details>
+
+      <details class="topic-card" data-search="guest explanation elevator talk guide script short explanation">
+        <summary>
+          <span class="summary-title">
+            <span class="topic-icon">💬</span>
+            <span>
+              <span class="topic-name">60-Second Guest Explanation</span>
+              <span class="topic-kicker">A ready-to-use guide summary</span>
+            </span>
+          </span>
+          <span class="summary-side">
+            <span class="badge strong">Guide Tool</span>
+            <span class="chevron">⌄</span>
+          </span>
+        </summary>
+        <div class="topic-body">
+          <p>
+            “Earth began without life or breathable oxygen. Natural chemistry
+            produced increasingly complex molecules, although we still do not know
+            the exact pathway to the first cells. By at least 3.7 billion years ago,
+            life was present, and for roughly two billion years it remained microbial.
+            Cyanobacteria later released oxygen, transforming the planet. A partnership
+            between an archaeal-related cell and a bacterium produced mitochondria and
+            helped create eukaryotic cells. Another partnership produced chloroplasts.
+            Animals, fungi, algae, plants, and humans are later branches of that ancient,
+            interconnected history.”
+          </p>
+        </div>
+      </details>
+
+      <article class="panel final-panel">
+        <h2>Continue into the Tree of Life</h2>
+        <p>
+          This app explains how life's earliest foundation and major cellular
+          innovations arose. The companion Tree of Life Explorer asks a different
+          question: where did two organisms diverge, and what did they inherit from
+          their common ancestor?
+        </p>
+        <div class="connection-buttons">
+          <a href="../tree-of-life-explorer/index.html">Open Tree of Life Explorer</a>
+          <a href="#top">Return to the Beginning</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Tree of Life Origins v1.0</strong> · MBA Hub Concepts</p>
+    <p>
+      Dates are approximate. The oldest evidence of life, the nature of early
+      ancestors, and details of eukaryogenesis remain active research areas.
+    </p>
+  </footer>
+
+  <button class="back-top" id="backTop" type="button" aria-label="Back to top">↑</button>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const topicCards = [...document.querySelectorAll(".topic-card")];
+      const searchInput = document.getElementById("searchInput");
+      const clearSearch = document.getElementById("clearSearch");
+      const searchStatus = document.getElementById("searchStatus");
+      const noResults = document.getElementById("noResults");
+      const expandAll = document.getElementById("expandAll");
+      const collapseAll = document.getElementById("collapseAll");
+      const printButton = document.getElementById("printButton");
+      const backTop = document.getElementById("backTop");
+
+      function searchableText(card) {
+        return `${card.dataset.search || ""} ${card.textContent}`.toLowerCase();
+      }
+
+      function runSearch() {
+        const query = searchInput.value.trim().toLowerCase();
+        let matches = 0;
+
+        topicCards.forEach(card => {
+          const isMatch = !query || searchableText(card).includes(query);
+          card.hidden = !isMatch;
+
+          if (isMatch) {
+            matches += 1;
+            if (query) card.open = true;
+          }
+        });
+
+        document.querySelectorAll(".app-section").forEach(section => {
+          const visible = section.querySelector(".topic-card:not([hidden])");
+          const permanentContent = section.querySelector(".tree-panel, .final-panel");
+          section.style.display = visible || (!query && permanentContent) ? "" : "none";
+        });
+
+        noResults.style.display = matches === 0 ? "block" : "none";
+        searchStatus.textContent = query
+          ? `${matches} topic${matches === 1 ? "" : "s"} matched “${searchInput.value.trim()}”.`
+          : "";
+      }
+
+      function clearSearchAndRestore() {
+        searchInput.value = "";
+        topicCards.forEach(card => {
+          card.hidden = false;
+        });
+        document.querySelectorAll(".app-section").forEach(section => {
+          section.style.display = "";
+        });
+        noResults.style.display = "none";
+        searchStatus.textContent = "";
+        searchInput.focus();
+      }
+
+      searchInput.addEventListener("input", runSearch);
+      clearSearch.addEventListener("click", clearSearchAndRestore);
+
+      expandAll.addEventListener("click", () => {
+        topicCards.forEach(card => {
+          if (!card.hidden) card.open = true;
+        });
+        document.querySelectorAll(".guide-dive").forEach(item => item.open = true);
+      });
+
+      collapseAll.addEventListener("click", () => {
+        topicCards.forEach(card => card.open = false);
+        document.querySelectorAll(".guide-dive").forEach(item => item.open = false);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      printButton.addEventListener("click", () => window.print());
+
+      backTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      window.addEventListener("scroll", () => {
+        backTop.classList.toggle("show", window.scrollY > 700);
+      });
+
+      window.addEventListener("keydown", event => {
+        if (event.key === "/" && document.activeElement !== searchInput) {
+          event.preventDefault();
+          searchInput.focus();
+        }
+
+        if (event.key === "Escape" && searchInput.value) {
+          clearSearchAndRestore();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
