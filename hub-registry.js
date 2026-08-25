@@ -5,7 +5,7 @@
 
 window.MBA_HUB_REGISTRY = {
   version: "2.2",
-  lastUpdated: "2026-07-15",
+  lastUpdated: "2026-08-25",
   title: "MBA Hub 2.2",
   description:
     "Monterey Bay Aquarium volunteer companion hub for reference apps, guide tools, troubleshooting, tags, and cross-links.",
@@ -429,6 +429,52 @@ window.MBA_HUB_REGISTRY = {
         "Needs PC Chrome, iPhone Safari, Clear Cache, Concepts category display, direct app link, dropdowns, search, troubleshooting, and offline confirmation after upload.",
       notes:
         "App folder path is apps/applied-water-science-life-support/. Return to Hub path remains ../../index.html."
+    },
+
+    {
+      id: "evolution-timeline",
+      name: "Evolution Timeline — From Universe to Us",
+      folder: "evolution-timeline",
+      url: "https://drtforshortaol.github.io/evolution-timeline/",
+      category: "concepts",
+      appType: "Standalone PWA integrated by Hub link",
+      version: "11",
+      releaseDate: "2026-08-24",
+      lastUpdated: "2026-08-25",
+      purpose:
+        "Help aquarium volunteers follow the evolutionary story from cosmic and planetary context through LUCA, mitochondria, chloroplasts, algae, plants, kelp, animals, and humans.",
+      description:
+        "Interactive evolution timeline with Story by Groups and Strict Time Map views, Learn More explanations, endosymbiosis, Follow the Energy and Follow the Machinery teaching threads, and a final explanation of why kelp is an alga rather than a plant.",
+      tags: [
+        "evolution",
+        "tree of life",
+        "LUCA",
+        "LECA",
+        "cyanobacteria",
+        "alphaproteobacteria",
+        "mitochondria",
+        "chloroplasts",
+        "endosymbiosis",
+        "photosynthesis",
+        "ATP",
+        "algae",
+        "red algae",
+        "green algae",
+        "brown algae",
+        "kelp",
+        "plants",
+        "animals",
+        "deep time",
+        "concepts"
+      ],
+      relatedApps: [
+        "applied-water-science-life-support"
+      ],
+      status: "Active",
+      testingStatus:
+        "Standalone v11 is tested on PC and iPhone. Hub integration should be verified for Concepts display, external app launch, Return to MBA Hub, search/tags, and installed-Hub behavior.",
+      notes:
+        "Hub launches the maintained standalone GitHub Pages PWA so the Evolution Timeline can continue independent development. The app includes a direct Return to MBA Hub control."
     }
   ]
 };
