@@ -5,7 +5,7 @@
 
 window.MBA_HUB_REGISTRY = {
   version: "2.2",
-  lastUpdated: "2026-08-25",
+  lastUpdated: "2026-09-19",
   title: "MBA Hub 2.2",
   description:
     "Monterey Bay Aquarium volunteer companion hub for reference apps, guide tools, troubleshooting, tags, and cross-links.",
@@ -475,6 +475,44 @@ window.MBA_HUB_REGISTRY = {
         "Standalone v11 is tested on PC and iPhone. Hub integration should be verified for Concepts display, external app launch, Return to MBA Hub, search/tags, and installed-Hub behavior.",
       notes:
         "Hub launches the maintained standalone GitHub Pages PWA so the Evolution Timeline can continue independent development. The app includes a direct Return to MBA Hub control."
+    },
+    {
+      id: "aquarium-library-explorer",
+      name: "Aquarium Library Explorer",
+      folder: "external",
+      url: "https://drtforshortaol.github.io/aquarium-shift-library-/",
+      category: "volunteer-tools",
+      appType: "Standalone PWA integrated by Hub link",
+      version: "1.0",
+      releaseDate: "2026-09-19",
+      lastUpdated: "2026-09-19",
+      purpose:
+        "Provide Monterey Bay Aquarium volunteers with fast searchable access to the Thursday 2nd Shift aquarium book library.",
+      description:
+        "Searchable 78-book aquarium library explorer with subject tags, ownership details, descriptions, and borrowing status.",
+      tags: [
+        "library",
+        "books",
+        "aquarium library",
+        "reference",
+        "volunteer tools",
+        "Thursday 2nd Shift",
+        "borrowing status",
+        "marine mammals",
+        "fish",
+        "sharks",
+        "birds",
+        "invertebrates",
+        "ocean science"
+      ],
+      relatedApps: [
+        "information-center"
+      ],
+      status: "Active",
+      testingStatus:
+        "Standalone library is live. Hub integration should be verified for Volunteer Tools display, external app launch, search/tags, and installed-Hub behavior.",
+      notes:
+        "Hub launches the maintained standalone GitHub Pages PWA so the library can be updated independently while the Hub always opens the current version."
     }
   ]
 };
