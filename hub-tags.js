@@ -5,7 +5,7 @@
 
 window.MBA_HUB_TAGS = {
 version: "2.2",
-lastUpdated: "2026-07-15",
+lastUpdated: "2026-09-19",
 
 tags: [
 {
@@ -25,7 +25,8 @@ description:
 relatedApps: [
 "information-center",
 "interpretation-principles",
-"five-senses-pwa"
+"five-senses-pwa",
+"aquarium-library-explorer"
 ],
 relatedCategories: ["volunteer-tools"],
 notes: "General category tag for volunteer support apps."
@@ -546,6 +547,39 @@ dateCreated: "2026-07-15",
 lastUpdated: "2026-07-15",
 notes:
 "General discovery tag for volunteer learning apps."
+},
+{
+tag: "library",
+type: "content type",
+description:
+"Searchable aquarium book library and volunteer reference collection.",
+relatedApps: ["aquarium-library-explorer"],
+relatedCategories: ["volunteer-tools"],
+dateCreated: "2026-09-19",
+lastUpdated: "2026-09-19",
+notes: "Primary discovery tag for Aquarium Library Explorer."
+},
+{
+tag: "books",
+type: "content type",
+description:
+"Books and print reference resources available through the aquarium volunteer library.",
+relatedApps: ["aquarium-library-explorer"],
+relatedCategories: ["volunteer-tools"],
+dateCreated: "2026-09-19",
+lastUpdated: "2026-09-19",
+notes: "Used for book-library discovery."
+},
+{
+tag: "aquarium library",
+type: "volunteer resource",
+description:
+"Thursday 2nd Shift aquarium book library reference and borrowing information.",
+relatedApps: ["aquarium-library-explorer"],
+relatedCategories: ["volunteer-tools"],
+dateCreated: "2026-09-19",
+lastUpdated: "2026-09-19",
+notes: "Specific tag for the Aquarium Library Explorer."
 }
 ]
 };
