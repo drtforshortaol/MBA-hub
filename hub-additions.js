@@ -3,6 +3,20 @@
   const registry = window.MBA_HUB_REGISTRY;
   if (!registry || !Array.isArray(registry.apps)) return;
 
+  // Dedicated category for guide knowledge, field observations, Naturalist notes,
+  // and future Bay Watch / field-reference modules.
+  if (Array.isArray(registry.categories) && !registry.categories.some(category => category.id === "naturalist-field-knowledge")) {
+    const newCategory = {
+      id: "naturalist-field-knowledge",
+      title: "Naturalist & Field Knowledge",
+      icon: "🌊",
+      description: "Naturalist updates, field observations, Bay Watch, species highlights, and guide knowledge from Monterey Bay."
+    };
+    const visitorIndex = registry.categories.findIndex(category => category.id === "visitor-services");
+    if (visitorIndex >= 0) registry.categories.splice(visitorIndex, 0, newCategory);
+    else registry.categories.push(newCategory);
+  }
+
   if (!registry.apps.some(app => app.id === "flamboyant-cuttlefish")) {
     registry.apps.push({
       id: "flamboyant-cuttlefish",
@@ -30,18 +44,22 @@
       name: "Naturalist Field Notes",
       folder: "naturalist-field-notes",
       url: "apps/naturalist-field-notes/index.html",
-      category: "visitor-questions",
+      category: "naturalist-field-knowledge",
       appType: "Naturalist field notes and reference PWA",
-      version: "0.1",
+      version: "0.4",
       releaseDate: "2026-10-02",
       lastUpdated: "2026-10-02",
       purpose: "Preserve dated naturalist updates while extracting reusable Q&A, Bay Watch sightings, and links to durable species guides.",
-      description: "Searchable weekly field notes with current observations, archive, visitor Q&A, Bay Watch, species highlights, and Naturalist resources.",
-      tags: ["naturalist","field notes","visitor questions","bay watch","sightings","humpback whales","orcas","dolphins","species highlights","monterey bay"],
+      description: "Searchable weekly field notes with current observations, archive, visitor Q&A, Bay Watch, species highlights, photographs, and Naturalist resources.",
+      tags: ["naturalist","field notes","field knowledge","visitor questions","bay watch","sightings","humpback whales","orcas","dolphins","species highlights","monterey bay"],
       relatedApps: ["flamboyant-cuttlefish"],
       status: "Active",
-      testingStatus: "Uploaded to Hub; ready for iPhone Safari and offline testing.",
-      notes: "App folder path is apps/naturalist-field-notes/. Field Notes preserve when events happened; species guides preserve durable species information."
+      testingStatus: "Dedicated Naturalist & Field Knowledge category; ready for iPhone Safari and offline testing.",
+      notes: "App folder path is apps/naturalist-field-notes/. Field Notes preserve when events happened; species guides preserve durable species information. Bay Watch remains structured for a future standalone app."
     });
+  } else {
+    // Keep an existing registry entry aligned with the dedicated category.
+    const naturalistApp = registry.apps.find(app => app.id === "naturalist-field-notes");
+    naturalistApp.category = "naturalist-field-knowledge";
   }
 })();
