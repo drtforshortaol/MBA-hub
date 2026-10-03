@@ -531,6 +531,24 @@ window.MBA_HUB_REGISTRY = {
       status: "Active",
       testingStatus: "New species guide. Verify Animals category display, iPhone Safari, search, dropdowns, Return to Hub and offline behavior after media upload.",
       notes: "Created from the Aug 27-Sept 2 Naturalist Species Highlight. Supplied Field Note images will be connected after their files are uploaded to GitHub."
+    },
+    {
+      id: "naturalist-field-notes",
+      name: "Naturalist Field Notes",
+      folder: "naturalist-field-notes",
+      url: "apps/naturalist-field-notes/index.html",
+      category: "aquarium-updates",
+      appType: "PWA field-note archive",
+      version: "1.0",
+      releaseDate: "2026-09-10",
+      lastUpdated: "2026-10-03",
+      purpose: "Preserve recurring Naturalist updates as searchable, dated, illustrated field notes for aquarium guides.",
+      description: "Searchable Naturalist archive with dated observations, Bay Watch records, visitor Q&A, Species Highlights, resources and links to permanent Species Guides.",
+      tags: ["naturalist","field notes","naturalist field notes","aquarium updates","bay watch","species highlights","visitor questions","monterey bay","wildlife observations","archive"],
+      relatedApps: ["gooseneck-barnacle"],
+      status: "Active",
+      testingStatus: "Four Field Notes currently archived. Verify Aquarium Updates display, archive, search, iPhone Safari and offline behavior.",
+      notes: "One Naturalist email equals one dated Field Note. Permanent species material remains in separate Species Guide apps."
     }
   ]
 };
