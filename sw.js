@@ -3,7 +3,7 @@
 // Purpose: Root Hub service worker and offline cache.
 // Do not confuse this with individual app sw.js files.
 
-const CACHE_NAME = "mba-hub-2-2-5-search-dropdown-20261003";
+const CACHE_NAME = "mba-hub-2-2-6-dropdown-collapse-fix-20261003";
 
 const CORE_ASSETS = [
   "./",
