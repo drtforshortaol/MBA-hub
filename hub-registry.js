@@ -5,7 +5,7 @@
 
 window.MBA_HUB_REGISTRY = {
   version: "2.2",
-  lastUpdated: "2026-09-19",
+  lastUpdated: "2026-10-03",
   title: "MBA Hub 2.2",
   description:
     "Monterey Bay Aquarium volunteer companion hub for reference apps, guide tools, troubleshooting, tags, and cross-links.",
@@ -513,6 +513,24 @@ window.MBA_HUB_REGISTRY = {
         "Standalone library is live. Hub integration should be verified for Volunteer Tools display, external app launch, search/tags, and installed-Hub behavior.",
       notes:
         "Hub launches the maintained standalone GitHub Pages PWA so the library can be updated independently while the Hub always opens the current version."
+    },
+    {
+      id: "gooseneck-barnacle",
+      name: "Gooseneck Barnacle",
+      folder: "gooseneck-barnacle",
+      url: "apps/gooseneck-barnacle/index.html",
+      category: "animals",
+      appType: "PWA species guide",
+      version: "1.0",
+      releaseDate: "2026-10-03",
+      lastUpdated: "2026-10-03",
+      purpose: "Provide an iPhone-friendly guide to the gooseneck barnacle, Pollicipes polymerus, for aquarium interpretation.",
+      description: "Species guide covering quick facts, larval life cycle, settlement, anatomy, feeding with cirri, reproduction, rocky-shore adaptations, fluorescence, human harvest, visitor talking points, references and offline use.",
+      tags: ["gooseneck barnacle","Pollicipes polymerus","barnacles","crustaceans","intertidal","rocky shore","cirri","filter feeding","nauplius","cyprid","larvae","settlement","cement glands","peduncle","species guide","animals"],
+      relatedApps: ["naturalist-field-notes","applied-water-science-life-support"],
+      status: "Active",
+      testingStatus: "New species guide. Verify Animals category display, iPhone Safari, search, dropdowns, Return to Hub and offline behavior after media upload.",
+      notes: "Created from the Aug 27-Sept 2 Naturalist Species Highlight. Supplied Field Note images will be connected after their files are uploaded to GitHub."
     }
   ]
 };
