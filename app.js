@@ -184,6 +184,7 @@ function renderHub() {
   list.innerHTML = filteredCategories.map((category) => renderCategory(category)).join("");
 
   setupCategoryToggles(list);
+  setupAppToggles(list);
   setupTagButtons(list);
 }
 
@@ -353,30 +354,34 @@ function renderAppCard(app) {
   const related = renderRelatedApps(app);
 
   return `
-    <article class="app-card" id="app-${escapeHTML(app.id)}">
-      <h3>${escapeHTML(app.name)}</h3>
-
-      <p>${escapeHTML(app.description)}</p>
-
-      ${
-        tags
-          ? `<div class="app-tags" aria-label="Tags">${tags}</div>`
-          : ""
-      }
-
-      ${related}
-
-      <div class="app-card-footer">
-        <span class="status-pill">
-          ${escapeHTML(app.status || "Active")} · v${escapeHTML(app.version || "1.0")}
+    <details class="app-card app-dropdown" id="app-${escapeHTML(app.id)}">
+      <summary class="app-summary">
+        <span class="app-summary-text">
+          <strong class="app-summary-title">${escapeHTML(app.name)}</strong>
+          <span class="app-summary-description">${escapeHTML(app.description)}</span>
         </span>
-
-        <a class="open-app" href="${escapeHTML(app.url)}">
+        <a class="open-app app-summary-open" href="${escapeHTML(app.url)}" data-open-app>
           Open App
         </a>
+      </summary>
+
+      <div class="app-dropdown-content">
+        ${tags ? `<div class="app-tags" aria-label="Tags">${tags}</div>` : ""}
+        ${related}
+        <div class="app-card-footer">
+          <span class="status-pill">
+            ${escapeHTML(app.status || "Active")} · v${escapeHTML(app.version || "1.0")}
+          </span>
+        </div>
       </div>
-    </article>
+    </details>
   `;
+}
+
+function setupAppToggles(list) {
+  list.querySelectorAll("[data-open-app]").forEach((link) => {
+    link.addEventListener("click", (event) => event.stopPropagation());
+  });
 }
 
 function renderTags(tags) {
