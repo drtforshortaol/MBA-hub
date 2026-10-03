@@ -380,6 +380,17 @@ function renderAppCard(app) {
 }
 
 function setupAppToggles(list) {
+  list.querySelectorAll(".app-dropdown").forEach((details) => {
+    const summary = details.querySelector(".app-summary");
+    if (!summary) return;
+
+    summary.addEventListener("click", (event) => {
+      if (event.target.closest("[data-open-app]")) return;
+      event.preventDefault();
+      details.open = !details.open;
+    });
+  });
+
   list.querySelectorAll("[data-open-app]").forEach((link) => {
     link.addEventListener("click", (event) => event.stopPropagation());
   });
