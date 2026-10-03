@@ -594,3 +594,15 @@ button.tag {
 .app-dropdown-content{padding:0 1rem 1rem;border-top:1px solid #d8e7e9}
 .app-dropdown-content .app-tags{margin-top:1rem}
 @media(max-width:620px){.app-summary{align-items:flex-start}.app-summary-open{font-size:.92rem;padding:.65rem .8rem}.app-summary-title{font-size:1.05rem}.app-summary-description{font-size:.94rem}}
+
+/* Search Hub dropdown — collapsed by default */
+.search-dropdown{padding:0;overflow:hidden}
+.search-dropdown>summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem;cursor:pointer;list-style:none}
+.search-dropdown>summary::-webkit-details-marker{display:none}
+.search-dropdown>summary strong{display:block;font-size:clamp(1.35rem,4vw,2rem);color:var(--ocean-dark)}
+.search-summary-description{display:block;margin-top:.25rem;color:var(--muted);font-weight:700;line-height:1.35}
+.search-summary-actions{display:flex;gap:.55rem;flex:0 0 auto}
+.search-summary-actions .toggle-all-btn{min-height:44px;padding:.6rem .8rem}
+.search-dropdown-content{padding:0 1rem 1rem;border-top:1px solid #d8e7e9}
+.search-dropdown-content .search-label{margin-top:1rem}
+@media(max-width:620px){.search-dropdown>summary{align-items:flex-start;flex-direction:column}.search-summary-actions{width:100%}.search-summary-actions .toggle-all-btn{flex:1}.search-summary-description{font-size:.94rem}}
