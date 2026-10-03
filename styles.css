@@ -606,3 +606,9 @@ button.tag {
 .search-dropdown-content{padding:0 1rem 1rem;border-top:1px solid #d8e7e9}
 .search-dropdown-content .search-label{margin-top:1rem}
 @media(max-width:620px){.search-dropdown>summary{align-items:flex-start;flex-direction:column}.search-summary-actions{width:100%}.search-summary-actions .toggle-all-btn{flex:1}.search-summary-description{font-size:.94rem}}
+
+/* Fix collapsed app-card height: override legacy flex/min-height rules */
+.app-card.app-dropdown{display:block;min-height:0;height:auto;padding:0;gap:0}
+.app-card.app-dropdown:not([open]){min-height:0;height:auto}
+.app-card.app-dropdown:not([open]) .app-dropdown-content{display:none}
+.app-card.app-dropdown[open] .app-dropdown-content{display:block}
