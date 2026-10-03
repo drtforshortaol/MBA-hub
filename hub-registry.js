@@ -549,6 +549,22 @@ window.MBA_HUB_REGISTRY = {
       status: "Active",
       testingStatus: "Four Field Notes currently archived. Verify Aquarium Updates display, archive, search, iPhone Safari and offline behavior.",
       notes: "One Naturalist email equals one dated Field Note. Permanent species material remains in separate Species Guide apps."
+    },
+    {
+      id: "wildfires-ocean-health",
+      name: "Wildfires & Ocean Health",
+      folder: "wildfires-ocean-health",
+      url: "apps/wildfires-ocean-health/index.html",
+      category: "concepts",
+      appType: "Topic guide",
+      version: "1.0",
+      releaseDate: "2026-10-03",
+      lastUpdated: "2026-10-03",
+      purpose: "Explain connections between coastal wildfire events and marine ecosystems.",
+      description: "Guide developed from the Aug 20–26 Naturalist Topic Highlight.",
+      tags: ["wildfire","ocean health","Timber Fire","smoke ecology","ash","runoff","plankton","kelp","marine mammals","concepts"],
+      relatedApps: ["naturalist-field-notes"],
+      status: "Active"
     }
   ]
 };
