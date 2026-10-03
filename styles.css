@@ -583,3 +583,14 @@ button.tag {
     margin: 0.5rem auto;
   }
 }
+/* Hub app dropdown cards — default collapsed */
+.app-dropdown{padding:0;overflow:hidden}
+.app-summary{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:1rem;cursor:pointer;list-style:none}
+.app-summary::-webkit-details-marker{display:none}
+.app-summary-text{min-width:0;display:block}
+.app-summary-title{display:block;font-size:1.12rem;color:var(--ocean-dark);margin-bottom:.28rem}
+.app-summary-description{display:block;color:var(--muted);line-height:1.4}
+.app-summary-open{flex:0 0 auto;white-space:nowrap}
+.app-dropdown-content{padding:0 1rem 1rem;border-top:1px solid #d8e7e9}
+.app-dropdown-content .app-tags{margin-top:1rem}
+@media(max-width:620px){.app-summary{align-items:flex-start}.app-summary-open{font-size:.92rem;padding:.65rem .8rem}.app-summary-title{font-size:1.05rem}.app-summary-description{font-size:.94rem}}
