@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderHub();
   setupSearch();
   setupControls();
+  setupSearchDropdownActions();
   setupNotice();
   setupInstallPanel();
   setupHelpPanel();
@@ -542,6 +543,12 @@ function setupSearch() {
       renderHub();
     });
   }
+}
+
+function setupSearchDropdownActions() {
+  document.querySelectorAll(".search-summary-actions button").forEach((button) => {
+    button.addEventListener("click", (event) => event.stopPropagation());
+  });
 }
 
 function setupControls() {
