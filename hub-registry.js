@@ -533,6 +533,22 @@ window.MBA_HUB_REGISTRY = {
       notes: "Created from the Aug 27-Sept 2 Naturalist Species Highlight. Supplied Field Note images will be connected after their files are uploaded to GitHub."
     },
     {
+      id: "green-falsejingle",
+      name: "Green Falsejingle",
+      folder: "green-falsejingle",
+      url: "apps/green-falsejingle/index.html",
+      category: "animals",
+      appType: "Species guide",
+      version: "1.0",
+      releaseDate: "2026-10-04",
+      lastUpdated: "2026-10-04",
+      purpose: "Provide an iPhone-friendly guide to the green falsejingle, Pododesmus macrochisma.",
+      description: "Species guide covering quick facts, cementing settlement, bivalve life cycle, filter feeding, ecosystem services, predators, habitat and aquarium talking points.",
+      tags: ["green falsejingle","Pododesmus macrochisma","jingle shell","mermaid's toenails","bivalve","clam","filter feeding","cementing bivalve","Monterey Bay Habitats","animals"],
+      relatedApps: ["naturalist-field-notes"],
+      status: "Active"
+    },
+    {
       id: "naturalist-field-notes",
       name: "Naturalist Field Notes",
       folder: "naturalist-field-notes",
@@ -545,7 +561,7 @@ window.MBA_HUB_REGISTRY = {
       purpose: "Preserve recurring Naturalist updates as searchable, dated, illustrated field notes for aquarium guides.",
       description: "Searchable Naturalist archive with dated observations, Bay Watch records, visitor Q&A, Species Highlights, resources and links to permanent Species Guides.",
       tags: ["naturalist","field notes","naturalist field notes","aquarium updates","bay watch","species highlights","visitor questions","monterey bay","wildlife observations","archive"],
-      relatedApps: ["gooseneck-barnacle"],
+      relatedApps: ["gooseneck-barnacle","green-falsejingle"],
       status: "Active",
       testingStatus: "Four Field Notes currently archived. Verify Aquarium Updates display, archive, search, iPhone Safari and offline behavior.",
       notes: "One Naturalist email equals one dated Field Note. Permanent species material remains in separate Species Guide apps."
