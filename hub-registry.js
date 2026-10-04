@@ -5,7 +5,7 @@
 
 window.MBA_HUB_REGISTRY = {
   version: "2.2",
-  lastUpdated: "2026-10-03",
+  lastUpdated: "2026-10-04",
   title: "MBA Hub 2.2",
   description:
     "Monterey Bay Aquarium volunteer companion hub for reference apps, guide tools, troubleshooting, tags, and cross-links.",
@@ -557,13 +557,13 @@ window.MBA_HUB_REGISTRY = {
       appType: "PWA field-note archive",
       version: "1.0",
       releaseDate: "2026-09-10",
-      lastUpdated: "2026-10-03",
+      lastUpdated: "2026-10-04",
       purpose: "Preserve recurring Naturalist updates as searchable, dated, illustrated field notes for aquarium guides.",
       description: "Searchable Naturalist archive with dated observations, Bay Watch records, visitor Q&A, Species Highlights, resources and links to permanent Species Guides.",
       tags: ["naturalist","field notes","naturalist field notes","aquarium updates","bay watch","species highlights","visitor questions","monterey bay","wildlife observations","archive"],
       relatedApps: ["gooseneck-barnacle","green-falsejingle"],
       status: "Active",
-      testingStatus: "Four Field Notes currently archived. Verify Aquarium Updates display, archive, search, iPhone Safari and offline behavior.",
+      testingStatus: "Six Field Notes currently archived. Verify Aquarium Updates display, archive, search, iPhone Safari and offline behavior.",
       notes: "One Naturalist email equals one dated Field Note. Permanent species material remains in separate Species Guide apps."
     },
     {
