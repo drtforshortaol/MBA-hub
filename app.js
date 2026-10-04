@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupHelpPanel();
   setupClearCache();
   registerServiceWorker();
+  setupAutomaticFreshnessCheck();
 });
 
 let activeCategory = "all";
@@ -693,6 +694,29 @@ function showStatus(message) {
 
   status.textContent = message;
   status.hidden = false;
+}
+
+function setupAutomaticFreshnessCheck() {
+  const CHECK_KEY = "mbaHubLastUpdateCheck";
+  const CHECK_INTERVAL_MS = 6 * 60 * 60 * 1000;
+
+  window.addEventListener("load", async () => {
+    if (!("serviceWorker" in navigator)) return;
+
+    const now = Date.now();
+    const lastCheck = Number(localStorage.getItem(CHECK_KEY) || 0);
+
+    if (now - lastCheck < CHECK_INTERVAL_MS) return;
+
+    localStorage.setItem(CHECK_KEY, String(now));
+
+    try {
+      const registration = await navigator.serviceWorker.ready;
+      await registration.update();
+    } catch (error) {
+      console.warn("Automatic Hub freshness check failed:", error);
+    }
+  });
 }
 
 function registerServiceWorker() {
