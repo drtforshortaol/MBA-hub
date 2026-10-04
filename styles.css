@@ -612,3 +612,6 @@ button.tag {
 .app-card.app-dropdown:not([open]){min-height:0;height:auto}
 .app-card.app-dropdown:not([open]) .app-dropdown-content{display:none}
 .app-card.app-dropdown[open] .app-dropdown-content{display:block}
+
+/* Small visible maintenance stamp under Hub title */
+.hub-last-update{font-size:.68rem;opacity:.65;margin:.25rem 0 0;letter-spacing:.01em}
