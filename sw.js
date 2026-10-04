@@ -3,7 +3,7 @@
 // Purpose: Root Hub service worker and offline cache.
 // Do not confuse this with individual app sw.js files.
 
-const CACHE_NAME = "mba-hub-2-2-13-auto-freshness-20261004";
+const CACHE_NAME = "mba-hub-2-2-14-20261004";
 
 const CORE_ASSETS = [
   "./",
