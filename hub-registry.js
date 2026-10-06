@@ -1,12 +1,12 @@
 // ROOT HUB REGISTRY FILE: MBA-hub/hub-registry.js
-// Hub 2.2 Registry Safety Update
+// Hub 2.2.15 Registry
 // Purpose: Master Hub app registry.
 // Do not confuse this file with individual app data.js files.
 
 window.MBA_HUB_REGISTRY = {
-  version: "2.2",
-  lastUpdated: "2026-10-04",
-  title: "MBA Hub 2.2",
+  version: "2.2.15",
+  lastUpdated: "2026-10-06",
+  title: "MBA Hub 2.2.15",
   description:
     "Monterey Bay Aquarium volunteer companion hub for reference apps, guide tools, troubleshooting, tags, and cross-links.",
 
