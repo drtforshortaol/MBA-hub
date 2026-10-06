@@ -4,9 +4,9 @@
 // Do not confuse this file with individual app data.js files.
 
 window.MBA_HUB_REGISTRY = {
-  version: "2.2.15",
+  version: "2.2.16",
   lastUpdated: "2026-10-06",
-  title: "MBA Hub 2.2.15",
+  title: "MBA Hub 2.2.16",
   description:
     "Monterey Bay Aquarium volunteer companion hub for reference apps, guide tools, troubleshooting, tags, and cross-links.",
 
@@ -89,6 +89,25 @@ window.MBA_HUB_REGISTRY = {
   ],
 
   apps: [
+    {
+      id: "wildlife-rescue",
+      name: "Wildlife Rescue — Important Contacts",
+      folder: "wildlife-rescue",
+      url: "apps/wildlife-rescue/index.html",
+      category: "volunteer-tools",
+      appType: "PWA quick-reference directory",
+      version: "1.0",
+      releaseDate: "2026-10-06",
+      lastUpdated: "2026-10-06",
+      purpose: "Provide one permanent, fast place for wildlife rescue contacts used by aquarium volunteers.",
+      description: "Tap-to-call Monterey Bay contacts for seabirds and wildlife, stranded sea lions and marine mammals, and sea otters, with basic safety reminders.",
+      tags: ["wildlife rescue","important contacts","phone numbers","seabirds","SPCA Wildlife","marine mammals","sea lions","Marine Mammal Center","sea otters","Monterey Bay Aquarium","emergency","volunteer tools","visitor questions"],
+      relatedApps: ["naturalist-field-notes","information-center"],
+      status: "Active",
+      testingStatus: "New permanent quick-reference directory. Verify iPhone tap-to-call, Return to Hub and offline behavior.",
+      notes: "Master wildlife rescue contact directory. Field Notes may preserve historical contacts but should link here for permanent operational access."
+    },
+
     {
       id: "information-center",
       name: "Information Center Handbook",
@@ -561,7 +580,7 @@ window.MBA_HUB_REGISTRY = {
       purpose: "Preserve recurring Naturalist updates as searchable, dated, illustrated field notes for aquarium guides.",
       description: "Searchable Naturalist archive with dated observations, Bay Watch records, visitor Q&A, Species Highlights, resources and links to permanent Species Guides.",
       tags: ["naturalist","field notes","naturalist field notes","aquarium updates","bay watch","species highlights","visitor questions","monterey bay","wildlife observations","archive"],
-      relatedApps: ["gooseneck-barnacle","green-falsejingle"],
+      relatedApps: ["gooseneck-barnacle","green-falsejingle","wildlife-rescue"],
       status: "Active",
       testingStatus: "Six Field Notes currently archived. Verify Aquarium Updates display, archive, search, iPhone Safari and offline behavior.",
       notes: "One Naturalist email equals one dated Field Note. Permanent species material remains in separate Species Guide apps."
