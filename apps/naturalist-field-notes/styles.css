@@ -4,3 +4,9 @@
 /* Crop the supplied R/V David Packard screenshot to the photograph area. */
 .fieldphoto.crop-packard{overflow:hidden}
 .fieldphoto.crop-packard img{width:100%;aspect-ratio:1.48/1;object-fit:cover;object-position:center top}
+
+/* Sept 3–9 source-image display corrections: preserve user crop on whale cards and remove screenshot framing around Packard. */
+.fieldphoto.whale-card{overflow:hidden}
+.fieldphoto.whale-card img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top}
+.fieldphoto.crop-packard{overflow:hidden}
+.fieldphoto.crop-packard img{display:block;width:100%;height:auto;aspect-ratio:auto;clip-path:inset(0 0 7% 0)}
