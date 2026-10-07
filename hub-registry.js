@@ -534,6 +534,22 @@ window.MBA_HUB_REGISTRY = {
         "Hub launches the maintained standalone GitHub Pages PWA so the library can be updated independently while the Hub always opens the current version."
     },
     {
+      id: "california-flying-fish",
+      name: "California Flying Fish",
+      folder: "california-flying-fish",
+      url: "apps/california-flying-fish/index.html",
+      category: "animals",
+      appType: "Species guide",
+      version: "1.0",
+      releaseDate: "2026-10-07",
+      lastUpdated: "2026-10-07",
+      purpose: "Provide an iPhone-friendly guide to the California flying fish, Cheilopogon pinnatibarbatus californicus.",
+      description: "Animal guide developed from the July 2–8 Naturalist Species Highlight, covering quick facts, life cycle, gliding mechanics, fin adaptations, eyes, skeletal adaptations, fisheries and conservation.",
+      tags: ["California flying fish","Bennett's flying fish","Cheilopogon pinnatibarbatus","Cheilopogon pinnatibarbatus californicus","flying fish","gliding fish","pectoral fins","El Niño","marine heatwave","animals","species guide"],
+      relatedApps: ["naturalist-field-notes","open-sea"],
+      status: "Active"
+    },
+    {
       id: "gooseneck-barnacle",
       name: "Gooseneck Barnacle",
       folder: "gooseneck-barnacle",
