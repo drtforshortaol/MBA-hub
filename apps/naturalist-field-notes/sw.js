@@ -1,5 +1,5 @@
-const CACHE="naturalist-field-notes-v29";
-const CORE=["./","index.html","styles.css","app.js","data.js","manifest.webmanifest","icon.svg"];
+const CACHE="naturalist-field-notes-v30";
+const CORE=["./","index.html","styles.css","app.js","data.js","manifest.webmanifest","icon.svg","IMG_3400.jpeg","IMG_3401.jpeg","IMG_3402.jpeg"];
 self.addEventListener("install",event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(cache=>Promise.all(CORE.map(async path=>{try{const response=await fetch(path,{cache:"reload"});if(response.ok)await cache.put(path,response)}catch(e){}}))))});
 self.addEventListener("activate",event=>{event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith("naturalist-field-notes-")&&k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim()})())});
 self.addEventListener("fetch",event=>{const req=event.request;if(req.method!=="GET")return;const url=new URL(req.url);if(url.origin!==self.location.origin)return;if(!url.pathname.startsWith(new URL("./",self.location.href).pathname))return;event.respondWith((async()=>{const cache=await caches.open(CACHE);try{const response=await fetch(req,{cache:"no-store"});if(response.ok)event.waitUntil(cache.put(req,response.clone()));return response}catch(e){const saved=await cache.match(req,{ignoreSearch:true});if(saved)return saved;if(req.mode==="navigate"){const page=await cache.match("index.html");if(page)return page}return Response.error()}})())});
