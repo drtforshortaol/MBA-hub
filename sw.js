@@ -3,7 +3,7 @@
 // Purpose: Root Hub service worker and offline cache.
 // Do not confuse this with individual app sw.js files.
 
-const CACHE_NAME = "mba-hub-2-2-17-20261006";
+const CACHE_NAME = "mba-hub-2-2-18-20261008";
 
 const CORE_ASSETS = [
   "./",
@@ -57,6 +57,11 @@ self.addEventListener("fetch", (event) => {
   const requestUrl = new URL(event.request.url);
 
   if (requestUrl.origin !== self.location.origin) {
+    return;
+  }
+
+  if (requestUrl.pathname.includes("/apps/naturalist-field-notes/")) {
+    event.respondWith(fetch(event.request, {cache:"no-store"}));
     return;
   }
 
