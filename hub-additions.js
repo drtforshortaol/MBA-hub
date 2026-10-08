@@ -62,4 +62,44 @@
     const naturalistApp = registry.apps.find(app => app.id === "naturalist-field-notes");
     naturalistApp.category = "naturalist-field-knowledge";
   }
+  // Species guides linked from Naturalist Field Notes. Registered here so they
+  // appear as separate alphabetically sorted entries in the Hub Animals category.
+  const newSpeciesGuides = [
+    {
+      id: "hopkins-rose-nudibranch",
+      name: "Hopkins’ Rose Nudibranch",
+      folder: "hopkins-rose-nudibranch",
+      url: "apps/hopkins-rose-nudibranch/index.html",
+      category: "animals",
+      appType: "Illustrated species guide",
+      version: "1.0",
+      releaseDate: "2026-10-08",
+      lastUpdated: "2026-10-08",
+      purpose: "Explore Hopkins’ rose nudibranch biology, anatomy, life cycle and changing range.",
+      description: "Seven illustrated photographs and diagrams, dorid identification, egg ribbons, gills, rhinophores, diet and warming-water observations.",
+      tags: ["nudibranch","Hopkins rose","Ceratodoris rosacea","sea slug","dorid","marine invertebrate","animals"],
+      relatedApps: ["naturalist-field-notes"],
+      status: "Active"
+    },
+    {
+      id: "pseudo-nitzschia",
+      name: "Pseudo-nitzschia",
+      folder: "pseudo-nitzschia",
+      url: "apps/pseudo-nitzschia/index.html",
+      category: "animals",
+      appType: "Marine life and harmful algal bloom guide",
+      version: "1.0",
+      releaseDate: "2026-10-08",
+      lastUpdated: "2026-10-08",
+      purpose: "Explain Pseudo-nitzschia diatoms, domoic acid and marine food web impacts.",
+      description: "Illustrated guide to diatom biology, harmful algal blooms, domoic acid and marine mammals. Diatoms are not animals; this guide is filed under Animals for volunteer browsing.",
+      tags: ["Pseudo-nitzschia","diatoms","phytoplankton","harmful algal bloom","domoic acid","marine life"],
+      relatedApps: ["naturalist-field-notes"],
+      status: "Active"
+    }
+  ];
+  newSpeciesGuides.forEach(guide => {
+    if (!registry.apps.some(app => app.id === guide.id)) registry.apps.push(guide);
+  });
+
 })();
