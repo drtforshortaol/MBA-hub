@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Repair Naturalist Field Notes cache</title><style>body{font:18px system-ui;max-width:650px;margin:45px auto;padding:24px;color:#103c46}button{font:inherit;background:#07566b;color:white;border:0;border-radius:12px;padding:16px 22px}#status{margin-top:24px;line-height:1.6}</style></head><body><h1>Naturalist Field Notes — Cache Repair</h1><p>This one-time repair removes old offline workers and saved website files, then opens the current Field Notes. It does not change or delete any Field Notes in GitHub.</p><button id="repair">Repair cache and open Field Notes</button><p id="status">Ready.</p><script>
+document.getElementById("repair").onclick=async()=>{
+const status=document.getElementById("status"),btn=document.getElementById("repair");btn.disabled=true;
+try{
+status.textContent="Removing outdated service workers…";
+if("serviceWorker" in navigator){const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.filter(r=>r.scope.includes("/MBA-hub/")).map(r=>r.unregister()));}
+status.textContent="Removing outdated cached files…";
+if("caches" in window){const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith("mba-hub-")||k.startsWith("naturalist-field-notes-")).map(k=>caches.delete(k)));}
+status.textContent="Opening fresh Field Notes…";
+location.replace("./naturalist-field-notes/?cache_repair="+Date.now());
+}catch(e){status.textContent="Could not complete repair: "+e.message;btn.disabled=false;}
+};
+</script></body></html>
