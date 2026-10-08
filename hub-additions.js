@@ -98,6 +98,22 @@
       status: "Active"
     }
   ];
+  newSpeciesGuides.push({
+    id: "pacific-white-sided-dolphin",
+    name: "Pacific White-Sided Dolphin",
+    folder: "pacific-white-sided-dolphin",
+    url: "apps/pacific-white-sided-dolphin/index.html",
+    category: "animals",
+    appType: "Illustrated species guide",
+    version: "1.0",
+    releaseDate: "2026-10-08",
+    lastUpdated: "2026-10-08",
+    purpose: "Explain Pacific white-sided dolphins, Brownell coloration, taxonomy, biology and superpods.",
+    description: "Four-image species guide based on March 12, 2026 Naturalist Field Notes.",
+    tags: ["Pacific white-sided dolphin","Brownell morph","dolphins","superpods","marine mammals"],
+    relatedApps: ["naturalist-field-notes"],
+    status: "Active"
+  });
   newSpeciesGuides.forEach(guide => {
     if (!registry.apps.some(app => app.id === guide.id)) registry.apps.push(guide);
   });
