@@ -140,7 +140,7 @@ function renderHub() {
 
   const filteredCategories = categories
     .map((category) => {
-      const categoryApps = apps.filter((app) => app.category === category.id);
+      const categoryApps = apps.filter((app) => app.category === category.id).sort((a, b) => category.id === "animals" ? a.name.localeCompare(b.name, undefined, { sensitivity: "base" }) : 0);
 
       const visibleApps = categoryApps.filter((app) =>
         appMatches(app, category, normalizedSearch)
