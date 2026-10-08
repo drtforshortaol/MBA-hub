@@ -615,3 +615,22 @@ button.tag {
 
 /* Small visible maintenance stamp under Hub title */
 .hub-last-update{font-size:.68rem;opacity:.65;margin:.25rem 0 0;letter-spacing:.01em}
+
+
+/* Animals-only compact directory */
+.animal-directory{width:100%;min-width:0}
+.animal-directory-hint{margin:.2rem 0 .65rem;color:var(--muted);font-size:.88rem}
+.animal-az{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.7rem}
+.animal-letter-jump{min-width:38px;min-height:38px;border:1px solid #bed6d8;border-radius:8px;background:#eff7f7;color:#164850;font-weight:750;cursor:pointer}
+.animal-letter-group{border-top:1px solid #d4e3e4}
+.animal-letter-group>summary{cursor:pointer;padding:.65rem .35rem;font-size:1.08rem;font-weight:750;color:#173f47}
+.animal-letter-group>summary small{font-size:.83rem;color:#667e83}
+.animal-rows{padding:0 .15rem .35rem}
+.animal-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem;min-height:43px;border-top:1px solid #e4eded;padding:.35rem .15rem}
+.animal-info{flex:1;min-width:0}
+.animal-info>summary{cursor:pointer;font-weight:650;line-height:1.25;overflow-wrap:anywhere;padding:.25rem 0}
+.animal-info>p{font-size:.9rem;color:#506a70;margin:.45rem .3rem}
+.animal-info>small{color:#657b7f}
+.animal-open-app{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;padding:.47rem .65rem;min-height:34px;border-radius:8px;background:#087f84;color:white!important;text-decoration:none;font-size:.82rem;font-weight:750;white-space:nowrap}
+.animal-open-app:hover,.animal-open-app:focus-visible{background:#075e65}
+@media(max-width:420px){.animal-open-app{font-size:.77rem;padding:.42rem .5rem}.animal-row{gap:.35rem}}
