@@ -5,7 +5,7 @@
 
 window.MBA_HUB_REGISTRY = {
   version: "2.2.16",
-  lastUpdated: "2026-10-06",
+  lastUpdated: "2026-10-07",
   title: "MBA Hub 2.2.16",
   description:
     "Monterey Bay Aquarium volunteer companion hub for reference apps, guide tools, troubleshooting, tags, and cross-links.",
@@ -89,6 +89,8 @@ window.MBA_HUB_REGISTRY = {
   ],
 
   apps: [
+    {id:"whale-associated-organisms",name:"Whale-Associated Organisms",folder:"whale-associated-organisms",url:"apps/whale-associated-organisms/index.html",category:"animals",appType:"Animal guide",version:"1.0",releaseDate:"2026-10-07",lastUpdated:"2026-10-07",purpose:"Explain whale-associated organisms through field photographs and relationships.",description:"Cookiecutter sharks, whalesuckers, whale barnacles and whale lice, including two find-the-boops challenges.",tags:["whales","parasites","cookiecutter shark","remora","whalesucker","barnacles","whale lice","Cyamus boopis"],relatedApps:["naturalist-field-notes","gooseneck-barnacle"],status:"Active",testingStatus:"Awaiting eight source image uploads."},
+
     {
       id: "wildlife-rescue",
       name: "Wildlife Rescue — Important Contacts",
