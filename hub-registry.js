@@ -4,9 +4,9 @@
 // Do not confuse this file with individual app data.js files.
 
 window.MBA_HUB_REGISTRY = {
-  version: "2.2.16",
+  version: "2.2.17",
   lastUpdated: "2026-10-07",
-  title: "MBA Hub 2.2.16",
+  title: "MBA Hub 2.2.17",
   description:
     "Monterey Bay Aquarium volunteer companion hub for reference apps, guide tools, troubleshooting, tags, and cross-links.",
 
