@@ -187,6 +187,7 @@ function renderHub() {
 
   setupCategoryToggles(list);
   setupAppToggles(list);
+  setupAnimalDirectory(list);
   setupTagButtons(list);
 }
 
@@ -341,14 +342,43 @@ function renderCategory(category) {
       <div class="category-content" ${isExpanded ? "" : "hidden"}>
         ${
           category.apps.length
-            ? `<div class="app-grid">${category.apps
-                .map((app) => renderAppCard(app))
-                .join("")}</div>`
+            ? `<div class="app-grid">${category.id === "animals" ? renderCompactAnimals(category.apps) : category.apps.map((app) => renderAppCard(app)).join("")}</div>`
             : `<div class="no-results">No apps installed in this category yet.</div>`
         }
       </div>
     </article>
   `;
+}
+
+
+// Compact, registry-driven Animals directory. All letters start collapsed;
+// searching reveals matching letters without modifying the species apps.
+function renderCompactAnimals(apps) {
+  const groups = {};
+  apps.forEach(app => {
+    const letter = (app.name || "#").charAt(0).toUpperCase();
+    (groups[letter] ||= []).push(app);
+  });
+  const searching = Boolean(searchTerm.trim());
+  const letters = Object.keys(groups).sort();
+  return `<div class="animal-directory">
+    <p class="animal-directory-hint">Choose a letter, then tap Open App. Tap a name for details.</p>
+    <div class="animal-az" aria-label="Jump to animal letter">${letters.map(letter =>
+      `<button type="button" class="animal-letter-jump" data-animal-letter="${escapeHTML(letter)}">${escapeHTML(letter)}</button>`
+    ).join("")}</div>
+    ${letters.map(letter => `<details class="animal-letter-group" data-letter="${escapeHTML(letter)}" ${searching ? "open" : ""}>
+      <summary>${escapeHTML(letter)} <small>(${groups[letter].length})</small></summary>
+      <div class="animal-rows">${groups[letter].map(app => `
+        <div class="animal-row">
+          <details class="animal-info">
+            <summary>${escapeHTML(app.name)}</summary>
+            <p>${escapeHTML(app.description || app.purpose || "Species guide")}</p>
+            ${app.appType ? `<small>${escapeHTML(app.appType)}</small>` : ""}
+          </details>
+          <a class="animal-open-app" href="${escapeHTML(app.url)}" data-open-app aria-label="Open ${escapeHTML(app.name)} app">Open App ↗</a>
+        </div>`).join("")}</div>
+    </details>`).join("")}
+  </div>`;
 }
 
 function renderAppCard(app) {
@@ -378,6 +408,18 @@ function renderAppCard(app) {
       </div>
     </details>
   `;
+}
+
+function setupAnimalDirectory(list) {
+  list.querySelectorAll("[data-animal-letter]").forEach(button => {
+    button.addEventListener("click", () => {
+      const group = Array.from(list.querySelectorAll(".animal-letter-group"))
+        .find(el => el.dataset.letter === button.dataset.animalLetter);
+      if (!group) return;
+      group.open = true;
+      group.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  });
 }
 
 function setupAppToggles(list) {
