@@ -73,9 +73,9 @@ self.addEventListener("fetch", (event) => {
       .then((networkResponse) => {
         const responseClone = networkResponse.clone();
 
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseClone);
-        });
+        if (requestUrl.pathname === "/MBA-hub/" || CORE_ASSETS.some(path => new URL(path,self.registration.scope).pathname === requestUrl.pathname)) {
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+        }
 
         return networkResponse;
       })
