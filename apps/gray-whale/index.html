@@ -19,4 +19,22 @@
 <p>It is a degenerative bone disease, and the skeleton has it in the shoulder joints, right below the shoulder blades there.</p>
 <p>So I grabbed our veterinarian, Mike Murray, and walked him out there, and I said, “Mike, look at the shoulder joints. What do you see?” “Ah, osteochondrosis dissecans.”</p>
 <p>So that explains why that whale didn't make the migration, probably starved to death and washed up dead on the beach. There had been no apparent net damage or any other trauma.</p>
-</details><p class="source">Source: “MMG - Whale Skeleton Full Story - Steve Webster,” MBA, Guest Experience (Vimeo, July 12, 2020). Transcript lightly edited for punctuation and readability. Interpretive statements about cause of death are attributed to the speaker.</p></section><section class="card"><h2>Future modules</h2><p>Additional gray whale anatomy, feeding, migration, reproduction, conservation and Monterey Bay sightings can be added as separate modules without changing Steve Webster's historical account.</p></section><section class="card"><details><summary>Install and troubleshooting</summary><p>On iPhone: Safari → Share → Add to Home Screen. If an update does not appear, reload while connected to the internet.</p></details></section></main></body></html>
+</details><p class="source">Source: “MMG - Whale Skeleton Full Story - Steve Webster,” MBA, Guest Experience (Vimeo, July 12, 2020). Transcript lightly edited for punctuation and readability. Interpretive statements about cause of death are attributed to the speaker.</p></section><section class="card"><h2>Future modules</h2><p>Additional gray whale anatomy, feeding, migration, reproduction, conservation and Monterey Bay sightings can be added as separate modules without changing Steve Webster's historical account.</p></section><section class="card"><details><summary>Install and troubleshooting</summary><p>On iPhone: Safari → Share → Add to Home Screen. If an update does not appear, reload while connected to the internet.</p></details></section></main><script>
+// Use the verified Hub shared image cache when the network is unavailable.
+// This does not delete or duplicate stored images.
+(function(){
+ const CACHE="mba-shared-assets-v1";
+ async function recover(img){
+  if(img.dataset.offlineRecovered || !("caches" in window))return;
+  img.dataset.offlineRecovered="1";
+  try{
+   const cache=await caches.open(CACHE);
+   const url=new URL(img.getAttribute("src"),document.baseURI);
+   const hit=await cache.match(url.href,{ignoreSearch:true});
+   if(hit){const blob=await hit.blob();img.src=URL.createObjectURL(blob);img.addEventListener("load",()=>URL.revokeObjectURL(img.src),{once:true});}
+  }catch(e){console.warn("Offline image unavailable",img.getAttribute("src"),e);}
+ }
+ document.querySelectorAll("img").forEach(img=>img.addEventListener("error",()=>recover(img)));
+ if(!navigator.onLine)document.querySelectorAll("img").forEach(recover);
+})();
+</script></body></html>
