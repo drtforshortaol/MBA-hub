@@ -9,7 +9,7 @@
   const report=t=>{status.textContent=t;};
   if(!("caches" in window)){report("🔴 Offline storage unavailable in this browser.");button.disabled=true;return;}
   report("Hub offline preparation available. Tap Prepare Offline to start.");
-  async function manifest(){let r;try{r=await fetch("./offline-assets.json?v=20261009-e",{cache:"no-store"});}catch(e){const c=await caches.open(CACHE);r=await c.match(new URL("offline-assets.json",location.origin+"/MBA-hub/").href);}if(!r||!r.ok)throw Error("Inventory unavailable");return r.json();}
+  async function manifest(){let r;try{r=await fetch("./offline-assets.json?v=20261009-g",{cache:"no-store"});}catch(e){const c=await caches.open(CACHE);r=await c.match(new URL("offline-assets.json",location.origin+"/MBA-hub/").href);}if(!r||!r.ok)throw Error("Inventory unavailable");return r.json();}
   async function prepare(){
    button.disabled=true;report("🟡 Starting Hub offline preparation…");
    try{
@@ -18,7 +18,7 @@
     let done=0,downloaded=0,failed=[];const queue=paths.slice();
     const worker=async()=>{while(queue.length){
      const path=queue.shift(),url=new URL(path,location.origin+"/MBA-hub/").href;
-     try{const existing=await cache.match(url,{ignoreSearch:true});if(!existing || /\\.(?:html|js|css|json|webmanifest)$/i.test(path)){
+     try{const existing=await cache.match(url,{ignoreSearch:true});if(!existing || /\.(?:html|js|css|json|webmanifest)$/i.test(path)){
        const response=await fetch(url,{cache:"no-store"});if(!response.ok||response.type==="opaque")throw Error("HTTP "+response.status);
        await cache.put(url,response.clone());downloaded++;
      }}catch(e){failed.push(path+" ("+e.message+")");}
