@@ -3,7 +3,7 @@
 // Purpose: Root Hub service worker and offline cache.
 // Do not confuse this with individual app sw.js files.
 
-const CACHE_NAME = "mba-hub-2-2-19-20261009-1";
+const CACHE_NAME = "mba-hub-2-2-19-20261009-2";
 const SHARED = "mba-shared-assets-v1";
 const MARKER = "/MBA-hub/__offline_complete_v1__";
 let busy = false;
@@ -52,41 +52,35 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") {
-    return;
-  }
-
-  const requestUrl = new URL(event.request.url);
-
-  if (requestUrl.origin !== self.location.origin) {
-    return;
-  }
-
-  if (requestUrl.pathname.includes("/apps/naturalist-field-notes/")) {
-    event.respondWith(fetch(event.request, {cache:"no-store"}));
-    return;
-  }
-
-  event.respondWith(
-    fetch(event.request)
-      .then((networkResponse) => {
-        const responseClone = networkResponse.clone();
-
-        if (requestUrl.pathname === "/MBA-hub/" || CORE_ASSETS.some(path => new URL(path,self.registration.scope).pathname === requestUrl.pathname)) {
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
-        }
-
-        return networkResponse;
-      })
-      .catch(() => {
-        return caches.match(event.request).then(async (cachedResponse) => {
-          const shared = await caches.open(SHARED);
-          return (await shared.match(event.request,{ignoreSearch:true})) || cachedResponse || (event.request.mode === "navigate" ? caches.match("./index.html") : Response.error());
-        });
-      })
-  );
+self.addEventListener("fetch", event => {
+ const req=event.request;
+ if(req.method!=="GET")return;
+ const url=new URL(req.url);
+ if(url.origin!==self.location.origin || !url.pathname.startsWith("/MBA-hub/"))return;
+ event.respondWith((async()=>{
+   const shared=await caches.open(SHARED);
+   const cached=await shared.match(req,{ignoreSearch:true});
+   const shell=await caches.open(CACHE_NAME);
+   const shellHit=await shell.match(req,{ignoreSearch:true});
+   // The shared cache is the offline source of truth for app files.
+   // For online updates, keep serving network responses for non-image assets.
+   const isImage=/\\.(?:jpe?g|png|webp|gif|avif|svg)$/i.test(url.pathname);
+   if(isImage && cached)return cached;
+   try {
+     const network=await fetch(req);
+     if(network.ok && (url.pathname==="/MBA-hub/" || CORE_ASSETS.some(path=>new URL(path,self.registration.scope).pathname===url.pathname))){
+       event.waitUntil(shell.put(req,network.clone()));
+     }
+     return network;
+   }catch(e){
+     if(cached)return cached;
+     if(shellHit)return shellHit;
+     if(req.mode==="navigate")return new Response("<!doctype html><title>Offline file unavailable</title><p>This page is not stored offline. Reconnect to Wi-Fi and use Prepare Offline.</p>",{status:503,headers:{"Content-Type":"text/html"}});
+     return Response.error();
+   }
+ })());
 });
+
 // Central shared image and app-file cache. Existing app workers remain active
 // during migration; this manager does not claim their independent readiness.
 async function sendStatus(client, type, done, total, error) {
