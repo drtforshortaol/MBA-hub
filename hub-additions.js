@@ -118,4 +118,24 @@
     if (!registry.apps.some(app => app.id === guide.id)) registry.apps.push(guide);
   });
 
+  // Single source of truth for citizen-science credibility and MBA Hub usage.
+  if (!registry.apps.some(app => app.id === "inaturalist-citizen-science")) {
+    registry.apps.push({
+      id: "inaturalist-citizen-science",
+      name: "iNaturalist & Citizen Science",
+      folder: "inaturalist-citizen-science",
+      url: "apps/inaturalist-citizen-science/index.html",
+      category: "concepts",
+      appType: "Compact reference concept",
+      version: "1.0",
+      releaseDate: "2026-10-09",
+      lastUpdated: "2026-10-09",
+      purpose: "Explain iNaturalist credibility and responsible use of observations in MBA Hub.",
+      description: "Guide-friendly introduction to citizen science, identification reliability, Research Grade and MBA Hub attribution policy.",
+      tags: ["iNaturalist", "citizen science", "credibility", "Research Grade", "species identification", "scientific sources", "observation reliability"],
+      relatedApps: ["naturalist-field-notes"],
+      status: "Active"
+    });
+  }
+
 })();
