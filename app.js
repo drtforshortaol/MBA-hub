@@ -791,7 +791,14 @@ function setupHubOfflineManager() {
   });
   const send=async type=>{try{
     const reg=await navigator.serviceWorker.ready;
-    (navigator.serviceWorker.controller||reg.active)?.postMessage({type});
+    await reg.update();
+    const active=reg.active;
+    if(!active){status.textContent="🔴 Hub offline worker not active.";return;}
+    active.postMessage({type});
+    if(type==="HUB_OFFLINE_PREPARE"){
+      status.textContent="🟡 Offline preparation requested. Waiting for worker response…";
+      setTimeout(()=>{if(status.textContent.includes("Waiting for worker response"))status.textContent="🔴 No response from Hub offline worker. Reload this page while online and try again.";},12000);
+    }
   }catch(e){status.textContent="🔴 Offline manager unavailable: "+e.message;}};
   button.addEventListener("click",()=>send("HUB_OFFLINE_PREPARE"));
   navigator.serviceWorker.ready.then(()=>send("HUB_OFFLINE_STATUS"));
