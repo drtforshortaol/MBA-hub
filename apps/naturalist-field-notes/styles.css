@@ -10,3 +10,9 @@
 .fieldphoto.whale-card img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top}
 .fieldphoto.crop-packard{overflow:hidden}
 .fieldphoto.crop-packard img{display:block;width:100%;height:auto;aspect-ratio:auto;clip-path:inset(0 0 7% 0)}
+
+/* Verified offline package status */
+.offline-status{margin:0 0 12px;padding:10px 13px;border-radius:11px;font-size:.9rem;font-weight:700;border:1px solid #d2dfe1;background:#edf4f5;color:#25444b}
+.offline-status.ready{background:#e7f5e8;border-color:#a9d8b0;color:#175b2c}
+.offline-status.updating,.offline-status.checking{background:#fff7df;border-color:#ecd393;color:#6c500c}
+.offline-status.incomplete{background:#fff0ef;border-color:#edb4b0;color:#8a2522}
