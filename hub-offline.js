@@ -9,7 +9,7 @@
   const report=t=>{status.textContent=t;};
   if(!("caches" in window)){report("🔴 Offline storage unavailable in this browser.");button.disabled=true;return;}
   report("Hub offline preparation available. Tap Prepare Offline to start.");
-  async function manifest(){const r=await fetch("./offline-assets.json?v=20261009-c",{cache:"no-store"});if(!r.ok)throw Error("Inventory HTTP "+r.status);return r.json();}
+  async function manifest(){let r;try{r=await fetch("./offline-assets.json?v=20261009-e",{cache:"no-store"});}catch(e){const c=await caches.open(CACHE);r=await c.match(new URL("offline-assets.json",location.origin+"/MBA-hub/").href);}if(!r||!r.ok)throw Error("Inventory unavailable");return r.json();}
   async function prepare(){
    button.disabled=true;report("🟡 Starting Hub offline preparation…");
    try{
