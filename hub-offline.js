@@ -18,7 +18,7 @@
     let done=0,downloaded=0,failed=[];const queue=paths.slice();
     const worker=async()=>{while(queue.length){
      const path=queue.shift(),url=new URL(path,location.origin+"/MBA-hub/").href;
-     try{const existing=await cache.match(url,{ignoreSearch:true});if(!existing){
+     try{const existing=await cache.match(url,{ignoreSearch:true});if(!existing || /\\.(?:html|js|css|json|webmanifest)$/i.test(path)){
        const response=await fetch(url,{cache:"no-store"});if(!response.ok||response.type==="opaque")throw Error("HTTP "+response.status);
        await cache.put(url,response.clone());downloaded++;
      }}catch(e){failed.push(path+" ("+e.message+")");}
