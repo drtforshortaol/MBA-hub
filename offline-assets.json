@@ -1,7 +1,10 @@
 {
-  "version": "2026-10-09-a",
+  "version": "2026-10-09-b",
   "assets": [
+    "IMG_3475.jpeg",
+    "app-registry.json",
     "app.js",
+    "apps.js",
     "apps/applied-water-science-life-support/app.js",
     "apps/applied-water-science-life-support/icon.svg",
     "apps/applied-water-science-life-support/images/pigging-biofouling.jpg",
@@ -313,10 +316,26 @@
     "apps/wildlife-rescue/styles.css",
     "apps/wildlife-rescue/sw.js",
     "hub-additions.js",
+    "hub-links1.js",
     "hub-registry.js",
     "hub-tags.js",
+    "icon.svg",
+    "images/icon.svg",
     "index.html",
+    "install/index.html",
+    "install/manifest.webmanifest",
+    "install/sw.js",
     "manifest.json",
-    "styles.css"
+    "styles.css",
+    "sw.js",
+    "tag-registry.json",
+    "templates/mba-app-template/app.js",
+    "templates/mba-app-template/data.js",
+    "templates/mba-app-template/icon.svg",
+    "templates/mba-app-template/index.html",
+    "templates/mba-app-template/manifest.json",
+    "templates/mba-app-template/styles.css",
+    "templates/mba-app-template/sw.js",
+    "offline-assets.json"
   ]
 }
