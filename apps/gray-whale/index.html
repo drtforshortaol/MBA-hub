@@ -35,6 +35,6 @@
   }catch(e){console.warn("Offline image unavailable",img.getAttribute("src"),e);}
  }
  document.querySelectorAll("img").forEach(img=>img.addEventListener("error",()=>recover(img)));
- if(!navigator.onLine)document.querySelectorAll("img").forEach(recover);
+ document.querySelectorAll("img").forEach(recover);
 })();
 </script></body></html>
