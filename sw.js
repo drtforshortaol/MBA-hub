@@ -80,8 +80,9 @@ self.addEventListener("fetch", (event) => {
         return networkResponse;
       })
       .catch(() => {
-        return caches.match(event.request).then((cachedResponse) => {
-          return cachedResponse || caches.match("./index.html");
+        return caches.match(event.request).then(async (cachedResponse) => {
+          const shared = await caches.open(SHARED);
+          return (await shared.match(event.request,{ignoreSearch:true})) || cachedResponse || (event.request.mode === "navigate" ? caches.match("./index.html") : Response.error());
         });
       })
   );
