@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupInstallPanel();
   setupHelpPanel();
   setupClearCache();
+  setupHubOfflineManager();
   registerServiceWorker();
   setupAutomaticFreshnessCheck();
 });
@@ -769,4 +770,29 @@ function registerServiceWorker() {
       console.warn("Hub service worker registration failed:", error);
     });
   });
+}
+function setupHubOfflineManager() {
+  const nav=document.querySelector(".top-bar");
+  if(!nav || !("serviceWorker" in navigator))return;
+  const button=document.createElement("button");
+  button.type="button";button.className="top-bar-btn top-bar-btn-small";
+  button.textContent="Prepare Offline";button.title="Stage Hub files for offline use; app migration is still in progress";
+  nav.appendChild(button);
+  const status=document.createElement("div");status.setAttribute("role","status");status.setAttribute("aria-live","polite");
+  status.style.cssText="padding:8px 14px;background:#e7f1f0;color:#073b4c;font-weight:600;text-align:center";
+  status.textContent="Hub-wide offline preparation available (pilot).";nav.after(status);
+  navigator.serviceWorker.addEventListener("message",event=>{
+    const m=event.data;if(m?.kind!=="hub-offline")return;
+    if(m.type==="ready")status.textContent="🟢 Hub files staged ("+m.total+"). App-by-app offline testing still required.";
+    else if(m.type==="progress")status.textContent="🟡 Preparing Hub files: "+m.done+"/"+m.total;
+    else if(m.type==="incomplete")status.textContent="🔴 Offline preparation incomplete. Reconnect and retry. "+(m.error||"");
+    else if(m.type==="busy")status.textContent="🟡 Offline preparation already running.";
+    else status.textContent="Hub offline preparation not yet complete.";
+  });
+  const send=async type=>{try{
+    const reg=await navigator.serviceWorker.ready;
+    (navigator.serviceWorker.controller||reg.active)?.postMessage({type});
+  }catch(e){status.textContent="🔴 Offline manager unavailable: "+e.message;}};
+  button.addEventListener("click",()=>send("HUB_OFFLINE_PREPARE"));
+  navigator.serviceWorker.ready.then(()=>send("HUB_OFFLINE_STATUS"));
 }
