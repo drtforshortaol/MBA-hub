@@ -3,7 +3,7 @@
 // Purpose: Root Hub service worker and offline cache.
 // Do not confuse this with individual app sw.js files.
 
-const CACHE_NAME = "mba-hub-2-2-19-20261009-3";
+const CACHE_NAME = "mba-hub-2-2-19-20261009-4";
 const SHARED = "mba-shared-assets-v1";
 const MARKER = "/MBA-hub/__offline_complete_v1__";
 let busy = false;
@@ -59,9 +59,10 @@ self.addEventListener("fetch", event => {
  if(url.origin!==self.location.origin || !url.pathname.startsWith("/MBA-hub/"))return;
  event.respondWith((async()=>{
    const shared=await caches.open(SHARED);
-   const cached=await shared.match(req,{ignoreSearch:true});
+   const pageUrl = req.mode === 'navigate' && url.pathname.endsWith('/') ? new URL('index.html',url.href).href : req.url;
+   const cached=await shared.match(pageUrl,{ignoreSearch:true}) || await shared.match(req,{ignoreSearch:true});
    const shell=await caches.open(CACHE_NAME);
-   const shellHit=await shell.match(req,{ignoreSearch:true});
+   const shellHit=await shell.match(pageUrl,{ignoreSearch:true}) || await shell.match(req,{ignoreSearch:true});
    // The shared cache is the offline source of truth for app files.
    // For online updates, keep serving network responses for non-image assets.
    const isImage=/\\.(?:jpe?g|png|webp|gif|avif|svg)$/i.test(url.pathname);
