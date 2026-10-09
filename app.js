@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupInstallPanel();
   setupHelpPanel();
   setupClearCache();
-  setupHubOfflineManager();
+  // Hub offline preparation is handled by hub-offline.js (direct browser storage).
   registerServiceWorker();
   setupAutomaticFreshnessCheck();
 });
