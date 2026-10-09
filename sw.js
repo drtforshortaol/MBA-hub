@@ -3,7 +3,7 @@
 // Purpose: Root Hub service worker and offline cache.
 // Do not confuse this with individual app sw.js files.
 
-const CACHE_NAME = "mba-hub-2-2-19-20261009-4";
+const CACHE_NAME = "mba-hub-2-2-19-20261009-5";
 const SHARED = "mba-shared-assets-v1";
 const MARKER = "/MBA-hub/__offline_complete_v1__";
 let busy = false;
@@ -17,6 +17,7 @@ const CORE_ASSETS = [
   "./hub-tags.js",
   "./hub-links1.js",
   "./manifest.json",
+  "./offline-assets.json",
   "./icon.svg"
 ];
 
@@ -82,43 +83,3 @@ self.addEventListener("fetch", event => {
  })());
 });
 
-// Central shared image and app-file cache. Existing app workers remain active
-// during migration; this manager does not claim their independent readiness.
-async function sendStatus(client, type, done, total, error) {
-  if(client) client.postMessage({kind:"hub-offline",type,done,total,error});
-}
-self.addEventListener("message", event => {
-  if(!event.data || !["HUB_OFFLINE_PREPARE","HUB_OFFLINE_STATUS"].includes(event.data.type)) return;
-  const client=event.source;
-  event.waitUntil((async()=>{
-    const cache=await caches.open(SHARED);
-    const manifestResponse=await fetch("./offline-assets.json",{cache:"no-store"});
-    if(!manifestResponse.ok) throw new Error("Asset inventory unavailable");
-    const manifest=await manifestResponse.json();
-    const assets=[...new Set(manifest.assets)];
-    const marker=await cache.match(MARKER);
-    const previous=marker?await marker.json():null;
-    if(event.data.type==="HUB_OFFLINE_STATUS") {
-      await sendStatus(client,previous?.version===manifest.version?"ready":"not-ready",0,assets.length);
-      return;
-    }
-    if(busy){await sendStatus(client,"busy",0,assets.length);return;}
-    busy=true;
-    try {
-      await cache.delete(MARKER);
-      let done=0;
-      let failed=[];
-      const queue=assets.slice();
-      const worker=async()=>{while(queue.length){const path=queue.shift();const url=new URL(path,self.registration.scope).href;try{
-        let hit=await cache.match(url,{ignoreSearch:true});
-        if(!hit){const response=await fetch(url,{cache:"no-store"});if(!response.ok||response.type==="opaque")throw Error("HTTP "+response.status);await cache.put(url,response);}
-      }catch(e){failed.push(path)}
-      done++;if(done%5===0||done===assets.length)await sendStatus(client,"progress",done,assets.length);
-      }};
-      await Promise.all(Array.from({length:4},worker));
-      if(failed.length) {await sendStatus(client,"incomplete",done,assets.length,failed.slice(0,8).join(", "));return;}
-      await cache.put(MARKER,new Response(JSON.stringify({version:manifest.version,count:assets.length,verifiedAt:Date.now()}),{headers:{"Content-Type":"application/json"}}));
-      await sendStatus(client,"ready",done,assets.length);
-    }finally{busy=false;}
-  })().catch(e=>sendStatus(client,"incomplete",0,0,String(e))));
-});
