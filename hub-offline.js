@@ -26,6 +26,10 @@
     }};
     await Promise.all(Array.from({length:3},worker));
     if(failed.length){report("🔴 Preparation incomplete: "+failed.length+" file(s) failed. First: "+failed.slice(0,3).join("; "));return;}
+    const reg=await navigator.serviceWorker.getRegistration("./");
+    if(!reg || !reg.active || !reg.active.scriptURL.endsWith("/MBA-hub/sw.js")){
+      report("🟡 Files staged, but Hub offline worker is not active. Reload while online before offline testing.");return;
+    }
     await cache.put(MARKER,new Response(JSON.stringify({version:m.version,count:paths.length,verifiedAt:Date.now()}),{headers:{"Content-Type":"application/json"}}));
     report("🟢 Hub files staged: "+paths.length+"/"+paths.length+". Individual app offline testing still required.");
    }catch(e){report("🔴 Offline preparation failed: "+e.message);}
