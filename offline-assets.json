@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-09-b",
+  "version": "2026-10-09-c",
   "assets": [
     "IMG_3475.jpeg",
     "app-registry.json",
@@ -336,6 +336,7 @@
     "templates/mba-app-template/manifest.json",
     "templates/mba-app-template/styles.css",
     "templates/mba-app-template/sw.js",
-    "offline-assets.json"
+    "offline-assets.json",
+    "hub-offline.js"
   ]
 }
