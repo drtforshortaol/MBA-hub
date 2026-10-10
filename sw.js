@@ -66,7 +66,7 @@ self.addEventListener("fetch", event => {
    const shellHit=await shell.match(pageUrl,{ignoreSearch:true}) || await shell.match(req,{ignoreSearch:true});
    // The shared cache is the offline source of truth for app files.
    // For online updates, keep serving network responses for non-image assets.
-   const isImage=/\\.(?:jpe?g|png|webp|gif|avif|svg)$/i.test(url.pathname);
+   const isImage=/\.(?:jpe?g|png|webp|gif|avif|svg)$/i.test(url.pathname);
    if(isImage && cached)return cached;
    try {
      const network=await fetch(req);
