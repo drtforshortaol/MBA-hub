@@ -336,7 +336,7 @@ function renderCategory(category) {
         </span>
 
         <span class="category-meta">
-          ${escapeHTML(appCountLabel)} ${isExpanded ? "▴" : "▾"}
+          <span class="category-count">${escapeHTML(appCountLabel)}</span><span class="category-arrow" aria-hidden="true">${isExpanded ? "▴" : "▾"}</span>
         </span>
       </button>
 
