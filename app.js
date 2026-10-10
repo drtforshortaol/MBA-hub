@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupInstallPanel();
   setupHelpPanel();
   setupClearCache();
+  setupHubConnectivityControls();
   // Hub offline preparation is handled by hub-offline.js (direct browser storage).
   registerServiceWorker();
   setupAutomaticFreshnessCheck();
@@ -702,6 +703,10 @@ function setupClearCache() {
   if (!button) return;
 
   button.addEventListener("click", async () => {
+    if (!navigator.onLine) {
+      showStatus("Offline mode: Clear Cache is unavailable to protect saved files.");
+      return;
+    }
     showStatus("Clearing Hub cache and reloading…");
 
     try {
@@ -770,4 +775,30 @@ function registerServiceWorker() {
       console.warn("Hub service worker registration failed:", error);
     });
   });
+}
+
+
+// Offline-safe top controls. Navigator connectivity reflects reported network state;
+// an apparently online connection may still fail to reach the server.
+function setupHubConnectivityControls() {
+  const notice = document.getElementById("hubOfflineNotice");
+  const ids = ["installBtn", "clearHubCacheBtn", "prepareHubOfflineBtn"];
+  const refresh = () => {
+    const offline = !navigator.onLine;
+    if (notice) notice.hidden = !offline;
+    ids.forEach((id) => {
+      const button = document.getElementById(id);
+      if (button) {
+        button.disabled = offline;
+        button.setAttribute("aria-disabled", String(offline));
+        if (offline) button.title = "Unavailable while offline";
+        else button.removeAttribute("title");
+      }
+    });
+  };
+  window.addEventListener("online", refresh);
+  window.addEventListener("offline", refresh);
+  refresh();
+  // Prepare Offline is inserted by hub-offline.js during DOMContentLoaded.
+  queueMicrotask(refresh);
 }
