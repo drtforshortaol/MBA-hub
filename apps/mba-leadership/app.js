@@ -2,13 +2,7 @@ const CACHE_MESSAGE_KEY = "mba-leadership-cache-message";
 const APP_CACHE_PREFIX = "mba-leadership";
 
 document.addEventListener("DOMContentLoaded", () => {
-  buildQuickLinks();
-  buildTagFilter();
   renderCards();
-  setupControls();
-  setupPanels();
-  setupClearCache();
-  restoreUpdateMessage();
   registerServiceWorker();
 });
 
@@ -70,36 +64,7 @@ function buildTagFilter() {
   });
 }
 
-function getFilteredItems() {
-  const search = document.getElementById("searchInput").value.trim().toLowerCase();
-  const tag = document.getElementById("tagFilter").value;
-
-  return window.MBA_LEADERSHIP_DATA.filter((item) => {
-    const text = [
-      item.name,
-      item.role,
-      item.category,
-      item.office,
-      item.started,
-      item.reportsTo,
-      item.email,
-      item.pronunciation,
-      item.previousRole,
-      item.education,
-      item.interests,
-      item.funFact,
-      ...(item.tags || []),
-      ...(item.details || []),
-      ...(item.questionsVolunteersAsk || []),
-      item.notes || ""
-    ].join(" ").toLowerCase();
-
-    const matchesSearch = !search || text.includes(search);
-    const matchesTag = tag === "all" || (item.tags || []).includes(tag);
-
-    return matchesSearch && matchesTag;
-  });
-}
+function getFilteredItems() { return window.MBA_LEADERSHIP_DATA; }
 
 function optionalField(label, value) {
   if (!value) return "";
