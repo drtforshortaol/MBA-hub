@@ -1,8 +1,10 @@
 # Monterey Bay Aquarium (MBA) Hub — Version 1 Maintenance Reference
 
 **Hub display version:** 2.2.20 (as recorded in `index.html` and `hub-registry.js`)  
-**Version 1 project status:** Finalization in progress; **not frozen or released yet**  
+**Version 1 project status:** User review and Version 2 handoff completed; recovery branches recorded. No immutable tag/Release or branch protection confirmed.  
 **Review date:** 2026-10-11
+
+**Version 2 handoff:** [MBA_VERSION_2_DEVELOPMENT_HANDOFF.md](MBA_VERSION_2_DEVELOPMENT_HANDOFF.md)  
 
 ## Purpose and layout
 This is the working, mobile-first MBA volunteer companion Progressive Web App (PWA). In this project's roadmap, **Version 1** means the existing deployed Hub to be stabilized and preserved; the display label **Hub 2.2.20** is the current software build number, not the separate future Version 2 rewrite.
