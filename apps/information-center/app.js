@@ -301,7 +301,7 @@ function setupNotice() {
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(error => {
+    navigator.serviceWorker.register('./sw.js?v=20261011-ic-clean2').catch(error => {
       console.warn('Service worker registration failed:', error);
     });
   });
