@@ -1,5 +1,6 @@
-self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;const u=new URL(e.request.url);if(u.origin!==self.location.origin||!u.pathname.startsWith("/MBA-hub/"))return;e.stopImmediatePropagation();e.respondWith((async()=>{const c=await caches.open("mba-shared-assets-v1");const key=e.request.mode==="navigate"&&u.pathname.endsWith("/")?new URL("index.html",u.href).href:u.href;const hit=await c.match(key,{ignoreSearch:true})||await c.match(e.request,{ignoreSearch:true});if(hit)return hit;try{return await fetch(e.request)}catch(err){return Response.error()}})())});
-const CACHE_NAME = "interpretation-principles-v1.0.1";
+// Show fresh app content online, retain local/shared copies for offline use.
+self.addEventListener("fetch",e=>{const req=e.request;if(req.method!=="GET")return;const u=new URL(req.url);if(u.origin!==self.location.origin||!u.pathname.startsWith(new URL("./",self.location.href).pathname))return;e.stopImmediatePropagation();e.respondWith((async()=>{const local=await caches.open(CACHE_NAME),shared=await caches.open("mba-shared-assets-v1");const key=req.mode==="navigate"&&u.pathname.endsWith("/")?new URL("index.html",u.href).href:req.url;const page=req.mode==="navigate"||/\/(?:index\.html|app\.js|styles\.css|data\.js)$/.test(u.pathname);if(page){try{const fresh=await fetch(req,{cache:"no-store"});if(fresh.ok){e.waitUntil(local.put(key,fresh.clone()));return fresh}}catch(_){}}const hit=await local.match(key,{ignoreSearch:true})||await shared.match(key,{ignoreSearch:true});if(hit)return hit;try{const res=await fetch(req);if(res.ok)e.waitUntil(local.put(key,res.clone()));return res}catch(_){return Response.error()}})())});
+const CACHE_NAME = "interpretation-principles-v1.0.2";
 
 const FILES_TO_CACHE = [
   "./",
