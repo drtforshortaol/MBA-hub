@@ -33,3 +33,17 @@ Recorded from live Version 1 California Sheephead adjustments. This log is a pla
 6. **Scale sustainably.** New apps and enhancements should be straightforward to integrate, test, update, or roll back without destabilizing previously approved functionality.
 
 **Design test:** Does a change reduce cognitive load for users, preserve modularity for maintainers, and make a task easier? If not, reconsider before implementing.
+
+## Version 2 release routine — prevent stale content / silent rollbacks (2026-10-11)
+
+The Naturalist Field Notes v0.35 incident demonstrated that a browser/service-worker cache can display an older app despite current GitHub source. Incorporate these safeguards into the standard release checklist for **every** Version 2 app:
+
+1. Version the release consistently (app version, changed data, styles, scripts and service-worker cache identity).
+2. Fetch changeable app code/content with a freshness-first strategy while online, with a known-good local offline fallback. Cache stable media for offline use. Avoid old cache entries silently overriding current online data.
+3. Preserve existing shared offline assets; do not clear caches indiscriminately when upgrading.
+4. Test both an existing installed app and a fresh browser session after publishing; verify key updated features, guide buttons and image display.
+5. Verify offline operation after the update has been installed, including local photographs.
+6. Keep a concise version/change record and a rollback option; never consider a GitHub commit alone proof that users are seeing the new version.
+7. Treat unexpected UI regression after an update as a possible stale-cache/version mismatch before rewriting working content.
+
+These steps should be part of the repeatable publishing process, not a visible burden in the user interface.
