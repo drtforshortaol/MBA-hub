@@ -1487,37 +1487,6 @@ async function clearAppCache() {
   }
 }
 
-searchInput.addEventListener("input", (event) => {
-  searchTerm = event.target.value.trim().toLowerCase();
-  renderCards();
-});
-
-expandAllButton.addEventListener("click", expandAllCards);
-collapseAllButton.addEventListener("click", collapseAllCards);
-resetButton.addEventListener("click", resetSearchAndFilters);
-clearCacheButton.addEventListener("click", clearAppCache);
-troubleshootingButton.addEventListener("click", openTroubleshooting);
-closeTroubleshootingButton.addEventListener(
-  "click",
-  closeTroubleshooting
-);
-
-troubleshootingPanel.addEventListener("click", (event) => {
-  if (event.target === troubleshootingPanel) {
-    closeTroubleshooting();
-  }
-});
-
-document.addEventListener("keydown", (event) => {
-  if (
-    event.key === "Escape" &&
-    !troubleshootingPanel.hidden
-  ) {
-    closeTroubleshooting();
-  }
-});
-
-renderTagFilters();
 renderCards();
 </script>
 
