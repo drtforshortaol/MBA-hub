@@ -91,8 +91,12 @@ The master source of truth for currently registered apps is `hub-registry.js`. T
 
 ## Open items — mandatory before formal Version 1 closeout
 - **Step 2: COMPLETED 2026-10-11.** Root changelog reconciled with approved app reviews; root `README.md` display-build reference corrected to 2.2.20. Historical changelog entries retained.
-- **Step 3:** final bounded verification: registered links, root Hub/child app Return to Hub, offline media and app availability, two independent hosted apps, and a quick mobile smoke test. Report anything unverified instead of assuming it passed.
-- **Step 4:** capture stable GitHub tags/releases for root Hub **and** separately maintained Library/Evolution repositories; note commit hashes and URLs.
+- **Step 3: PARTIALLY VERIFIED 2026-10-11.** Source audit found 25 app registrations (23 local, 2 external), all 23 local entry points present, all 345 offline asset paths present with no duplicates. The user reported a successful iPhone offline test. Individual Return to Hub buttons, all live external links, and comprehensive offline behavior were not independently verified.
+- **Step 4: ARCHIVE BRANCHES CREATED 2026-10-11.** All three repositories now have `archive/version-1-approved-2026-10-11` branches. These are exact source snapshots but **not immutable tags**, and have no confirmed branch protection; do not edit or delete them.
+  - MBA Hub: `0903457bcccdb84b99c156ad48979df2bddf5dc9` — https://github.com/drtforshortaol/MBA-hub/tree/archive/version-1-approved-2026-10-11
+  - Aquarium Library: `9438060bd836c46245e4af45c280e4bb37b0ab94` — https://github.com/drtforshortaol/aquarium-shift-library-/tree/archive/version-1-approved-2026-10-11
+  - Evolution Timeline: `c6d782d3a8a03e407861a0fbc3aab76e5fbf8d0c` — https://github.com/drtforshortaol/evolution-timeline/tree/archive/version-1-approved-2026-10-11
+  - Creating a formal GitHub Release/tag is optional future work; the archived commit IDs remain the authoritative recovery reference.
 - **Step 5:** hand off approved design standards and detailed improvements to Version 2 strategy/implementation, leaving Version 1 operational.
 
 ## Version 2 handoff
