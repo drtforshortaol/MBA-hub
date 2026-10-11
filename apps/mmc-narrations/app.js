@@ -165,7 +165,7 @@
   }
 
   function init() {
-    versionDisplay.textContent = APP_DATA.version || "v1.0";
+    if (versionDisplay) versionDisplay.textContent = APP_DATA.version || "v1.0";
     renderSections();
     renderReferences();
     registerServiceWorker();
