@@ -19,7 +19,7 @@
 
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20261011-five-clean" />
 </head>
 
 <body>
@@ -30,20 +30,6 @@
       <a class="top-button hub-button" href="../../index.html" aria-label="Return to MBA Hub">
         ← MBA Hub
       </a>
-
-      <button class="top-button" id="clearCacheButton" type="button">
-        Clear Cache
-      </button>
-
-      <button
-        class="top-button"
-        id="troubleshootingOpenButton"
-        type="button"
-        aria-haspopup="dialog"
-        aria-controls="troubleshootingPanel"
-      >
-        Troubleshooting
-      </button>
     </nav>
 
     <header class="app-header">
@@ -76,37 +62,14 @@
       </p>
     </section>
 
-    <section class="notice" id="notificationArea" aria-label="App notice">
-      <div>
-        <strong>Notice:</strong>
-        This version restores the original MBA volunteer interpretation content and removes the
-        incorrect generic classroom-style material.
-      </div>
-      <button id="dismissNoticeButton" class="notice-close" type="button" aria-label="Dismiss notice">
-        ×
-      </button>
-    </section>
-
     <main id="mainContent" class="main-content">
       <section class="tool-panel" aria-labelledby="toolsHeading">
         <h2 id="toolsHeading">Tools</h2>
 
-        <label for="searchInput" class="search-label">Search this app</label>
-        <input
-          id="searchInput"
-          class="search-input"
-          type="search"
-          placeholder="Search touch, kelp, sound, baleen, taste..."
-          autocomplete="off"
-        />
-
         <div class="button-row" aria-label="Dropdown controls">
           <button class="secondary-button" id="expandAllButton" type="button">Expand All</button>
           <button class="secondary-button" id="collapseAllButton" type="button">Collapse All</button>
-          <button class="secondary-button" id="resetSearchButton" type="button">Reset Search</button>
         </div>
-
-        <p id="resultNote" class="result-note" aria-live="polite"></p>
       </section>
 
       <section class="dropdown-section" aria-labelledby="senseSectionsHeading">
@@ -137,83 +100,7 @@
     </footer>
   </div>
 
-  <section
-    id="troubleshootingPanel"
-    class="troubleshooting-panel"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="troubleshootingTitle"
-    hidden
-  >
-    <div class="troubleshooting-card">
-      <div class="troubleshooting-header">
-        <h2 id="troubleshootingTitle">Troubleshooting</h2>
-        <button
-          id="troubleshootingCloseButton"
-          class="close-button"
-          type="button"
-          aria-label="Close troubleshooting panel"
-        >
-          × Close
-        </button>
-      </div>
-
-      <div class="troubleshooting-content">
-        <details open>
-          <summary>The app still shows the wrong generic version</summary>
-          <p>
-            Use <strong>Clear Cache</strong>, then reload. On PC Chrome, press
-            <strong>Ctrl + Shift + R</strong>. On iPhone Safari, clear website data if needed.
-          </p>
-        </details>
-
-        <details>
-          <summary>The app does not appear in the Hub</summary>
-          <p>
-            Confirm the Hub registry entry points to
-            <code>apps/five-senses-pwa/index.html</code>, uses the Hub’s exact field names,
-            and has <code>"status": "Active"</code>.
-          </p>
-        </details>
-
-        <details>
-          <summary>The Return to Hub button does not work</summary>
-          <p>
-            Confirm this app folder is located at <code>apps/five-senses-pwa/</code>. The
-            Return to Hub link is <code>../../index.html</code>.
-          </p>
-        </details>
-
-        <details>
-          <summary>Offline mode does not work</summary>
-          <p>
-            Open the app once while online, allow it to fully load, then test offline again.
-          </p>
-        </details>
-
-        <details>
-          <summary>The Troubleshooting panel will not close</summary>
-          <p>
-            Tap <strong>× Close</strong>. On PC, press <strong>Escape</strong>. If needed,
-            refresh and clear cache.
-          </p>
-        </details>
-
-        <details>
-          <summary>iPhone Safari cache clearing</summary>
-          <ol>
-            <li>Open Settings.</li>
-            <li>Open Safari.</li>
-            <li>Open Advanced, then Website Data.</li>
-            <li>Search for the hosting site keyword, such as “git”.</li>
-            <li>Delete matching website data and reopen the app.</li>
-          </ol>
-        </details>
-      </div>
-    </div>
-  </section>
-
   <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=20261011-five-clean"></script>
 </body>
 </html>
