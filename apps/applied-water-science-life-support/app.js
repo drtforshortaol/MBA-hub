@@ -73,23 +73,6 @@ tagChips.forEach(chip => {
 
 searchInput.addEventListener("input", applyFilters);
 
-document.getElementById("troubleBtn").addEventListener("click", () => {
-  document.getElementById("troublePanel").classList.toggle("hidden");
-});
-
-document.getElementById("closeTroubleBtn").addEventListener("click", () => {
-  document.getElementById("troublePanel").classList.add("hidden");
-});
-
-document.getElementById("clearCacheBtn").addEventListener("click", async () => {
-  if ("caches" in window) {
-    const names = await caches.keys();
-    await Promise.all(names.filter(name => name.startsWith(APP_CACHE_PREFIX)).map(name => caches.delete(name)));
-  }
-  localStorage.setItem(CACHE_MESSAGE_KEY, `Cache cleared ${new Date().toLocaleString()}. Reopen the app to reload fresh files.`);
-  alert("Cache cleared. Reopen the app to reload fresh files.");
-});
-
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("sw.js").catch(console.warn);
