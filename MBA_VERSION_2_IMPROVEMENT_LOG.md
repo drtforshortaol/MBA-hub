@@ -22,3 +22,14 @@ Purpose: capture verified Version 1 refinements as design and implementation req
 
 ## Status
 Recorded from live Version 1 California Sheephead adjustments. This log is a planning input for Version 2; it does not claim all Version 2 architecture decisions have been finalized.
+
+## Core Version 2 design principles — reaffirmed by user (2026-10-11)
+
+1. **Prevent spaghetti code.** Use clear modular architecture, strict interfaces/contracts, separation of concerns, a shared variable/data registry where applicable, and explicit ownership of common functions. Avoid tangled dependencies, duplicated logic, and ad-hoc cross-app patches.
+2. **Keep the user interface visually simple.** Prioritize a clean, appealing, consistent and uncluttered presentation. Show only controls and information necessary for the task; progressive disclosure through appropriate dropdowns or views.
+3. **Optimize for efficiency and effectiveness.** Fewest sensible taps, obvious navigation, fast access to content, predictable behavior, and reliable offline operation.
+4. **Complexity belongs underneath the interface.** The architecture, state management, data structures, synchronization, and extensibility may be sophisticated, but must not burden the user with unnecessary options or implementation details.
+5. **Controlled flexibility.** Global navigation and functions follow strict standards; individual apps may have suitable aesthetic variation without compromising consistency.
+6. **Scale sustainably.** New apps and enhancements should be straightforward to integrate, test, update, or roll back without destabilizing previously approved functionality.
+
+**Design test:** Does a change reduce cognitive load for users, preserve modularity for maintainers, and make a task easier? If not, reconsider before implementing.
