@@ -16,3 +16,6 @@
 .offline-status.ready{background:#e7f5e8;border-color:#a9d8b0;color:#175b2c}
 .offline-status.updating,.offline-status.checking{background:#fff7df;border-color:#ecd393;color:#6c500c}
 .offline-status.incomplete{background:#fff0ef;border-color:#edb4b0;color:#8a2522}
+
+/* Species Highlights: Animals directory letter filtering, visible guide access */
+.species-az{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}.species-letter{min-width:38px;min-height:38px;border:1px solid #bed6d8;border-radius:8px;background:#eff7f7;color:#164850;font-weight:750;cursor:pointer}.species-letter.selected,.species-letter[aria-pressed="true"]{background:#087f84;color:#fff;border-color:#087f84}.species-letter:focus-visible{outline:3px solid #087f84;outline-offset:2px}.species-row{display:flex;gap:9px;align-items:center;justify-content:space-between;padding:7px 2px;border-top:1px solid var(--line)}.species-row[hidden]{display:none!important}.species-row>.species{flex:1;min-width:0;margin:0}.species-row>.species>summary{overflow-wrap:anywhere;cursor:pointer}.species-row>.species-open{flex-shrink:0;margin:0;font-size:.8rem;padding:8px 9px;white-space:nowrap}@media(max-width:420px){.species-row>.species-open{font-size:.72rem;padding:8px 6px}}
