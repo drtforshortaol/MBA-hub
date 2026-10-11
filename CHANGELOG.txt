@@ -1,3 +1,28 @@
+MBA HUB VERSION 1 — FINALIZATION CHANGELOG RECONCILIATION
+Date: 2026-10-11
+Status: User interface/app review completed; verification, snapshot and release are PENDING.
+Current displayed Hub build: 2.2.20 (the Version 1 project is not the separate future rewrite called Version 2).
+IMPORTANT: Items below are documented from committed source changes and user review, not a declaration of complete end-to-end or offline testing.
+
+Recent approved changes
+- Hub Animals: A–Z letter filter (tap again to reset), alphabetical entries, collapsed summaries and visible Open App actions. Root Hub build 2.2.20.
+- Naturalist Field Notes: A–Z Species Highlights, cross-links to dedicated animal guides, retained dated source notes, expanded sheephead details and photo; direct link to July 9–15, 2026 field note. Freshness/offline cache improvements following stale-display incident.
+- California Sheephead Species Guide: title image loaded locally for offline preparation; source credit; original Naturalist taxonomic caveats and species details; transitional female photo placed in Sex Change and Reproduction.
+- Wildlife Rescue: urgent-use call shortcuts, collapsed supporting guidance, practical safety/reporting directions, and link to the specific source Field Note.
+- Information Center Handbook: removed top-bar Clear Cache/Troubleshooting and obsolete notice; retained quick-access contacts, procedures and search. Cache freshness adjustment.
+- Six Interpretation Principles: retained essential reminder and six collapsed principles; removed redundant search, tags, hub/related links, install, clear-cache and troubleshooting UI.
+- Using the Five Senses: removed notice, cache/troubleshooting and search, redundant Tools panel; retained introductory content, images and education dropdowns.
+- Aquarium Library Explorer (independent repository): alphabetical book directory, compact category dropdown, search, collapsed book details and wishlist; independent commit/history.
+- Approved interpretation principle: minimal, appealing, efficient user interfaces; complexity remains in modular maintainable code; offline media preserved; global navigation consistent.
+
+Version 1 closing tasks remaining
+- Step 3: perform bounded registered-app link and offline verification; disclose unverified cases.
+- Step 4: create immutable snapshot/tag of MBA Hub and the two independent repositories (Library Explorer and Evolution Timeline), recording commit IDs.
+- Step 5: finalize the Version 2 handoff without destabilizing Version 1.
+
+ARCHIVED HISTORICAL CHANGELOG FOLLOWS. Older entries describe earlier builds, not the present interface.
+================================================================================
+
 MBA Hub 2.2.20 — 2026-10-11
 Animals directory: top A–Z buttons filter animal entries; tapping selected letter again restores all. Removed secondary letter accordions; all animal entries stay alphabetically sorted with independent collapsed descriptions and direct Open App buttons. Preserved other Hub categories and offline shared asset cache.
 
