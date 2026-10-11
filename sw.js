@@ -3,7 +3,7 @@
 // Purpose: Root Hub service worker and offline cache.
 // Do not confuse this with individual app sw.js files.
 
-const CACHE_NAME = "mba-hub-2-2-19-20261009-5";
+const CACHE_NAME = "mba-hub-2-2-19-20261010-ray-refresh";
 const SHARED = "mba-shared-assets-v1";
 const MARKER = "/MBA-hub/__offline_complete_v1__";
 let busy = false;
@@ -67,7 +67,7 @@ self.addEventListener("fetch", event => {
    // The shared cache is the offline source of truth for app files.
    // For online updates, keep serving network responses for non-image assets.
    const isImage=/\.(?:jpe?g|png|webp|gif|avif|svg)$/i.test(url.pathname);
-   if(isImage && cached)return cached;
+   // User-replaced ray title image: refresh online, retain the shared-cache copy for offline use.\n   const refreshRayHero=url.pathname==="/MBA-hub/apps/bluespotted-ribbontail-ray/ScreenHunter%2010658.jpg" || decodeURIComponent(url.pathname)==="/MBA-hub/apps/bluespotted-ribbontail-ray/ScreenHunter 10658.jpg";\n   if(isImage && cached && !refreshRayHero)return cached;
    try {
      const network=await fetch(req);
      if(network.ok && (url.pathname==="/MBA-hub/" || CORE_ASSETS.some(path=>new URL(path,self.registration.scope).pathname===url.pathname))){
