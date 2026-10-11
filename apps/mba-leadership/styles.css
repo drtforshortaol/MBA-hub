@@ -383,6 +383,6 @@ body{background:linear-gradient(180deg,#073b4c,#092d3d)}
 .card-button{background:#12465a;border-color:#417e93}.card.open .card-button{border-color:#8bc1d3}.card-body{background:#0b3546;border-color:#417e93}
 .person-name{color:white}.person-role{color:#d4e8ed}.chevron{background:#22657b;color:white}.card.open .chevron{background:#347c95}
 .portrait{object-position:center center;border-color:#8dbfd0;background:#0b3546}
-/* Lauren portrait: original horizontal baseline 50%; current trial 84% (34 points right of baseline; 70% more than prior 20-point shift). */
-.card:nth-child(2) .portrait{object-position:84% center}
+/* Lauren portrait: original horizontal baseline 50%; current trial 98% (48 points right of original 50% baseline; 14-point shift from previous 84%). */
+.card:nth-child(2) .portrait{object-position:98% center}
 .tag{color:#d9eef3;border-color:#5995a7;background:#1a5669}.field strong,.extra-section h3,.extra-section a{color:#bce1f0}
