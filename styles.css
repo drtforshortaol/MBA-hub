@@ -678,3 +678,10 @@ button.tag {
 .hub-offline-notice { padding: .35rem .65rem; text-align: center; font-size: .82rem; font-weight: 700; background: #e7f1f0; color: #073b4c; }
 .top-bar-btn:disabled { opacity: .45; cursor: not-allowed; outline: none; }
 .top-bar-btn:disabled:hover { background: #08677a; }
+
+/* Hub 2.2.20 Animals directory: letter filters replace nested letter accordions */
+.animal-letter-jump.selected,.animal-letter-jump[aria-pressed="true"]{background:#087f84;color:#fff;border-color:#087f84;box-shadow:0 0 0 2px #b6e2e3}
+.animal-letter-jump:focus-visible{outline:3px solid #087f84;outline-offset:2px}
+.animal-row[hidden]{display:none!important}
+.animal-rows{padding:0 .1rem .35rem}
+.animal-rows>.animal-row:first-child{border-top:1px solid #d4e3e4}
