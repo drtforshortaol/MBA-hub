@@ -90,7 +90,7 @@ The master source of truth for currently registered apps is `hub-registry.js`. T
 7. Record an immutable Git commit/tag for final Version 1; use a separate repository/branch for Version 2 work.
 
 ## Open items — mandatory before formal Version 1 closeout
-- **Step 2:** reconcile/update the root changelog; root `README.md` currently states Hub 2.2.19 and needs correction to 2.2.20 or the release version chosen for the final snapshot.
+- **Step 2: COMPLETED 2026-10-11.** Root changelog reconciled with approved app reviews; root `README.md` display-build reference corrected to 2.2.20. Historical changelog entries retained.
 - **Step 3:** final bounded verification: registered links, root Hub/child app Return to Hub, offline media and app availability, two independent hosted apps, and a quick mobile smoke test. Report anything unverified instead of assuming it passed.
 - **Step 4:** capture stable GitHub tags/releases for root Hub **and** separately maintained Library/Evolution repositories; note commit hashes and URLs.
 - **Step 5:** hand off approved design standards and detailed improvements to Version 2 strategy/implementation, leaving Version 1 operational.
