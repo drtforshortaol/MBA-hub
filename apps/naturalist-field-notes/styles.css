@@ -27,3 +27,7 @@
 .species-highlights-index .species-photo{margin:12px auto;max-width:100%;width:max-content;text-align:center}
 .species-highlights-index .species-photo img{display:block;width:auto;height:auto;max-width:min(100%,420px);max-height:320px;object-fit:contain;margin:0 auto;border-radius:10px}
 .species-highlights-index .species-photo figcaption{max-width:420px;margin:0 auto;text-align:left}
+
+/* Guide link available both in the collapsed species row and expanded detail */
+.species-highlights-index .species-row>.species-open{display:inline-flex!important;align-items:center;justify-content:center;visibility:visible!important;opacity:1!important;min-height:38px;background:#087f84;color:#fff;text-decoration:none;position:relative;z-index:1}
+.species-highlights-index .sheephead-inline-guide{display:inline-block!important;margin:12px 0;color:#fff}
