@@ -126,15 +126,13 @@
       empty.className = "empty-state";
       empty.textContent = "No narration sections are loaded yet. Add entries to data.js.";
       dropdownContainer.appendChild(empty);
-      updateResultCount(0, 0);
-      return;
+        return;
     }
 
     APP_DATA.sections.forEach((section) => {
       dropdownContainer.appendChild(createSectionCard(section));
     });
 
-    updateResultCount(APP_DATA.sections.length, APP_DATA.sections.length);
   }
 
   function renderReferences() {
@@ -156,78 +154,6 @@
     });
   }
 
-  function updateResultCount(visible, total) {
-    resultCount.textContent = `${visible} of ${total} sections shown`;
-  }
-
-  function filterSections() {
-    const query = normalizeText(searchInput.value);
-    const cards = Array.from(document.querySelectorAll(".dropdown-card"));
-
-    let visibleCount = 0;
-
-    cards.forEach((card) => {
-      const matches = !query || card.dataset.searchText.includes(query);
-      card.hidden = !matches;
-
-      if (matches) {
-        visibleCount += 1;
-      }
-    });
-
-    updateResultCount(visibleCount, cards.length);
-  }
-
-  function setAllDropdowns(open) {
-    document.querySelectorAll(".dropdown-card").forEach((card) => {
-      if (!card.hidden) {
-        card.open = open;
-      }
-    });
-  }
-
-  async function clearAppCache() {
-    const buttonOriginalText = clearCacheButton.textContent;
-    clearCacheButton.textContent = "Clearing...";
-
-    try {
-      if ("caches" in window) {
-        const cacheNames = await caches.keys();
-        await Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)));
-      }
-
-      if ("serviceWorker" in navigator) {
-        const registrations = await navigator.serviceWorker.getRegistrations();
-        await Promise.all(registrations.map((registration) => registration.update()));
-      }
-
-      clearCacheButton.textContent = "Cache Cleared";
-      window.setTimeout(() => {
-        window.location.reload();
-      }, 650);
-    } catch (error) {
-      console.error("Cache clear failed:", error);
-      clearCacheButton.textContent = "Reloading...";
-      window.location.reload();
-    } finally {
-      window.setTimeout(() => {
-        clearCacheButton.textContent = buttonOriginalText;
-      }, 1800);
-    }
-  }
-
-  function openTroubleshooting() {
-    troubleshootingPanel.hidden = false;
-    troubleshootingButton.setAttribute("aria-expanded", "true");
-    closeTroubleshootingButton.focus();
-  }
-
-  function closeTroubleshooting() {
-    troubleshootingPanel.hidden = true;
-    troubleshootingButton.setAttribute("aria-expanded", "false");
-    troubleshootingButton.focus();
-  }
-
   function registerServiceWorker() {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
@@ -238,41 +164,10 @@
     }
   }
 
-  function bindEvents() {
-    searchInput.addEventListener("input", filterSections);
-
-    expandAllButton.addEventListener("click", () => setAllDropdowns(true));
-    collapseAllButton.addEventListener("click", () => setAllDropdowns(false));
-
-    resetSearchButton.addEventListener("click", () => {
-      searchInput.value = "";
-      filterSections();
-      searchInput.focus();
-    });
-
-    clearCacheButton.addEventListener("click", clearAppCache);
-
-    troubleshootingButton.addEventListener("click", openTroubleshooting);
-    closeTroubleshootingButton.addEventListener("click", closeTroubleshooting);
-
-    troubleshootingPanel.addEventListener("click", (event) => {
-      if (event.target === troubleshootingPanel) {
-        closeTroubleshooting();
-      }
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && !troubleshootingPanel.hidden) {
-        closeTroubleshooting();
-      }
-    });
-  }
-
   function init() {
     versionDisplay.textContent = APP_DATA.version || "v1.0";
     renderSections();
     renderReferences();
-    bindEvents();
     registerServiceWorker();
   }
 
