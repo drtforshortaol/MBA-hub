@@ -1,3 +1,6 @@
+MBA Hub 2.2.20 — 2026-10-11
+Animals directory: top A–Z buttons filter animal entries; tapping selected letter again restores all. Removed secondary letter accordions; all animal entries stay alphabetically sorted with independent collapsed descriptions and direct Open App buttons. Preserved other Hub categories and offline shared asset cache.
+
 MBA Hub 2 Changelog
 
 Version: 2.0
