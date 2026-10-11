@@ -1,11 +1,11 @@
 # Monterey Bay Aquarium (MBA) Hub — Version 1 Maintenance Reference
 
-**Hub display version:** 2.2.19 (as recorded in `index.html` and `hub-registry.js`)  
+**Hub display version:** 2.2.20 (as recorded in `index.html` and `hub-registry.js`)  
 **Version 1 project status:** Finalization in progress; **not frozen or released yet**  
-**Review date:** 2026-10-10
+**Review date:** 2026-10-11
 
 ## Purpose and layout
-This is the working, mobile-first MBA volunteer companion Progressive Web App (PWA). In this project's roadmap, **Version 1** means the existing deployed Hub to be stabilized and preserved; the display label **Hub 2.2.19** is the current software build number, not the separate future Version 2 rewrite.
+This is the working, mobile-first MBA volunteer companion Progressive Web App (PWA). In this project's roadmap, **Version 1** means the existing deployed Hub to be stabilized and preserved; the display label **Hub 2.2.20** is the current software build number, not the separate future Version 2 rewrite.
 
 - `index.html`, `styles.css`, `app.js`: root Hub presentation and behavior.
 - `hub-registry.js`: primary category and app registry; inspect `hub-additions.js` for supplementary entries.
@@ -17,7 +17,13 @@ This is the working, mobile-first MBA volunteer companion Progressive Web App (P
 
 Do not assume historic `data.js` instructions apply to the root Hub. Inspect the current master registry before adding or changing an app.
 
-## Confirmed review findings (2026-10-10)
+## Review and release-status update (2026-10-11)
+- User completed the hub and app interface review on October 11, 2026, including Volunteer Tools and independently hosted Library Explorer.
+- Recent approved changes are recorded at the top of `CHANGELOG.txt` and in `MBA_VERSION_1_FINALIZATION_REFERENCE.md`.
+- The visual review is **not** an exhaustive link, automated integration, or offline regression test.
+- Root repository and the independent Library/Evolution repositories are **not yet tagged or released as final Version 1 snapshots**.
+
+## Earlier verification findings (2026-10-10)
 - Main Hub root files and registries were inspected.
 - Twenty-one app entry-point paths referenced in the main registry and eight additional entry points in the offline list were verified as existing in GitHub.
 - The offline inventory contains **337** entries with no duplicate path strings. **Not all 337 paths have been individually validated**.
