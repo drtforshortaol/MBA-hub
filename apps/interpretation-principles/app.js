@@ -12,8 +12,6 @@ const installDialog = document.getElementById("installDialog");
 const troubleshootingDialog = document.getElementById("troubleshootingDialog");
 
 document.addEventListener("DOMContentLoaded", () => {
-  buildTags();
-  buildLinks();
   renderPrinciples();
   setupEvents();
   restoreUpdateMessage();
@@ -87,10 +85,6 @@ function principleCard(principle) {
     ? dialogueMarkup(principle.dialogue)
     : `<ul class="examples">${principle.examples.map((example) => `<li>${escapeHTML(example)}</li>`).join("")}</ul>`;
 
-  const tags = principle.tags
-    .map((tag) => `<a href="#" data-tag="${escapeHTML(tag)}">#${escapeHTML(tag)}</a>`)
-    .join("");
-
   return `
     <article class="principle" id="${escapeHTML(principle.id)}" data-number="${principle.number}">
       <button class="toggle" aria-expanded="false" aria-controls="panel-${escapeHTML(principle.id)}" type="button">
@@ -107,7 +101,6 @@ function principleCard(principle) {
         <div class="quick-prompt"><strong>Floor prompt:</strong> ${escapeHTML(principle.quickPrompt)}</div>
         <div class="examples-label">${escapeHTML(principle.examplesLabel)}</div>
         ${examples}
-        <div class="card-tags">${tags}</div>
       </div>
     </article>`;
 }
@@ -135,32 +128,7 @@ function setTag(tag) {
 }
 
 function setupEvents() {
-  searchInput.addEventListener("input", (event) => {
-    state.query = event.target.value.trim();
-    renderPrinciples();
-  });
-
-  tagSelect.addEventListener("change", (event) => setTag(event.target.value));
-
-  resetBtn.addEventListener("click", () => {
-    state.query = "";
-    state.tag = "";
-    searchInput.value = "";
-    tagSelect.value = "";
-    renderPrinciples();
-  });
-
-  document.body.addEventListener("click", (event) => {
-    const tagLink = event.target.closest("[data-tag]");
-    if (!tagLink) return;
-    event.preventDefault();
-    setTag(tagLink.dataset.tag);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  document.getElementById("installHelpBtn").addEventListener("click", () => installDialog.showModal());
-  document.getElementById("troubleshootingBtn").addEventListener("click", () => troubleshootingDialog.showModal());
-  document.getElementById("clearCacheBtn").addEventListener("click", clearAppCache);
+  // Principle dropdowns are bound in renderPrinciples().
 }
 
 function showStatus(message) {
@@ -192,7 +160,7 @@ async function clearAppCache() {
 
 function registerServiceWorker() {
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js").catch(() => {
+    navigator.serviceWorker.register("sw.js?v=20261011-simple").catch(() => {
       showStatus("Service worker registration failed.");
     });
   }
