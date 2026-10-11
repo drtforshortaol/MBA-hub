@@ -83,12 +83,8 @@ function buildApp() {
   const snap = DATA.snapshot;
   document.querySelector("#snapshot-strip").innerHTML = [["Length", snap.lengthSize], ["Weight", snap.weight], ["Diet", snap.diet], ["Depth", snap.depth], ["Status", snap.conservationStatus]].map(([k, v]) => `<div class="stat"><div class="key">${escapeHTML(k)}</div><div class="val">${escapeHTML(v)}</div></div>`).join("");
   sectionRecords = buildSections();
-  document.querySelector("#accordion").innerHTML = sectionRecords.map((section, index) => accordionItem(section, index === 0)).join("");
+  document.querySelector("#accordion").innerHTML = sectionRecords.map(section => accordionItem(section, false)).join("");
   setupAccordion();
-  setupSearch();
-  setupTopControls();
-  restoreNotice();
-  restoreCacheMessage();
 }
 
 function setupAccordion() {
@@ -100,20 +96,7 @@ function setupAccordion() {
       panel.classList.toggle("open", !expanded);
     });
   });
-  document.querySelector("#expandAllBtn").addEventListener("click", () => {
-    document.querySelectorAll(".trigger").forEach(btn => {
-      const panel = document.getElementById(btn.getAttribute("aria-controls"));
-      btn.setAttribute("aria-expanded", "true");
-      panel.classList.add("open");
-    });
-  });
-  document.querySelector("#collapseAllBtn").addEventListener("click", () => {
-    document.querySelectorAll(".trigger").forEach(btn => {
-      const panel = document.getElementById(btn.getAttribute("aria-controls"));
-      btn.setAttribute("aria-expanded", "false");
-      panel.classList.remove("open");
-    });
-  });
+
 }
 
 function setupSearch() {
