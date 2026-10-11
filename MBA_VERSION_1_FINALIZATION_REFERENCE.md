@@ -97,9 +97,11 @@ The master source of truth for currently registered apps is `hub-registry.js`. T
   - Aquarium Library: `9438060bd836c46245e4af45c280e4bb37b0ab94` — https://github.com/drtforshortaol/aquarium-shift-library-/tree/archive/version-1-approved-2026-10-11
   - Evolution Timeline: `c6d782d3a8a03e407861a0fbc3aab76e5fbf8d0c` — https://github.com/drtforshortaol/evolution-timeline/tree/archive/version-1-approved-2026-10-11
   - Creating a formal GitHub Release/tag is optional future work; the archived commit IDs remain the authoritative recovery reference.
-- **Step 5:** hand off approved design standards and detailed improvements to Version 2 strategy/implementation, leaving Version 1 operational.
+- **Step 5: COMPLETED 2026-10-11.** [Version 2 Development Handoff](MBA_VERSION_2_DEVELOPMENT_HANDOFF.md) documents independent repo, safe migration, design standards, and initial build sequence. Version 1 remains the live production baseline.
 
 ## Version 2 handoff
+Version 1 closeout is complete at the documentation, source-audit, user smoke-test and recoverable-branch level. Formal immutable tagging/Release and broad per-app testing remain optional follow-up enhancements and are **not** claimed complete.
+
 See [MBA_VERSION_2_IMPROVEMENT_LOG.md](MBA_VERSION_2_IMPROVEMENT_LOG.md). Core priorities: **avoid spaghetti code**, modular contracts, clear data/variable ownership, strict global functions with controlled local visual flexibility, minimal user-facing controls, reliable offline media and seamless cache upgrades. Version 2 must not disturb the Version 1 working copy.
 
 ## End of summary
