@@ -431,3 +431,6 @@ details[open] .dropdown-chevron {
     width: 100%;
   }
 }
+/* Approved MBA exhibit visual standard */
+:root{--primary:#073b4c;--primary-dark:#073b4c;--accent:#8fc9dc;--accent-soft:#e6f4f7}
+body{background:#eaf4f6}.hero-card{background:#073b4c;color:#fff;box-shadow:none;border-color:#073b4c}.hero-visual{background:#155970;box-shadow:none}.hero-visual span{border-color:#b5dce8}.hero-card h1{color:#fff;font-family:Georgia,serif;font-size:clamp(2rem,6vw,3.3rem)}.hero-card .eyebrow,.hero-card .subtitle{color:#d5eaf0}.top-button{background:#075975;border:1px solid #74a9b9;box-shadow:none}.dropdown-card{box-shadow:none}.dropdown-summary{background:#fff}
