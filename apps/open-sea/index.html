@@ -639,6 +639,8 @@ footer {
     animation-duration: 0.01ms !important;
   }
 }
+
+:root{--deep:#073b4c;--deep-dark:#073b4c;--ocean:#075975}.hub-topbar{background:#073b4c}.hub-control{background:#075975;color:white;border:1px solid #6b9eae;border-radius:999px}header{position:relative;top:auto;background:#073b4c;box-shadow:none}.open-sea-hero{max-width:1000px;margin:auto;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:center;gap:20px}.open-sea-title h1{font-family:Georgia,serif;font-size:clamp(2rem,5vw,3.4rem);line-height:1.08}.open-sea-title p{font-size:1rem;line-height:1.45}.open-sea-photo-slot{border:1px dashed #83b6c8;border-radius:12px;min-height:155px;padding:20px;display:flex;align-items:center;justify-content:center;text-align:center;color:#d6eaf2;background:#0b4356}.open-sea-photo-slot img{display:block;width:100%;height:auto;object-fit:contain;border-radius:10px}.open-sea-overview{background:white;border:1px solid var(--border);border-radius:14px;margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}.open-sea-overview summary{padding:16px 20px;font-weight:750;cursor:pointer;color:#073b4c;font-size:1.1rem}.open-sea-overview .overview-content{padding:0 20px 18px;line-height:1.6}.open-sea-overview h3{color:#073b4c;margin:14px 0 8px}@media(max-width:620px){.open-sea-hero{grid-template-columns:1fr}.open-sea-photo-slot{min-height:100px}}
 </style>
 
 </head>
@@ -650,124 +652,23 @@ footer {
 <nav class="hub-topbar" aria-label="App controls">
   <a class="hub-control" href="../../index.html">← MBA Hub</a>
 
-  <button class="hub-control" id="clearCacheButton" type="button">
-    Clear Cache
-  </button>
+  
 
-<button
-class="hub-control"
-id="troubleshootingButton"
-type="button"
-aria-controls="troubleshootingPanel"
-aria-expanded="false"
 
->
-
-```
-Troubleshooting
-```
-
-  </button>
 </nav>
 
-<div
-  class="app-notification"
-  id="appNotification"
-  role="status"
-  aria-live="polite"
->
-  Open Sea Exhibit · Version 1.1 · Expanded from volunteer training notes
-</div>
-
-<section
-  class="troubleshooting-panel"
-  id="troubleshootingPanel"
-  aria-labelledby="troubleshootingTitle"
-  aria-modal="true"
-  role="dialog"
-  hidden
->
-  <div class="troubleshooting-card">
-    <div class="troubleshooting-heading">
-      <h2 id="troubleshootingTitle">Troubleshooting</h2>
-
-```
-  <button
-    class="troubleshooting-close"
-    id="closeTroubleshootingButton"
-    type="button"
-  >
-    × Close
-  </button>
-</div>
-
-<h3>The app shows an older version</h3>
-<p>
-  Select <strong>Clear Cache</strong> and allow the app to reload.
-</p>
-
-<h3>PC Chrome</h3>
-<p>Press <strong>Ctrl + Shift + R</strong> for a hard refresh.</p>
-
-<h3>iPhone Safari</h3>
-<ol>
-  <li>Open Settings.</li>
-  <li>Open Apps, then Safari.</li>
-  <li>Open Advanced and Website Data.</li>
-  <li>Find the Hub website or GitHub domain.</li>
-  <li>Delete the matching website data.</li>
-  <li>Reopen the MBA Hub.</li>
-</ol>
-
-<h3>Search does not work</h3>
-<p>
-  Select Reset Search &amp; Filters. If needed, clear the cache and reload.
-</p>
-
-<h3>Return to the Hub</h3>
-<p>
-  Use the <strong>← MBA Hub</strong> button or the browser Back button.
-</p>
-
-<p class="troubleshooting-version">
-  Open Sea Exhibit · Version 1.1
-</p>
-```
-
-  </div>
-</section>
-
-<header>
-  <h1>🌊 Open Sea Exhibit</h1>
+<header><div class="open-sea-hero"><div class="open-sea-title"><h1>🌊 Open Sea Exhibit</h1>
 
   <p>
     Volunteer training reference — physical factors and adaptations of the
-    pelagic zone
-  </p>
-
-  <div class="search-bar">
-    <input
-      type="search"
-      id="searchInput"
-      autocomplete="off"
-      aria-label="Search Open Sea topics"
-      placeholder="Search pressure, oxygen, TMAO, thermocline, bioluminescence…"
-    >
-  </div>
-
-  <div
-    class="tag-filters"
-    id="tagFilters"
-    aria-label="Topic filters"
-  ></div>
+    pelagic zone</p></div><div id="openSeaPhotoSlot" class="open-sea-photo-slot">Open Sea exhibit photo coming soon</div></div>
 </header>
 
 <main id="mainContent" tabindex="-1">
 
-  <section class="intro-card">
-    <h2>Welcome to the Open Sea</h2>
+<details class="open-sea-overview"><summary>🌊 Open Sea Overview &amp; Key Influences</summary><div class="overview-content"><h3>Welcome to the Open Sea</h3>
+    
 
-```
 <p>
   The open sea is the largest ecosystem on Earth. It is vast and variable
   and includes ocean waters away from coastal limits and above the
@@ -791,14 +692,9 @@ Troubleshooting
   <span class="habitat-chip">Kelp Forest</span>
   <span class="habitat-chip">Monterey Bay Habitat</span>
 </div>
-```
+<h3>Primary Open-Sea Influences</h3>
+    
 
-  </section>
-
-  <section class="notice-card">
-    <h2>Primary Open-Sea Influences</h2>
-
-```
 <p>
   The training notes identify temperature, light and color, pressure,
   oxygen, salinity, nutrients, currents, sound, marine debris, and animal
@@ -810,40 +706,17 @@ Troubleshooting
   Marine debris was listed as a future topic but did not include supporting
   details, so no unverified debris section has been added.
 </p>
-```
+</div></details>
 
-  </section>
-
-  <div class="utility-controls" aria-label="Dropdown controls">
-    <button class="utility-button" id="expandAllButton" type="button">
-      Expand All
-    </button>
-
-```
-<button class="utility-button" id="collapseAllButton" type="button">
-  Collapse All
-</button>
-
-<button class="utility-button" id="resetButton" type="button">
-  Reset Search &amp; Filters
-</button>
-```
-
-  </div>
+  
 
   <div class="section-label">The Intangible Variables</div>
 
-  <div
-    class="result-count"
-    id="resultCount"
-    aria-live="polite"
-  ></div>
+  
 
   <div id="cardList"></div>
 
-  <div class="empty-state" id="emptyState" role="status">
-    No topics match your search or filter.
-  </div>
+  
 
   <details class="references">
     <summary>References and source notes</summary>
@@ -1476,63 +1349,7 @@ const DATA = [
   }
 ];
 
-const tagSet = new Set();
-
-DATA.forEach((item) => {
-  item.tags.forEach((tag) => tagSet.add(tag));
-});
-
-const ALL_TAGS = ["All", ...Array.from(tagSet)];
-
-let activeTag = "All";
-let searchTerm = "";
-
-const tagFiltersElement = document.getElementById("tagFilters");
-const cardListElement = document.getElementById("cardList");
-const emptyStateElement = document.getElementById("emptyState");
-const resultCountElement = document.getElementById("resultCount");
-const searchInput = document.getElementById("searchInput");
-const expandAllButton = document.getElementById("expandAllButton");
-const collapseAllButton = document.getElementById("collapseAllButton");
-const resetButton = document.getElementById("resetButton");
-const clearCacheButton = document.getElementById("clearCacheButton");
-const troubleshootingButton =
-  document.getElementById("troubleshootingButton");
-const troubleshootingPanel =
-  document.getElementById("troubleshootingPanel");
-const closeTroubleshootingButton =
-  document.getElementById("closeTroubleshootingButton");
-const appNotification = document.getElementById("appNotification");
-
-function stripHtml(html) {
-  const temporaryElement = document.createElement("div");
-  temporaryElement.innerHTML = html;
-  return temporaryElement.textContent || "";
-}
-
-function itemMatches(item) {
-  const tagMatches =
-    activeTag === "All" || item.tags.includes(activeTag);
-
-  if (!tagMatches) {
-    return false;
-  }
-
-  if (!searchTerm) {
-    return true;
-  }
-
-  const searchableText = [
-    item.title,
-    item.subtitle,
-    item.tags.join(" "),
-    stripHtml(item.body)
-  ]
-    .join(" ")
-    .toLowerCase();
-
-  return searchableText.includes(searchTerm);
-}
+const cardListElement = document.getElementById('cardList');
 
 function setCardOpen(card, open) {
   const header = card.querySelector(".card-header");
@@ -1607,69 +1424,8 @@ function buildCard(item) {
   return card;
 }
 
-function renderTagFilters() {
-  tagFiltersElement.innerHTML = "";
-
-  ALL_TAGS.forEach((tag) => {
-    const button = document.createElement("button");
-
-    button.className =
-      "tag-btn" + (tag === activeTag ? " active" : "");
-
-    button.type = "button";
-    button.textContent = tag;
-    button.dataset.tag = tag;
-    button.setAttribute("aria-pressed", String(tag === activeTag));
-
-    button.addEventListener("click", () => {
-      activeTag = tag;
-      renderTagFilters();
-      renderCards();
-    });
-
-    tagFiltersElement.appendChild(button);
-  });
-}
-
-function renderCards() {
-  cardListElement.innerHTML = "";
-
-  const matchingItems = DATA.filter(itemMatches);
-
-  matchingItems.forEach((item) => {
-    cardListElement.appendChild(buildCard(item));
-  });
-
-  emptyStateElement.classList.toggle(
-    "show",
-    matchingItems.length === 0
-  );
-
-  resultCountElement.textContent =
-    matchingItems.length === 1
-      ? "1 topic shown"
-      : `${matchingItems.length} topics shown`;
-}
-
-function expandAllCards() {
-  document.querySelectorAll(".card").forEach((card) => {
-    setCardOpen(card, true);
-  });
-}
-
-function collapseAllCards() {
-  document.querySelectorAll(".card").forEach((card) => {
-    setCardOpen(card, false);
-  });
-}
-
-function resetSearchAndFilters() {
-  activeTag = "All";
-  searchTerm = "";
-  searchInput.value = "";
-
-  renderTagFilters();
-  renderCards();
+function renderCards(){ cardListElement.innerHTML=""; DATA.forEach(item=>cardListElement.appendChild(buildCard(item))); }
+renderCards();
 
   appNotification.classList.remove("error");
   appNotification.textContent = "Search and filters reset.";
