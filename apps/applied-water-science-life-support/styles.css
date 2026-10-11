@@ -401,29 +401,3 @@ figcaption {
   .content { grid-template-columns: 1fr 1fr; }
   .card.open { grid-column: 1 / -1; }
 }
-
-/* Refined MBA ocean design; compact two-column topic cards retained */
-:root{--deep:#073b4c;--mid:#116e8a;--light:#8ed5e8;--white:#f6fcff;--panel:rgba(255,255,255,.1);--line:rgba(174,217,231,.28)}
-body{background:radial-gradient(ellipse at 65% 0%,rgba(57,157,187,.2),transparent 42rem),linear-gradient(170deg,#052c3d 0%,#073b4c 56%,#082838 100%)}
-.app-header{position:relative;top:auto;background:linear-gradient(125deg,#073b4c,#0c5268);border-bottom:1px solid #5a9caf;box-shadow:0 9px 26px rgba(1,26,38,.22);padding:1.3rem 1.2rem 1.6rem}
-.top-actions{justify-content:flex-start;max-width:1050px;margin:0 auto 1.1rem}
-.hub-button{font-size:.95rem;padding:.65rem 1.05rem;background:#075975;border:1px solid #6fa8ba;box-shadow:0 3px 12px rgba(0,0,0,.1)}
-.badge{margin:.1rem auto .75rem;color:#b4e0ef;border-color:#5c9db3;letter-spacing:.12em;font-size:.72rem}
-h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.75rem,3.8vw,2.85rem);line-height:1.16;max-width:940px;margin:auto;letter-spacing:-.015em}
-.app-header p{font-size:clamp(.92rem,1.6vw,1.06rem);color:#d0e7ef;max-width:720px;line-height:1.55}
-main{width:min(1090px,100%);padding:1.3rem 1rem 2rem}
-.content{gap:.85rem}
-.card{background:linear-gradient(120deg,#144e66,#103f55);border:1px solid #487d94;box-shadow:0 4px 12px rgba(1,22,32,.16);transition:border-color .15s ease,background .15s ease}
-.card:hover{border-color:#88bfd0;background:#18576d}
-.card-header{padding:1.02rem 1.15rem;min-height:90px;gap:.9rem}
-.card-header:focus-visible,.hub-button:focus-visible{outline:3px solid #addceb;outline-offset:3px}
-.card-header .icon{width:2.8rem;height:2.8rem;font-size:1.35rem;background:#206a84;border-radius:13px}
-.card-header strong{font-size:1.07rem;line-height:1.26;color:#fff}
-.card-header small{font-size:.82rem;line-height:1.45;color:#c2dce6}
-.chevron{font-size:1rem;color:#b4dce9}
-.card.open{background:#174d62;border-color:#8ecbde}
-.card-body{padding:.4rem 1.3rem 1.25rem;border-top:1px solid #4d8299}
-.card-body p,.card-body li{color:#e3eff5;line-height:1.6;font-size:.95rem}
-blockquote{background:#0e3549;color:#f3fafc;border-left-color:#85d0e6}
-.callout{color:#dcf8ec;border-color:#529b91}
-@media(max-width:779px){main{padding:.9rem .8rem 2rem}.card-header{min-height:78px}}
