@@ -353,33 +353,24 @@ function renderCategory(category) {
 }
 
 
-// Compact, registry-driven Animals directory. All letters start collapsed;
-// searching reveals matching letters without modifying the species apps.
+// Animals directory: one-click letter filtering with independently collapsible animal details.
 function renderCompactAnimals(apps) {
-  const groups = {};
-  apps.forEach(app => {
-    const letter = (app.name || "#").charAt(0).toUpperCase();
-    (groups[letter] ||= []).push(app);
-  });
-  const searching = Boolean(searchTerm.trim());
-  const letters = Object.keys(groups).sort();
+  const sorted = [...apps].sort((a,b) => a.name.localeCompare(b.name, undefined, { sensitivity:"base" }));
+  const letters = [...new Set(sorted.map(app => (app.name || "#").charAt(0).toUpperCase()))].sort();
   return `<div class="animal-directory">
-    <p class="animal-directory-hint">Choose a letter, then tap Open App. Tap a name for details.</p>
-    <div class="animal-az" aria-label="Jump to animal letter">${letters.map(letter =>
-      `<button type="button" class="animal-letter-jump" data-animal-letter="${escapeHTML(letter)}">${escapeHTML(letter)}</button>`
+    <p class="animal-directory-hint">Choose a letter to show matching animals; tap it again to show all. Tap an animal for details, or Open App to launch it.</p>
+    <div class="animal-az" role="group" aria-label="Filter animals by first letter">${letters.map(letter =>
+      `<button type="button" class="animal-letter-jump" data-animal-letter="${escapeHTML(letter)}" aria-pressed="false">${escapeHTML(letter)}</button>`
     ).join("")}</div>
-    ${letters.map(letter => `<details class="animal-letter-group" data-letter="${escapeHTML(letter)}" ${searching ? "open" : ""}>
-      <summary>${escapeHTML(letter)} <small>(${groups[letter].length})</small></summary>
-      <div class="animal-rows">${groups[letter].map(app => `
-        <div class="animal-row">
-          <details class="animal-info">
-            <summary>${escapeHTML(app.name)}</summary>
-            <p>${escapeHTML(app.description || app.purpose || "Species guide")}</p>
-            ${app.appType ? `<small>${escapeHTML(app.appType)}</small>` : ""}
-          </details>
-          <a class="animal-open-app" href="${escapeHTML(app.url)}" data-open-app aria-label="Open ${escapeHTML(app.name)} app">Open App ↗</a>
-        </div>`).join("")}</div>
-    </details>`).join("")}
+    <div class="animal-rows">${sorted.map(app => `
+      <div class="animal-row" data-animal-item data-letter="${escapeHTML((app.name || "#").charAt(0).toUpperCase())}">
+        <details class="animal-info">
+          <summary>${escapeHTML(app.name)}</summary>
+          <p>${escapeHTML(app.description || app.purpose || "Species guide")}</p>
+          ${app.appType ? `<small>${escapeHTML(app.appType)}</small>` : ""}
+        </details>
+        <a class="animal-open-app" href="${escapeHTML(app.url)}" data-open-app aria-label="Open ${escapeHTML(app.name)} app">Open App ↗</a>
+      </div>`).join("")}</div>
   </div>`;
 }
 
@@ -413,14 +404,22 @@ function renderAppCard(app) {
 }
 
 function setupAnimalDirectory(list) {
-  list.querySelectorAll("[data-animal-letter]").forEach(button => {
-    button.addEventListener("click", () => {
-      const group = Array.from(list.querySelectorAll(".animal-letter-group"))
-        .find(el => el.dataset.letter === button.dataset.animalLetter);
-      if (!group) return;
-      group.open = true;
-      group.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    });
+  list.querySelectorAll(".animal-directory").forEach(directory => {
+    let selected = null;
+    const buttons = [...directory.querySelectorAll("[data-animal-letter]")];
+    const animals = [...directory.querySelectorAll("[data-animal-item]")];
+    buttons.forEach(button => button.addEventListener("click", () => {
+      const letter = button.dataset.animalLetter;
+      selected = selected === letter ? null : letter;
+      buttons.forEach(item => {
+        const active = item.dataset.animalLetter === selected;
+        item.classList.toggle("selected", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+      animals.forEach(item => {
+        item.hidden = Boolean(selected && item.dataset.letter !== selected);
+      });
+    }));
   });
 }
 
