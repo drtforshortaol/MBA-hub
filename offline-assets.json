@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-10-open-sea-image",
+  "version": "2026-10-11-california-sheephead-offline",
   "assets": [
     "IMG_3475.jpeg",
     "app-registry.json",
@@ -25,6 +25,8 @@
     "apps/california-flying-fish/index.html",
     "apps/california-flying-fish/manifest.webmanifest",
     "apps/california-flying-fish/sw.js",
+    "apps/california-sheephead/IMG_3594.jpeg",
+    "apps/california-sheephead/index.html",
     "apps/five-senses-pwa/app.js",
     "apps/five-senses-pwa/apps.js",
     "apps/five-senses-pwa/data.js",
