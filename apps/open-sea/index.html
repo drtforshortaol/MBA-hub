@@ -721,7 +721,6 @@ footer {
   <details class="references">
     <summary>References and source notes</summary>
 
-```
 <div class="references-content">
   <p>
     <strong>Primary content source:</strong> User-provided document,
@@ -744,7 +743,6 @@ footer {
     version. Emoji are used as interface markers.
   </p>
 </div>
-```
 
   </details>
 
@@ -1424,69 +1422,7 @@ function buildCard(item) {
   return card;
 }
 
-function renderCards(){ cardListElement.innerHTML=""; DATA.forEach(item=>cardListElement.appendChild(buildCard(item))); }
-renderCards();
-
-  appNotification.classList.remove("error");
-  appNotification.textContent = "Search and filters reset.";
-}
-
-function openTroubleshooting() {
-  troubleshootingPanel.hidden = false;
-  troubleshootingButton.setAttribute("aria-expanded", "true");
-  document.body.style.overflow = "hidden";
-  closeTroubleshootingButton.focus();
-}
-
-function closeTroubleshooting() {
-  troubleshootingPanel.hidden = true;
-  troubleshootingButton.setAttribute("aria-expanded", "false");
-  document.body.style.overflow = "";
-  troubleshootingButton.focus();
-}
-
-async function clearAppCache() {
-  clearCacheButton.disabled = true;
-  appNotification.classList.remove("error");
-  appNotification.textContent = "Clearing cached Open Sea files…";
-
-  try {
-    if ("caches" in window) {
-      const cacheNames = await caches.keys();
-
-      await Promise.all(
-        cacheNames.map((cacheName) => caches.delete(cacheName))
-      );
-    }
-
-    if ("serviceWorker" in navigator) {
-      const registrations =
-        await navigator.serviceWorker.getRegistrations();
-
-      await Promise.all(
-        registrations.map((registration) =>
-          registration.unregister()
-        )
-      );
-    }
-
-    appNotification.textContent =
-      "Cache cleared. Reloading the newest version…";
-
-    window.setTimeout(() => {
-      window.location.reload();
-    }, 700);
-  } catch (error) {
-    console.error("Unable to clear cache:", error);
-
-    appNotification.classList.add("error");
-    appNotification.textContent =
-      "Automatic cache clearing failed. Use Ctrl + Shift + R on PC or clear Safari website data on iPhone.";
-
-    clearCacheButton.disabled = false;
-  }
-}
-
+function renderCards(){cardListElement.innerHTML="";DATA.forEach(item=>cardListElement.appendChild(buildCard(item)));}
 renderCards();
 </script>
 
