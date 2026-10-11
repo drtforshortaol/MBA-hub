@@ -10,6 +10,25 @@ window.MMC_NARRATIONS_DATA = {
 
   sections: [
     {
+      id: "cart-operations-visitor-engagement",
+      title: "📋 Cart Operations & Visitor Engagement",
+      category: "Marine Mammal Cart",
+      summary: "Operating instructions and visitor guidance from May 20, 2026 Field Observations.",
+      body: [
+        "Visitor interactions: Guests may touch the marine mammal models, but should not lift or carry them. Mentioning model weights is optional.",
+        "Activating videos: Position the black puck over the corresponding activation area. If no video starts, move the puck slightly until the animal profile border turns yellow.",
+        "If a video still does not work: Contact an available specialist for assistance. Continue engaging visitors using the specimens and interpretive talking points.",
+        "Training materials: Consult the Marine Mammal Cart training handout and Naturalist Library marine mammal pages for additional background.",
+        "Unresolved operating questions: Ask the current shift captain or available specialist; do not assume the location of keys or other procedures that have not been confirmed."
+      ],
+      prompts: [
+        "Invite visitors to examine the specimens without lifting them.",
+        "Ask visitors what they notice about the structures and how each mammal uses them.",
+        "If a video fails, use the physical specimens to keep the conversation going."
+      ],
+      tags: ["cart operations", "visitor engagement", "May 20 2026", "training", "video puck"]
+    },
+    {
       id: "blue-whale-ear-bone",
       title: "🐋 Blue Whale Ear Bone",
       category: "Marine Mammal Cart",
