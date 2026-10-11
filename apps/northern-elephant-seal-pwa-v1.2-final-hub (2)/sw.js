@@ -1,5 +1,32 @@
-self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;const u=new URL(e.request.url);if(u.origin!==self.location.origin||!u.pathname.startsWith("/MBA-hub/"))return;e.stopImmediatePropagation();e.respondWith((async()=>{const c=await caches.open("mba-shared-assets-v1");const key=e.request.mode==="navigate"&&u.pathname.endsWith("/")?new URL("index.html",u.href).href:u.href;const hit=await c.match(key,{ignoreSearch:true})||await c.match(e.request,{ignoreSearch:true});if(hit)return hit;try{return await fetch(e.request)}catch(err){return Response.error()}})())});
-const CACHE_NAME = "mba-northern-elephant-seal-v1-2-design-refresh";
+// Refresh HTML, CSS, and JavaScript online; keep shared offline assets as fallback.
+self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") return;
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin || !url.pathname.startsWith("/MBA-hub/")) return;
+  const isCore = event.request.mode === "navigate" || /\.(html|css|js)$/.test(url.pathname);
+  event.respondWith((async () => {
+    const appCache = await caches.open(CACHE_NAME);
+    const sharedCache = await caches.open("mba-shared-assets-v1");
+    const fallback = async () => (await appCache.match(event.request, {ignoreSearch:true}))
+      || (await sharedCache.match(event.request, {ignoreSearch:true}))
+      || (event.request.mode === "navigate" ? await appCache.match("./index.html") : undefined);
+    if (isCore) {
+      try {
+        const response = await fetch(event.request, {cache:"no-store"});
+        if (response.ok) appCache.put(event.request, response.clone()).catch(() => {});
+        return response;
+      } catch (error) { return (await fallback()) || Response.error(); }
+    }
+    const cached = await fallback();
+    if (cached) return cached;
+    try {
+      const response = await fetch(event.request);
+      if (response.ok) appCache.put(event.request, response.clone()).catch(() => {});
+      return response;
+    } catch (error) { return Response.error(); }
+  })());
+});
+const CACHE_NAME = "mba-northern-elephant-seal-v1-2-refresh-fix";
 
 const ASSETS = [
   "./",
@@ -40,20 +67,4 @@ self.addEventListener("activate", event => {
     caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith("mba-northern-elephant-seal") && key !== CACHE_NAME).map(key => caches.delete(key))))
   );
   self.clients.claim();
-});
-
-self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return;
-  event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) return cached;
-      return fetch(event.request).then(response => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy).catch(() => {}));
-        return response;
-      }).catch(() => {
-        if (event.request.mode === "navigate") return caches.match("./index.html");
-      });
-    })
-  );
 });
